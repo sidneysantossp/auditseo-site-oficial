@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AUDITSEO">
+  <rect width="64" height="64" rx="14" fill="#11100f"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#b28453" stroke-width="3"/>
+  <path d="M21 45 31.7 18.5h4.6L47 45h-5.9l-2.2-5.8H29.1L27 45h-6Zm10-11h6l-3-8.2L31 34Z" fill="#e0d3c3"/>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "name": "AUDITSEO | Search Intelligence Partner para Agências",
+  "short_name": "AUDITSEO",
+  "description": "Consultoria estratégica de SEO, GEO e inteligência de busca para agências de marketing digital que querem ampliar valor, retenção e evolução orgânica na carteira.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#11100f",
+  "theme_color": "#11100f",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon-auditseo.png",
+      "sizes": "150x150",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
