@@ -43,100 +43,100 @@ const scenarios = [
     title: "Projeto começando do zero",
     text: "Site novo, marca nova ou presença orgânica ainda inexistente.",
     solution: "Search Foundation",
-    resultScenario: "Projeto novo com risco de nascer sem base orgânica clara.",
+    resultScenario: "Projeto novo com risco de nascer sem base estratégica clara.",
     opportunity:
       "Criar uma fundação estratégica de busca antes que arquitetura, conteúdo e entidade sejam definidos sem critério.",
     auditseo:
-      "Nos bastidores, estruturando leitura inicial, arquitetura orgânica, estrutura semântica, prioridades técnicas e sinais básicos de autoridade.",
+      "Atuando na inteligência central, estruturando leitura inicial, arquitetura orgânica, estrutura semântica e sinais de autoridade.",
   },
   {
     id: "activation",
     title: "Site no ar, mas sem tração",
     text: "O projeto existe, mas nunca conseguiu gerar crescimento orgânico relevante.",
     solution: "Organic Activation",
-    resultScenario: "Projeto estagnado com baixa clareza estratégica.",
+    resultScenario: "Projeto estagnado com baixa visibilidade estratégica.",
     opportunity:
-      "Reposicionar a conversa com um diagnóstico de ativação orgânica e um roadmap de evolução.",
+      "Identificar o que impede o crescimento e estruturar um plano de ativação orgânica.",
     auditseo:
-      "Nos bastidores, mapeando gargalos, oportunidades, lacunas de conteúdo, problemas técnicos e prioridades de ação.",
+      "Identificando limitações, oportunidades não aproveitadas, inconsistências e prioridades de ação.",
   },
   {
     id: "recovery",
-    title: "Projeto que crescia e despencou",
-    text: "Já houve tráfego ou visibilidade, mas depois aconteceu uma queda difícil de recuperar.",
+    title: "Perda de tráfego e posições",
+    text: "Já houve tráfego ou visibilidade, mas a empresa registrou queda difícil de recuperar.",
     solution: "Search Recovery",
-    resultScenario: "Projeto em perda de visibilidade com causa ainda pouco clara.",
+    resultScenario: "Redução de visibilidade com causa ainda não diagnosticada.",
     opportunity:
-      "Transformar a queda em uma conversa técnica e estratégica sobre reconstrução de relevância, autoridade e confiança.",
+      "Diagnosticar as causas da queda e coordenar a reconstrução dos sinais afetados.",
     auditseo:
-      "Nos bastidores, analisando histórico, páginas afetadas, concorrentes, sinais técnicos, autoridade e mudanças de intenção ou mercado.",
+      "Analisando histórico, páginas afetadas, concorrentes, sinais técnicos e mudanças de intenção ou mercado.",
   },
   {
     id: "authority",
-    title: "Cliente high-ticket",
-    text: "A decisão depende de confiança, autoridade, reputação e validação pública.",
+    title: "Autoridade pouco reconhecida",
+    text: "A empresa possui experiência, mas ainda não é reconhecida como referência.",
     solution: "Entity Authority",
-    resultScenario: "Cliente com alto valor de decisão e dependência de confiança antes da compra.",
+    resultScenario: "Falta de sinais claros que sustentem a confiança e o reconhecimento da marca.",
     opportunity:
-      "Criar uma frente de autoridade de entidade para sustentar reputação, contexto e validação pública.",
+      "Organizar e fortalecer os sinais que ajudam buscadores e IA a confiar na empresa.",
     auditseo:
-      "Nos bastidores, organizando narrativa, páginas de serviço, reputação, provas, avaliações, menções, dados estruturados e consistência entre canais.",
+      "Organizando narrativa, reputação, provas de autoridade, dados estruturados e consistência entre canais.",
   },
   {
     id: "content",
-    title: "Conteúdo sem retorno",
-    text: "Existe produção, mas falta conexão com intenção, jornada e decisão.",
+    title: "Conteúdo sem direção",
+    text: "Existe produção, mas falta conexão com a jornada de decisão do público.",
     solution: "Intent Content Architecture",
-    resultScenario: "Produção orgânica com volume, mas pouca direção estratégica.",
+    resultScenario: "Produção de conteúdo com volume, mas pouca conversão estratégica.",
     opportunity:
-      "Reposicionar conteúdo como arquitetura de intenção, não como calendário de publicações.",
+      "Transformar conteúdos isolados em uma arquitetura temática orientada por intenção e autoridade.",
     auditseo:
-      "Nos bastidores, mapeando intenções, clusters, páginas, lacunas e oportunidades conectadas à jornada orgânica.",
+      "Mapeando intenções, clusters de tópicos e oportunidades conectadas à jornada de busca.",
   },
   {
     id: "geo",
-    title: "Cliente perguntando sobre IA/GEO",
-    text: "A empresa quer entender nova busca, ChatGPT, Gemini, AI Overviews ou respostas generativas.",
-    solution: "GEO & AI Readiness",
-    resultScenario: "Cliente pressionando por IA, mas com sinais de busca ainda pouco organizados.",
+    title: "Preparação para GEO e IA",
+    text: "A empresa quer compreender sua presença em ChatGPT, Gemini e respostas generativas.",
+    solution: "Generative Search Readiness",
+    resultScenario: "Interesse em novas buscas, mas com sinais de autoridade ainda não otimizados para IA.",
     opportunity:
-      "Transformar curiosidade sobre IA em uma proposta madura de preparação para nova busca.",
+      "Avaliar os sinais que influenciam a compreensão e a consideração da empresa em plataformas de IA.",
     auditseo:
-      "Nos bastidores, avaliando entidades, estrutura semântica, perguntas estratégicas, dados estruturados, reputação e clareza de oferta.",
+      "Avaliando entidades, estrutura semântica, dados estruturados e clareza da oferta para sistemas generativos.",
   },
   {
     id: "migration",
-    title: "Redesign, migração ou expansão",
-    text: "O site será refeito, migrado ou terá nova estrutura de páginas.",
+    title: "Migração ou reformulação de site",
+    text: "O site passará por redesign, migração de plataforma ou mudança de domínio.",
     solution: "SEO Migration & Risk Control",
-    resultScenario: "Mudança estrutural com risco de perda orgânica se não houver governança de busca.",
+    resultScenario: "Mudança crítica com risco de perda de ativos orgânicos existentes.",
     opportunity:
-      "Criar uma camada de proteção orgânica para preservar sinais existentes e preparar crescimento futuro.",
+      "Proteger ativos orgânicos e reduzir riscos durante a transição estrutural.",
     auditseo:
-      "Nos bastidores, mapeando URLs, arquitetura, indexação, redirects, páginas prioritárias, sinais existentes e riscos de perda orgânica.",
+      "Mapeando URLs, indexação, redirecionamentos e garantindo a preservação da autoridade acumulada.",
   },
   {
     id: "evolution",
-    title: "Cliente recorrente sem percepção de evolução",
-    text: "A conta continua ativa, mas precisa de novos argumentos e próximos passos.",
+    title: "Crescimento orgânico estagnado",
+    text: "A empresa já possui uma base, mas precisa de acompanhamento e evolução contínua.",
     solution: "Organic Evolution Cycle",
-    resultScenario: "Conta recorrente com risco de parecer rotina sem evolução visível.",
+    resultScenario: "Presença digital consolidada que corre o risco de estagnar sem novos ciclos de inovação.",
     opportunity:
-      "Transformar dados, aprendizados e oportunidades em ciclos claros de evolução estratégica.",
+      "Transformar dados e aprendizados em ciclos contínuos de evolução estratégica.",
     auditseo:
-      "Nos bastidores, acompanhando sinais, consultas, páginas, concorrentes, autoridade, aprendizados e próximos movimentos.",
+      "Acompanhando sinais, consultas, concorrentes e priorizando os próximos movimentos de crescimento.",
   },
 ];
 
 const objectives = [
-  "Abrir uma nova proposta",
-  "Defender uma renovação",
-  "Recuperar confiança do cliente",
-  "Expandir ticket",
-  "Criar uma frente de inovação",
-  "Reduzir dependência do time interno",
-  "Dar clareza para uma conta estratégica",
-  "Reposicionar SEO dentro da entrega",
+  "Iniciar um novo projeto",
+  "Avaliar a estratégia atual",
+  "Recuperar visibilidade perdida",
+  "Fortalecer a autoridade digital",
+  "Preparar para buscas com IA",
+  "Identificar pontos críticos",
+  "Mapear próximos passos estratégicos",
+  "Otimizar o retorno de busca",
 ];
 
 const bottlenecks = [
@@ -155,36 +155,36 @@ const bottlenecks = [
 ];
 
 const clientPressures = [
-  "Mais tráfego",
-  "Mais leads",
-  "Provar resultado",
-  "Entender IA",
-  "Melhorar autoridade",
-  "Superar concorrentes",
-  "Recuperar queda",
-  "Saber o que fazer agora",
-  "Justificar investimento",
-  "Ver evolução no contrato",
+  "Crescimento de tráfego",
+  "Geração de oportunidades",
+  "Demonstração de ROI",
+  "Presença em IA",
+  "Liderança de mercado",
+  "Diferenciação competitiva",
+  "Recuperação de rankings",
+  "Clareza na execução",
+  "Segurança em migrações",
+  "Evolução tecnológica",
 ];
 
 const urgencyOptions = [
-  { id: "low", title: "Baixa", text: "ainda é uma oportunidade" },
-  { id: "medium", title: "Média", text: "já existe cobrança ou dúvida" },
-  { id: "high", title: "Alta", text: "pode impactar renovação ou confiança" },
-  { id: "critical", title: "Crítica", text: "a conta está em risco ou travada" },
+  { id: "low", title: "Baixa", text: "ainda é uma oportunidade estratégica" },
+  { id: "medium", title: "Média", text: "já existem dúvidas sobre a performance" },
+  { id: "high", title: "Alta", text: "impacta diretamente o crescimento da empresa" },
+  { id: "critical", title: "Crítica", text: "a visibilidade está seriamente comprometida" },
 ];
 
 const howItWorks = [
-  ["Escolha o cenário", "Identifique o tipo de projeto que está na sua carteira."],
-  ["Defina o objetivo", "Informe o que sua agência quer destravar: proposta, retenção, recuperação, expansão ou inovação."],
-  ["Aponte os gargalos", "Selecione onde o projeto parece estar travado."],
-  ["Receba uma direção", "Veja qual solução AUDITSEO pode fazer sentido para esse cenário."],
+  ["Escolha o cenário", "Identifique o momento atual da sua empresa."],
+  ["Defina o objetivo", "Informe o que você deseja destravar: lançamento, recuperação, autoridade ou evolução."],
+  ["Aponte os pontos críticos", "Selecione onde a presença digital parece estar limitada."],
+  ["Receba uma direção", "Veja qual solução AUDITSEO faz sentido para o seu cenário."],
 ];
 
 const trustCards = [
   ["Sem promessa automática", "O diagnóstico não garante resultado, ranking ou aparição em IA."],
-  ["Sem exposição do cliente", "A URL do cliente é opcional e pode ser compartilhada apenas se fizer sentido."],
-  ["Com leitura estratégica", "A AUDITSEO usa o resultado como ponto de partida para avaliar o cenário com mais profundidade."],
+  ["Privacidade total", "A URL da empresa é opcional e seus dados são tratados com sigilo estratégico."],
+  ["Com leitura estratégica", "A AUDITSEO usa o resultado como ponto de partida para avaliar o cenário com profundidade."],
 ];
 
 export default function DiagnosticoPage({ onNavigate }: DiagnosticoPageProps) {
@@ -201,27 +201,39 @@ export default function DiagnosticoPage({ onNavigate }: DiagnosticoPageProps) {
       "@graph": [
         {
           "@type": "WebPage",
-          name: "Diagnóstico Orgânico para Agências | AUDITSEO",
-          url: `https://www.auditseo.com.br/diagnostico`,
-          description:
-            "Diagnóstico interativo para agências identificarem oportunidades de SEO, GEO, autoridade e inteligência de busca na carteira de clientes.",
+          "@id": "https://www.auditseo.com.br/diagnostico#webpage",
+          "name": "Avaliação Estratégica de Presença Digital | AUDITSEO",
+          "url": `https://www.auditseo.com.br/diagnostico`,
+          "description":
+            "Avaliação estratégica interativa para identificar o que limita a visibilidade, a compreensão e a autoridade da sua empresa no Google e nas plataformas de IA.",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.auditseo.com.br/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Diagnóstico",
+                "item": "https://www.auditseo.com.br/diagnostico"
+              }
+            ]
+          }
         },
         {
           "@type": "Service",
-          name: "Diagnóstico de oportunidade orgânica para agências",
-          provider: { "@type": "Organization", name: "AUDITSEO" },
-          serviceType: "Search Intelligence, SEO, GEO e autoridade de entidade",
-        },
-        {
-          "@type": "ItemList",
-          name: "Cenários de diagnóstico orgânico",
-          itemListElement: scenarios.map((scenario, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            name: scenario.title,
-            description: scenario.solution,
-          })),
-        },
+          "name": "Avaliação Estratégica de Presença Digital",
+          "provider": { 
+            "@type": "ProfessionalService", 
+            "@id": "https://www.auditseo.com.br/#organization" 
+          },
+          "serviceType": "Search Intelligence, SEO, GEO e autoridade de entidade",
+          "description": "Avaliação técnica e estratégica para identificar pontos críticos que impedem o crescimento orgânico e a autoridade digital."
+        }
       ],
     });
     document.head.appendChild(script);
@@ -267,16 +279,16 @@ export default function DiagnosticoPage({ onNavigate }: DiagnosticoPageProps) {
           <div className="grid items-center gap-14 lg:grid-cols-12 xl:gap-16">
             <div className="lg:col-span-6">
               <span className="mb-5 inline-block font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
-                DIAGNÓSTICO PARA AGÊNCIAS
+                DIAGNÓSTICO ESTRATÉGICO
               </span>
               <h1 className="max-w-[780px] font-display text-[clamp(54px,5.4vw,82px)] font-bold leading-[1.02] tracking-[-0.045em] text-[#f8f8f8]">
-                Descubra qual oportunidade orgânica existe na sua carteira
+                Descubra o que limita a presença digital da sua empresa
               </h1>
               <p className="mt-8 max-w-[720px] text-[clamp(18px,1.35vw,22px)] leading-[1.55] text-[rgba(248,248,248,0.76)]">
-                Responda algumas perguntas rápidas e veja qual cenário seu cliente está enfrentando, qual risco isso cria para a agência e qual solução AUDITSEO pode ser estruturada nos bastidores.
+                Responda algumas perguntas rápidas e identifique o cenário que sua empresa está enfrentando, os pontos críticos que impedem a evolução e qual solução estratégica pode ser aplicada.
               </p>
               <p className="mt-[22px] max-w-[640px] text-[16px] leading-[1.5] text-[#e0d3c3]/[0.78]">
-                Não é um formulário. É uma leitura estratégica para identificar onde sua agência pode destravar, recuperar ou evoluir uma conta.
+                Não é um formulário. É uma avaliação para identificar onde a empresa precisa destravar, recuperar ou fortalecer sua presença no Google e nas plataformas de IA.
               </p>
               <div className="mt-11 flex flex-col gap-4 sm:flex-row">
                 <PrimaryButton onClick={scrollToScan}>Iniciar diagnóstico</PrimaryButton>
@@ -291,7 +303,7 @@ export default function DiagnosticoPage({ onNavigate }: DiagnosticoPageProps) {
                 </button>
               </div>
               <p className="mt-9 font-mono text-[11px] uppercase tracking-[0.08em] text-[#8c8275]">
-                Leva menos de 3 minutos · Sem compromisso · Pensado para agências
+                Leva menos de 3 minutos · Sem compromisso · Avaliação Técnica
               </p>
             </div>
             <div className="lg:col-span-6">
@@ -374,10 +386,10 @@ export default function DiagnosticoPage({ onNavigate }: DiagnosticoPageProps) {
         <div className="mx-auto max-w-[1080px] rounded-[8px] border border-[#b28453]/35 bg-[#171614] px-7 py-14 text-center shadow-2xl shadow-black/35 md:px-14 md:py-18">
           <span className="font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">DIAGNÓSTICO AUDITSEO</span>
           <h2 className="mx-auto mt-6 max-w-4xl font-display text-[34px] font-bold leading-[1.08] sm:text-[44px] md:text-[58px]">
-            Quer descobrir onde sua agência pode destravar valor orgânico?
+            Quer identificar o que limita sua presença digital?
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-[1.7] text-[#f8f8f8]/70 md:text-lg">
-            Use o diagnóstico para identificar o cenário e entender qual solução AUDITSEO pode ser estruturada nos bastidores.
+            Use o diagnóstico para identificar o cenário e entender qual solução estratégica pode fortalecer sua autoridade.
           </p>
           <div className="mt-10 flex justify-center">
             <PrimaryButton onClick={scrollToScan}>Iniciar diagnóstico</PrimaryButton>
@@ -704,17 +716,17 @@ function OrganicOpportunityScan({ refEl }: { refEl: MutableRefObject<HTMLElement
 function buildDiagnosticResult(answers: Answers) {
   const scenario = scenarios.find((item) => item.id === answers.scenario) || scenarios[1];
   const urgency = urgencyOptions.find((item) => item.id === answers.urgency);
-  const bottleneckText = answers.bottlenecks.length ? ` Os gargalos sinalizados foram ${answers.bottlenecks.join(", ")}.` : "";
-  const objectiveText = answers.objective ? ` O objetivo da agência é ${answers.objective.toLowerCase()}.` : "";
+  const bottleneckText = answers.bottlenecks.length ? ` Os pontos críticos identificados foram ${answers.bottlenecks.join(", ")}.` : "";
+  const objectiveText = answers.objective ? ` O objetivo central é ${answers.objective.toLowerCase()}.` : "";
 
   const urgencyRisk =
     urgency?.id === "critical"
-      ? "A conta pode estar em risco e a agência precisa transformar incerteza em direção rapidamente."
+      ? "O cenário é crítico e exige uma intervenção estratégica imediata para estancar a perda de visibilidade."
       : urgency?.id === "high"
-        ? "A cobrança já pode afetar confiança, renovação ou percepção de valor."
+        ? "A pressão por resultados já é alta e a falta de clareza pode comprometer o crescimento futuro."
         : urgency?.id === "medium"
-          ? "A dúvida já existe e pode crescer se não houver uma leitura mais clara."
-          : "A oportunidade ainda pode ser organizada antes de virar pressão comercial.";
+          ? "Existem dúvidas sobre a performance que precisam ser endereçadas antes de se tornarem problemas estruturais."
+          : "Existe uma oportunidade de organizar a estratégia antes que o cenário mude ou a concorrência avance.";
 
   return {
     solution: scenario.solution,
@@ -722,7 +734,7 @@ function buildDiagnosticResult(answers: Answers) {
     risk: `${urgencyRisk}${objectiveText}${bottleneckText}`,
     opportunity: scenario.opportunity,
     auditseo: scenario.auditseo,
-    nextStep: `Próximo passo sugerido: avaliar esse cliente com a AUDITSEO para entender se existe oportunidade real de aplicar ${scenario.solution} nos bastidores da sua agência.`,
+    nextStep: `Próximo passo sugerido: Solicitar uma avaliação estratégica com a AUDITSEO para aprofundar a viabilidade da solução ${scenario.solution} no seu contexto atual.`,
   };
 }
 
