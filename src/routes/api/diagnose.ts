@@ -14,7 +14,7 @@ type DiagnoseBody = {
 };
 
 function buildMock(body: DiagnoseBody) {
-  const { nome, agencia, site, clientes, nichos, dificuldade, modelo } = body;
+  const { nome, agencia, site, nichos, dificuldade } = body;
   return {
     radarScore: 78,
     marketOpportunity:
@@ -24,62 +24,58 @@ function buildMock(body: DiagnoseBody) {
     seoScore: 68,
     geoScore: 42,
     brandAuthorityScore: 55,
-    analysis: `Olá ${nome || "Diretor(a)"}, analisamos a agência ${agencia || "Parceira"} (${site || "Sem site informado"}). Atualmente, operar no segmento de "${nichos || "marketing de busca"}" exige uma forte transição de SEO tradicional para GEO (Generative Engine Optimization). Identificamos que a sua principal dificuldade ("${dificuldade || "escalar entregas com rentabilidade"}") é comum em agências com cerca de ${clientes || "10 a 30"} contas ativas.`,
+    analysis: `Olá ${nome || "Diretor(a)"}, analisamos a empresa ${agencia || "Interessada"} (${site || "Sem site informado"}). Atualmente, operar no segmento de "${nichos || "marketing de busca"}" exige uma forte transição de SEO tradicional para GEO (Generative Engine Optimization). Identificamos que o principal ponto crítico ("${dificuldade || "escalar visibilidade com autoridade"}") impede a evolução do reconhecimento da sua marca.`,
     quickWins: [
       {
         title: "Estruturação de Schema Markup Semântico",
         description:
-          "Adicionar marcações ricas nos sites dos clientes para alimentar o Google AI Overviews diretamente, facilitando a identificação da autoridade local.",
+          "Adicionar marcações ricas no site para alimentar o Google AI Overviews diretamente, facilitando a identificação da autoridade da empresa.",
       },
       {
         title: "Otimização de Perfil de Empresa no Google (SEO Local)",
         description:
-          "Alinhamento de menções externas (Citações NAP) para consolidar a autoridade geográfica e entrar no 3-Pack dos mapas.",
+          "Alinhamento de menções externas (Citações NAP) para consolidar a autoridade geográfica e presença nos mapas.",
       },
       {
-        title: "White-Label de Relatórios de Search Intelligence",
+        title: "Relatórios de Search Intelligence",
         description:
-          "Substituir relatórios baseados em cliques industriais por análises de 'Narrativa de Busca e Intenção', agregando 3x mais valor percebido pelo cliente final.",
+          "Substituir relatórios baseados em cliques por análises de 'Narrativa de Busca e Intenção', agregando mais valor estratégico à tomada de decisão.",
       },
     ],
     roadmap90Days: [
       {
         phase: "Dia 1 - 30: Diagnóstico & Limpeza Técnica",
         actions:
-          "Mapeamento das 5 principais intenções e auditoria de indexação em IA. Implementação da retaguarda AUDITSEO nas propostas comerciais.",
+          "Mapeamento das principais intenções e auditoria de indexação em IA. Identificação dos fatores que limitam os resultados atuais.",
       },
       {
         phase: "Dia 31 - 60: Autoridade Local & GEO",
         actions:
-          "Lançamento do plano de citações estruturadas nos mapas e criação de tópicos de autoridade temática no blog do cliente.",
+          "Lançamento do plano de citações estruturadas nos mapas e criação de tópicos de autoridade temática para buscadores e IA.",
       },
       {
-        phase: "Dia 61 - 90: Learning Loop & Expansão",
+        phase: "Dia 61 - 90: Learning Loop & Evolução",
         actions:
-          "Apresentação dos primeiros resultados de Search Intelligence, redução do churn e ativação de novos escopos recorrentes de SEO.",
+          "Apresentação dos primeiros resultados de Search Intelligence, validação da autoridade de entidade e ativação de novos ciclos de crescimento.",
       },
     ],
     growthEstimate:
-      "Adoção da retaguarda AUDITSEO reduz o tempo de entrega interna em até 70% e pode elevar a retenção de contratos em mais de 14 meses.",
-    suggestedModel: modelo || "Parceria White-Label ou Squad Externo SEO/GEO",
+      "Adoção da estratégia de Inteligência de Busca AUDITSEO otimiza a visibilidade e fortalece a confiança da marca em múltiplos canais de descoberta.",
+    suggestedModel: "Consultoria de Inteligência de Busca e Autoridade",
   };
 }
 
 function buildPrompt(b: DiagnoseBody) {
-  return `Você é o Diretor Sênior de Inteligência de Busca da AUDITSEO. Escreva um parecer diagnóstico de SEO, GEO e Search Intelligence personalizado focado em ajudar uma agência a se posicionar de forma premium no mercado de busca orgânica tradicional e busca baseada em IA (como ChatGPT, Gemini, AI Overviews).
+  return `Você é o Diretor Sênior de Inteligência de Busca da AUDITSEO. Escreva um parecer diagnóstico de SEO, GEO e Search Intelligence personalizado focado em ajudar uma empresa a fortalecer sua autoridade de marca e visibilidade no mercado de busca orgânica tradicional e busca baseada em IA (como ChatGPT, Gemini, AI Overviews).
 
-DADOS DA AGÊNCIA SUBMETIDOS:
-- Agência: ${b.agencia || "Não informado"}
+DADOS DA EMPRESA SUBMETIDOS:
+- Empresa: ${b.agencia || "Não informado"}
 - Site: ${b.site || "Não informado"}
 - Contato do Responsável: ${b.nome || "Não informado"}
-- E-mail: ${b.email || "Não informado"}
-- Clientes Ativos: ${b.clientes || "Não informado"}
 - Nichos Atendidos: ${b.nichos || "Geral"}
-- Já vende SEO: ${b.vendeSEO || "Não informado"}
-- Maior dificuldade comercial/operacional hoje: ${b.dificuldade || "Entregar com autoridade e reter clientes"}
-- Modelo de parceria em mente: ${b.modelo || "Squad Externo ou White-Label"}
+- Maior ponto crítico identificado hoje: ${b.dificuldade || "Fortalecer autoridade e visibilidade estratégica"}
 
-O seu retorno deve ser exclusivamente um objeto JSON em português do Brasil contendo: radarScore (inteiro 40-95), seoScore (40-95), geoScore (30-90), brandAuthorityScore (40-95), marketOpportunity (frase curta), analysis (parágrafo executivo e consultivo), quickWins (array com 3 objetos com 'title' e 'description'), roadmap90Days (array com 3 objetos com 'phase' e 'actions'), growthEstimate (frase objetiva), suggestedModel (frase curta).
+O seu retorno deve ser exclusivamente um objeto JSON em português do Brasil contendo: radarScore (inteiro 40-95), seoScore (40-95), geoScore (30-90), brandAuthorityScore (40-95), marketOpportunity (frase curta), analysis (parágrafo executivo e consultivo removendo qualquer menção a agências ou white-label), quickWins (array com 3 objetos com 'title' e 'description'), roadmap90Days (array com 3 objetos com 'phase' e 'actions'), growthEstimate (frase objetiva), suggestedModel (Consultoria de Inteligência de Busca e Autoridade).
 
 Retorne apenas JSON puro compatível com JSON.parse, sem markdown.`;
 }
