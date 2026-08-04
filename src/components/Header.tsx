@@ -157,7 +157,7 @@ export default function Header({ onNavClick, activeSection }: HeaderProps) {
             Agendar uma Reunião
           </a>
           <div className="text-center text-[#c9c9c9] text-xs font-mono">
-            Search Intelligence Partner para Empresas
+            Consultoria de Inteligência de Busca e Autoridade
           </div>
         </div>
       </div>
