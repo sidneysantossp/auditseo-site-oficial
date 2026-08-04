@@ -10,6 +10,7 @@ import {
   Search,
   ShieldCheck,
   Sparkles,
+  Users,
 } from "lucide-react";
 import SiteFooter from "./SiteFooter";
 
@@ -29,213 +30,217 @@ const scenarioNodes = [
 const scenarioCards = [
   {
     title: "Projeto começando do zero",
-    text: "O cliente precisa nascer com base orgânica, estrutura e clareza de busca.",
+    text: "Sua empresa está criando um novo site, serviço, unidade ou presença digital e precisa começar com uma base correta.",
+    id: "search-foundation"
   },
   {
     title: "Site no ar, mas sem tração",
-    text: "O projeto existe, mas nunca conseguiu transformar presença em crescimento.",
+    text: "O site existe, mas não conquista visibilidade, tráfego qualificado ou oportunidades comerciais.",
+    id: "organic-activation"
   },
   {
-    title: "Projeto que crescia e despencou",
-    text: "O cliente perdeu visibilidade e precisa entender a causa antes de agir.",
+    title: "Perda de tráfego e posições",
+    text: "A empresa registrou queda de acessos, perda de rankings ou redução da demanda orgânica.",
+    id: "search-recovery"
   },
   {
-    title: "Cliente high-ticket",
-    text: "A decisão depende de confiança, autoridade, reputação e validação pública.",
+    title: "Autoridade pouco reconhecida",
+    text: "A empresa possui experiência, mas ainda não é compreendida ou reconhecida como referência.",
+    id: "entity-authority"
   },
   {
     title: "Conteúdo sem direção",
-    text: "Existe produção, mas falta conexão com intenção, jornada e decisão.",
+    text: "Artigos e páginas são produzidos, mas não formam uma arquitetura conectada às jornadas de decisão.",
+    id: "intent-content-architecture"
   },
   {
-    title: "Marca despreparada para IA/GEO",
-    text: "A empresa quer inovação, mas seus sinais ainda são frágeis para a nova busca.",
+    title: "Pouca presença nas buscas com IA",
+    text: "A empresa não sabe como está sendo interpretada, citada ou considerada em plataformas generativas.",
+    id: "geo-ai-readiness"
   },
   {
-    title: "Redesign, migração ou expansão",
-    text: "Mudanças estruturais podem gerar risco orgânico se não houver governança.",
+    title: "Migração ou reformulação de site",
+    text: "Uma mudança de domínio, plataforma, estrutura ou design pode colocar ativos orgânicos em risco.",
+    id: "seo-migration-risk-control"
   },
   {
-    title: "Cliente recorrente sem percepção de evolução",
-    text: "A conta precisa de ciclos claros de aprendizado, prioridade e próximos passos.",
+    title: "Crescimento orgânico estagnado",
+    text: "A empresa já possui uma base, mas precisa de acompanhamento, novos ciclos e evolução contínua.",
+    id: "organic-evolution-cycle"
   },
-];
-
-const scenarioCardAnchors = [
-  "cenario-novo-projeto",
-  "cenario-sem-tracao",
-  "cenario-queda",
-  "cenario-autoridade",
-  "cenario-conteudo",
-  "cenario-geo",
-  "cenario-migracao",
-  "cenario-evolucao",
 ];
 
 const scenarioSolutions = [
   {
-    name: "Search Foundation",
-    scenario: "Para projetos começando do zero",
-    problem:
-      "Começar sem estrutura de SEO, arquitetura, intenção, dados estruturados e clareza de entidade pode fazer o projeto nascer limitado.",
-    value:
-      "Estruturar a base orgânica desde o início para que o site já comece com direção, contexto e capacidade de evolução.",
-    agencySells: "Uma fundação estratégica de busca para projetos digitais novos.",
-    backstage:
-      "Organizamos a leitura inicial, arquitetura orgânica, estrutura semântica, prioridades técnicas e sinais básicos de autoridade.",
+    name: "Projetos começando do zero",
+    secondaryName: "Search Foundation",
+    scenario: "Para novos sites, serviços, unidades, marcas ou projetos digitais.",
+    objective: "Construir a fundação técnica, semântica e estratégica antes que o projeto acumule limitações.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/projetos-comecando-do-zero",
+    id: "search-foundation"
   },
   {
-    name: "Organic Activation",
-    scenario: "Para sites que estão no ar, mas nunca ganharam tração",
-    problem:
-      "O projeto existe, mas não cresce porque falta diagnóstico, prioridade, intenção, arquitetura ou autoridade.",
-    value:
-      "Identificar o que impede o crescimento e transformar um site passivo em uma frente orgânica com direção.",
-    agencySells: "Um plano de ativação orgânica para projetos estagnados.",
-    backstage:
-      "Mapeamos gargalos, oportunidades, lacunas de conteúdo, problemas técnicos e prioridades de ação.",
+    name: "Sites no ar sem tração",
+    secondaryName: "Organic Activation",
+    scenario: "Para sites que existem, mas não geram visibilidade, tráfego qualificado ou oportunidades.",
+    objective: "Identificar o que impede o crescimento e estruturar um plano de ativação orgânica.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/site-sem-tracao",
+    id: "organic-activation"
   },
   {
-    name: "Search Recovery",
-    scenario: "Para projetos que cresceram e depois despencaram",
-    problem:
-      "A queda pode estar ligada a técnica, conteúdo, autoridade, intenção, concorrência, updates, mudança de SERP ou perda de confiança da entidade.",
-    value:
-      "Diagnosticar a causa da queda e reconstruir sinais de relevância, autoridade e confiança.",
-    agencySells: "Um plano de recuperação orgânica e reconstrução de autoridade.",
-    backstage:
-      "Analisamos histórico, perdas, páginas afetadas, concorrentes, sinais técnicos, autoridade e mudanças de intenção/mercado.",
+    name: "Recuperação orgânica",
+    secondaryName: "Search Recovery",
+    scenario: "Para empresas que perderam tráfego, posições, páginas estratégicas ou demanda orgânica.",
+    objective: "Diagnosticar as causas da queda e coordenar a reconstrução dos sinais afetados.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/recuperacao-organica",
+    id: "search-recovery"
   },
   {
-    name: "Entity Authority",
-    scenario: "Para clientes que dependem de confiança antes da compra",
-    problem:
-      "Em mercados high-ticket, não basta aparecer. O cliente pesquisa, compara, valida reputação e procura sinais de autoridade antes de decidir.",
-    value:
-      "Organizar os sinais que fazem a marca ser compreendida como entidade, associada ao contexto certo e percebida como opção confiável.",
-    agencySells: "Uma estratégia de autoridade de entidade e confiança digital.",
-    backstage:
-      "Estruturamos narrativa, páginas de serviço, reputação, provas, avaliações, menções, dados estruturados e consistência entre canais.",
+    name: "Autoridade de entidade",
+    secondaryName: "Entity Authority",
+    scenario: "Para empresas e especialistas que possuem experiência, mas ainda não são reconhecidos como referência.",
+    objective: "Organizar e fortalecer os sinais que ajudam buscadores, plataformas de IA e potenciais clientes a compreender e confiar na empresa.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/autoridade-de-entidade",
+    id: "entity-authority"
   },
   {
-    name: "Intent Content Architecture",
-    scenario: "Para clientes que produzem conteúdo, mas não geram resultado",
-    problem:
-      "Conteúdo sem intenção vira volume. Volume sem arquitetura não sustenta autoridade, tráfego qualificado nem decisão.",
-    value:
-      "Reorganizar conteúdo a partir de intenções reais: descoberta, comparação, confiança, objeção e decisão.",
-    agencySells: "Uma arquitetura de conteúdo orientada por intenção e jornada.",
-    backstage:
-      "Mapeamos intenções, clusters, páginas, lacunas e oportunidades conectadas à jornada orgânica.",
+    name: "Conteúdo por intenção",
+    secondaryName: "Intent Content Architecture",
+    scenario: "Para empresas que produzem conteúdo sem uma estrutura conectada às jornadas e decisões do público.",
+    objective: "Transformar conteúdos isolados em uma arquitetura temática orientada por intenção, autoridade e conversão.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/conteudo-por-intencao",
+    id: "intent-content-architecture"
   },
   {
-    name: "GEO & AI Readiness",
-    scenario: "Para marcas que precisam se adaptar à nova busca",
-    problem:
-      "Muitas empresas querem aparecer em ambientes de IA, mas não possuem clareza semântica, autoridade, dados estruturados, conteúdo explicativo ou consistência pública.",
-    value:
-      "Preparar a marca para ser melhor compreendida por buscadores, mecanismos de resposta e ambientes generativos.",
-    agencySells: "Uma solução de preparação para GEO, IA e nova busca.",
-    backstage:
-      "Avaliamos entidades, estrutura semântica, perguntas estratégicas, dados estruturados, reputação e clareza de oferta.",
-    note:
-      "Sem prometer aparição garantida em IA: o trabalho é preparar, organizar sinais, aumentar clareza e melhorar capacidade de interpretação.",
+    name: "Preparação para GEO e IA",
+    secondaryName: "Generative Search Readiness",
+    scenario: "Para empresas que desejam compreender e fortalecer sua presença nos novos ambientes de busca generativa.",
+    objective: "Avaliar os sinais que influenciam a compreensão, a confiabilidade e a consideração da empresa em plataformas de inteligência artificial.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/geo-ia-readiness",
+    id: "geo-ia-readiness"
   },
   {
-    name: "SEO Migration & Risk Control",
-    scenario: "Para redesigns, migrações e expansões de site",
-    problem:
-      "Muitas perdas orgânicas acontecem porque migração e redesign são tratados como projeto visual ou técnico, sem governança de busca.",
-    value:
-      "Reduzir risco, preservar sinais existentes e preparar a nova estrutura para crescimento.",
-    agencySells: "Uma camada de proteção orgânica para mudanças estruturais.",
-    backstage:
-      "Mapeamos URLs, arquitetura, indexação, redirects, páginas prioritárias, sinais existentes e riscos de perda orgânica.",
+    name: "Migração e risco SEO",
+    secondaryName: "SEO Migration & Risk Control",
+    scenario: "Para empresas que passarão por redesign, migração de plataforma, alteração de domínio ou reorganização estrutural.",
+    objective: "Proteger ativos orgânicos e reduzir riscos durante mudanças críticas no site.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/migracao-risco-seo",
+    id: "seo-migration-risk-control"
   },
   {
-    name: "Organic Evolution Cycle",
-    scenario: "Para clientes recorrentes que precisam enxergar evolução",
-    problem:
-      "Sem uma narrativa de evolução, a entrega orgânica vira relatório, rotina e percepção de estagnação.",
-    value:
-      "Transformar dados, aprendizados e oportunidades em ciclos claros de evolução estratégica.",
-    agencySells: "Uma camada recorrente de inteligência orgânica para retenção e expansão.",
-    backstage:
-      "Acompanhamos sinais, consultas, páginas, concorrentes, autoridade, aprendizados e próximos movimentos.",
+    name: "Evolução orgânica",
+    secondaryName: "Organic Evolution Cycle",
+    scenario: "Para empresas que já possuem uma base orgânica e precisam manter a estratégia atualizada e evoluindo.",
+    objective: "Conduzir ciclos contínuos de análise, priorização, implementação, validação e aprendizado.",
+    cta: "Conhecer esta solução",
+    route: "/solucoes/evolucao-organica",
+    id: "organic-evolution-cycle"
   },
-];
-
-const scenarioSolutionAnchors = [
-  "search-foundation",
-  "organic-activation",
-  "search-recovery",
-  "entity-authority",
-  "intent-content-architecture",
-  "geo-ai-readiness",
-  "seo-migration-risk-control",
-  "organic-evolution-cycle",
 ];
 
 const offerMap = [
-  ["Meu site nunca trouxe resultado.", "Organic Activation"],
-  ["Nosso tráfego caiu e ninguém conseguiu recuperar.", "Search Recovery"],
-  ["Queremos aparecer melhor no Google e na IA.", "GEO & AI Readiness"],
-  ["Produzimos conteúdo, mas não vemos retorno.", "Intent Content Architecture"],
-  ["Estamos refazendo o site.", "SEO Migration & Risk Control"],
-  ["Preciso justificar a continuidade do contrato.", "Organic Evolution Cycle"],
+  ["Estamos começando um novo projeto", "Projetos começando do zero", "search-foundation"],
+  ["O site existe, mas não cresce", "Sites no ar sem tração", "organic-activation"],
+  ["Perdemos tráfego ou posições", "Recuperação orgânica", "search-recovery"],
+  ["Temos experiência, mas não somos reconhecidos", "Autoridade de entidade", "entity-authority"],
+  ["Produzimos conteúdo, mas ele não gera resultado", "Conteúdo por intenção", "intent-content-architecture"],
+  ["Não sabemos como aparecemos nas buscas com IA", "Preparação para GEO e IA", "geo-ia-readiness"],
+  ["Vamos migrar ou reformular o site", "Migração e risco SEO", "seo-migration-risk-control"],
+  ["Precisamos continuar evoluindo", "Evolução orgânica", "organic-evolution-cycle"],
 ];
 
-const agencyValueCards = [
-  "Mais precisão comercial",
-  "Mais clareza de proposta",
-  "Mais diferenciação estratégica",
-  "Mais argumentos para retenção",
-  "Mais oportunidades de expansão",
-  "Menos dependência de discurso genérico sobre SEO ou IA",
+const valueCards = [
+  {
+    title: "Menos ações desconectadas",
+    text: "Cada iniciativa passa a fazer parte de um plano comum."
+  },
+  {
+    title: "Prioridades mais claras",
+    text: "A empresa concentra recursos no que possui maior potencial de impacto."
+  },
+  {
+    title: "Melhor uso das equipes",
+    text: "Marketing, tecnologia, conteúdo e fornecedores trabalham com responsabilidades definidas."
+  },
+  {
+    title: "Menos risco",
+    text: "Decisões importantes são avaliadas antes de alterações que possam afetar ativos existentes."
+  },
+  {
+    title: "Mais visibilidade sobre a execução",
+    text: "A direção consegue acompanhar o que está sendo feito, o que depende da empresa e o que vem a seguir."
+  },
+  {
+    title: "Evolução mensurável",
+    text: "As decisões e os resultados são acompanhados ao longo dos ciclos."
+  }
 ];
 
-const backstageSteps = [
-  "Entendemos o cenário do cliente",
-  "Aplicamos a leitura estratégica pelo S.I.G.N.A.L",
-  "Estruturamos a solução adequada",
-  "Validamos prioridades com critério especializado",
-  "Entregamos a inteligência white-label para sua agência conduzir",
+const partnershipSteps = [
+  { title: "Diagnóstico do cenário", text: "Identificamos o que realmente está limitando os resultados." },
+  { title: "Definição das prioridades", text: "Focamos no que gera mais impacto estratégico no momento." },
+  { title: "Distribuição das responsabilidades", text: "Definimos quem executa cada parte da estratégia." },
+  { title: "Orientação das equipes", text: "Marketing, tech e conteúdo trabalham com direção clara." },
+  { title: "Validação das implementações", text: "Garantimos que cada ação foi executada corretamente." },
+  { title: "Acompanhamento pelo painel", text: "Governança e transparência total sobre a evolução." },
+  { title: "Atualização contínua", text: "O roadmap evolui conforme os ciclos e resultados." },
 ];
 
 export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
 
+    // Inject CollectionPage and ItemList Schema for /solucoes
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.dataset.pageSchema = "solucoes";
     script.textContent = JSON.stringify({
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          name: "Soluções de SEO, GEO e Search Intelligence para Agências | AUDITSEO",
-          url: `https://www.auditseo.com.br/solucoes`,
-          description:
-            "Soluções white-label de SEO, GEO, IA, autoridade de entidade e Search Intelligence para diferentes cenários da carteira de agências.",
-        },
-        {
-          "@type": "Service",
-          name: "Soluções white-label para cenários de projetos orgânicos",
-          provider: { "@type": "Organization", name: "AUDITSEO" },
-          serviceType: "Search Intelligence, SEO, GEO, autoridade e evolução orgânica",
-        },
-        {
-          "@type": "ItemList",
-          name: "Soluções por cenário de carteira",
-          itemListElement: scenarioSolutions.map((solution, index) => ({
+      "@type": "CollectionPage",
+      "@id": "https://www.auditseo.com.br/solucoes#webpage",
+      "url": "https://www.auditseo.com.br/solucoes",
+      "name": "Soluções de Inteligência de Busca e Autoridade | AUDITSEO",
+      "description": "Conheça as soluções da AUDITSEO para lançar, recuperar e fortalecer a presença da sua empresa no Google e nas plataformas de inteligência artificial.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
             "@type": "ListItem",
-            position: index + 1,
-            name: solution.name,
-            description: solution.scenario,
-          })),
-        },
-      ],
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.auditseo.com.br/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Soluções",
+            "item": "https://www.auditseo.com.br/solucoes"
+          }
+        ]
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "Soluções AUDITSEO",
+        "numberOfItems": scenarioSolutions.length,
+        "itemListElement": scenarioSolutions.map((solution, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "url": `https://www.auditseo.com.br${solution.route}`,
+          "name": solution.name,
+          "description": solution.objective
+        }))
+      },
+      "publisher": {
+        "@type": "ProfessionalService",
+        "@id": "https://www.auditseo.com.br/#organization"
+      }
     });
     document.head.appendChild(script);
 
@@ -280,29 +285,23 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
           <div className="grid items-center gap-14 lg:grid-cols-12 xl:gap-16">
             <div className="lg:col-span-6">
               <span className="mb-5 inline-block font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
-                SOLUÇÕES PARA CENÁRIOS REAIS DA SUA CARTEIRA
+                SOLUÇÕES DE INTELIGÊNCIA DE BUSCA
               </span>
-              <h1 className="max-w-[760px] font-display text-[clamp(54px,5.4vw,82px)] font-bold leading-[1.02] tracking-[-0.045em] text-[#f8f8f8]">
-                Cada projeto orgânico exige uma estratégia diferente
+              <h1 className="max-w-[760px] font-display text-[clamp(42px,4.2vw,68px)] font-bold leading-[1.02] tracking-[-0.045em] text-[#f8f8f8]">
+                Soluções para cada desafio de busca.
               </h1>
               <p className="mt-8 max-w-[720px] text-[clamp(18px,1.35vw,22px)] leading-[1.55] text-[rgba(248,248,248,0.76)]">
-                A AUDITSEO estrutura soluções white-label para diferentes momentos da carteira da sua agência: projetos começando do zero, sites estagnados, quedas de tráfego, baixa autoridade, conteúdo sem direção e clientes que precisam se adaptar à nova busca.
-              </p>
-              <p className="mt-[22px] max-w-[620px] text-[16px] leading-[1.5] text-[#e0d3c3]/[0.78]">
-                O método fica nos bastidores. O que sua agência apresenta é uma solução clara para o momento real de cada cliente.
+                A AUDITSEO identifica o que limita seus resultados e estrutura a estratégia adequada para lançar, recuperar ou fortalecer a presença da sua empresa no Google e nas plataformas de inteligência artificial.
               </p>
               <div className="mt-11 flex flex-col gap-4 sm:flex-row">
-                <PrimaryButton onClick={() => onNavigate("diagnostico")}>Avaliar parceria estratégica</PrimaryButton>
+                <PrimaryButton onClick={scrollToScenarios}>Encontrar a solução ideal</PrimaryButton>
                 <button
-                  onClick={scrollToScenarios}
+                  onClick={() => onNavigate("diagnostico")}
                   className="rounded-full border border-[#b28453]/45 px-7 py-4 text-sm font-bold text-[#f8f8f8] transition-colors hover:bg-[#b28453]/10"
                 >
-                  Ver cenários
+                  Solicitar avaliação estratégica
                 </button>
               </div>
-              <p className="mt-9 font-mono text-[11px] uppercase tracking-[0.08em] text-[#8c8275]">
-                Lançamento · Recuperação · Autoridade · GEO · Conteúdo · Evolução
-              </p>
             </div>
             <div className="lg:col-span-6">
               <ScenarioConstellationVisual />
@@ -313,20 +312,17 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
 
       <section className="bg-[#11100f] py-24 md:py-32">
         <div className="container mx-auto max-w-[1120px] px-6 xl:px-12">
-          <span className="font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">VISÃO AUDITSEO</span>
+          <span className="font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">DIFERENTES CENÁRIOS EXIGEM ESTRATÉGIAS DIFERENTES</span>
           <h2 className="mt-5 max-w-4xl font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-[#f8f8f8] md:text-[54px]">
-            SEO não é mais uma entrega única para todos os clientes
+            Não existe uma única estratégia para todos os momentos.
           </h2>
           <div className="mt-10 grid gap-7 text-lg leading-[1.75] text-[#f8f8f8]/70 md:text-xl">
             <p>
-              Existem clientes que estão <span className="text-[#b28453]">começando do zero</span>. Outros já têm site, conteúdo e histórico, mas{" "}
-              <span className="text-[#b28453]">nunca conseguiram transformar presença orgânica em resultado</span>. Alguns cresceram durante anos e, de repente,{" "}
-              <span className="text-[#b28453]">perderam visibilidade</span>. Outros dependem de{" "}
-              <span className="text-[#b28453]">confiança, autoridade e validação</span> antes da decisão de compra.
+              Uma empresa que está lançando um novo site não enfrenta os mesmos desafios de uma organização que perdeu tráfego, possui conteúdo sem direção ou precisa fortalecer sua autoridade.
             </p>
-            <p>Tratar todos esses cenários com a mesma entrega de SEO é reduzir uma oportunidade estratégica a uma lista de tarefas.</p>
+            <p>Antes de indicar uma solução, a AUDITSEO analisa o cenário, os objetivos, os ativos existentes e os fatores que limitam a evolução.</p>
             <p className="font-display text-2xl font-bold leading-[1.4] text-[#e0d3c3]">
-              A AUDITSEO estrutura soluções para <span className="text-[#b28453]">cada estágio da carteira</span> da sua agência.
+              A estratégia correta começa pela compreensão do problema real.
             </p>
           </div>
         </div>
@@ -337,19 +333,26 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
           <SectionHeader
             dark
             center
-            eyebrow="Mapa de cenários"
-            title="Em qual cenário o cliente da sua agência está hoje?"
-            text="Cada cenário pede uma leitura diferente, uma solução diferente e uma narrativa diferente para o cliente final."
+            eyebrow="EM QUAL CENÁRIO SUA EMPRESA ESTÁ?"
+            title="Em qual cenário sua empresa está?"
+            text="Identifique o momento mais próximo da realidade da sua empresa e conheça a solução estratégica correspondente."
           />
           <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {scenarioCards.map((card, index) => (
-              <article id={scenarioCardAnchors[index]} key={card.title} className="min-h-[210px] scroll-mt-28 rounded-[22px] border border-[#11100f]/12 bg-[#f8f8f8]/42 p-7 shadow-[0_20px_70px_rgba(17,16,15,0.10)]">
+              <button 
+                key={card.title} 
+                onClick={() => {
+                  const target = document.getElementById(card.id);
+                  if (target) window.scrollTo({ top: target.offsetTop - 82, behavior: "smooth" });
+                }}
+                className="group min-h-[210px] text-left scroll-mt-28 rounded-[22px] border border-[#11100f]/12 bg-[#f8f8f8]/42 p-7 shadow-[0_20px_70px_rgba(17,16,15,0.10)] transition-all hover:bg-white hover:border-[#b28453]/30"
+              >
                 <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#6d5132]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-5 font-display text-2xl font-bold leading-[1.12]">{card.title}</h3>
                 <p className="mt-5 text-sm leading-[1.7] text-[#11100f]/70">{card.text}</p>
-              </article>
+              </button>
             ))}
           </div>
         </div>
@@ -358,14 +361,14 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
       <section className="bg-[#11100f] py-24 md:py-32">
         <div className="container mx-auto max-w-[1240px] px-6 xl:px-12">
           <SectionHeader
-            eyebrow="Soluções por perfil de projeto"
-            title="Soluções criadas para cada momento da carteira"
-            text="Em vez de aplicar a mesma entrega para todos os clientes, a AUDITSEO estrutura a solução certa para o estágio, o risco e o objetivo de cada projeto."
+            eyebrow="SOLUÇÕES PARA CADA MOMENTO"
+            title="Soluções criadas para cada momento da sua empresa."
+            text="Cada solução parte de um cenário específico, mas todas seguem a mesma lógica: diagnóstico, prioridade, coordenação, validação e acompanhamento."
           />
           <div className="mt-16 space-y-8">
             {scenarioSolutions.map((solution, index) => (
-              <div key={solution.name} id={scenarioSolutionAnchors[index]} className="scroll-mt-28">
-                <ScenarioSolutionCard solution={solution} index={index} />
+              <div key={solution.id} id={solution.id} className="scroll-mt-28">
+                <ScenarioSolutionCard solution={solution} index={index} onNavigate={onNavigate} />
               </div>
             ))}
           </div>
@@ -377,27 +380,37 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
           <SectionHeader
             dark
             center
-            eyebrow="Do cenário à oferta"
-            title="Do problema real à solução certa"
-            text="A agência não precisa vender “mais SEO”. Ela pode apresentar uma solução alinhada ao momento do cliente."
+            eyebrow="CORRESPONDÊNCIA ESTRATÉGICA"
+            title="Do problema real à solução correta."
+            text="O nome do serviço importa menos do que a capacidade de identificar corretamente o que está impedindo a evolução."
           />
           <div className="mt-14 space-y-5">
-            {offerMap.map(([quote, offer], index) => (
-              <article key={quote} className="grid gap-5 rounded-[22px] border border-[#11100f]/12 bg-[#f8f8f8]/42 p-6 shadow-[0_18px_60px_rgba(17,16,15,0.09)] md:grid-cols-[1.2fr_0.8fr] md:items-center md:p-7">
+            {offerMap.map(([quote, offer, targetId], index) => (
+              <button 
+                key={quote} 
+                onClick={() => {
+                   const target = document.getElementById(targetId);
+                   if (target) window.scrollTo({ top: target.offsetTop - 82, behavior: "smooth" });
+                }}
+                className="group w-full text-left grid gap-5 rounded-[22px] border border-[#11100f]/12 bg-[#f8f8f8]/42 p-6 shadow-[0_18px_60px_rgba(17,16,15,0.09)] md:grid-cols-[1.2fr_0.8fr] md:items-center md:p-7 transition-all hover:bg-white hover:border-[#b28453]/30"
+              >
                 <div className="flex gap-4">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#b28453]/50 bg-[#11100f] font-mono text-xs font-bold text-[#e0d3c3]">
                     {index + 1}
                   </span>
                   <div>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#6d5132]">Quando o cliente diz</p>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#6d5132]">Quando a empresa diz</p>
                     <p className="mt-2 font-display text-xl font-bold leading-[1.35]">“{quote}”</p>
                   </div>
                 </div>
-                <div className="rounded-[18px] border border-[#b28453]/30 bg-[#11100f] p-5">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">Oferta indicada</p>
-                  <p className="mt-2 font-display text-2xl font-bold text-[#e0d3c3]">{offer}</p>
+                <div className="rounded-[18px] border border-[#b28453]/30 bg-[#11100f] p-5 flex items-center justify-between group-hover:bg-[#11100f]/90">
+                  <div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">Solução indicada</p>
+                    <p className="mt-2 font-display text-2xl font-bold text-[#e0d3c3]">{offer}</p>
+                  </div>
+                  <ArrowRight className="text-[#b28453] opacity-0 group-hover:opacity-100 transition-opacity" size={24} />
                 </div>
-              </article>
+              </button>
             ))}
           </div>
         </div>
@@ -407,19 +420,30 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
         <div className="container mx-auto max-w-[1240px] px-6 xl:px-12">
           <SectionHeader
             center
-            eyebrow="Valor para a agência"
-            title="O valor está em reconhecer o cenário antes de vender a solução"
-            text="Quando a agência consegue identificar o estágio real do projeto, a conversa muda. A entrega deixa de ser percebida como uma sequência de tarefas e passa a ser apresentada como resposta estratégica para um problema específico do cliente."
+            eyebrow="PROCESSO AUDITSEO"
+            title="A solução começa pelo diagnóstico correto."
+            text="Nem sempre o problema percebido é a verdadeira causa da limitação. A AUDITSEO não indica uma solução antes de compreender o cenário completo."
           />
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {agencyValueCards.map((card, index) => (
-              <article key={card} className="rounded-[22px] border border-[#b28453]/20 bg-[linear-gradient(145deg,rgba(31,30,28,0.96),rgba(13,13,12,0.98))] p-7 shadow-[0_22px_70px_rgba(0,0,0,0.28)]">
-                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#b28453]/45 bg-[#b28453]/10 text-[#b28453]">
-                  {index === 0 ? <Search size={18} /> : index === 1 ? <Compass size={18} /> : index === 2 ? <Sparkles size={18} /> : index === 3 ? <ShieldCheck size={18} /> : index === 4 ? <Layers3 size={18} /> : <CheckCircle2 size={18} />}
+            <div className="lg:col-span-3 mb-8">
+               <p className="text-center text-[#f8f8f8]/70 text-lg max-w-3xl mx-auto">
+                 Uma queda de tráfego pode estar relacionada a problemas técnicos, perda de autoridade, mudança de intenção, concorrência, conteúdo desatualizado ou alterações no próprio negócio.
+               </p>
+            </div>
+            {partnershipSteps.slice(0, 5).map((step, index) => (
+              <article key={step.title} className="rounded-[22px] border border-[#b28453]/20 bg-[linear-gradient(145deg,rgba(31,30,28,0.96),rgba(13,13,12,0.98))] p-7 shadow-[0_22px_70px_rgba(0,0,0,0.28)]">
+                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#b28453]/45 bg-[#b28453]/10 text-[#b28453] font-mono font-bold">
+                  {index + 1}
                 </div>
-                <h3 className="font-display text-2xl font-bold leading-[1.16] text-[#f8f8f8]">{card}</h3>
+                <h3 className="font-display text-2xl font-bold leading-[1.16] text-[#f8f8f8] mb-4">{step.title}</h3>
+                <p className="text-[#f8f8f8]/60 text-sm leading-relaxed">{step.text}</p>
               </article>
             ))}
+            <div className="lg:col-span-3 mt-12 text-center">
+               <p className="font-display text-2xl font-bold leading-[1.4] text-[#e0d3c3]">
+                 A AUDITSEO não começa vendendo uma lista de tarefas. <span className="text-[#b28453]">Começa identificando o problema que realmente precisa ser resolvido.</span>
+               </p>
+            </div>
           </div>
         </div>
       </section>
@@ -428,36 +452,58 @@ export default function SolucoesPage({ onNavigate }: SolucoesPageProps) {
         <div className="container mx-auto max-w-[1240px] px-6 xl:px-12">
           <SectionHeader
             dark
-            eyebrow="Bastidores white-label"
-            title="Sua agência identifica a oportunidade. A AUDITSEO estrutura a solução."
+            center
+            eyebrow="VALOR DA ESTRATÉGIA"
+            title="O valor está em aplicar a estratégia correta para o momento da empresa."
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-5">
-            {backstageSteps.map((step, index) => (
-              <article key={step} className="rounded-[22px] border border-[#11100f]/12 bg-[#f8f8f8]/42 p-6 shadow-[0_20px_70px_rgba(17,16,15,0.10)]">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#b28453]/50 bg-[#11100f] font-mono text-xs font-bold text-[#e0d3c3]">
-                  {index + 1}
-                </span>
-                <h3 className="mt-6 font-display text-xl font-bold leading-[1.2]">{step}</h3>
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {valueCards.map((card, index) => (
+              <article key={card.title} className="rounded-[22px] border border-[#11100f]/12 bg-[#f8f8f8]/42 p-7 shadow-[0_20px_70px_rgba(17,16,15,0.10)]">
+                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-[#b28453]/50 bg-[#11100f] text-[#e0d3c3]">
+                  {index === 0 ? <Search size={18} /> : index === 1 ? <Compass size={18} /> : index === 2 ? <Users size={18} /> : index === 3 ? <ShieldCheck size={18} /> : index === 4 ? <Layers3 size={18} /> : <CheckCircle2 size={18} />}
+                </div>
+                <h3 className="font-display text-2xl font-bold leading-[1.16] mb-4">{card.title}</h3>
+                <p className="text-[#11100f]/70 text-sm leading-relaxed">{card.text}</p>
               </article>
             ))}
           </div>
-          <div className="mt-10 rounded-[22px] border border-[#b28453]/32 bg-[#11100f] p-7 text-center text-lg font-semibold leading-[1.55] text-[#e0d3c3] md:p-9 md:text-2xl">
-            O cliente vê a agência como parceira estratégica. A AUDITSEO sustenta a inteligência por trás.
+        </div>
+      </section>
+
+      <section className="bg-[#11100f] py-24 md:py-32">
+        <div className="container mx-auto max-w-[1240px] px-6 xl:px-12">
+          <SectionHeader
+            eyebrow="PARCERIA ESTRATÉGICA"
+            title="A AUDITSEO estrutura a estratégia e trabalha ao lado das suas equipes."
+            text="Não é necessário substituir profissionais, fornecedores ou estruturas que já funcionam. A AUDITSEO atua como inteligência central."
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-4 lg:grid-cols-7">
+            {partnershipSteps.map((step, index) => (
+              <article key={step.title} className="rounded-[22px] border border-[#b28453]/20 bg-[#171614] p-6 text-center">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#b28453]/50 bg-[#11100f] font-mono text-xs font-bold text-[#e0d3c3] mx-auto mb-4">
+                  {index + 1}
+                </span>
+                <h3 className="font-display text-sm font-bold leading-[1.2] text-[#f8f8f8]">{step.title}</h3>
+              </article>
+            ))}
+          </div>
+          <div className="mt-14 rounded-[22px] border border-[#b28453]/32 bg-[#11100f] p-7 text-center text-lg font-semibold leading-[1.55] text-[#e0d3c3] md:p-9 md:text-2xl">
+            Você não recebe apenas uma recomendação. <span className="text-[#b28453]">Recebe direção, organização e acompanhamento para transformar a estratégia em evolução real.</span>
           </div>
         </div>
       </section>
 
       <section className="bg-[#11100f] px-6 py-24 md:py-32 xl:px-12">
         <div className="mx-auto max-w-[1080px] rounded-[8px] border border-[#b28453]/35 bg-[#171614] px-7 py-14 text-center shadow-2xl shadow-black/35 md:px-14 md:py-18">
-          <span className="font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">CENÁRIOS DA CARTEIRA</span>
+          <span className="font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-[#b28453]">CTA FINAL</span>
           <h2 className="mx-auto mt-6 max-w-4xl font-display text-[34px] font-bold leading-[1.08] sm:text-[44px] md:text-[58px]">
-            Qual cenário da sua carteira precisa de uma solução agora?
+            Qual desafio de busca sua empresa precisa resolver agora?
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-[1.7] text-[#f8f8f8]/70 md:text-lg">
-            Vamos avaliar onde a AUDITSEO pode atuar como braço estratégico para destravar, recuperar ou evoluir projetos orgânicos dos clientes da sua agência.
+            Uma avaliação estratégica permite compreender o cenário atual, identificar o que limita os resultados e definir a solução mais adequada para sua empresa.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <PrimaryButton onClick={() => onNavigate("diagnostico")}>Avaliar parceria estratégica</PrimaryButton>
+            <PrimaryButton onClick={() => onNavigate("diagnostico")}>Solicitar avaliação estratégica</PrimaryButton>
             <button
               onClick={() => onNavigate("signal")}
               className="rounded-full border border-[#b28453]/45 px-7 py-4 text-sm font-bold text-[#f8f8f8] transition-colors hover:bg-[#b28453]/10"
@@ -578,7 +624,15 @@ function ScenarioConstellationVisual() {
   );
 }
 
-function ScenarioSolutionCard({ solution, index }: { solution: (typeof scenarioSolutions)[number]; index: number }) {
+function ScenarioSolutionCard({ 
+  solution, 
+  index,
+  onNavigate 
+}: { 
+  solution: (typeof scenarioSolutions)[number]; 
+  index: number;
+  onNavigate: (id: string) => void;
+}) {
   return (
     <article className="relative overflow-hidden rounded-[28px] border border-[#b28453]/24 bg-[linear-gradient(145deg,rgba(31,30,28,0.96),rgba(13,13,12,0.98))] p-7 shadow-[0_28px_80px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.04)] md:p-12">
       <div className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(178,132,83,0.16),transparent_68%)]" />
@@ -590,41 +644,34 @@ function ScenarioSolutionCard({ solution, index }: { solution: (typeof scenarioS
           <h3 className="mt-7 font-display text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-[#f8f8f8] md:text-4xl">
             {solution.name}
           </h3>
-          <p className="mt-5 text-lg font-semibold leading-[1.45] text-[#e0d3c3]">{solution.scenario}</p>
-          <span className="mt-5 inline-flex rounded-full border border-[#b28453]/24 bg-[#b28453]/10 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-[#e0d3c3]">
-            Investimento inicial: a partir de R$ 2.500
-          </span>
-          {solution.note ? (
-            <p className="mt-6 rounded-[16px] border border-[#b28453]/24 bg-[#b28453]/10 px-5 py-4 text-sm leading-[1.65] text-[#e0d3c3]/82">
-              {solution.note}
-            </p>
-          ) : null}
+          <p className="mt-5 text-lg font-semibold leading-[1.45] text-[#e0d3c3]">{solution.secondaryName}</p>
+          
+          <div className="mt-8 space-y-4">
+            <div className="rounded-xl bg-[#b28453]/5 border border-[#b28453]/20 p-5">
+               <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453] mb-2">Cenário indicado</h4>
+               <p className="text-[#f8f8f8]/80 text-sm leading-relaxed">{solution.scenario}</p>
+            </div>
+            <div className="rounded-xl bg-[#b28453]/5 border border-[#b28453]/20 p-5">
+               <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453] mb-2">Objetivo principal</h4>
+               <p className="text-[#f8f8f8]/80 text-sm leading-relaxed">{solution.objective}</p>
+            </div>
+          </div>
+          
+          <div className="mt-10">
+            <button 
+              onClick={() => onNavigate(solution.id)}
+              className="group inline-flex items-center gap-2 text-[#b28453] font-bold text-sm transition-colors hover:text-[#e0d3c3]"
+            >
+              <span>{solution.cta}</span>
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
         </div>
 
-        <div className="grid gap-5">
-          <DetailPanel title="Problema real" text={solution.problem} icon={<AlertTriangle size={17} />} />
-          <div className="grid gap-5 md:grid-cols-2">
-            <DetailPanel title="Proposta de valor" text={solution.value} icon={<Sparkles size={17} />} />
-            <DetailPanel title="Como a AUDITSEO entra" text={solution.backstage} icon={<RefreshCw size={17} />} />
-          </div>
-          <div className="rounded-[18px] border-l-2 border-[#b28453] bg-[#e0d3c3]/[0.04] px-5 py-4">
-            <h4 className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#e0d3c3]">O que sua agência passa a vender</h4>
-            <p className="mt-3 text-sm font-semibold leading-[1.7] text-[#f8f8f8]/76">{solution.agencySells}</p>
-          </div>
+        <div className="hidden lg:flex items-center justify-center opacity-20 pointer-events-none">
+           <Layers3 size={240} className="text-[#b28453]" />
         </div>
       </div>
     </article>
-  );
-}
-
-function DetailPanel({ title, text, icon }: { title: string; text: string; icon: ReactNode }) {
-  return (
-    <div className="rounded-[18px] border border-[#b28453]/18 bg-white/[0.025] p-5">
-      <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#b28453]/10 text-[#b28453]">
-        {icon}
-      </div>
-      <h4 className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#b28453]">{title}</h4>
-      <p className="mt-3 text-sm leading-[1.7] text-[#f8f8f8]/68">{text}</p>
-    </div>
   );
 }
