@@ -40,17 +40,25 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "AUDITSEO",
-          url: "https://www.auditseo.com.br/",
-          description:
+          "@id": "https://www.auditseo.com.br/#organization",
+          "name": "AUDITSEO",
+          "url": "https://www.auditseo.com.br/",
+          "logo": "https://www.auditseo.com.br/logo.png",
+          "description":
             "Consultoria de Inteligência de Busca e Autoridade de Entidade. Identificamos o que limita a presença da sua empresa e coordenamos a estratégia para fortalecer autoridade, visibilidade e reconhecimento no Google e nas plataformas de inteligência artificial.",
-          areaServed: "BR",
-          serviceType: [
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "BR"
+          },
+          "serviceType": [
             "Consultoria de Inteligência de Busca",
             "Autoridade de Entidade",
             "GEO e presença em plataformas de IA",
           ],
-          founder: { "@type": "Person", name: "Sidney Santos" },
+          "founder": { 
+            "@type": "Person", 
+            "name": "Sidney Santos" 
+          }
         }),
       },
     ],
