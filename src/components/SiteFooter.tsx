@@ -157,7 +157,7 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
             <h5 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
               FALE CONOSCO
             </h5>
-            <span className="mb-3 block font-mono text-[10px] text-[#f8f8f8]/60">Converse sobre parceria</span>
+            <span className="mb-3 block font-mono text-[10px] text-[#f8f8f8]/60">Inicie um projeto</span>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <a
@@ -170,8 +170,8 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
                 </a>
               </li>
               <li>
-                <a href="mailto:parceria@auditseo.com.br" className="font-mono text-[#f8f8f8]/82 transition-colors hover:text-[#b28453]">
-                  parceria@auditseo.com.br
+                <a href="mailto:contato@auditseo.com.br" className="font-mono text-[#f8f8f8]/82 transition-colors hover:text-[#b28453]">
+                  contato@auditseo.com.br
                 </a>
               </li>
               <li className="pt-2 text-[10px] leading-relaxed text-[#f8f8f8]/60">
