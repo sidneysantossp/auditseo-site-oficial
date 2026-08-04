@@ -59,7 +59,7 @@ const routeMetadata: Record<string, { title: string; description: string; active
   "/solucoes": {
     title: "Soluções de Inteligência de Busca e Autoridade | AUDITSEO",
     description:
-      "Soluções por cenário de presença digital para empresas destravarem, recuperarem e evoluírem visibilidade, compreensão e autoridade no Google e nas plataformas de IA.",
+      "Conheça as soluções da AUDITSEO para lançar, recuperar e fortalecer a presença da sua empresa no Google e nas plataformas de inteligência artificial.",
     activeSection: "solucoes",
   },
   "/white-label": {
