@@ -72,8 +72,8 @@ const scenarioCards = [
 
 const scenarioSolutions = [
   {
-    name: "Projetos começando do zero",
-    secondaryName: "Search Foundation",
+    name: "Search Foundation",
+    secondaryName: "Inteligência para Lançamentos",
     scenario: "Para novos sites, serviços, unidades, marcas ou projetos digitais.",
     objective: "Construir a fundação técnica, semântica e estratégica antes que o projeto acumule limitações.",
     cta: "Conhecer esta solução",

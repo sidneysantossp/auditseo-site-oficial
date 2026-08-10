@@ -12,6 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as ApiDiagnoseRouteImport } from './routes/api/diagnose'
+import { Route as SolucoesAutoridadeDeEntidadeRouteImport } from './routes/solucoes/autoridade-de-entidade'
+import { Route as SolucoesConteudoPorIntencaoRouteImport } from './routes/solucoes/conteudo-por-intencao'
+import { Route as SolucoesEvolucaoOrganicaRouteImport } from './routes/solucoes/evolucao-organica'
+import { Route as SolucoesGeoIaReadinessRouteImport } from './routes/solucoes/geo-ia-readiness'
+import { Route as SolucoesMigracaoRiscoSeoRouteImport } from './routes/solucoes/migracao-risco-seo'
+import { Route as SolucoesProjetosComecandoDoZeroRouteImport } from './routes/solucoes/projetos-comecando-do-zero'
+import { Route as SolucoesRecuperacaoOrganicaRouteImport } from './routes/solucoes/recuperacao-organica'
+import { Route as SolucoesSiteSemTracaoRouteImport } from './routes/solucoes/site-sem-tracao'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +36,147 @@ const ApiDiagnoseRoute = ApiDiagnoseRouteImport.update({
   path: '/api/diagnose',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolucoesAutoridadeDeEntidadeRoute =
+  SolucoesAutoridadeDeEntidadeRouteImport.update({
+    id: '/solucoes/autoridade-de-entidade',
+    path: '/solucoes/autoridade-de-entidade',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucoesConteudoPorIntencaoRoute =
+  SolucoesConteudoPorIntencaoRouteImport.update({
+    id: '/solucoes/conteudo-por-intencao',
+    path: '/solucoes/conteudo-por-intencao',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucoesEvolucaoOrganicaRoute =
+  SolucoesEvolucaoOrganicaRouteImport.update({
+    id: '/solucoes/evolucao-organica',
+    path: '/solucoes/evolucao-organica',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucoesGeoIaReadinessRoute = SolucoesGeoIaReadinessRouteImport.update({
+  id: '/solucoes/geo-ia-readiness',
+  path: '/solucoes/geo-ia-readiness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucoesMigracaoRiscoSeoRoute =
+  SolucoesMigracaoRiscoSeoRouteImport.update({
+    id: '/solucoes/migracao-risco-seo',
+    path: '/solucoes/migracao-risco-seo',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucoesProjetosComecandoDoZeroRoute =
+  SolucoesProjetosComecandoDoZeroRouteImport.update({
+    id: '/solucoes/projetos-comecando-do-zero',
+    path: '/solucoes/projetos-comecando-do-zero',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucoesRecuperacaoOrganicaRoute =
+  SolucoesRecuperacaoOrganicaRouteImport.update({
+    id: '/solucoes/recuperacao-organica',
+    path: '/solucoes/recuperacao-organica',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucoesSiteSemTracaoRoute = SolucoesSiteSemTracaoRouteImport.update({
+  id: '/solucoes/site-sem-tracao',
+  path: '/solucoes/site-sem-tracao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/api/diagnose': typeof ApiDiagnoseRoute
+  '/solucoes/autoridade-de-entidade': typeof SolucoesAutoridadeDeEntidadeRoute
+  '/solucoes/conteudo-por-intencao': typeof SolucoesConteudoPorIntencaoRoute
+  '/solucoes/evolucao-organica': typeof SolucoesEvolucaoOrganicaRoute
+  '/solucoes/geo-ia-readiness': typeof SolucoesGeoIaReadinessRoute
+  '/solucoes/migracao-risco-seo': typeof SolucoesMigracaoRiscoSeoRoute
+  '/solucoes/projetos-comecando-do-zero': typeof SolucoesProjetosComecandoDoZeroRoute
+  '/solucoes/recuperacao-organica': typeof SolucoesRecuperacaoOrganicaRoute
+  '/solucoes/site-sem-tracao': typeof SolucoesSiteSemTracaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/api/diagnose': typeof ApiDiagnoseRoute
+  '/solucoes/autoridade-de-entidade': typeof SolucoesAutoridadeDeEntidadeRoute
+  '/solucoes/conteudo-por-intencao': typeof SolucoesConteudoPorIntencaoRoute
+  '/solucoes/evolucao-organica': typeof SolucoesEvolucaoOrganicaRoute
+  '/solucoes/geo-ia-readiness': typeof SolucoesGeoIaReadinessRoute
+  '/solucoes/migracao-risco-seo': typeof SolucoesMigracaoRiscoSeoRoute
+  '/solucoes/projetos-comecando-do-zero': typeof SolucoesProjetosComecandoDoZeroRoute
+  '/solucoes/recuperacao-organica': typeof SolucoesRecuperacaoOrganicaRoute
+  '/solucoes/site-sem-tracao': typeof SolucoesSiteSemTracaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/api/diagnose': typeof ApiDiagnoseRoute
+  '/solucoes/autoridade-de-entidade': typeof SolucoesAutoridadeDeEntidadeRoute
+  '/solucoes/conteudo-por-intencao': typeof SolucoesConteudoPorIntencaoRoute
+  '/solucoes/evolucao-organica': typeof SolucoesEvolucaoOrganicaRoute
+  '/solucoes/geo-ia-readiness': typeof SolucoesGeoIaReadinessRoute
+  '/solucoes/migracao-risco-seo': typeof SolucoesMigracaoRiscoSeoRoute
+  '/solucoes/projetos-comecando-do-zero': typeof SolucoesProjetosComecandoDoZeroRoute
+  '/solucoes/recuperacao-organica': typeof SolucoesRecuperacaoOrganicaRoute
+  '/solucoes/site-sem-tracao': typeof SolucoesSiteSemTracaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/api/diagnose'
+  fullPaths:
+    | '/'
+    | '/$'
+    | '/api/diagnose'
+    | '/solucoes/autoridade-de-entidade'
+    | '/solucoes/conteudo-por-intencao'
+    | '/solucoes/evolucao-organica'
+    | '/solucoes/geo-ia-readiness'
+    | '/solucoes/migracao-risco-seo'
+    | '/solucoes/projetos-comecando-do-zero'
+    | '/solucoes/recuperacao-organica'
+    | '/solucoes/site-sem-tracao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/api/diagnose'
-  id: '__root__' | '/' | '/$' | '/api/diagnose'
+  to:
+    | '/'
+    | '/$'
+    | '/api/diagnose'
+    | '/solucoes/autoridade-de-entidade'
+    | '/solucoes/conteudo-por-intencao'
+    | '/solucoes/evolucao-organica'
+    | '/solucoes/geo-ia-readiness'
+    | '/solucoes/migracao-risco-seo'
+    | '/solucoes/projetos-comecando-do-zero'
+    | '/solucoes/recuperacao-organica'
+    | '/solucoes/site-sem-tracao'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/api/diagnose'
+    | '/solucoes/autoridade-de-entidade'
+    | '/solucoes/conteudo-por-intencao'
+    | '/solucoes/evolucao-organica'
+    | '/solucoes/geo-ia-readiness'
+    | '/solucoes/migracao-risco-seo'
+    | '/solucoes/projetos-comecando-do-zero'
+    | '/solucoes/recuperacao-organica'
+    | '/solucoes/site-sem-tracao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
   ApiDiagnoseRoute: typeof ApiDiagnoseRoute
+  SolucoesAutoridadeDeEntidadeRoute: typeof SolucoesAutoridadeDeEntidadeRoute
+  SolucoesConteudoPorIntencaoRoute: typeof SolucoesConteudoPorIntencaoRoute
+  SolucoesEvolucaoOrganicaRoute: typeof SolucoesEvolucaoOrganicaRoute
+  SolucoesGeoIaReadinessRoute: typeof SolucoesGeoIaReadinessRoute
+  SolucoesMigracaoRiscoSeoRoute: typeof SolucoesMigracaoRiscoSeoRoute
+  SolucoesProjetosComecandoDoZeroRoute: typeof SolucoesProjetosComecandoDoZeroRoute
+  SolucoesRecuperacaoOrganicaRoute: typeof SolucoesRecuperacaoOrganicaRoute
+  SolucoesSiteSemTracaoRoute: typeof SolucoesSiteSemTracaoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +202,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiDiagnoseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solucoes/autoridade-de-entidade': {
+      id: '/solucoes/autoridade-de-entidade'
+      path: '/solucoes/autoridade-de-entidade'
+      fullPath: '/solucoes/autoridade-de-entidade'
+      preLoaderRoute: typeof SolucoesAutoridadeDeEntidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/conteudo-por-intencao': {
+      id: '/solucoes/conteudo-por-intencao'
+      path: '/solucoes/conteudo-por-intencao'
+      fullPath: '/solucoes/conteudo-por-intencao'
+      preLoaderRoute: typeof SolucoesConteudoPorIntencaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/evolucao-organica': {
+      id: '/solucoes/evolucao-organica'
+      path: '/solucoes/evolucao-organica'
+      fullPath: '/solucoes/evolucao-organica'
+      preLoaderRoute: typeof SolucoesEvolucaoOrganicaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/geo-ia-readiness': {
+      id: '/solucoes/geo-ia-readiness'
+      path: '/solucoes/geo-ia-readiness'
+      fullPath: '/solucoes/geo-ia-readiness'
+      preLoaderRoute: typeof SolucoesGeoIaReadinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/migracao-risco-seo': {
+      id: '/solucoes/migracao-risco-seo'
+      path: '/solucoes/migracao-risco-seo'
+      fullPath: '/solucoes/migracao-risco-seo'
+      preLoaderRoute: typeof SolucoesMigracaoRiscoSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/projetos-comecando-do-zero': {
+      id: '/solucoes/projetos-comecando-do-zero'
+      path: '/solucoes/projetos-comecando-do-zero'
+      fullPath: '/solucoes/projetos-comecando-do-zero'
+      preLoaderRoute: typeof SolucoesProjetosComecandoDoZeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/recuperacao-organica': {
+      id: '/solucoes/recuperacao-organica'
+      path: '/solucoes/recuperacao-organica'
+      fullPath: '/solucoes/recuperacao-organica'
+      preLoaderRoute: typeof SolucoesRecuperacaoOrganicaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/site-sem-tracao': {
+      id: '/solucoes/site-sem-tracao'
+      path: '/solucoes/site-sem-tracao'
+      fullPath: '/solucoes/site-sem-tracao'
+      preLoaderRoute: typeof SolucoesSiteSemTracaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +265,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   ApiDiagnoseRoute: ApiDiagnoseRoute,
+  SolucoesAutoridadeDeEntidadeRoute: SolucoesAutoridadeDeEntidadeRoute,
+  SolucoesConteudoPorIntencaoRoute: SolucoesConteudoPorIntencaoRoute,
+  SolucoesEvolucaoOrganicaRoute: SolucoesEvolucaoOrganicaRoute,
+  SolucoesGeoIaReadinessRoute: SolucoesGeoIaReadinessRoute,
+  SolucoesMigracaoRiscoSeoRoute: SolucoesMigracaoRiscoSeoRoute,
+  SolucoesProjetosComecandoDoZeroRoute: SolucoesProjetosComecandoDoZeroRoute,
+  SolucoesRecuperacaoOrganicaRoute: SolucoesRecuperacaoOrganicaRoute,
+  SolucoesSiteSemTracaoRoute: SolucoesSiteSemTracaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

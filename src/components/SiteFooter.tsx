@@ -14,7 +14,7 @@ const navigationLinks = [
 ];
 
 const solutionLinks = [
-  ["Projetos começando do zero", "/solucoes#search-foundation"],
+  ["Projetos começando do zero", "/solucoes/projetos-comecando-do-zero"],
   ["Sites no ar sem tração", "/solucoes#organic-activation"],
   ["Recuperação orgânica", "/solucoes#search-recovery"],
   ["Autoridade de entidade", "/solucoes#entity-authority"],

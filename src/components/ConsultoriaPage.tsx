@@ -96,11 +96,11 @@ export default function ConsultoriaPage({ onNavigate }: ConsultoriaPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center">
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               <span className="text-[#a69580] text-[11px] font-mono font-semibold tracking-[0.16em] uppercase mb-4 opacity-90">CONSULTORIA DE INTELIGÊNCIA DE BUSCA</span>
-              <h1 className="font-display font-bold text-[#f8f8f8] mb-8" style={{ fontSize: "clamp(22px, 2.05vw, 30px)", lineHeight: "1.06", letterSpacing: "-0.045em", maxWidth: "860px", textWrap: "balance" }}>
-                Nós Construimos a Autoridade que sua empresa precisa para crescer nos Buscadores e IAs Generativas.
+              <h1 className="max-w-[860px] font-display text-[clamp(15px,4.5vw,68px)] font-bold leading-[0.95] tracking-[-0.045em] text-[#f8f8f8]">
+                Construímos autoridade na nova era da busca.
               </h1>
               <p className="text-[#e0d3c3] text-lg md:text-xl font-semibold mb-8" style={{ maxWidth: "700px", lineHeight: "1.55", letterSpacing: "-0.01em" }}>
-                Identificamos o que limita sua visibilidade e coordenamos a estratégia para fortalecer presença, confiança e reconhecimento nas novas jornadas de busca.
+                Estruturamos a presença da sua empresa para fortalecer seu reconhecimento no Google e nas plataformas de inteligência artificial.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button onClick={() => scrollTo("form-contato")} className="bg-[#b28453] text-white px-8 py-4 rounded-full text-base font-bold tracking-wide transition-all duration-300 hover:bg-[#e0d3c3] hover:text-[#11100f] cursor-pointer">

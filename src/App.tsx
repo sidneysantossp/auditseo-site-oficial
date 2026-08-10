@@ -62,6 +62,11 @@ const routeMetadata: Record<string, { title: string; description: string; active
       "Conheça as soluções da AUDITSEO para lançar, recuperar e fortalecer a presença da sua empresa no Google e nas plataformas de inteligência artificial.",
     activeSection: "solucoes",
   },
+  "/solucoes/projetos-comecando-do-zero": {
+    title: "Search Foundation | Inteligência para Lançamentos | AUDITSEO",
+    description: "Construa a fundação estratégica de busca da sua empresa antes que o projeto acumule limitações técnicas e semânticas. Inteligência para novos sites, marcas e serviços.",
+    activeSection: "solucoes",
+  },
   "/white-label": {
     title: "SEO White-Label para Agências | AUDITSEO",
     description:
