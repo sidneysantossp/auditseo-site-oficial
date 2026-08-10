@@ -1,0 +1,19 @@
+{
+  "runs": [
+    {
+      "unit": "/autor/sidney-santos",
+      "normalized": "sidney-santos-experience",
+      "status": "complete"
+    },
+    {
+      "unit": "/politica-de-privacidade",
+      "normalized": "terminology",
+      "status": "complete"
+    },
+    {
+      "unit": "solucoes-pages",
+      "normalized": "placeholders",
+      "status": "complete"
+    }
+  ]
+}
