@@ -6,6 +6,10 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "AUDITSEO | Consultoria de Inteligência de Busca e Autoridade" },
       {
+        name: "google-site-verification",
+        content: "uT9b97Zdg7PX0Cc_he99g0aDbxKzDq5K0O4gUa4630c",
+      },
+      {
         name: "description",
         content:
           "Identificamos o que limita a presença da sua empresa e coordenamos a estratégia para fortalecer autoridade, visibilidade e reconhecimento no Google e nas plataformas de inteligência artificial.",
