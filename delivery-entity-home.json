@@ -1,0 +1,10 @@
+{
+  "delivery": "AUDITSEO — SIDNEY SANTOS ENTITY HOME V1",
+  "components": [
+    "src/components/SidneySantosPage.tsx",
+    "src/routes/autor/sidney-santos.tsx",
+    "src/lib/entities.ts"
+  ],
+  "status": "complete",
+  "version": "1.0.0"
+}
