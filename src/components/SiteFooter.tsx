@@ -44,7 +44,7 @@ const contentLinks = [
 ];
 
 const footerLinkClass = "block text-[#f8f8f8]/72 transition-colors hover:text-[#b28453]";
-const whatsappHref = "https://wa.me/5511996384376";
+const whatsappHref = "https://wa.me/5511995250742";
 
 function FooterColumn({ title, links }: { title: string; links: string[][] }) {
   return (

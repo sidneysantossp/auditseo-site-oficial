@@ -488,7 +488,7 @@ export default function DiagnosticSection() {
                     
                     <a
                       id="whatsapp-cta-direct"
-                      href={`https://api.whatsapp.com/send?phone=5511999999999&text=Ola!%20Acabei%20de%20gerar%20o%20diagnostico%20de%20Search%20Intelligence%20da%20minha%20agencia%20${form.agencia}%20no%20radar%20da%20AUDITSEO%20e%20gostaria%20de%20conversar%20sobre%20o%20modelo%20de%20${form.modelo}.`}
+                      href={`https://api.whatsapp.com/send?phone=5511995250742&text=Ola!%20Acabei%20de%20gerar%20o%20diagnostico%20de%20Search%20Intelligence%20da%20minha%20agencia%20${form.agencia}%20no%20radar%20da%20AUDITSEO%20e%20gostaria%20de%20conversar%20sobre%20o%20modelo%20de%20${form.modelo}.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-[#b28453] text-[#ffffff] font-bold text-xs py-2 px-4 rounded-full hover:bg-[#e0d3c3] hover:text-[#11100f] transition-all flex items-center space-x-1"

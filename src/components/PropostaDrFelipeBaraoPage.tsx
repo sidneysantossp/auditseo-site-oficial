@@ -476,7 +476,7 @@ export default function PropostaDrFelipeBaraoPage({ onNavigate }: ProposalPagePr
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 text-center">
             <a
-              href={`https://wa.me/5511996384376?text=${contactMessage}`}
+              href={`https://wa.me/5511995250742?text=${contactMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-colors hover:bg-[#11100f]"

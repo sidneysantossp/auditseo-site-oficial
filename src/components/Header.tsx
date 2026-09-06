@@ -85,7 +85,7 @@ export default function Header({ onNavClick, activeSection }: HeaderProps) {
           <div className="hidden lg:block">
             <a
               id="header-cta"
-              href="https://wa.me/5511996384376"
+              href="https://wa.me/5511995250742"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#b28453] text-[#ffffff] px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:bg-[#e0d3c3] hover:text-[#11100f] hover:-translate-y-0.5"
@@ -149,7 +149,7 @@ export default function Header({ onNavClick, activeSection }: HeaderProps) {
         <div className="pb-12 space-y-4">
           <a
             id="mobile-drawer-cta"
-            href="https://wa.me/5511996384376"
+            href="https://wa.me/5511995250742"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full bg-[#b28453] text-[#ffffff] py-4 rounded-full text-base font-bold text-center block"
