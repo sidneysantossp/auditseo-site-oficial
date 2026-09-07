@@ -7,19 +7,19 @@ export type ServiceAuthorityLink = {
 
 export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   "/solucoes/projetos-comecando-do-zero": [
+    { eyebrow: "PRÉ-LANÇAMENTO", title: "Checklist SEO antes de lançar um site", text: "Arquitetura, HTTP, robots, canonicals, sitemap, conteúdo, entidade, medição e smoke que precisam estar definidos antes do go-live.", href: "/blog/checklist-seo-antes-lancar-site" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "A cadeia de dependências usada para definir o que precisa estar correto antes de um novo projeto acumular dívida de busca.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
     { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma entidade empresarial", text: "Organização, pessoas, serviços, provas e fontes que precisam ser coerentes desde o início.", href: "/blog/como-estruturar-entidade-empresarial" },
-    { eyebrow: "CONCEITOS", title: "SEO vs GEO vs AEO", text: "Por que uma fundação sólida não depende da sigla do momento e quais fundamentos permanecem compartilhados.", href: "/blog/seo-vs-geo-vs-aeo" },
   ],
   "/solucoes/site-sem-tracao": [
+    { eyebrow: "DIAGNÓSTICO", title: "Site indexado, mas sem impressões", text: "Como avançar de Index para relevância, intenção, qualidade, arquitetura e autoridade antes de simplesmente publicar mais conteúdo.", href: "/blog/site-indexado-sem-impressoes" },
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Como diagnosticar o gargalo antes de transformar baixa tração em uma lista genérica de tarefas.", href: "/blog/o-que-e-search-intelligence" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Um modelo para separar descoberta, recuperação, compreensão e confiança quando o site está no ar, mas não ganha movimento.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
-    { eyebrow: "PROTOCOLO EDITORIAL", title: "Como criar conteúdo citável", text: "Critérios para elevar a qualidade das páginas que precisam sustentar autoridade e utilidade, não apenas volume editorial.", href: "/blog/como-criar-conteudo-citavel" },
   ],
   "/solucoes/recuperacao-organica": [
+    { eyebrow: "CENÁRIO", title: "Tráfego caiu depois do redesign", text: "Playbook para separar regressões de URL, conteúdo, links, renderização, robots e infraestrutura antes de atribuir causalidade ao redesign.", href: "/blog/queda-trafego-depois-redesign" },
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "A recuperação começa separando sintoma, hipótese e evidência antes de executar correções.", href: "/blog/o-que-e-search-intelligence" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Use a cadeia para localizar a etapa em que o desempenho perdeu força e evitar tratar toda queda como o mesmo problema.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
-    { eyebrow: "CONCEITOS", title: "SEO vs GEO vs AEO", text: "Uma recuperação responsável separa interface, disciplina e métrica em vez de perseguir a sigla mais recente.", href: "/blog/seo-vs-geo-vs-aeo" },
   ],
   "/solucoes/autoridade-de-entidade": [
     { eyebrow: "FUNDAMENTO", title: "Autoridade de entidade: o que é e o que não é", text: "A definição operacional usada pela AUDITSEO sem inventar um score público de autoridade do Google.", href: "/blog/autoridade-de-entidade-o-que-e" },
@@ -34,12 +34,12 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   "/solucoes/geo-ia-readiness": [
     { eyebrow: "DIAGNÓSTICO", title: "O ChatGPT não cita meu site: o que auditar?", text: "Playbook para separar acesso, recuperação, entendimento, confiança e citabilidade antes de prescrever uma tática de GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
     { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Prompts congelados, repetição e métricas separadas de menção, citação, recomendação e precisão da entidade.", href: "/blog/como-medir-se-geo-esta-funcionando" },
-    { eyebrow: "AUDITORIA TÉCNICA", title: "Como auditar crawlers de IA", text: "Como separar busca, treinamento e agentes acionados pelo usuário antes de editar robots.txt, CDN ou WAF.", href: "/blog/como-auditar-crawlers-de-ia" },
+    { eyebrow: "AUDITORIA TÉCNICA", title: "OAI-SearchBot vs GPTBot", text: "Como separar busca e possível treinamento antes de editar robots.txt, CDN ou WAF.", href: "/blog/como-auditar-crawlers-de-ia" },
   ],
   "/solucoes/migracao-risco-seo": [
+    { eyebrow: "CENÁRIO", title: "Queda depois de redesign ou migração", text: "Como investigar equivalência de URLs, redirects, conteúdo, links, indexação e infraestrutura quando o tráfego cai após uma mudança estrutural.", href: "/blog/queda-trafego-depois-redesign" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Uma migração pode quebrar etapas diferentes da cadeia; o framework ajuda a validar o que precisa sobreviver ao corte.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
     { eyebrow: "AUDITORIA TÉCNICA", title: "Como auditar crawlers de IA", text: "Útil para projetos em que CDN, WAF, autenticação ou robots podem mudar junto com a infraestrutura.", href: "/blog/como-auditar-crawlers-de-ia" },
-    { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma entidade empresarial", text: "Mudanças de arquitetura não devem romper relações centrais entre organização, pessoas, serviços e provas.", href: "/blog/como-estruturar-entidade-empresarial" },
   ],
   "/solucoes/evolucao-organica": [
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Crescimento contínuo exige um sistema de leitura e decisão, não uma fila infinita de tarefas de SEO.", href: "/blog/o-que-e-search-intelligence" },
