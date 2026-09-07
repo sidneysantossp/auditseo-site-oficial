@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ArticlePage from "@/components/ArticlePage";
-import { advancedArticles } from "@/content/articlesAdvanced";
+import { crawlerArticleV2 } from "@/content/articleCrawlerV2";
 import { createArticleHead } from "@/lib/articleSeo";
 
-const article = advancedArticles["como-auditar-crawlers-de-ia"];
+const article = crawlerArticleV2;
 
 export const Route = createFileRoute("/blog/como-auditar-crawlers-de-ia")({
   head: () => createArticleHead(article),
