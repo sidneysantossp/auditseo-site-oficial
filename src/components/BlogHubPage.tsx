@@ -1,10 +1,11 @@
 import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Search, ShieldCheck } from "lucide-react";
 import { articleList } from "@/content/articles";
 import { advancedArticleList } from "@/content/articlesAdvanced";
+import { protocolArticleList } from "@/content/articlesProtocols";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
 
-const libraryArticles = [...articleList, ...advancedArticleList];
+const libraryArticles = [...articleList, ...advancedArticleList, ...protocolArticleList];
 
 function navigate(sectionId: string) {
   if (typeof window === "undefined") return;
@@ -41,7 +42,7 @@ export default function BlogHubPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            {["Search Intelligence", "SEO técnico", "Entidades", "GEO & AI Search", "Conteúdo", "Crawlers", "Mensuração", "Recuperação"].map((topic) => (
+            {["Search Intelligence", "SEO técnico", "Entidades", "GEO & AI Search", "Conteúdo", "Crawlers", "Mensuração", "Citabilidade"].map((topic) => (
               <span key={topic} className="rounded-full border border-[#b28453]/24 bg-[#b28453]/8 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[#e0d3c3]">{topic}</span>
             ))}
           </div>
@@ -68,8 +69,8 @@ export default function BlogHubPage() {
         <div className="mx-auto max-w-[1240px]">
           <div className="max-w-4xl">
             <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">DOCUMENTOS FUNDADORES</span>
-            <h2 className="mt-5 font-display text-[38px] font-bold leading-[1.07] tracking-[-0.035em] text-[#f8f8f8] md:text-[54px]">A base conceitual e técnica que sustenta a estratégia da AUDITSEO.</h2>
-            <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#f8f8f8]/68 md:text-lg">Os documentos abaixo definem conceitos, métodos e limites. Estudos, experimentos, cases e novos conteúdos devem se conectar a essa base — e também poder corrigi-la quando novas evidências justificarem.</p>
+            <h2 className="mt-5 font-display text-[38px] font-bold leading-[1.07] tracking-[-0.035em] text-[#f8f8f8] md:text-[54px]">A base conceitual, técnica e metodológica que sustenta a estratégia da AUDITSEO.</h2>
+            <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#f8f8f8]/68 md:text-lg">Esses documentos definem conceitos, métodos, critérios e limites. Estudos, experimentos, cases e novos conteúdos devem se conectar a essa base — e também poder corrigi-la quando novas evidências justificarem.</p>
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -102,10 +103,10 @@ export default function BlogHubPage() {
             <FileText size={20} className="text-[#b28453]" />
             <h3 className="mt-5 font-display text-2xl font-bold">Próxima camada de autoridade</h3>
             <ul className="mt-6 space-y-4 text-sm leading-[1.7] text-[#f8f8f8]/70">
-              <li>Framework completo Crawl → Index → Retrieve → Understand → Trust → Cite</li>
-              <li>Como transformar conteúdo em uma fonte realmente citável</li>
-              <li>Protocolo AUDITSEO para benchmark de Search AI</li>
-              <li>Primeiro dataset proprietário e metodologia pública</li>
+              <li>Transformar o protocolo de benchmark em coleta operacional</li>
+              <li>Definir setores, marcas e prompts do primeiro dataset</li>
+              <li>Publicar metodologia do AUDITSEO Search AI Observatory</li>
+              <li>Executar o primeiro benchmark proprietário antes de divulgar números</li>
             </ul>
           </div>
         </div>
