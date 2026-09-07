@@ -1,6 +1,7 @@
 import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Search, ShieldCheck } from "lucide-react";
 import { articleList } from "@/content/articles";
 import { advancedArticleList } from "@/content/articlesAdvanced";
+import { demandArticleList } from "@/content/articlesDemand";
 import { protocolArticleList } from "@/content/articlesProtocols";
 import type { Article } from "@/content/articles";
 import Header from "./Header";
@@ -59,7 +60,7 @@ export default function BlogHubPageV2() {
           <span className="font-mono text-[11px] font-bold uppercase tracking-[0.17em] text-[#b28453]">BIBLIOTECA AUDITSEO</span>
           <h1 className="mt-6 max-w-5xl font-display text-[clamp(48px,6vw,82px)] font-bold leading-[1.01] tracking-[-0.05em]">Search Intelligence documentada — conceitos, técnica, protocolos e limites.</h1>
           <p className="mt-8 max-w-3xl text-lg leading-[1.75] text-[#e0d3c3] md:text-xl">Esta biblioteca existe para tornar o raciocínio da AUDITSEO verificável antes da contratação. Quando uma afirmação depende de plataforma, priorizamos fonte primária. Quando um método é nosso, ele é identificado como método nosso.</p>
-          <div className="mt-10 flex flex-wrap gap-3">{["11 documentos publicados", "Fontes primárias", "Autoria", "Metodologia pública", "Sem garantias de IA"].map((item) => <span key={item} className="rounded-full border border-[#b28453]/24 bg-[#b28453]/8 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[#e0d3c3]">{item}</span>)}</div>
+          <div className="mt-10 flex flex-wrap gap-3">{["13 documentos publicados", "Fontes primárias", "Autoria", "Metodologia pública", "Sem garantias de IA"].map((item) => <span key={item} className="rounded-full border border-[#b28453]/24 bg-[#b28453]/8 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[#e0d3c3]">{item}</span>)}</div>
         </div>
       </section>
 
@@ -81,11 +82,15 @@ export default function BlogHubPageV2() {
 
       <Collection eyebrow="PROTOCOLOS AUDITSEO" title="Metodologias proprietárias publicadas antes dos resultados." text="Esses documentos explicam como avaliamos citabilidade, como localizamos a etapa quebrada da cadeia de busca e como o futuro benchmark de Search AI deve ser coletado e classificado." items={protocolArticleList} />
 
+      <div className="border-y border-[#b28453]/10 bg-[#151413]">
+        <Collection eyebrow="PERGUNTAS DO MERCADO" title="Temas populares respondidos com mais restrição do que promessa." text="Aqui entram dúvidas com alta intenção prática, como aparecer no ChatGPT e o papel de llms.txt. O objetivo é separar o que a plataforma documenta, o que a evidência observa e o que continua incerto." items={demandArticleList} />
+      </div>
+
       <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-28 xl:px-12">
         <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
             <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">PRÓXIMO ATIVO</span>
-            <h2 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">O próximo passo não é outro artigo. É o primeiro dataset proprietário.</h2>
+            <h2 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">O próximo passo não é aumentar volume. É produzir o primeiro dataset proprietário.</h2>
             <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#11100f]/70">O protocolo de benchmark já está público. O programa de pesquisa permanecerá sem números até existir coleta real, revisão humana e metodologia suficiente para sustentar qualquer conclusão.</p>
           </div>
           <div className="rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8]">
