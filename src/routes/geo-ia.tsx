@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import App from "@/App";
+import CompanyGeoIaPage from "@/components/CompanyGeoIaPage";
 import { createSeoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/geo-ia")({
@@ -10,5 +10,5 @@ export const Route = createFileRoute("/geo-ia")({
       description:
         "Como preparar sua empresa para AI Search: autoridade de entidade, dados estruturados, consistência de sinais e presença responsável nas plataformas generativas.",
     }),
-  component: App,
+  component: CompanyGeoIaPage,
 });
