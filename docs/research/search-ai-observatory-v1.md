@@ -1,99 +1,108 @@
 # AUDITSEO Search AI Observatory — Protocolo Piloto v1
 
-Status: desenho fechado para piloto; coleta ainda não executada.
+Status: escopo, marcas e prompts congelados para o piloto; coleta ainda não executada.
 Data do protocolo: 2026-09-07.
 
 ## 1. Objetivo
 
-Construir um baseline reproduzível de como marcas brasileiras são mencionadas, citadas, recomendadas e descritas em interfaces de Search AI, sem transformar respostas variáveis em um ranking universal.
+Construir um baseline reproduzível de como marcas de software B2B com presença no mercado brasileiro são mencionadas, citadas, recomendadas e descritas em interfaces de Search AI, sem transformar respostas variáveis em um ranking universal.
 
-O piloto deve responder duas perguntas diferentes:
+O piloto responde duas perguntas diferentes:
 
 1. **Category Visibility:** quais marcas aparecem quando um usuário pergunta sobre uma categoria, problema, comparação ou decisão sem citar uma marca previamente?
 2. **Entity Accuracy:** quando uma marca é citada explicitamente no prompt, a plataforma descreve corretamente quem ela é, o que oferece e em quais contextos é relevante?
 
 Esses módulos não devem ser fundidos em uma única taxa.
 
-## 2. Escopo do piloto
+## 2. Escopo congelado do piloto
 
-### Setores
+O primeiro ciclo será um estudo de **software B2B no Brasil**, não uma amostra representativa de toda a economia brasileira.
 
-Selecionar 5 setores de alta consideração comercial usando critérios publicados antes da coleta:
+### Categorias
 
-- existência de pelo menos 10 marcas comparáveis com presença digital pública;
-- jornada de decisão com pesquisa, comparação e validação antes da compra/contratação;
-- volume suficiente de conteúdo e fontes públicas para permitir análise de citação;
-- diversidade entre B2B/B2C e ciclos de decisão;
-- evitar, no piloto inicial, setores em que uma recomendação automática possa exigir interpretação médica, jurídica ou financeira individual de alto risco.
+1. CRM e gestão comercial
+2. ERP e gestão para PME
+3. Plataformas de e-commerce
+4. Automação de marketing
+5. Atendimento omnichannel e help desk
 
-A lista final de setores e marcas deve ser versionada no dataset antes do primeiro request.
+A escolha dessas categorias segue critérios definidos antes da coleta:
+
+- pelo menos 10 marcas com presença digital pública e possibilidade real de comparação;
+- jornada de decisão baseada em pesquisa, comparação e validação;
+- abundância de páginas de produto, documentação, reviews e fontes externas;
+- mistura de players brasileiros e globais operando ou sendo considerados no Brasil;
+- baixo risco de uma recomendação da amostra exigir interpretação médica, jurídica ou financeira individualizada.
 
 ### Marcas
 
-- 10 marcas por setor;
+- 10 marcas por categoria;
 - 50 marcas no total;
-- critérios de inclusão definidos antes da coleta;
-- nenhuma marca adicionada ou removida depois de observar respostas sem criar uma nova versão do benchmark.
+- manifesto congelado em `docs/research/observatory-brand-manifest-v1.csv`;
+- campo de domínio oficial permanece `pending_verification` até conferência em fonte oficial;
+- nenhuma marca pode ser adicionada ou removida depois de observar respostas sem criar uma nova versão do benchmark.
 
 ## 3. Módulo A — Category Visibility
 
 ### Prompt set
 
-20 prompts genéricos por setor, totalizando 100 prompts únicos.
+20 prompts genéricos por categoria, totalizando **100 prompts únicos**.
 
-Distribuição sugerida por setor:
+O manifesto completo está congelado em:
+
+`docs/research/observatory-category-prompts-v1.csv`
+
+Distribuição por categoria:
 
 - 6 prompts de descoberta/categoria;
 - 5 prompts de comparação/shortlist;
 - 4 prompts orientados a problema/necessidade;
 - 3 prompts de validação/critérios de escolha;
-- 2 prompts de cenário/contexto específico relevante ao setor.
+- 2 prompts de cenário/contexto específico.
 
-Os prompts não devem mencionar previamente nenhuma das 10 marcas avaliadas.
+Os prompts não mencionam previamente nenhuma das 10 marcas avaliadas no setor.
 
 ### Métricas
 
 **Mention Rate**
 
-`prompts em que a marca foi mencionada / prompts válidos do setor`
+`prompts em que a marca foi mencionada / prompts válidos da categoria`
 
 **Recommendation Rate**
 
-`prompts em que a marca foi apresentada como opção adequada / prompts válidos do setor`
+`prompts em que a marca foi apresentada como opção adequada / prompts válidos da categoria`
 
 **Citation Rate — Owned**
 
-`prompts em que domínio/URL oficial da marca apareceu como fonte observável / prompts válidos do setor`
+`prompts em que domínio/URL oficial da marca apareceu como fonte observável / prompts válidos da categoria`
 
 **Citation Rate — External**
 
-`prompts em que uma fonte externa citada sustentou informação sobre a marca / prompts válidos do setor`
+`prompts em que uma fonte externa citada sustentou informação sobre a marca / prompts válidos da categoria`
 
 **Competitive Share of Mentions**
 
-Participação da marca no total de menções das 10 marcas do setor dentro da mesma amostra. Não deve ser rotulada como market share.
+Participação da marca no total de menções das 10 marcas da categoria dentro da mesma amostra. Não deve ser rotulada como market share.
 
 **Source Share**
 
-Distribuição dos domínios citados na amostra: marcas, imprensa, diretórios, fóruns, documentos oficiais e outras fontes.
+Distribuição dos domínios citados na amostra: marcas, imprensa, diretórios, fóruns, documentação e outras fontes.
 
 ## 4. Módulo B — Entity Accuracy
 
 ### Prompt set
 
-3 prompts branded por marca, totalizando 150 prompts únicos.
+3 prompts branded por marca, totalizando **150 prompts únicos**.
 
-Famílias:
+Os templates setoriais estão congelados em:
 
-1. `O que é [MARCA] e o que ela oferece?`
-2. `Para quem [MARCA] é indicada e quais são seus principais serviços/produtos?`
-3. `Quais informações importantes devo verificar antes de escolher/contratar [MARCA]?`
+`docs/research/observatory-entity-prompt-templates-v1.csv`
 
-A redação pode ser adaptada ao setor, mas a intenção deve permanecer equivalente e a versão final deve ser congelada antes da coleta.
+A expansão é determinística: 3 templates × 10 marcas × 5 categorias = 150 prompts. Não existe escolha manual de prompt por marca depois de observar respostas.
 
 ### Classificação
 
-Cada resposta recebe revisão humana em dimensões separadas:
+Cada resposta recebe revisão em dimensões separadas:
 
 - identidade da organização: correta / parcial / incorreta / ausente;
 - oferta principal: correta / parcial / incorreta / ausente;
@@ -109,12 +118,12 @@ Não condensar essas dimensões em um único `Entity Authority Score` sem valida
 
 Piloto-alvo: 4 interfaces de Search AI que permitam observação consistente na data da coleta.
 
-A lista final de produtos/plataformas, configuração de busca/web e condição de conta deve ser congelada no manifesto do ciclo.
+A lista final de produtos/plataformas, configuração de busca/web e condição de conta deve ser congelada no manifesto do ciclo imediatamente antes da coleta, porque produtos e modos podem mudar rapidamente.
 
 ### Repetições
 
 - 2 repetições independentes por prompt no piloto;
-- uma terceira repetição apenas para prompts prioritários ou para estudo específico de variabilidade;
+- uma terceira repetição apenas para estudo específico de variabilidade, em versão separada;
 - todas as repetições são armazenadas, inclusive quando contradizem a primeira resposta.
 
 Com 250 prompts únicos × 4 plataformas × 2 repetições, o piloto-alvo produz até **2.000 respostas brutas**.
@@ -172,11 +181,12 @@ Uma citação externa só é associada à marca quando sustenta uma afirmação 
 
 ## 8. Controle de qualidade
 
-- 100% das respostas classificadas por regra determinística quando possível;
-- revisão humana obrigatória para recommendation e entity accuracy;
+- classificação determinística sempre que possível;
+- revisão humana obrigatória para Recommendation e Entity Accuracy;
 - pelo menos 20% da amostra revisada por segundo revisor no piloto;
 - divergências documentadas e resolvidas com regra adicionada ao codebook;
-- nenhuma regra alterada retroativamente sem reprocessar o ciclo afetado.
+- nenhuma regra alterada retroativamente sem reprocessar o ciclo afetado;
+- execuções inválidas ou incompletas permanecem registradas e entram na taxa de erro do ciclo.
 
 ## 9. Limitações que devem acompanhar qualquer publicação
 
@@ -184,6 +194,7 @@ Uma citação externa só é associada à marca quando sustenta uma afirmação 
 - modelos, fontes e interfaces podem mudar durante ou após a coleta;
 - contexto de conta, localização e disponibilidade de web search podem alterar respostas;
 - a amostra de prompts representa o protocolo, não toda a demanda do mercado;
+- o piloto representa cinco categorias de software B2B, não todas as empresas do Brasil;
 - Mention Rate não é participação de mercado;
 - Citation Rate não prova causalidade de SEO/GEO;
 - ausência de citação observável não prova ausência total de influência de uma fonte;
@@ -193,7 +204,9 @@ Uma citação externa só é associada à marca quando sustenta uma afirmação 
 
 O primeiro relatório público só pode sair quando:
 
-- manifesto de setores, marcas e prompts estiver versionado;
+- domínios oficiais das 50 marcas estiverem verificados;
+- manifesto de marcas e prompts estiver versionado;
+- manifesto de plataformas/modos do ciclo estiver congelado;
 - coleta estiver completa para o ciclo declarado;
 - taxa de erro/execuções inválidas estiver documentada;
 - revisão humana mínima estiver concluída;
@@ -206,13 +219,13 @@ O primeiro relatório público só pode sair quando:
 
 Título de trabalho:
 
-**State of Search AI Brasil 2026 — Como marcas aparecem, são citadas e são descritas nas interfaces de busca com IA**
+**State of Search AI Brasil 2026 — Software B2B: como marcas são mencionadas, citadas, recomendadas e descritas**
 
 O relatório deve conter:
 
 1. metodologia e versão;
 2. composição da amostra;
-3. resultados agregados por setor;
+3. resultados agregados por categoria;
 4. distribuição de fontes;
 5. padrões de menção vs citação vs recomendação;
 6. padrões de Entity Accuracy;
@@ -223,4 +236,4 @@ O relatório deve conter:
 
 ## 12. Regra de integridade
 
-Nenhuma porcentagem do Observatory deve ser publicada antes da coleta correspondente existir. O protocolo pode ser público antes dos números; os números nunca devem anteceder o protocolo.
+Nenhuma porcentagem do Observatory deve ser publicada antes da coleta correspondente existir. O protocolo e os manifestos podem ser públicos antes dos números; os números nunca devem anteceder o protocolo.
