@@ -1,143 +1,146 @@
-# AUDITSEO Search AI Observatory — Protocolo Piloto v1
+# AUDITSEO Search AI Observatory — Protocolo Piloto v2
 
-Status: escopo, marcas e prompts congelados para o piloto; coleta ainda não executada.
-Data do protocolo: 2026-09-07.
+Status: universo de mercado e prompts congelados; coleta ainda não executada.
+Data da revisão: 2026-09-07.
 
 ## 1. Objetivo
 
-Construir um baseline reproduzível de como marcas de software B2B com presença no mercado brasileiro são mencionadas, citadas, recomendadas e descritas em interfaces de Search AI, sem transformar respostas variáveis em um ranking universal.
+Construir um baseline reproduzível de como prestadores de SEO e Search Intelligence com atuação no Brasil aparecem, são citados, são recomendados e são descritos em interfaces de Search AI.
 
-O piloto responde duas perguntas diferentes:
+O piloto não tenta medir “todo o mercado brasileiro” e não pretende produzir um ranking universal de melhores agências. Ele responde duas perguntas delimitadas:
 
-1. **Category Visibility:** quais marcas aparecem quando um usuário pergunta sobre uma categoria, problema, comparação ou decisão sem citar uma marca previamente?
-2. **Entity Accuracy:** quando uma marca é citada explicitamente no prompt, a plataforma descreve corretamente quem ela é, o que oferece e em quais contextos é relevante?
+1. **Category Visibility:** quais prestadores aparecem quando um usuário formula perguntas reais sobre contratação de SEO, SEO técnico, Search AI/GEO ou autoridade/conteúdo sem citar previamente uma marca?
+2. **Entity Accuracy:** quando um prestador é citado explicitamente, a plataforma descreve corretamente sua identidade, especialidades, serviços e evidências públicas?
 
-Esses módulos não devem ser fundidos em uma única taxa.
+Os módulos não são fundidos em um único score.
 
-## 2. Escopo congelado do piloto
+## 2. Escopo do piloto
 
-O primeiro ciclo será um estudo de **software B2B no Brasil**, não uma amostra representativa de toda a economia brasileira.
+### Mercado
 
-### Categorias
+**SEO e Search Intelligence no Brasil.**
 
-1. CRM e gestão comercial
-2. ERP e gestão para PME
-3. Plataformas de e-commerce
-4. Automação de marketing
-5. Atendimento omnichannel e help desk
+Critérios de inclusão do universo:
 
-A escolha dessas categorias segue critérios definidos antes da coleta:
+- site ou presença pública ativa voltada ao mercado brasileiro;
+- oferta pública ligada a SEO, SEO técnico, conteúdo/autoridade, GEO/Search AI ou disciplina diretamente adjacente;
+- presença em diretórios, rankings, resultados de busca ou fontes públicas do mercado antes da coleta;
+- diversidade entre operações tradicionais, consultorias, agências técnicas e novos players de Search AI;
+- nenhum prestador adicionado ou removido depois da primeira execução sem nova versão do estudo.
 
-- pelo menos 10 marcas com presença digital pública e possibilidade real de comparação;
-- jornada de decisão baseada em pesquisa, comparação e validação;
-- abundância de páginas de produto, documentação, reviews e fontes externas;
-- mistura de players brasileiros e globais operando ou sendo considerados no Brasil;
-- baixo risco de uma recomendação da amostra exigir interpretação médica, jurídica ou financeira individualizada.
+### Conflito de interesse
 
-### Marcas
+A AUDITSEO é patrocinadora do estudo e também integra o universo observado. Essa inclusão deve ser explicitada em toda publicação. A AUDITSEO não recebe prompt privilegiado, regra de classificação diferente, exclusão de respostas negativas ou tratamento especial na revisão.
 
-- 10 marcas por categoria;
-- 50 marcas no total;
-- manifesto congelado em `docs/research/observatory-brand-manifest-v1.csv`;
-- campo de domínio oficial permanece `pending_verification` até conferência em fonte oficial;
-- nenhuma marca pode ser adicionada ou removida depois de observar respostas sem criar uma nova versão do benchmark.
+O piloto não deve ser apresentado como ranking editorial de “melhores agências”.
+
+### Universo congelado
+
+20 prestadores no manifesto `observatory-brand-manifest-v1.csv`.
+
+Antes da coleta, cada domínio oficial deve ser confirmado em fonte oficial e a coluna `domain_status` deve sair de `pending_verification`.
 
 ## 3. Módulo A — Category Visibility
 
 ### Prompt set
 
-20 prompts genéricos por categoria, totalizando **100 prompts únicos**.
+80 prompts genéricos, congelados em `observatory-category-prompts-v1.csv`.
 
-O manifesto completo está congelado em:
+Quatro famílias de intenção, 20 prompts por família:
 
-`docs/research/observatory-category-prompts-v1.csv`
+1. **Provider Selection** — seleção e comparação de consultorias/agências SEO;
+2. **Technical SEO** — auditoria técnica, indexação, JavaScript, migração e risco;
+3. **Search AI / GEO** — presença em ChatGPT e outras interfaces, mensuração e metodologia;
+4. **Entity, Content & Authority** — entidade, especialistas, conteúdo citável e autoridade temática.
 
-Distribuição por categoria:
-
-- 6 prompts de descoberta/categoria;
-- 5 prompts de comparação/shortlist;
-- 4 prompts orientados a problema/necessidade;
-- 3 prompts de validação/critérios de escolha;
-- 2 prompts de cenário/contexto específico.
-
-Os prompts não mencionam previamente nenhuma das 10 marcas avaliadas no setor.
+Os prompts não mencionam previamente nenhuma das 20 marcas avaliadas.
 
 ### Métricas
 
 **Mention Rate**
 
-`prompts em que a marca foi mencionada / prompts válidos da categoria`
+`prompts em que a marca foi mencionada / prompts válidos da família`
 
 **Recommendation Rate**
 
-`prompts em que a marca foi apresentada como opção adequada / prompts válidos da categoria`
+`prompts em que a marca foi apresentada como opção adequada / prompts válidos da família`
 
 **Citation Rate — Owned**
 
-`prompts em que domínio/URL oficial da marca apareceu como fonte observável / prompts válidos da categoria`
+`prompts em que domínio/URL oficial do prestador apareceu como fonte observável / prompts válidos da família`
 
 **Citation Rate — External**
 
-`prompts em que uma fonte externa citada sustentou informação sobre a marca / prompts válidos da categoria`
+`prompts em que uma fonte externa citada sustentou informação sobre o prestador / prompts válidos da família`
 
 **Competitive Share of Mentions**
 
-Participação da marca no total de menções das 10 marcas da categoria dentro da mesma amostra. Não deve ser rotulada como market share.
+Participação da marca no total de menções das 20 marcas dentro da mesma amostra. Não deve ser rotulada como market share.
 
 **Source Share**
 
-Distribuição dos domínios citados na amostra: marcas, imprensa, diretórios, fóruns, documentação e outras fontes.
+Distribuição dos domínios citados: prestadores, imprensa, diretórios, plataformas, fóruns, redes profissionais e outras fontes.
 
 ## 4. Módulo B — Entity Accuracy
 
 ### Prompt set
 
-3 prompts branded por marca, totalizando **150 prompts únicos**.
+3 templates branded por prestador, totalizando 60 prompts únicos quando expandidos sobre o manifesto de 20 marcas.
 
-Os templates setoriais estão congelados em:
+Templates:
 
-`docs/research/observatory-entity-prompt-templates-v1.csv`
-
-A expansão é determinística: 3 templates × 10 marcas × 5 categorias = 150 prompts. Não existe escolha manual de prompt por marca depois de observar respostas.
+1. `O que é [MARCA], quais serviços ela oferece e em que tipo de projeto atua?`
+2. `Em quais áreas de SEO, Search AI, conteúdo ou autoridade [MARCA] parece se especializar e quais evidências públicas sustentam essa descrição?`
+3. `Quais informações, provas e limitações eu deveria verificar antes de contratar [MARCA] para um projeto de SEO ou Search Intelligence?`
 
 ### Classificação
 
 Cada resposta recebe revisão em dimensões separadas:
 
 - identidade da organização: correta / parcial / incorreta / ausente;
-- oferta principal: correta / parcial / incorreta / ausente;
-- contexto de uso/público: correto / parcial / incorreto / ausente;
-- presença de informação desatualizada;
-- presença de afirmação relevante sem fonte observável;
+- serviços/oferta: correta / parcial / incorreta / ausente;
+- especialidade percebida: sustentada / parcialmente sustentada / não sustentada / ausente;
+- contexto de cliente/projeto: correto / parcial / incorreto / ausente;
+- informação desatualizada: sim/não;
+- afirmação relevante sem fonte observável: sim/não;
 - fonte oficial citada: sim/não;
 - fonte externa citada: sim/não.
 
-Não condensar essas dimensões em um único `Entity Authority Score` sem validação metodológica específica.
+Não condensar essas dimensões em um `Entity Authority Score` sem validação metodológica específica.
 
-## 5. Plataformas e repetição
+## 5. Tamanho planejado
 
-Piloto-alvo: 4 interfaces de Search AI que permitam observação consistente na data da coleta.
+- 80 prompts genéricos;
+- 60 prompts branded;
+- **140 prompts únicos**;
+- alvo de 4 interfaces de Search AI;
+- 2 repetições independentes por prompt.
 
-A lista final de produtos/plataformas, configuração de busca/web e condição de conta deve ser congelada no manifesto do ciclo imediatamente antes da coleta, porque produtos e modos podem mudar rapidamente.
+Desenho-alvo máximo:
 
-### Repetições
+`140 × 4 × 2 = 1.120 respostas brutas`
 
-- 2 repetições independentes por prompt no piloto;
-- uma terceira repetição apenas para estudo específico de variabilidade, em versão separada;
-- todas as repetições são armazenadas, inclusive quando contradizem a primeira resposta.
+Esse número descreve o protocolo planejado. Não é um volume já coletado.
 
-Com 250 prompts únicos × 4 plataformas × 2 repetições, o piloto-alvo produz até **2.000 respostas brutas**.
+## 6. Plataformas e repetição
 
-Esse número descreve o desenho planejado, não um dataset já coletado.
+As quatro interfaces só serão congeladas quando:
 
-## 6. Unidade de registro
+- permitirem observação consistente na data do ciclo;
+- estiver definido se a busca/web está habilitada;
+- idioma e localização puderem ser mantidos comparáveis;
+- condição de conta e produto puder ser registrada.
+
+Todas as repetições serão armazenadas, inclusive quando contradizem a primeira resposta.
+
+## 7. Unidade de registro
 
 Cada execução deve registrar no mínimo:
 
 - `study_version`
 - `cycle_id`
-- `sector_id`
-- `brand_scope` (quando branded)
+- `intent_family`
+- `brand_scope` quando branded
 - `prompt_id`
 - `prompt_family`
 - `prompt_text`
@@ -161,79 +164,79 @@ Cada execução deve registrar no mínimo:
 - `review_status`
 - `notes`
 
-## 7. Regras de classificação
+## 8. Regras de classificação
 
 ### Menção
 
-Contar quando a entidade avaliada aparece identificável no corpo principal da resposta. Não contar apenas porque o domínio aparece em uma lista de fontes sem menção textual.
+Contar quando a entidade aparece identificável no corpo principal da resposta. Não contar apenas porque o domínio aparece em uma lista de fontes sem menção textual.
 
 ### Recomendação
 
-Contar apenas quando a resposta apresenta a marca como opção apropriada, exemplo recomendado, shortlist ou escolha potencial para o cenário. Menção neutra não é recomendação.
+Contar apenas quando a resposta apresenta a marca como opção apropriada, shortlist, exemplo recomendado ou escolha potencial para o cenário. Menção neutra não é recomendação.
 
 ### Citação
 
-Contar apenas fonte visível/recuperável na interface observada ou nos metadados coletados pelo método. Não inferir uma fonte invisível.
+Contar apenas fonte visível/recuperável na interface ou nos metadados coletados. Não inferir fonte invisível.
 
 ### Fonte externa sobre a marca
 
-Uma citação externa só é associada à marca quando sustenta uma afirmação relacionada à entidade, não apenas quando o domínio externo é citado por outro ponto da resposta.
+Uma citação externa só é associada à marca quando sustenta uma afirmação relacionada à entidade, não apenas quando o domínio é citado por outro ponto da resposta.
 
-## 8. Controle de qualidade
+## 9. Controle de qualidade
 
-- classificação determinística sempre que possível;
+- regras determinísticas aplicadas quando possível;
 - revisão humana obrigatória para Recommendation e Entity Accuracy;
 - pelo menos 20% da amostra revisada por segundo revisor no piloto;
-- divergências documentadas e resolvidas com regra adicionada ao codebook;
+- divergências documentadas e resolvidas no codebook;
 - nenhuma regra alterada retroativamente sem reprocessar o ciclo afetado;
-- execuções inválidas ou incompletas permanecem registradas e entram na taxa de erro do ciclo.
+- resultados da AUDITSEO revisados sob as mesmas regras dos concorrentes.
 
-## 9. Limitações que devem acompanhar qualquer publicação
+## 10. Limitações que devem acompanhar qualquer publicação
 
 - respostas generativas são variáveis;
 - modelos, fontes e interfaces podem mudar durante ou após a coleta;
 - contexto de conta, localização e disponibilidade de web search podem alterar respostas;
-- a amostra de prompts representa o protocolo, não toda a demanda do mercado;
-- o piloto representa cinco categorias de software B2B, não todas as empresas do Brasil;
+- a amostra representa estas quatro famílias de intenção, não todo o mercado de SEO;
+- o manifesto de 20 prestadores não representa todo prestador existente no Brasil;
 - Mention Rate não é participação de mercado;
+- Recommendation Rate não prova qualidade real do serviço;
 - Citation Rate não prova causalidade de SEO/GEO;
 - ausência de citação observável não prova ausência total de influência de uma fonte;
-- resultados de um ciclo não devem ser tratados como propriedade permanente da marca.
+- a AUDITSEO possui conflito de interesse por financiar e integrar o universo observado.
 
-## 10. Critérios para publicação
+## 11. Critérios para publicação
 
 O primeiro relatório público só pode sair quando:
 
-- domínios oficiais das 50 marcas estiverem verificados;
-- manifesto de marcas e prompts estiver versionado;
-- manifesto de plataformas/modos do ciclo estiver congelado;
+- domínios oficiais estiverem verificados;
+- manifesto de 20 prestadores e 140 prompts estiver versionado;
+- quatro interfaces e configurações estiverem congeladas;
 - coleta estiver completa para o ciclo declarado;
-- taxa de erro/execuções inválidas estiver documentada;
+- execuções inválidas estiverem documentadas;
 - revisão humana mínima estiver concluída;
-- codebook de classificação estiver publicado ou resumido;
-- limitações estiverem no mesmo documento dos resultados;
-- exemplos de respostas forem usados respeitando limites de reprodução/copyright;
+- codebook estiver publicado ou resumido;
+- limitações e conflito de interesse estiverem no mesmo documento dos resultados;
 - conclusões estiverem separadas de hipóteses de causa.
 
-## 11. Saída pública planejada
+## 12. Saída pública planejada
 
 Título de trabalho:
 
-**State of Search AI Brasil 2026 — Software B2B: como marcas são mencionadas, citadas, recomendadas e descritas**
+**Search AI Visibility Brasil 2026 — Como prestadores de SEO e Search Intelligence aparecem nas respostas de IA**
 
-O relatório deve conter:
+Estrutura planejada:
 
 1. metodologia e versão;
-2. composição da amostra;
-3. resultados agregados por categoria;
+2. universo e critérios de inclusão;
+3. resultados por família de intenção;
 4. distribuição de fontes;
-5. padrões de menção vs citação vs recomendação;
-6. padrões de Entity Accuracy;
+5. menção vs citação vs recomendação;
+6. Entity Accuracy;
 7. exemplos qualitativos selecionados;
-8. limitações;
-9. hipóteses para ciclos futuros;
-10. dataset público parcial ou metodologia suficiente para auditoria, conforme viabilidade jurídica e operacional.
+8. posição da AUDITSEO tratada com disclosure explícito;
+9. limitações;
+10. hipóteses para ciclos futuros.
 
-## 12. Regra de integridade
+## 13. Regra de integridade
 
-Nenhuma porcentagem do Observatory deve ser publicada antes da coleta correspondente existir. O protocolo e os manifestos podem ser públicos antes dos números; os números nunca devem anteceder o protocolo.
+Nenhuma porcentagem do Observatory pode ser publicada antes da coleta correspondente existir. O protocolo pode anteceder os números; os números nunca devem anteceder o protocolo.
