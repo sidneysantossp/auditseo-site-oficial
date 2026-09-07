@@ -48,6 +48,8 @@ const INDEXABLE = [
   ["/blog/site-indexado-sem-impressoes", "https://www.auditseo.com.br/blog/site-indexado-sem-impressoes"],
   ["/blog/checklist-seo-antes-lancar-site", "https://www.auditseo.com.br/blog/checklist-seo-antes-lancar-site"],
   ["/blog/queda-trafego-depois-redesign", "https://www.auditseo.com.br/blog/queda-trafego-depois-redesign"],
+  ["/blog/conteudo-sem-trafego-atualizar-consolidar-remover", "https://www.auditseo.com.br/blog/conteudo-sem-trafego-atualizar-consolidar-remover"],
+  ["/blog/trafego-organico-estagnado-proxima-oportunidade", "https://www.auditseo.com.br/blog/trafego-organico-estagnado-proxima-oportunidade"],
   ["/autor/sidney-santos", "https://www.auditseo.com.br/autor/sidney-santos"],
   ["/politica-de-privacidade", "https://www.auditseo.com.br/politica-de-privacidade"],
   ["/termos-de-uso", "https://www.auditseo.com.br/termos-de-uso"],
