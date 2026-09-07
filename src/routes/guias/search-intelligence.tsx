@@ -1,14 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import App from "@/App";
-import { createSeoHead } from "@/lib/seo";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/guias/search-intelligence")({
-  head: () =>
-    createSeoHead({
-      path: "/guias/search-intelligence",
-      title: "Inteligência de Busca | AUDITSEO",
-      description:
-        "Inteligência de busca é a camada que conecta dados, intenção, autoridade, conteúdo e decisão em uma estratégia coordenada de presença digital.",
-    }),
-  component: App,
+  beforeLoad: () => {
+    throw redirect({ to: "/blog/o-que-e-search-intelligence", statusCode: 308 });
+  },
 });
