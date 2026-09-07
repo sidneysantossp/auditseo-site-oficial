@@ -30,6 +30,10 @@ const INDEXABLE = [
   ["/blog/autoridade-de-entidade-o-que-e", "https://www.auditseo.com.br/blog/autoridade-de-entidade-o-que-e"],
   ["/blog/geo-o-que-e-o-que-nao-garante", "https://www.auditseo.com.br/blog/geo-o-que-e-o-que-nao-garante"],
   ["/blog/como-ias-encontram-e-citam-fontes", "https://www.auditseo.com.br/blog/como-ias-encontram-e-citam-fontes"],
+  ["/blog/seo-vs-geo-vs-aeo", "https://www.auditseo.com.br/blog/seo-vs-geo-vs-aeo"],
+  ["/blog/como-auditar-crawlers-de-ia", "https://www.auditseo.com.br/blog/como-auditar-crawlers-de-ia"],
+  ["/blog/como-medir-visibilidade-em-ia", "https://www.auditseo.com.br/blog/como-medir-visibilidade-em-ia"],
+  ["/blog/como-estruturar-entidade-empresarial", "https://www.auditseo.com.br/blog/como-estruturar-entidade-empresarial"],
 
   ["/autor/sidney-santos", "https://www.auditseo.com.br/autor/sidney-santos"],
   ["/politica-de-privacidade", "https://www.auditseo.com.br/politica-de-privacidade"],
