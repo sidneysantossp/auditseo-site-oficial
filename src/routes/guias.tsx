@@ -1,14 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import App from "@/App";
-import { createSeoHead } from "@/lib/seo";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/guias")({
-  head: () =>
-    createSeoHead({
-      path: "/guias",
-      title: "Guias Técnicos AUDITSEO | GEO, Busca e Autoridade",
-      description:
-        "Guias técnicos e estratégicos sobre GEO, narrativa semântica, autoridade de entidade e inteligência de busca.",
-    }),
-  component: App,
+  beforeLoad: () => {
+    throw redirect({ to: "/blog", statusCode: 308 });
+  },
 });
