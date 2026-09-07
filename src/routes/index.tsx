@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import HomePage from "@/components/HomePage";
+import HomePageV2 from "@/components/HomePageV2";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AUDITSEO | Search Intelligence e Autoridade de Entidade" },
+      { title: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade" },
       {
         name: "google-site-verification",
         content: "uT9b97Zdg7PX0Cc_he99g0aDbxKzDq5K0O4gUa4630c",
@@ -12,16 +12,16 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Descubra por que sua empresa não é encontrada, compreendida ou considerada no Google e nas plataformas de IA. A AUDITSEO conecta SEO técnico, conteúdo, autoridade de entidade e Search AI em um plano orientado por evidências.",
+          "Identifique onde sua presença de busca quebra — rastreamento, indexação, intenção, entidade, autoridade, citabilidade ou conversão — antes de investir em mais SEO, conteúdo ou IA.",
       },
       {
         property: "og:title",
-        content: "AUDITSEO | Search Intelligence e Autoridade de Entidade",
+        content: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade",
       },
       {
         property: "og:description",
         content:
-          "Sua empresa não precisa apenas aparecer na busca. Precisa entrar na decisão. Diagnóstico e coordenação de SEO, conteúdo, autoridade de entidade e Search AI.",
+          "Antes de investir em mais SEO, conteúdo ou IA, descubra onde sua presença realmente quebra. Diagnóstico, prioridade, execução e validação orientados por evidência.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.auditseo.com.br/" },
@@ -30,12 +30,12 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "AUDITSEO | Search Intelligence e Autoridade de Entidade",
+        content: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade",
       },
       {
         name: "twitter:description",
         content:
-          "Descubra os sinais que impedem sua empresa de ser encontrada, compreendida e considerada no Google e nas plataformas de IA.",
+          "Localize o gargalo antes de prescrever a tática: Crawl → Index → Retrieve → Understand → Trust → Cite → Convert.",
       },
     ],
     links: [{ rel: "canonical", href: "https://www.auditseo.com.br/" }],
@@ -50,14 +50,14 @@ export const Route = createFileRoute("/")({
           url: "https://www.auditseo.com.br/",
           logo: "https://www.auditseo.com.br/auditseo-logo.png",
           description:
-            "Consultoria de Search Intelligence e Autoridade de Entidade que identifica e coordena os sinais técnicos, semânticos, editoriais e de autoridade que influenciam descoberta, compreensão, validação e consideração de empresas em mecanismos de busca e plataformas de IA.",
+            "Consultoria de Search Intelligence que diagnostica onde a presença de busca de uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida e transforma os achados em um roadmap coordenado de implementação e mensuração.",
           address: {
             "@type": "PostalAddress",
             addressCountry: "BR",
           },
           serviceType: [
             "Search Intelligence",
-            "Consultoria de SEO técnico",
+            "Search Diagnosis",
             "Autoridade de Entidade",
             "Arquitetura de Conteúdo por Intenção",
             "Generative Search Readiness",
@@ -72,5 +72,5 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: HomePage,
+  component: HomePageV2,
 });
