@@ -24,7 +24,7 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   "/solucoes/autoridade-de-entidade": [
     { eyebrow: "FUNDAMENTO", title: "Autoridade de entidade: o que é e o que não é", text: "A definição operacional usada pela AUDITSEO sem inventar um score público de autoridade do Google.", href: "/blog/autoridade-de-entidade-o-que-e" },
     { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma entidade empresarial", text: "Entity Home, Organization, pessoas, serviços, provas, consistência e fontes em uma arquitetura verificável.", href: "/blog/como-estruturar-entidade-empresarial" },
-    { eyebrow: "PROTOCOLO EDITORIAL", title: "Como criar conteúdo citável", text: "Como transformar afirmações institucionais em informação mais específica, atribuível e sustentada por evidência.", href: "/blog/como-criar-conteudo-citavel" },
+    { eyebrow: "SCHEMA SEM HYPE", title: "Schema ajuda a aparecer no ChatGPT?", text: "O papel real dos dados estruturados: representar fatos e relações sem tratá-los como atalho para autoridade ou citação por IA.", href: "/blog/schema-ajuda-aparecer-no-chatgpt" },
   ],
   "/solucoes/conteudo-por-intencao": [
     { eyebrow: "PROTOCOLO EDITORIAL", title: "Como criar conteúdo citável", text: "Conteúdo por intenção precisa resolver perguntas reais e sobreviver ao teste de evidência, não apenas cobrir palavras-chave.", href: "/blog/como-criar-conteudo-citavel" },
@@ -32,9 +32,9 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "SEARCH AI", title: "Como IAs encontram e citam fontes", text: "Como descoberta, fontes e citações se relacionam com qualidade editorial sem criar promessas de presença em IA.", href: "/blog/como-ias-encontram-e-citam-fontes" },
   ],
   "/solucoes/geo-ia-readiness": [
-    { eyebrow: "MENSURAÇÃO", title: "Como medir visibilidade em IA", text: "Mention Rate, Citation Rate, share of voice e contexto só fazem sentido quando amostra e método estão explícitos.", href: "/blog/como-medir-visibilidade-em-ia" },
-    { eyebrow: "AUDITORIA TÉCNICA", title: "Como auditar crawlers de IA", text: "Como separar busca, treinamento e agentes acionados pelo usuário antes de editar robots.txt ou WAF.", href: "/blog/como-auditar-crawlers-de-ia" },
-    { eyebrow: "PROTOCOLO DE PESQUISA", title: "Benchmark de Search AI", text: "A metodologia pública que antecede qualquer percentual proprietário da AUDITSEO sobre presença generativa.", href: "/blog/protocolo-benchmark-search-ai" },
+    { eyebrow: "DIAGNÓSTICO", title: "O ChatGPT não cita meu site: o que auditar?", text: "Playbook para separar acesso, recuperação, entendimento, confiança e citabilidade antes de prescrever uma tática de GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
+    { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Prompts congelados, repetição e métricas separadas de menção, citação, recomendação e precisão da entidade.", href: "/blog/como-medir-se-geo-esta-funcionando" },
+    { eyebrow: "AUDITORIA TÉCNICA", title: "Como auditar crawlers de IA", text: "Como separar busca, treinamento e agentes acionados pelo usuário antes de editar robots.txt, CDN ou WAF.", href: "/blog/como-auditar-crawlers-de-ia" },
   ],
   "/solucoes/migracao-risco-seo": [
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Uma migração pode quebrar etapas diferentes da cadeia; o framework ajuda a validar o que precisa sobreviver ao corte.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
@@ -43,7 +43,7 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   ],
   "/solucoes/evolucao-organica": [
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Crescimento contínuo exige um sistema de leitura e decisão, não uma fila infinita de tarefas de SEO.", href: "/blog/o-que-e-search-intelligence" },
-    { eyebrow: "MENSURAÇÃO", title: "Como medir visibilidade em IA", text: "Um modelo amostral para incorporar Search AI ao Learning Loop sem transformar variabilidade em falsa certeza.", href: "/blog/como-medir-visibilidade-em-ia" },
+    { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Um modelo amostral para incorporar Search AI ao Learning Loop sem transformar variabilidade em falsa certeza.", href: "/blog/como-medir-se-geo-esta-funcionando" },
     { eyebrow: "PROTOCOLO DE PESQUISA", title: "Benchmark de Search AI", text: "Como manter prompts, regras de classificação e metodologia comparáveis entre ciclos de medição.", href: "/blog/protocolo-benchmark-search-ai" },
   ],
 };
