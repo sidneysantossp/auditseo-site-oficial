@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import App from "@/App";
+import BlogHubPage from "@/components/BlogHubPage";
 import { createSeoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog")({
   head: () =>
     createSeoHead({
       path: "/blog",
-      title: "Blog AUDITSEO | Inteligência de Busca, GEO e Autoridade",
+      title: "Biblioteca AUDITSEO | Search Intelligence, SEO e AI Search",
       description:
-        "Guias, análises e conteúdos práticos sobre inteligência de busca, GEO, IA, autoridade de entidade e presença digital de empresas.",
+        "Pesquisa, guias e análises sobre Search Intelligence, SEO, autoridade de entidade, GEO e AI Search com fontes primárias, autoria e critérios editoriais explícitos.",
     }),
-  component: App,
+  component: BlogHubPage,
 });
