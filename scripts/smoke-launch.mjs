@@ -34,6 +34,13 @@ const REDIRECTS = [
   ["/para-agencias", "/parceria"],
   ["/seo-para-agencias", "/parceria"],
   ["/proposta/dr-felipe-barao", "/propostas/dr-felipe-barao"],
+  ["/solucoes/site-sem-tracao", "/solucoes"],
+  ["/solucoes/recuperacao-organica", "/solucoes"],
+  ["/solucoes/autoridade-de-entidade", "/solucoes"],
+  ["/solucoes/conteudo-por-intencao", "/solucoes"],
+  ["/solucoes/geo-ia-readiness", "/solucoes"],
+  ["/solucoes/migracao-risco-seo", "/solucoes"],
+  ["/solucoes/evolucao-organica", "/solucoes"],
 ];
 
 function pick(html, pattern) {
