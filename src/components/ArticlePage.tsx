@@ -1,5 +1,6 @@
-import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, FileText, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, FileText, Network, ShieldCheck } from "lucide-react";
 import type { Article } from "@/content/articles";
+import { articleRelations } from "@/content/articleRelations";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
 
@@ -22,6 +23,8 @@ function formatDate(value: string) {
 }
 
 export default function ArticlePage({ article }: { article: Article }) {
+  const relatedArticles = articleRelations[article.slug] || [];
+
   return (
     <main className="bg-[#11100f] text-[#f8f8f8]">
       <Header onNavClick={navigate} activeSection="conteudo" />
@@ -138,6 +141,24 @@ export default function ArticlePage({ article }: { article: Article }) {
             </div>
           </div>
         </section>
+
+        {relatedArticles.length ? (
+          <section className="bg-[#11100f] px-6 py-20 md:py-24 xl:px-12">
+            <div className="mx-auto max-w-[1120px]">
+              <div className="flex items-center gap-3"><Network size={20} className="text-[#b28453]" /><span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#b28453]">CONTINUE A TRILHA</span></div>
+              <h2 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-[#f8f8f8]">Documentos que aprofundam ou sustentam este tema</h2>
+              <div className="mt-10 grid gap-5 md:grid-cols-3">
+                {relatedArticles.map(([label, href]) => (
+                  <a key={href} href={href} className="group rounded-[20px] border border-[#b28453]/20 bg-[#171614] p-6 transition-all hover:-translate-y-1 hover:border-[#b28453]/50">
+                    <BookOpen size={17} className="text-[#b28453]" />
+                    <h3 className="mt-4 font-display text-xl font-bold text-[#f8f8f8]">{label}</h3>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] group-hover:text-[#b28453]">Ler documento <ArrowRight size={14} /></span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section className="bg-[#e0d3c3] px-6 py-20 text-[#11100f] md:py-24 xl:px-12">
           <div className="mx-auto max-w-[1120px]">
