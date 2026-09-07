@@ -1,7 +1,10 @@
 import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Search, ShieldCheck } from "lucide-react";
 import { articleList } from "@/content/articles";
+import { advancedArticleList } from "@/content/articlesAdvanced";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
+
+const libraryArticles = [...articleList, ...advancedArticleList];
 
 function navigate(sectionId: string) {
   if (typeof window === "undefined") return;
@@ -38,7 +41,7 @@ export default function BlogHubPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            {["Search Intelligence", "SEO técnico", "Entidades", "GEO & AI Search", "Conteúdo", "Recuperação", "Migração"].map((topic) => (
+            {["Search Intelligence", "SEO técnico", "Entidades", "GEO & AI Search", "Conteúdo", "Crawlers", "Mensuração", "Recuperação"].map((topic) => (
               <span key={topic} className="rounded-full border border-[#b28453]/24 bg-[#b28453]/8 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[#e0d3c3]">{topic}</span>
             ))}
           </div>
@@ -64,13 +67,13 @@ export default function BlogHubPage() {
       <section className="bg-[#11100f] px-6 py-24 md:py-32 xl:px-12">
         <div className="mx-auto max-w-[1240px]">
           <div className="max-w-4xl">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">ARTIGOS FUNDADORES</span>
-            <h2 className="mt-5 font-display text-[38px] font-bold leading-[1.07] tracking-[-0.035em] text-[#f8f8f8] md:text-[54px]">Começamos pelos conceitos que sustentam todo o restante da estratégia.</h2>
-            <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#f8f8f8]/68 md:text-lg">Esses documentos formam a base conceitual da AUDITSEO. Novos estudos, experimentos e cases devem apontar para eles — e também poder contradizê-los quando novas evidências justificarem.</p>
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">DOCUMENTOS FUNDADORES</span>
+            <h2 className="mt-5 font-display text-[38px] font-bold leading-[1.07] tracking-[-0.035em] text-[#f8f8f8] md:text-[54px]">A base conceitual e técnica que sustenta a estratégia da AUDITSEO.</h2>
+            <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#f8f8f8]/68 md:text-lg">Os documentos abaixo definem conceitos, métodos e limites. Estudos, experimentos, cases e novos conteúdos devem se conectar a essa base — e também poder corrigi-la quando novas evidências justificarem.</p>
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2">
-            {articleList.map((article) => (
+            {libraryArticles.map((article) => (
               <a key={article.slug} href={`/blog/${article.slug}`} className="group flex min-h-[350px] flex-col rounded-[24px] border border-[#b28453]/22 bg-[linear-gradient(145deg,rgba(31,30,28,0.96),rgba(13,13,12,0.99))] p-8 transition-all hover:-translate-y-1 hover:border-[#b28453]/55">
                 <div className="flex items-center justify-between gap-4">
                   <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#b28453]">{article.eyebrow}</span>
@@ -80,7 +83,7 @@ export default function BlogHubPage() {
                 <p className="mt-5 text-sm leading-[1.75] text-[#f8f8f8]/64">{article.description}</p>
                 <div className="mt-auto flex items-center justify-between gap-4 pt-8">
                   <span className="inline-flex items-center gap-2 text-[11px] text-[#f8f8f8]/42"><CalendarDays size={13} /> {formatDate(article.publishedAt)}</span>
-                  <span className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] group-hover:text-[#b28453]">Ler artigo <ArrowRight size={14} /></span>
+                  <span className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] group-hover:text-[#b28453]">Ler documento <ArrowRight size={14} /></span>
                 </div>
               </a>
             ))}
@@ -97,14 +100,12 @@ export default function BlogHubPage() {
           </div>
           <div className="rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8]">
             <FileText size={20} className="text-[#b28453]" />
-            <h3 className="mt-5 font-display text-2xl font-bold">Próximos ativos editoriais</h3>
+            <h3 className="mt-5 font-display text-2xl font-bold">Próxima camada de autoridade</h3>
             <ul className="mt-6 space-y-4 text-sm leading-[1.7] text-[#f8f8f8]/70">
-              <li>SEO vs GEO vs AEO: diferenças práticas</li>
-              <li>Como auditar crawlers de IA</li>
-              <li>Como medir menções e citações responsavelmente</li>
-              <li>Como estruturar uma entidade empresarial</li>
-              <li>Framework Crawl → Index → Retrieve → Understand → Trust → Cite</li>
-              <li>Primeiro benchmark proprietário AUDITSEO</li>
+              <li>Framework completo Crawl → Index → Retrieve → Understand → Trust → Cite</li>
+              <li>Como transformar conteúdo em uma fonte realmente citável</li>
+              <li>Protocolo AUDITSEO para benchmark de Search AI</li>
+              <li>Primeiro dataset proprietário e metodologia pública</li>
             </ul>
           </div>
         </div>
