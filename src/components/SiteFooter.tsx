@@ -9,7 +9,7 @@ const navigationLinks = [
   ["Início", "/"],
   ["Método S.I.G.N.A.L", "/metodo-signal"],
   ["Soluções", "/solucoes"],
-    ["Conteúdo", "/blog"],
+  ["Conteúdo", "/blog"],
   ["GEO & IA", "/geo-ia"],
 ];
 
@@ -46,6 +46,8 @@ const contentLinks = [
 const footerLinkClass = "block text-[#f8f8f8]/72 transition-colors hover:text-[#b28453]";
 const whatsappHref = "https://wa.me/5511995250742";
 
+type NewsletterStatus = "idle" | "submitting" | "success" | "error";
+
 function FooterColumn({ title, links }: { title: string; links: string[][] }) {
   return (
     <div>
@@ -65,20 +67,57 @@ function FooterColumn({ title, links }: { title: string; links: string[][] }) {
   );
 }
 
+function newsletterAttribution() {
+  const params = new URLSearchParams(window.location.search);
+  const utm: Record<string, string> = {};
+
+  for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "lead_id", "campaign_id"]) {
+    const value = params.get(key);
+    if (value) utm[key] = value;
+  }
+
+  return {
+    sourcePath: `${window.location.pathname}${window.location.search}`,
+    referrer: document.referrer || undefined,
+    utm: Object.keys(utm).length ? utm : undefined,
+  };
+}
+
 export default function SiteFooter({ onNavigate }: SiteFooterProps) {
   const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState<NewsletterStatus>("idle");
 
-  const handleNewsletterSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleNewsletterSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const email = newsletterEmail.trim();
+    if (!email || newsletterStatus === "submitting") return;
 
-    if (!newsletterEmail) return;
+    setNewsletterStatus("submitting");
 
-    setNewsletterSuccess(true);
-    window.setTimeout(() => {
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "newsletter",
+          email,
+          ...newsletterAttribution(),
+        }),
+      });
+
+      const result = (await response.json().catch(() => null)) as { success?: boolean } | null;
+
+      if (!response.ok || !result?.success) {
+        setNewsletterStatus("error");
+        return;
+      }
+
+      setNewsletterStatus("success");
       setNewsletterEmail("");
-      setNewsletterSuccess(false);
-    }, 5000);
+    } catch (error) {
+      console.error("Newsletter subscription failed", error);
+      setNewsletterStatus("error");
+    }
   };
 
   return (
@@ -96,28 +135,41 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
             </div>
 
             <div className="flex w-full shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:w-auto">
-              {newsletterSuccess ? (
-                <div className="whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white">
-                  Obrigado por assinar. Seus insights foram registrados.
+              {newsletterStatus === "success" ? (
+                <div className="whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white" role="status">
+                  Inscrição confirmada. Seus insights foram registrados.
                 </div>
               ) : (
-                <form onSubmit={handleNewsletterSubmit} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-                  <input
-                    type="email"
-                    value={newsletterEmail}
-                    onChange={(event) => setNewsletterEmail(event.target.value)}
-                    placeholder="Seu e-mail profissional"
-                    className="w-full rounded-full bg-white px-6 py-3 text-sm font-medium text-[#11100f] outline-none placeholder:text-gray-500 sm:w-[390px] lg:w-[430px]"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#11100f] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]"
-                  >
-                    <span>Inscrever-se</span>
-                    <Send size={12} />
-                  </button>
-                </form>
+                <div className="w-full sm:w-auto">
+                  <form onSubmit={handleNewsletterSubmit} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                    <input
+                      type="email"
+                      value={newsletterEmail}
+                      onChange={(event) => {
+                        setNewsletterEmail(event.target.value);
+                        if (newsletterStatus === "error") setNewsletterStatus("idle");
+                      }}
+                      placeholder="Seu e-mail profissional"
+                      className="w-full rounded-full bg-white px-6 py-3 text-sm font-medium text-[#11100f] outline-none placeholder:text-gray-500 sm:w-[390px] lg:w-[430px]"
+                      required
+                      disabled={newsletterStatus === "submitting"}
+                      aria-describedby={newsletterStatus === "error" ? "newsletter-error" : undefined}
+                    />
+                    <button
+                      type="submit"
+                      disabled={newsletterStatus === "submitting"}
+                      className="flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#11100f] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f] disabled:cursor-not-allowed disabled:opacity-65"
+                    >
+                      <span>{newsletterStatus === "submitting" ? "Enviando..." : "Inscrever-se"}</span>
+                      <Send size={12} />
+                    </button>
+                  </form>
+                  {newsletterStatus === "error" ? (
+                    <p id="newsletter-error" className="mt-2 text-xs font-semibold text-white" role="alert">
+                      Não foi possível confirmar sua inscrição agora. Tente novamente em instantes.
+                    </p>
+                  ) : null}
+                </div>
               )}
 
               <div className="hidden items-center border-l border-white/20 pl-4 xl:flex">
