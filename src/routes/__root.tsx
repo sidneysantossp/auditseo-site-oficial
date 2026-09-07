@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
+import LeadCaptureBoundary from "../components/LeadCaptureBoundary";
 
 function NotFoundComponent() {
   return (
@@ -120,7 +121,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <LeadCaptureBoundary>{children}</LeadCaptureBoundary>
         <FloatingWhatsApp />
         <Scripts />
       </body>
