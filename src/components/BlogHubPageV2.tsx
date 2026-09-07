@@ -4,6 +4,7 @@ import { advancedArticleList } from "@/content/articlesAdvanced";
 import { buyerArticleList } from "@/content/articlesBuyer";
 import { buyerOpsArticleList } from "@/content/articlesBuyerOps";
 import { demandArticleList } from "@/content/articlesDemand";
+import { growthOpsArticleList } from "@/content/articlesGrowthOps";
 import { protocolArticleList } from "@/content/articlesProtocols";
 import { scenarioArticleList } from "@/content/articlesScenarios";
 import { searchAiOpsArticleList } from "@/content/articlesSearchAiOps";
@@ -76,7 +77,7 @@ export default function BlogHubPageV2() {
       <Collection eyebrow="PROTOCOLOS AUDITSEO" title="Metodologias proprietárias publicadas antes dos resultados." text="Esses documentos explicam como avaliamos citabilidade, como localizamos a etapa quebrada da cadeia de busca e como o benchmark de Search AI deve ser coletado e classificado." items={protocolArticleList} />
       <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection eyebrow="PERGUNTAS DO MERCADO" title="Temas populares respondidos com mais restrição do que promessa." text="Aqui entram dúvidas com alta intenção prática, como aparecer no ChatGPT e o papel de llms.txt. O objetivo é separar o que a plataforma documenta, o que a evidência observa e o que continua incerto." items={demandArticleList} /></div>
       <Collection eyebrow="DIAGNÓSTICO SEARCH AI" title="Quando a empresa já está testando IA e precisa descobrir por que não aparece." text="Playbooks para separar acesso, indexação, recuperação, entendimento, schema, citabilidade e mensuração — sem transformar ausência em IA em uma única causa genérica." items={searchAiOpsArticleList} />
-      <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection eyebrow="CENÁRIOS DE OPERAÇÃO" title="Problemas concretos que exigem diagnósticos diferentes." text="Site novo, site indexado sem tração e queda após redesign não devem receber o mesmo checklist. Estes documentos conectam sintomas reais às frentes comerciais adequadas." items={scenarioArticleList} /></div>
+      <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection eyebrow="CENÁRIOS DE OPERAÇÃO" title="Problemas concretos que exigem diagnósticos diferentes." text="Do pré-lançamento à estagnação de uma operação madura: estes documentos conectam sintomas, decisões editoriais e ciclos de crescimento às frentes comerciais adequadas." items={[...scenarioArticleList, ...growthOpsArticleList]} /></div>
       <Collection eyebrow="DECISÃO DE CONTRATAÇÃO" title="Conteúdo para empresas que estão escolhendo como operar SEO." text="Critérios para avaliar consultorias, agências, auditorias, times internos e modelos híbridos sem transformar o processo de compra em uma comparação superficial de pacotes e promessas." items={[...buyerArticleList, ...buyerOpsArticleList]} />
       <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-28 xl:px-12">
         <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
