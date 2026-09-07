@@ -4,6 +4,7 @@ import { advancedArticleList } from "@/content/articlesAdvanced";
 import { buyerArticleList } from "@/content/articlesBuyer";
 import { demandArticleList } from "@/content/articlesDemand";
 import { protocolArticleList } from "@/content/articlesProtocols";
+import { searchAiOpsArticleList } from "@/content/articlesSearchAiOps";
 import type { Article } from "@/content/articles";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
@@ -87,7 +88,11 @@ export default function BlogHubPageV2() {
         <Collection eyebrow="PERGUNTAS DO MERCADO" title="Temas populares respondidos com mais restrição do que promessa." text="Aqui entram dúvidas com alta intenção prática, como aparecer no ChatGPT e o papel de llms.txt. O objetivo é separar o que a plataforma documenta, o que a evidência observa e o que continua incerto." items={demandArticleList} />
       </div>
 
-      <Collection eyebrow="DECISÃO DE CONTRATAÇÃO" title="Conteúdo para empresas que estão escolhendo como operar SEO." text="Critérios para avaliar consultorias, agências, times internos e modelos híbridos sem transformar o processo de compra em uma comparação superficial de pacotes e promessas." items={buyerArticleList} />
+      <Collection eyebrow="DIAGNÓSTICO SEARCH AI" title="Quando a empresa já está testando IA e precisa descobrir por que não aparece." text="Playbooks para separar acesso, indexação, recuperação, entendimento, schema, citabilidade e mensuração — sem transformar ausência em IA em uma única causa genérica." items={searchAiOpsArticleList} />
+
+      <div className="border-y border-[#b28453]/10 bg-[#151413]">
+        <Collection eyebrow="DECISÃO DE CONTRATAÇÃO" title="Conteúdo para empresas que estão escolhendo como operar SEO." text="Critérios para avaliar consultorias, agências, times internos e modelos híbridos sem transformar o processo de compra em uma comparação superficial de pacotes e promessas." items={buyerArticleList} />
+      </div>
 
       <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-28 xl:px-12">
         <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
