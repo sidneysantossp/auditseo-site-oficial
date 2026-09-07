@@ -1,5 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/solucoes/evolucao-organica')({
-  component: () => <div className="p-20 text-white">Página em reestruturação individual: Evolução orgânica</div>
-})
+export const Route = createFileRoute("/solucoes/evolucao-organica")({
+  beforeLoad: () => {
+    throw redirect({ to: "/solucoes", statusCode: 308 });
+  },
+});
