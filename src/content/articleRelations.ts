@@ -2,7 +2,7 @@ export const articleRelations: Record<string, Array<[string, string]>> = {
   "o-que-e-search-intelligence": [
     ["Framework Crawl → Index → Retrieve → Understand → Trust → Cite", "/blog/framework-crawl-index-retrieve-understand-trust-cite"],
     ["SEO vs GEO vs AEO", "/blog/seo-vs-geo-vs-aeo"],
-    ["Como medir visibilidade em IA", "/blog/como-medir-visibilidade-em-ia"],
+    ["Como escolher uma consultoria de SEO", "/blog/como-escolher-consultoria-seo"],
   ],
   "autoridade-de-entidade-o-que-e": [
     ["Como estruturar uma entidade empresarial", "/blog/como-estruturar-entidade-empresarial"],
@@ -22,7 +22,7 @@ export const articleRelations: Record<string, Array<[string, string]>> = {
   "seo-vs-geo-vs-aeo": [
     ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
     ["GEO: o que é e o que não garante", "/blog/geo-o-que-e-o-que-nao-garante"],
-    ["llms.txt funciona?", "/blog/llms-txt-funciona"],
+    ["Agência, consultoria ou time interno?", "/blog/agencia-seo-consultoria-ou-time-interno"],
   ],
   "como-auditar-crawlers-de-ia": [
     ["Como aparecer no ChatGPT", "/blog/como-aparecer-no-chatgpt"],
@@ -42,12 +42,12 @@ export const articleRelations: Record<string, Array<[string, string]>> = {
   "como-criar-conteudo-citavel": [
     ["Como IAs encontram e citam fontes", "/blog/como-ias-encontram-e-citam-fontes"],
     ["Autoridade de entidade: o que é", "/blog/autoridade-de-entidade-o-que-e"],
-    ["Como aparecer no ChatGPT", "/blog/como-aparecer-no-chatgpt"],
+    ["Como escolher uma consultoria de SEO", "/blog/como-escolher-consultoria-seo"],
   ],
   "framework-crawl-index-retrieve-understand-trust-cite": [
     ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
     ["Como auditar crawlers de IA", "/blog/como-auditar-crawlers-de-ia"],
-    ["llms.txt funciona?", "/blog/llms-txt-funciona"],
+    ["Agência, consultoria ou time interno?", "/blog/agencia-seo-consultoria-ou-time-interno"],
   ],
   "protocolo-benchmark-search-ai": [
     ["Como medir visibilidade em IA", "/blog/como-medir-visibilidade-em-ia"],
@@ -63,5 +63,15 @@ export const articleRelations: Record<string, Array<[string, string]>> = {
     ["Como auditar crawlers de IA", "/blog/como-auditar-crawlers-de-ia"],
     ["Framework Crawl → Cite", "/blog/framework-crawl-index-retrieve-understand-trust-cite"],
     ["SEO vs GEO vs AEO", "/blog/seo-vs-geo-vs-aeo"],
+  ],
+  "como-escolher-consultoria-seo": [
+    ["Agência, consultoria ou time interno?", "/blog/agencia-seo-consultoria-ou-time-interno"],
+    ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
+    ["SEO vs GEO vs AEO", "/blog/seo-vs-geo-vs-aeo"],
+  ],
+  "agencia-seo-consultoria-ou-time-interno": [
+    ["Como escolher uma consultoria de SEO", "/blog/como-escolher-consultoria-seo"],
+    ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
+    ["Framework Crawl → Cite", "/blog/framework-crawl-index-retrieve-understand-trust-cite"],
   ],
 };
