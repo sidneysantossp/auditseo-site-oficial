@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.auditseo.com.br/" },
       { property: "og:site_name", content: "AUDITSEO" },
+      { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
@@ -45,24 +46,26 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           "@id": "https://www.auditseo.com.br/#organization",
-          "name": "AUDITSEO",
-          "url": "https://www.auditseo.com.br/",
-          "logo": "https://www.auditseo.com.br/logo.png",
-          "description":
+          name: "AUDITSEO",
+          url: "https://www.auditseo.com.br/",
+          logo: "https://www.auditseo.com.br/auditseo-logo.png",
+          description:
             "Consultoria de Inteligência de Busca e Autoridade de Entidade. Identificamos o que limita a presença da sua empresa e coordenamos a estratégia para fortalecer autoridade, visibilidade e reconhecimento no Google e nas plataformas de inteligência artificial.",
-          "address": {
+          address: {
             "@type": "PostalAddress",
-            "addressCountry": "BR"
+            addressCountry: "BR",
           },
-          "serviceType": [
+          serviceType: [
             "Consultoria de Inteligência de Busca",
             "Autoridade de Entidade",
             "GEO e presença em plataformas de IA",
           ],
-          "founder": { 
-            "@type": "Person", 
-            "name": "Sidney Santos" 
-          }
+          founder: {
+            "@type": "Person",
+            "@id": "https://www.auditseo.com.br/autor/sidney-santos#person",
+            name: "Sidney Santos",
+            url: "https://www.auditseo.com.br/autor/sidney-santos",
+          },
         }),
       },
     ],
