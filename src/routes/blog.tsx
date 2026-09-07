@@ -8,7 +8,7 @@ export const Route = createFileRoute("/blog")({
       path: "/blog",
       title: "Biblioteca AUDITSEO | Search Intelligence, SEO e Search AI",
       description:
-        "11 documentos sobre Search Intelligence, SEO, autoridade de entidade e Search AI: fundamentos, técnica, mensuração e protocolos proprietários com fontes e metodologia pública.",
+        "Biblioteca de Search Intelligence, SEO, autoridade de entidade e Search AI: fundamentos, técnica, mensuração, protocolos e análises de mercado com fontes e metodologia pública.",
     }),
   component: BlogHubPageV2,
 });
