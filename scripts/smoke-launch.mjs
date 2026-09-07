@@ -37,6 +37,8 @@ const INDEXABLE = [
   ["/blog/como-criar-conteudo-citavel", "https://www.auditseo.com.br/blog/como-criar-conteudo-citavel"],
   ["/blog/framework-crawl-index-retrieve-understand-trust-cite", "https://www.auditseo.com.br/blog/framework-crawl-index-retrieve-understand-trust-cite"],
   ["/blog/protocolo-benchmark-search-ai", "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai"],
+  ["/blog/como-aparecer-no-chatgpt", "https://www.auditseo.com.br/blog/como-aparecer-no-chatgpt"],
+  ["/blog/llms-txt-funciona", "https://www.auditseo.com.br/blog/llms-txt-funciona"],
 
   ["/autor/sidney-santos", "https://www.auditseo.com.br/autor/sidney-santos"],
   ["/politica-de-privacidade", "https://www.auditseo.com.br/politica-de-privacidade"],
