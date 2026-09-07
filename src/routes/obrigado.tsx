@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import App from "@/App";
+import ObrigadoPage from "@/components/ObrigadoPage";
 import { createSeoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/obrigado")({
@@ -10,5 +10,5 @@ export const Route = createFileRoute("/obrigado")({
       description: "Solicitação recebida pela AUDITSEO.",
       robots: "noindex,follow",
     }),
-  component: App,
+  component: ObrigadoPage,
 });
