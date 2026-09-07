@@ -1,0 +1,51 @@
+study_version,sector_id,sector_name,brand_id,brand_name,official_domain,domain_status,inclusion_note
+v1,crm,CRM e gestão comercial,crm_01,Agendor,,pending_verification,CRM brasileiro com presença em comparativos de PME/B2B
+v1,crm,CRM e gestão comercial,crm_02,RD Station CRM,,pending_verification,CRM brasileiro integrado ao ecossistema RD Station
+v1,crm,CRM e gestão comercial,crm_03,Ploomes,,pending_verification,CRM brasileiro com foco B2B e processos comerciais complexos
+v1,crm,CRM e gestão comercial,crm_04,PipeRun,,pending_verification,CRM brasileiro presente em comparações de mercado
+v1,crm,CRM e gestão comercial,crm_05,Moskit CRM,,pending_verification,CRM brasileiro presente em comparações de mercado
+v1,crm,CRM e gestão comercial,crm_06,Pipedrive,,pending_verification,CRM global amplamente comparado no Brasil
+v1,crm,CRM e gestão comercial,crm_07,HubSpot CRM,,pending_verification,CRM global com forte presença de conteúdo em português
+v1,crm,CRM e gestão comercial,crm_08,Kommo,,pending_verification,CRM global com posicionamento conversacional/WhatsApp
+v1,crm,CRM e gestão comercial,crm_09,Zoho CRM,,pending_verification,CRM global com presença e pricing local
+v1,crm,CRM e gestão comercial,crm_10,Salesforce,,pending_verification,CRM global enterprise usado como referência de categoria
+v1,erp_pme,ERP e gestão para PME,erp_01,Omie,,pending_verification,ERP brasileiro recorrente em comparativos de PME
+v1,erp_pme,ERP e gestão para PME,erp_02,Conta Azul,,pending_verification,Gestão financeira/ERP para PME com forte presença no Brasil
+v1,erp_pme,ERP e gestão para PME,erp_03,Bling,,pending_verification,ERP brasileiro forte em e-commerce e marketplaces
+v1,erp_pme,ERP e gestão para PME,erp_04,Tiny ERP / Olist,,pending_verification,ERP associado ao ecossistema Olist e operações de e-commerce
+v1,erp_pme,ERP e gestão para PME,erp_05,eGestor,,pending_verification,Sistema de gestão brasileiro incluído em comparativos recentes
+v1,erp_pme,ERP e gestão para PME,erp_06,Nibo,,pending_verification,Gestão financeira/contábil para empresas e escritórios
+v1,erp_pme,ERP e gestão para PME,erp_07,Granatum,,pending_verification,Gestão financeira para pequenas empresas
+v1,erp_pme,ERP e gestão para PME,erp_08,MarketUP,,pending_verification,Sistema de gestão/PDV para pequenas empresas
+v1,erp_pme,ERP e gestão para PME,erp_09,Linx,,pending_verification,Software de gestão e varejo com presença nacional
+v1,erp_pme,ERP e gestão para PME,erp_10,Rumia,,pending_verification,ERP brasileiro presente em comparativo factual recente
+v1,ecommerce,Plataformas de e-commerce,ecom_01,VTEX,,pending_verification,Plataforma brasileira enterprise/composable
+v1,ecommerce,Plataformas de e-commerce,ecom_02,Nuvemshop,,pending_verification,Plataforma com forte presença entre PMEs brasileiras
+v1,ecommerce,Plataformas de e-commerce,ecom_03,Loja Integrada,,pending_verification,Plataforma brasileira de entrada/PME
+v1,ecommerce,Plataformas de e-commerce,ecom_04,Tray,,pending_verification,Plataforma brasileira com forte integração a marketplaces
+v1,ecommerce,Plataformas de e-commerce,ecom_05,Shopify,,pending_verification,Plataforma global amplamente comparada no Brasil
+v1,ecommerce,Plataformas de e-commerce,ecom_06,WooCommerce,,pending_verification,Plataforma open source amplamente usada em WordPress
+v1,ecommerce,Plataformas de e-commerce,ecom_07,Adobe Commerce / Magento,,pending_verification,Plataforma enterprise/open source de referência
+v1,ecommerce,Plataformas de e-commerce,ecom_08,Yampi,,pending_verification,Plataforma brasileira focada em comércio digital
+v1,ecommerce,Plataformas de e-commerce,ecom_09,Bagy,,pending_verification,Plataforma brasileira para pequenas e médias operações
+v1,ecommerce,Plataformas de e-commerce,ecom_10,Iluria,,pending_verification,Plataforma brasileira citada em comparativos de mercado
+v1,marketing_automation,Automação de marketing,mkt_01,RD Station Marketing,,pending_verification,Automação de marketing brasileira de referência
+v1,marketing_automation,Automação de marketing,mkt_02,HubSpot Marketing Hub,,pending_verification,Suite global integrada a CRM
+v1,marketing_automation,Automação de marketing,mkt_03,ActiveCampaign,,pending_verification,Automação e CRM amplamente comparados no Brasil
+v1,marketing_automation,Automação de marketing,mkt_04,Brevo,,pending_verification,Automação/e-mail com presença em comparativos brasileiros
+v1,marketing_automation,Automação de marketing,mkt_05,Mautic,,pending_verification,Plataforma open source de automação
+v1,marketing_automation,Automação de marketing,mkt_06,Salesforce Marketing Cloud,,pending_verification,Suite enterprise de automação e dados
+v1,marketing_automation,Automação de marketing,mkt_07,Pipedrive Campaigns,,pending_verification,Automação/e-mail integrada ao CRM Pipedrive
+v1,marketing_automation,Automação de marketing,mkt_08,LeadLovers,,pending_verification,Plataforma brasileira de automação e funis
+v1,marketing_automation,Automação de marketing,mkt_09,Mailchimp,,pending_verification,Plataforma global de e-mail/automação
+v1,marketing_automation,Automação de marketing,mkt_10,Klaviyo,,pending_verification,Automação e CRM B2C/e-commerce global
+v1,customer_service,Atendimento omnichannel e help desk,cs_01,Zendesk,,pending_verification,Help desk/omnichannel global amplamente comparado
+v1,customer_service,Atendimento omnichannel e help desk,cs_02,Freshdesk,,pending_verification,Help desk global para múltiplos portes
+v1,customer_service,Atendimento omnichannel e help desk,cs_03,Intercom,,pending_verification,Atendimento conversacional e AI agents
+v1,customer_service,Atendimento omnichannel e help desk,cs_04,Movidesk,,pending_verification,Plataforma brasileira de atendimento/help desk
+v1,customer_service,Atendimento omnichannel e help desk,cs_05,Octadesk,,pending_verification,Plataforma brasileira de atendimento omnichannel
+v1,customer_service,Atendimento omnichannel e help desk,cs_06,Blip,,pending_verification,Plataforma brasileira de conversas e WhatsApp
+v1,customer_service,Atendimento omnichannel e help desk,cs_07,Zenvia,,pending_verification,Plataforma brasileira de comunicação e experiência do cliente
+v1,customer_service,Atendimento omnichannel e help desk,cs_08,Huggy,,pending_verification,Atendimento digital/chat e automação conversacional
+v1,customer_service,Atendimento omnichannel e help desk,cs_09,Digisac,,pending_verification,Plataforma brasileira de atendimento multicanal
+v1,customer_service,Atendimento omnichannel e help desk,cs_10,RD Station Conversas,,pending_verification,Solução de conversas/WhatsApp do ecossistema RD Station
