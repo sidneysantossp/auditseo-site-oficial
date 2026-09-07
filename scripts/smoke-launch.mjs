@@ -34,6 +34,9 @@ const INDEXABLE = [
   ["/blog/como-auditar-crawlers-de-ia", "https://www.auditseo.com.br/blog/como-auditar-crawlers-de-ia"],
   ["/blog/como-medir-visibilidade-em-ia", "https://www.auditseo.com.br/blog/como-medir-visibilidade-em-ia"],
   ["/blog/como-estruturar-entidade-empresarial", "https://www.auditseo.com.br/blog/como-estruturar-entidade-empresarial"],
+  ["/blog/como-criar-conteudo-citavel", "https://www.auditseo.com.br/blog/como-criar-conteudo-citavel"],
+  ["/blog/framework-crawl-index-retrieve-understand-trust-cite", "https://www.auditseo.com.br/blog/framework-crawl-index-retrieve-understand-trust-cite"],
+  ["/blog/protocolo-benchmark-search-ai", "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai"],
 
   ["/autor/sidney-santos", "https://www.auditseo.com.br/autor/sidney-santos"],
   ["/politica-de-privacidade", "https://www.auditseo.com.br/politica-de-privacidade"],
