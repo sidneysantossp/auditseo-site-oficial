@@ -27,9 +27,9 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "SCHEMA SEM HYPE", title: "Schema ajuda a aparecer no ChatGPT?", text: "O papel real dos dados estruturados: representar fatos e relações sem tratá-los como atalho para autoridade ou citação por IA.", href: "/blog/schema-ajuda-aparecer-no-chatgpt" },
   ],
   "/solucoes/conteudo-por-intencao": [
+    { eyebrow: "GOVERNANÇA EDITORIAL", title: "Conteúdo sem tráfego: atualizar, consolidar ou remover?", text: "Um framework para decidir o destino de ativos sem reduzir content strategy a sessões orgânicas ou pruning automático.", href: "/blog/conteudo-sem-trafego-atualizar-consolidar-remover" },
     { eyebrow: "PROTOCOLO EDITORIAL", title: "Como criar conteúdo citável", text: "Conteúdo por intenção precisa resolver perguntas reais e sobreviver ao teste de evidência, não apenas cobrir palavras-chave.", href: "/blog/como-criar-conteudo-citavel" },
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Por que a arquitetura editorial deve nascer da jornada e do gargalo, não de um calendário fixo de publicações.", href: "/blog/o-que-e-search-intelligence" },
-    { eyebrow: "SEARCH AI", title: "Como IAs encontram e citam fontes", text: "Como descoberta, fontes e citações se relacionam com qualidade editorial sem criar promessas de presença em IA.", href: "/blog/como-ias-encontram-e-citam-fontes" },
   ],
   "/solucoes/geo-ia-readiness": [
     { eyebrow: "DIAGNÓSTICO", title: "O ChatGPT não cita meu site: o que auditar?", text: "Playbook para separar acesso, recuperação, entendimento, confiança e citabilidade antes de prescrever uma tática de GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
@@ -42,8 +42,8 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "AUDITORIA TÉCNICA", title: "Como auditar crawlers de IA", text: "Útil para projetos em que CDN, WAF, autenticação ou robots podem mudar junto com a infraestrutura.", href: "/blog/como-auditar-crawlers-de-ia" },
   ],
   "/solucoes/evolucao-organica": [
-    { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Crescimento contínuo exige um sistema de leitura e decisão, não uma fila infinita de tarefas de SEO.", href: "/blog/o-que-e-search-intelligence" },
+    { eyebrow: "OPPORTUNITY MINING", title: "Tráfego orgânico estagnou: onde buscar a próxima oportunidade?", text: "Como separar estagnação de queda e transformar queries, decay, CTR, demanda e novas intenções em hipóteses de crescimento.", href: "/blog/trafego-organico-estagnado-proxima-oportunidade" },
     { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Um modelo amostral para incorporar Search AI ao Learning Loop sem transformar variabilidade em falsa certeza.", href: "/blog/como-medir-se-geo-esta-funcionando" },
-    { eyebrow: "PROTOCOLO DE PESQUISA", title: "Benchmark de Search AI", text: "Como manter prompts, regras de classificação e metodologia comparáveis entre ciclos de medição.", href: "/blog/protocolo-benchmark-search-ai" },
+    { eyebrow: "GOVERNANÇA EDITORIAL", title: "Conteúdo sem tráfego: atualizar, consolidar ou remover?", text: "Como revisar decay e ativos de baixo desempenho antes de aumentar o estoque de URLs.", href: "/blog/conteudo-sem-trafego-atualizar-consolidar-remover" },
   ],
 };
