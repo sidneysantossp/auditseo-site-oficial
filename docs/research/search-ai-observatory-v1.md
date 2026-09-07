@@ -1,6 +1,6 @@
 # AUDITSEO Search AI Observatory — Protocolo Piloto v2
 
-Status: universo de mercado e prompts congelados; coleta ainda não executada.
+Status: universo, domínios oficiais e prompts congelados; coleta ainda não executada.
 Data da revisão: 2026-09-07.
 
 ## 1. Objetivo
@@ -38,7 +38,7 @@ O piloto não deve ser apresentado como ranking editorial de “melhores agênci
 
 20 prestadores no manifesto `observatory-brand-manifest-v1.csv`.
 
-Antes da coleta, cada domínio oficial deve ser confirmado em fonte oficial e a coluna `domain_status` deve sair de `pending_verification`.
+Os domínios oficiais dos 20 prestadores foram verificados em 2026-09-07 e registrados no manifesto. Essa verificação é usada exclusivamente para classificar `Owned Citation Rate` e diferenciar fonte oficial de fonte externa.
 
 ## 3. Módulo A — Category Visibility
 
