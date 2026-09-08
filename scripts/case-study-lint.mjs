@@ -6,6 +6,9 @@ import path from "node:path";
 const root = process.cwd();
 const ledgerPath = path.join(root, "docs", "research", "case-study-001-evidence-ledger.csv");
 const rulesPath = path.join(root, "docs", "research", "case-study-001-evidence-maturity-rules.md");
+const leadCapturePath = path.join(root, "src", "components", "LeadCaptureBoundary.tsx");
+const leadApiPath = path.join(root, "src", "routes", "api", "leads.ts");
+const legalPath = path.join(root, "src", "components", "LegalPage.tsx");
 const failures = [];
 
 function parseCsv(text) {
@@ -113,6 +116,7 @@ if (!fs.existsSync(ledgerPath)) {
 
   if (!ids.has("E001")) failures.push("Evidence Ledger perdeu o baseline E001");
   if (!ids.has("E003")) failures.push("Evidence Ledger perdeu o gate técnico E003");
+  if (!ids.has("E012")) failures.push("Evidence Ledger perdeu a instrumentação de atribuição E012");
 }
 
 if (!fs.existsSync(rulesPath)) {
@@ -140,10 +144,42 @@ if (!fs.existsSync(rulesPath)) {
   }
 }
 
+const attributionFields = ["firstTouchPath", "firstTouchReferrer", "firstTouchUtm", "firstTouchAt"];
+
+if (!fs.existsSync(leadCapturePath)) {
+  failures.push("LeadCaptureBoundary ausente para validar first-touch attribution");
+} else {
+  const client = fs.readFileSync(leadCapturePath, "utf8");
+  if (!client.includes('auditseo:first-touch:v1')) failures.push("LeadCaptureBoundary perdeu a chave versionada de first touch");
+  if (!client.includes("sessionStorage")) failures.push("LeadCaptureBoundary não persiste first touch em sessionStorage");
+  for (const field of attributionFields) {
+    if (!client.includes(field)) failures.push(`LeadCaptureBoundary não envia ${field}`);
+  }
+}
+
+if (!fs.existsSync(leadApiPath)) {
+  failures.push("/api/leads ausente para validar first-touch attribution");
+} else {
+  const server = fs.readFileSync(leadApiPath, "utf8");
+  for (const field of attributionFields) {
+    if (!server.includes(field)) failures.push(`/api/leads não aceita/preserva ${field}`);
+  }
+  if (!server.includes("Primeiro touch AUDITSEO")) failures.push("/api/leads não diferencia primeiro touch nos avisos");
+  if (!server.includes("Origem da conversão")) failures.push("/api/leads não diferencia origem da conversão nos avisos");
+}
+
+if (!fs.existsSync(legalPath)) {
+  failures.push("LegalPage ausente para validar transparência de atribuição");
+} else {
+  const legal = fs.readFileSync(legalPath, "utf8");
+  if (!legal.includes("sessionStorage")) failures.push("Política de Privacidade não declara sessionStorage para first touch");
+  if (!legal.includes("primeiro contato")) failures.push("Política de Privacidade não explica first-touch attribution");
+}
+
 if (failures.length) {
   console.error(`AUDITSEO case-study lint: ${failures.length} falha(s).`);
   for (const failure of failures) console.error(`FAIL  ${failure}`);
   process.exit(1);
 }
 
-console.log("AUDITSEO case-study lint aprovado: ledger, PRE/M0-M4, polaridade e regras de prazo coerentes.");
+console.log("AUDITSEO case-study lint aprovado: ledger, PRE/M0-M4, regras de prazo e first-touch attribution coerentes.");
