@@ -5,6 +5,7 @@ import { buyerArticleList } from "@/content/articlesBuyer";
 import { buyerOpsArticleList } from "@/content/articlesBuyerOps";
 import { demandArticleList } from "@/content/articlesDemand";
 import { growthOpsArticleList } from "@/content/articlesGrowthOps";
+import { legacyPreservedArticleList } from "@/content/articlesLegacyPreserved";
 import { protocolArticleList } from "@/content/articlesProtocols";
 import { scenarioArticleList } from "@/content/articlesScenarios";
 import { searchAiOpsArticleList } from "@/content/articlesSearchAiOps";
@@ -100,7 +101,7 @@ export default function BlogHubPageV2() {
       </section>
 
       <Collection id="fundamentos" eyebrow="FUNDAMENTOS" title="Os conceitos que definem como a AUDITSEO enxerga a busca." text="Comece aqui para entender Search Intelligence, autoridade de entidade, GEO sem hype e como fontes entram em experiências de busca com IA." items={articleList} />
-      <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="tecnica" eyebrow="TÉCNICA E MENSURAÇÃO" title="Documentos para transformar conceitos em diagnóstico observável." text="Crawlers, arquitetura de entidade, diferenças entre SEO/GEO/AEO e medição de visibilidade em IA com amostra e limitações explícitas." items={advancedArticleList} /></div>
+      <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="tecnica" eyebrow="TÉCNICA E MENSURAÇÃO" title="Documentos para transformar conceitos em diagnóstico observável." text="Crawlers, arquitetura de entidade, SEO local, Core Web Vitals, diferenças entre SEO/GEO/AEO e medição de visibilidade em IA com fontes e limitações explícitas." items={[...advancedArticleList, ...legacyPreservedArticleList]} /></div>
       <Collection id="protocolos" eyebrow="PROTOCOLOS AUDITSEO" title="Metodologias proprietárias publicadas antes dos resultados." text="Esses documentos explicam como avaliamos citabilidade, como localizamos a etapa quebrada da cadeia de busca e como o benchmark de Search AI deve ser coletado e classificado." items={protocolArticleList} />
       <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="mercado" eyebrow="PERGUNTAS DO MERCADO" title="Temas populares respondidos com mais restrição do que promessa." text="Aqui entram dúvidas com alta intenção prática, como aparecer no ChatGPT e o papel de llms.txt. O objetivo é separar o que a plataforma documenta, o que a evidência observa e o que continua incerto." items={demandArticleList} /></div>
       <Collection id="diagnostico-search-ai" eyebrow="DIAGNÓSTICO SEARCH AI" title="Quando a empresa já está testando IA e precisa descobrir por que não aparece." text="Playbooks para separar acesso, indexação, recuperação, entendimento, schema, citabilidade e mensuração — sem transformar ausência em IA em uma única causa genérica." items={searchAiOpsArticleList} />
