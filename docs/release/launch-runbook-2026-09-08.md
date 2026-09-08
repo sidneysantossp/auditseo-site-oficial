@@ -1,0 +1,133 @@
+# AUDITSEO — Runbook de Release 2026-09-08
+
+Este documento registra a sequência de release do site AUDITSEO. Ele existe para evitar merge fora de ordem, perda de commits entre branches empilhadas e publicação sem smoke HTTP real.
+
+## Estado das branches
+
+A arquitetura atual é empilhada e deve ser preservada sem rebase, amend, squash ou force-push:
+
+1. `main`
+2. `fix/launch-p0-search-foundation` — PR #2
+3. `content/search-intelligence-positioning-v1` — PR #3
+4. `content/search-intelligence-positioning-v2` — PR #4
+
+Comparação confirmada em 2026-09-08:
+
+- PR #2: 28 commits à frente de `main`, 0 atrás;
+- PR #3: 48 commits à frente da branch do PR #2, 0 atrás;
+- PR #4: 94 commits à frente da branch do PR #3, 0 atrás.
+
+## Preview hosts reportados pelo Vercel bot
+
+### PR #2 — P0 técnico
+
+`https://auditseo-site-oficial-git-fix-launch-p0-search-6071ef-auditseo.vercel.app`
+
+Smoke:
+
+```bash
+npm run smoke:launch -- https://auditseo-site-oficial-git-fix-launch-p0-search-6071ef-auditseo.vercel.app
+```
+
+### PR #3 — V1 editorial
+
+`https://auditseo-site-oficial-git-content-search-intell-728331-auditseo.vercel.app`
+
+### PR #4 — V2 narrativa/editorial final
+
+`https://auditseo-site-oficial-git-content-search-intell-18a57a-auditseo.vercel.app`
+
+Smoke:
+
+```bash
+npm run smoke:launch -- https://auditseo-site-oficial-git-content-search-intell-18a57a-auditseo.vercel.app
+```
+
+> Observação: a conexão Vercel disponível na sessão que gerou este runbook não possuía acesso ao projeto `auditseo-site-oficial`. Build/deploy foi validado via GitHub/Vercel status, mas o smoke HTTP autenticado não foi declarado como aprovado.
+
+## Gate 1 — PR #2 / P0 técnico
+
+Não fazer merge enquanto os seguintes pontos não forem executados contra o Preview do PR #2:
+
+- todas as rotas de lançamento retornam o status pretendido;
+- SSR contém title e canonical corretos;
+- páginas indexáveis não carregam `noindex`;
+- URL arbitrária retorna HTTP 404 real, `noindex,follow` e sem canonical;
+- aliases retornam 301/308 para o destino correto;
+- `/robots.txt` retorna 200;
+- `/sitemap.xml` retorna 200;
+- `/api/leads` valida payload e não produz falso sucesso;
+- homepage, diagnóstico e newsletter confirmam entrega real quando o canal server-side está configurado;
+- ao menos um canal real de entrega está configurado em Preview/Production: webhook e/ou Resend.
+
+Somente depois disso:
+
+1. tirar PR #2 de draft;
+2. revisar head esperado;
+3. mergear PR #2 em `main` usando merge commit normal;
+4. validar deployment de produção;
+5. executar smoke em produção.
+
+## Gate 2 — PR #3 / V1 editorial
+
+Depois que PR #2 estiver em `main`:
+
+1. retarget PR #3 de `fix/launch-p0-search-foundation` para `main`;
+2. confirmar que o diff representa apenas a camada editorial V1;
+3. confirmar build verde;
+4. não rebasear e não reescrever histórico;
+5. mergear PR #3 em `main` com merge commit normal;
+6. validar produção.
+
+## Gate 3 — PR #4 / V2 final
+
+Depois que PR #3 estiver em `main`:
+
+1. retarget PR #4 de `content/search-intelligence-positioning-v1` para `main`;
+2. confirmar diff final;
+3. confirmar `npm run build` verde;
+4. o build deve executar `content:check` antes do Vite;
+5. executar o smoke completo contra o Preview V2;
+6. confirmar `/diagnostico?cenario=geo` com canonical limpo em `/diagnostico`;
+7. validar redirects legados;
+8. validar `/estudos-busca-ia` como `noindex,follow`;
+9. confirmar que as 43 URLs canônicas pretendidas estão cobertas;
+10. somente então tirar PR #4 de draft e mergear em `main`.
+
+## Gate editorial automatizado
+
+O build da V2 deve falhar quando detectar problemas objetivos como:
+
+- slug de artigo duplicado;
+- `metaTitle` duplicado;
+- description duplicada;
+- artigo canônico fora do sitemap;
+- URL de artigo órfã no sitemap;
+- artigo sem rota SSR explícita;
+- link `/blog/*` quebrado no grafo editorial;
+- artigo sem trilha em `articleRelations`;
+- solução comercial sem Base pública em `serviceArticleRelations`.
+
+Avisos de comprimento de title/description não bloqueiam o build.
+
+## Validação pós-produção
+
+Após o merge final:
+
+1. rodar smoke em `https://www.auditseo.com.br`;
+2. validar homepage, `/solucoes`, `/diagnostico`, `/blog`, 8 soluções e amostra dos documentos no HTML SSR;
+3. confirmar redirects históricos;
+4. confirmar 404 real;
+5. confirmar `robots.txt` e sitemap publicados;
+6. verificar propriedade correta no Google Search Console;
+7. enviar/reenviar `https://www.auditseo.com.br/sitemap.xml`;
+8. solicitar indexação manual apenas das páginas centrais prioritárias, não das 43 URLs indiscriminadamente;
+9. registrar baseline de Search Console: páginas indexadas, impressões, cliques, queries branded/não branded e cobertura;
+10. registrar baseline comercial: diagnóstico iniciado, formulário enviado, entrega confirmada e origem/cenário;
+11. somente depois escolher o próximo ciclo editorial com base em demanda real.
+
+## Regra de segurança
+
+Nenhum status `Vercel SUCCESS` substitui o smoke HTTP real. Build verde prova compilação/deploy, não prova comportamento runtime de status, canonical, redirects, 404, robots ou formulários.
+
+Nenhum dado proprietário do Search AI Observatory deve ser publicado antes de coleta, revisão humana e metodologia versionada.
