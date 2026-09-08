@@ -1,6 +1,7 @@
-import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, FileText, Network, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, FileText, Network, Quote, ShieldCheck } from "lucide-react";
 import type { Article } from "@/content/articles";
 import { articleRelations } from "@/content/articleRelations";
+import { researchCitations } from "@/content/researchCitations";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
 
@@ -38,6 +39,7 @@ function headingId(text: string, index: number, explicitId?: string) {
 
 export default function ArticlePage({ article }: { article: Article }) {
   const relatedArticles = articleRelations[article.slug] || [];
+  const researchCitation = researchCitations[article.slug];
   const headingLinks = article.blocks.flatMap((block, index) =>
     block.type === "heading" ? [{ label: block.text, id: headingId(block.text, index, block.id) }] : [],
   );
@@ -161,6 +163,29 @@ export default function ArticlePage({ article }: { article: Article }) {
             <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.12em] text-[#11100f]/46">Fontes consultadas e verificadas em {formatDate(article.updatedAt)}.</p>
           </div>
         </section>
+
+        {researchCitation ? (
+          <section className="bg-[#f4eee5] px-6 py-20 text-[#11100f] md:py-24 xl:px-12">
+            <div className="mx-auto max-w-[1120px]">
+              <div className="grid gap-10 rounded-[28px] border border-[#11100f]/10 bg-white/45 p-8 md:p-10 lg:grid-cols-[0.75fr_1.25fr]">
+                <div>
+                  <div className="flex items-center gap-3"><Quote size={20} className="text-[#8c613c]" /><span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">COMO CITAR ESTA PESQUISA</span></div>
+                  <h2 className="mt-5 font-display text-3xl font-bold leading-[1.1]">Reuse os dados com contexto e atribuição verificável</h2>
+                  <p className="mt-5 text-sm leading-[1.75] text-[#11100f]/68">Snapshot: {researchCitation.snapshotDate}. A referência abaixo é uma sugestão de atribuição; adapte o estilo editorial sem remover contexto, data ou origem.</p>
+                </div>
+                <div>
+                  <p className="rounded-[18px] border border-[#11100f]/10 bg-[#11100f] p-6 font-mono text-[12px] leading-[1.8] text-[#f8f8f8]/82">{researchCitation.suggestedCitation}</p>
+                  <p className="mt-5 text-sm leading-[1.75] text-[#11100f]/68">{researchCitation.reuseNote}</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a href={researchCitation.canonicalUrl} className="inline-flex items-center gap-2 rounded-full bg-[#11100f] px-5 py-3 text-xs font-bold text-white hover:bg-[#6d5132]">URL canônica <ExternalLink size={13} /></a>
+                    <a href={researchCitation.datasetUrl} className="inline-flex items-center gap-2 rounded-full border border-[#11100f]/15 px-5 py-3 text-xs font-bold hover:bg-white/45">Baixar CSV <ExternalLink size={13} /></a>
+                    <a href="/estudos-busca-ia" className="inline-flex items-center gap-2 rounded-full border border-[#11100f]/15 px-5 py-3 text-xs font-bold hover:bg-white/45">Research Hub <ArrowRight size={13} /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section className="bg-[#11100f] px-6 py-20 md:py-24 xl:px-12">
           <div className="mx-auto max-w-[1120px]">
