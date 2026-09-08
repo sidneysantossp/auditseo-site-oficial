@@ -138,6 +138,7 @@ export default function CompanyDiagnosticPage() {
     email: "",
     site: "",
     projectUrl: "",
+    discoverySource: "",
     context: "",
   });
 
@@ -254,6 +255,24 @@ export default function CompanyDiagnosticPage() {
                     </div>
                     <TextInput label="Site da empresa" type="url" value={contact.site} onChange={(value) => setContact((current) => ({ ...current, site: value }))} required />
                     <TextInput label="URL específica do projeto, opcional" type="url" value={contact.projectUrl} onChange={(value) => setContact((current) => ({ ...current, projectUrl: value }))} />
+                    <label className="grid gap-2">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">Como você conheceu a AUDITSEO? <span className="text-[#f8f8f8]/42">Opcional</span></span>
+                      <select
+                        name="discoverySource"
+                        value={contact.discoverySource}
+                        onChange={(event) => setContact((current) => ({ ...current, discoverySource: event.target.value }))}
+                        className="w-full rounded-full border border-[#b28453]/24 bg-[#171614] px-5 py-4 text-sm text-[#f8f8f8] outline-none focus:border-[#b28453]/65"
+                      >
+                        <option value="">Prefiro não informar</option>
+                        <option value="Google">Google</option>
+                        <option value="ChatGPT">ChatGPT</option>
+                        <option value="Gemini">Gemini</option>
+                        <option value="Perplexity">Perplexity</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Indicação">Indicação</option>
+                        <option value="Outro">Outro</option>
+                      </select>
+                    </label>
                     <label className="grid gap-2">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">Contexto adicional, opcional</span>
                       <textarea
