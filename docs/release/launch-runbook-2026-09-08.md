@@ -11,11 +11,11 @@ A arquitetura atual é empilhada e deve ser preservada sem rebase, amend, squash
 3. `content/search-intelligence-positioning-v1` — PR #3
 4. `content/search-intelligence-positioning-v2` — PR #4
 
-Comparação confirmada em 2026-09-08:
+Comparação confirmada em 2026-09-08 antes dos últimos commits de preservação editorial:
 
 - PR #2: 28 commits à frente de `main`, 0 atrás;
 - PR #3: 48 commits à frente da branch do PR #2, 0 atrás;
-- PR #4: 94 commits à frente da branch do PR #3, 0 atrás.
+- PR #4: 94 commits à frente da branch do PR #3, 0 atrás naquele checkpoint.
 
 ## Preview hosts reportados pelo Vercel bot
 
@@ -91,8 +91,22 @@ Depois que PR #3 estiver em `main`:
 6. confirmar `/diagnostico?cenario=geo` com canonical limpo em `/diagnostico`;
 7. validar redirects legados;
 8. validar `/estudos-busca-ia` como `noindex,follow`;
-9. confirmar que as 43 URLs canônicas pretendidas estão cobertas;
-10. somente então tirar PR #4 de draft e mergear em `main`.
+9. confirmar que as **45 URLs canônicas pretendidas** estão cobertas;
+10. confirmar preservação em HTTP 200 das URLs indexadas `/blog/google-meu-negocio-guia-completo` e `/blog/core-web-vitals-guia`;
+11. confirmar HTTP 308 de `/blog/como-escolher-agencia-seo` para `/blog/agencia-seo-consultoria-ou-time-interno`;
+12. somente então tirar PR #4 de draft e mergear em `main`.
+
+## Preservação de URLs legadas já descobertas em busca
+
+A ativação do 404 real muda o comportamento de URLs que antes podiam cair no soft-routing legado. Por isso, páginas antigas encontradas externamente precisam de decisão explícita.
+
+Decisões já implementadas:
+
+- `/blog/google-meu-negocio-guia-completo` → preservar URL, reescrever conteúdo com fontes oficiais;
+- `/blog/core-web-vitals-guia` → preservar URL, reescrever conteúdo com fontes oficiais;
+- `/blog/como-escolher-agencia-seo` → 308 para `/blog/agencia-seo-consultoria-ou-time-interno`.
+
+Não adicionar ao redirect map uma URL por suposição. Registrar apenas URLs realmente encontradas ou conhecidas no histórico.
 
 ## Gate editorial automatizado
 
@@ -116,15 +130,21 @@ Após o merge final:
 
 1. rodar smoke em `https://www.auditseo.com.br`;
 2. validar homepage, `/solucoes`, `/diagnostico`, `/blog`, 8 soluções e amostra dos documentos no HTML SSR;
-3. confirmar redirects históricos;
+3. confirmar redirects históricos, incluindo a URL legada de agência;
 4. confirmar 404 real;
 5. confirmar `robots.txt` e sitemap publicados;
 6. verificar propriedade correta no Google Search Console;
 7. enviar/reenviar `https://www.auditseo.com.br/sitemap.xml`;
-8. solicitar indexação manual apenas das páginas centrais prioritárias, não das 43 URLs indiscriminadamente;
+8. solicitar indexação manual apenas das páginas centrais prioritárias e das URLs preservadas relevantes, não das 45 URLs indiscriminadamente;
 9. registrar baseline de Search Console: páginas indexadas, impressões, cliques, queries branded/não branded e cobertura;
 10. registrar baseline comercial: diagnóstico iniciado, formulário enviado, entrega confirmada e origem/cenário;
-11. somente depois escolher o próximo ciclo editorial com base em demanda real.
+11. executar a fila de correção de entidade externa somente depois que a nova narrativa estiver publicada;
+12. somente depois escolher o próximo ciclo editorial com base em demanda real.
+
+## Artefatos de baseline
+
+- `docs/seo/baseline-2026-09-08.md` — snapshot externo pré-lançamento, explicitamente separado de Search Console;
+- `docs/seo/entity-citation-cleanup-2026-09-08.md` — fila de inconsistências externas verificadas.
 
 ## Regra de segurança
 
