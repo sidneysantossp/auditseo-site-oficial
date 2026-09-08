@@ -11,6 +11,31 @@ A regra central é simples:
 
 > O dado deve limitar a narrativa. A narrativa nunca pode elevar a maturidade do dado.
 
+## Estado PRE — Preparado, ainda sem evidência de resultado
+
+`PRE` não é um nível de evidência. É o estado usado quando a intervenção, protocolo, conteúdo ou infraestrutura está pronta, mas ainda não existe observação válida do efeito.
+
+Exemplos:
+
+- build verde em Preview;
+- artigo, dataset ou schema preparado mas ainda não publicado em produção;
+- prompt set congelado antes da primeira coleta;
+- outreach pronto, porém ainda não enviado.
+
+Pode sustentar:
+
+- “implementado”, “preparado”, “validado em build” ou “protocolo definido”, conforme a evidência disponível.
+
+Não pode sustentar:
+
+- efeito em Google ou Search AI;
+- tendência;
+- causalidade;
+- expectativa de prazo;
+- promessa de resultado.
+
+Quando a primeira medição válida surgir, o item pode passar a M0 ou M1 conforme o tipo de dado.
+
 ## Níveis de maturidade
 
 ### M0 — Baseline
@@ -205,6 +230,7 @@ Screenshots isolados e depoimentos não substituem séries ou registros estrutur
 
 O briefing deve:
 
+- distinguir `PRE` de evidência observada;
 - identificar o `evidence_maturity` de cada evolução;
 - separar resultado positivo/negativo/inconclusivo;
 - nunca transformar M1 em promessa;
