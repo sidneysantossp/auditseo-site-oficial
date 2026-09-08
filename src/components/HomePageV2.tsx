@@ -99,7 +99,7 @@ const faqs = [
 
 function navigate(id: string) {
   if (typeof window === "undefined") return;
-  const anchors: Record<string, string> = { inicio: "inicio", signal: "metodologia", solucoes: "solucoes-home", diagnostico: "form-contato" };
+  const anchors: Record<string, string> = { inicio: "inicio", signal: "metodologia", solucoes: "solucoes-home" };
   const anchor = anchors[id];
   if (anchor) {
     const element = document.getElementById(anchor);
@@ -108,7 +108,7 @@ function navigate(id: string) {
       return;
     }
   }
-  const routes: Record<string, string> = { conteudo: "/blog", parceria: "/parceria", "geo-ia": "/geo-ia" };
+  const routes: Record<string, string> = { diagnostico: "/diagnostico", conteudo: "/blog", parceria: "/parceria", "geo-ia": "/geo-ia" };
   window.location.assign(routes[id] || "/");
 }
 
@@ -144,7 +144,7 @@ export default function HomePageV2() {
               SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando o diagnóstico mostra que são parte da causa ou da solução.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Mapear o gargalo da minha empresa</button>
+              <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
               <a href="/blog/framework-crawl-index-retrieve-understand-trust-cite" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b28453]/45 px-8 py-4 text-base font-semibold transition-all hover:bg-[#b28453]/10">Ver o framework de diagnóstico <ArrowRight size={15} /></a>
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[10px] uppercase tracking-[0.08em] text-[#8c8275]">
@@ -208,7 +208,7 @@ export default function HomePageV2() {
       </section>
 
       <div id="metodologia" className="scroll-mt-24">
-        <SignalMethod onCtaClick={() => navigate("diagnostico")} ctaText="Solicitar avaliação estratégica" subtitleText="S.I.G.N.A.L. transforma sinais dispersos em diagnóstico, decisão, execução documentada e aprendizado contínuo." steps={signalSteps} footnote="O objetivo não é entregar um relatório bonito. É deixar claro o que sabemos, o que ainda é hipótese, o que precisa mudar e como saberemos se mudou." />
+        <SignalMethod onCtaClick={() => navigate("diagnostico")} ctaText="Iniciar diagnóstico estratégico" subtitleText="S.I.G.N.A.L. transforma sinais dispersos em diagnóstico, decisão, execução documentada e aprendizado contínuo." steps={signalSteps} footnote="O objetivo não é entregar um relatório bonito. É deixar claro o que sabemos, o que ainda é hipótese, o que precisa mudar e como saberemos se mudou." />
       </div>
 
       <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-32 xl:px-12">
@@ -255,8 +255,11 @@ export default function HomePageV2() {
       <section id="form-contato" className="relative scroll-mt-24 overflow-hidden px-6 py-24 md:py-32 xl:px-12">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b28453]/5 blur-[150px]" />
         <div className="relative z-10 mx-auto max-w-[820px]">
-          <SectionTitle center eyebrow="AVALIAÇÃO ESTRATÉGICA" title="Não escolha uma solução antes de saber qual problema está comprando." text="Envie o site e o contexto da empresa. A primeira conversa existe para localizar o tipo de gargalo, avaliar evidências iniciais e decidir se há um próximo ciclo que faça sentido para os dois lados." />
-          <form className="mt-12 space-y-6">
+          <SectionTitle center eyebrow="CONTATO DIRETO" title="Já conhece o contexto e prefere conversar diretamente?" text="Envie o site e os dados essenciais. Se ainda não sabe qual frente faz sentido, use o diagnóstico estratégico — ele classifica o cenário antes do contato." />
+          <div className="mt-7 text-center">
+            <a href="/diagnostico" className="inline-flex items-center gap-2 text-sm font-bold text-[#b28453] hover:text-[#e0d3c3]">Prefiro começar pelo diagnóstico <ArrowRight size={14} /></a>
+          </div>
+          <form className="mt-10 space-y-6">
             <div className="grid gap-6 md:grid-cols-2">
               <Field label="Nome completo"><input required type="text" placeholder="Seu nome" className={inputClass} /></Field>
               <Field label="E-mail corporativo"><input required type="email" placeholder="voce@empresa.com.br" className={inputClass} /></Field>
@@ -264,8 +267,8 @@ export default function HomePageV2() {
               <Field label="Site da empresa"><input required type="url" placeholder="https://www.suaempresa.com.br" className={inputClass} /></Field>
             </div>
             <Field label="Faturamento médio mensal"><select required defaultValue="" className={`${inputClass} appearance-none`}><option value="" disabled>Selecione uma faixa</option><option value="Ate 50k">Até R$ 50 mil</option><option value="50k a 200k">R$ 50 mil a R$ 200 mil</option><option value="Acima de 200k">Acima de R$ 200 mil</option></select></Field>
-            <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Solicitar avaliação estratégica <ArrowRight size={16} /></button>
-            <p className="text-center text-xs leading-[1.65] text-[#f8f8f8]/48">A primeira conversa não serve para encaixar sua empresa em um pacote. Serve para classificar o problema e decidir se existe uma hipótese de trabalho defensável.</p>
+            <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Solicitar contato estratégico <ArrowRight size={16} /></button>
+            <p className="text-center text-xs leading-[1.65] text-[#f8f8f8]/48">O contato direto não substitui o diagnóstico. Ele existe para empresas que já conseguem descrever o contexto e querem discutir o próximo passo.</p>
           </form>
         </div>
       </section>
