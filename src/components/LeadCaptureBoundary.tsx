@@ -17,6 +17,7 @@ type LeadPayload = {
   faturamento?: string;
   clientUrl?: string;
   context?: string;
+  discoverySource?: string;
   sourcePath?: string;
   referrer?: string;
   utm?: Record<string, string>;
@@ -87,7 +88,7 @@ function attribution() {
 function buildPayload(form: HTMLFormElement): LeadPayload | null {
   if (form.closest("#form-contato")) {
     const inputs = Array.from(form.querySelectorAll<HTMLInputElement>("input"));
-    const revenue = form.querySelector<HTMLSelectElement>("select")?.value || undefined;
+    const revenue = form.querySelector<HTMLSelectElement>('select[name="faturamento"]')?.value || form.querySelector<HTMLSelectElement>("select")?.value || undefined;
 
     if (inputs.length < 4) return null;
 
@@ -105,6 +106,7 @@ function buildPayload(form: HTMLFormElement): LeadPayload | null {
   if (form.closest("#organic-opportunity-scan")) {
     const inputs = Array.from(form.querySelectorAll<HTMLInputElement>("input"));
     const context = form.querySelector<HTMLTextAreaElement>("textarea")?.value.trim();
+    const discoverySource = form.querySelector<HTMLSelectElement>('select[name="discoverySource"]')?.value.trim() || undefined;
     const diagnosticText = document.getElementById("diagnostic-result")?.textContent?.replace(/\s+/g, " ").trim();
 
     if (inputs.length < 5) return null;
@@ -117,6 +119,7 @@ function buildPayload(form: HTMLFormElement): LeadPayload | null {
       email: inputs[3]?.value.trim() || "",
       site: inputs[4]?.value.trim() || "",
       clientUrl: inputs[5]?.value.trim() || undefined,
+      discoverySource,
       context: [context, diagnosticText ? `Resumo exibido: ${diagnosticText.slice(0, 3000)}` : ""].filter(Boolean).join("\n\n") || undefined,
       ...attribution(),
     };
@@ -135,6 +138,7 @@ function localWhatsappFallback(payload: LeadPayload) {
     payload.site ? `Site: ${payload.site}` : "",
     payload.faturamento ? `Faturamento: ${payload.faturamento}` : "",
     payload.clientUrl ? `Projeto: ${payload.clientUrl}` : "",
+    payload.discoverySource ? `Como conheceu a AUDITSEO: ${payload.discoverySource}` : "",
     payload.firstTouchPath ? `Primeiro touch AUDITSEO: ${payload.firstTouchPath}` : "",
     payload.sourcePath ? `Origem da conversão: ${payload.sourcePath}` : "",
     payload.context ? `Contexto do diagnóstico: ${payload.context.slice(0, 800)}` : "",
