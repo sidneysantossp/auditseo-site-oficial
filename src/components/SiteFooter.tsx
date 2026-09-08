@@ -35,6 +35,7 @@ const consultingLinks = [
 
 const contentLinks = [
   ["Biblioteca AUDITSEO", "/blog"],
+  ["Case Study #001", "/case-study/auditseo-search-intelligence"],
   ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
   ["Autoridade de entidade", "/blog/autoridade-de-entidade-o-que-e"],
   ["GEO sem hype", "/blog/geo-o-que-e-o-que-nao-garante"],
