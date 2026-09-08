@@ -56,7 +56,7 @@ const PRIVACY_SECTIONS: LegalSection[] = [
   },
   {
     title: "6. Leads, campanhas e atribuição",
-    text: "Quando um visitante chega ao site por uma campanha, podemos registrar parâmetros de origem, campanha, conteúdo, termo, referrer e identificadores técnicos de lead/campanha presentes na URL. Esses dados são usados para relacionar a origem do contato ao diagnóstico, reunião, proposta e demais etapas comerciais, sem alterar o conteúdo informado pelo titular.",
+    text: "Quando um visitante chega ao site por uma campanha ou por outro canal de descoberta, podemos registrar parâmetros de origem, campanha, conteúdo, termo, referrer, página de entrada e identificadores técnicos de lead/campanha presentes na URL. Para diferenciar o primeiro contato da página em que a conversão ocorreu, a primeira origem da sessão pode ser mantida temporariamente no armazenamento de sessão do navegador (sessionStorage) e enviada somente quando o visitante solicita contato ou diagnóstico. Esse registro é limitado à sessão do navegador e não é usado, por si só, como identificador persistente do usuário. Os dados são usados para relacionar a origem do contato ao diagnóstico, reunião, proposta e demais etapas comerciais, sem alterar o conteúdo informado pelo titular.",
   },
   {
     title: "7. Newsletter e comunicações",
@@ -143,7 +143,7 @@ export default function LegalPage({ kind }: { kind: LegalKind }) {
                 ? "Como a AUDITSEO trata informações fornecidas em formulários, diagnósticos, newsletter, campanhas e canais de contato."
                 : "Condições de uso do site, seus conteúdos, diagnósticos, formulários, newsletter e canais comerciais."}
             </p>
-            <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.12em] text-[#8c8275]">Atualizado em 7 de setembro de 2026</p>
+            <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.12em] text-[#8c8275]">Atualizado em 8 de setembro de 2026</p>
           </div>
         </section>
 
