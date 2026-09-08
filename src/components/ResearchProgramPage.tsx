@@ -114,6 +114,21 @@ export default function ResearchProgramPage() {
 
       <section className="px-6 py-24 md:py-28 xl:px-12">
         <div className="mx-auto max-w-[1180px]">
+          <div className="mb-16 grid gap-7 rounded-[26px] border border-[#b28453]/24 bg-[#171614] p-8 md:p-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+            <div>
+              <FileSearch size={22} className="text-[#b28453]" />
+              <span className="mt-5 block font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#b28453]">PRESS & CITATION FACTSHEET</span>
+              <h2 className="mt-4 font-display text-3xl font-bold leading-[1.1]">Dois minutos para entender o que pode — e o que não pode — ser citado.</h2>
+            </div>
+            <div>
+              <p className="text-sm leading-[1.8] text-[#f8f8f8]/68">O factsheet reúne amostra, números, limitações, referências sugeridas, URLs canônicas, CSVs e contato editorial dos dois benchmarks. Ele existe para reduzir atrito de checagem sem transformar um resumo em substituto da metodologia.</p>
+              <div className="mt-6 flex flex-wrap gap-4">
+                <a href="/dados/auditseo-research-press-factsheet-2026-09-08.md" className="inline-flex items-center gap-2 rounded-full bg-[#b28453] px-6 py-3 text-sm font-bold text-white hover:bg-[#e0d3c3] hover:text-[#11100f]">Abrir factsheet <ArrowRight size={14} /></a>
+                <a href="mailto:contato@auditseo.com.br" className="inline-flex items-center gap-2 rounded-full border border-[#b28453]/28 px-6 py-3 text-sm font-bold text-[#e0d3c3] hover:border-[#b28453]/60 hover:text-[#b28453]">Contato editorial</a>
+              </div>
+            </div>
+          </div>
+
           <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">REGRAS DE PUBLICAÇÃO</span>
           <h2 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">
             Uma conclusão vale menos quando o método só aparece depois dela.
