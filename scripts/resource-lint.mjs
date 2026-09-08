@@ -6,6 +6,8 @@ import path from "node:path";
 const root = process.cwd();
 const llmsPath = path.join(root, "public", "llms.txt");
 const seoPath = path.join(root, "src", "lib", "seo.ts");
+const citationsPath = path.join(root, "src", "content", "researchCitations.ts");
+const articlePagePath = path.join(root, "src", "components", "ArticlePage.tsx");
 const failures = [];
 
 if (!fs.existsSync(llmsPath)) {
@@ -44,10 +46,36 @@ if (!fs.existsSync(seoPath)) {
   if (!seo.includes('type: "text/markdown"')) failures.push("rel=describedby sem type=text/markdown");
 }
 
+if (!fs.existsSync(citationsPath)) {
+  failures.push("src/content/researchCitations.ts ausente");
+} else {
+  const citations = fs.readFileSync(citationsPath, "utf8");
+  const requiredCitationTokens = [
+    '"quanto-custa-consultoria-seo-geo-ia"',
+    '"como-mercado-brasileiro-vende-geo-search-ai"',
+    "benchmark-ofertas-seo-geo-ia-2026-09-08.csv",
+    "benchmark-comunicacao-geo-search-ai-2026-09-08.csv",
+    "suggestedCitation",
+    "reuseNote",
+  ];
+  for (const token of requiredCitationTokens) {
+    if (!citations.includes(token)) failures.push(`metadado de citação obrigatório ausente: ${token}`);
+  }
+}
+
+if (!fs.existsSync(articlePagePath)) {
+  failures.push("src/components/ArticlePage.tsx ausente");
+} else {
+  const articlePage = fs.readFileSync(articlePagePath, "utf8");
+  if (!articlePage.includes("researchCitations")) failures.push("ArticlePage não carrega metadados de citação");
+  if (!articlePage.includes("COMO CITAR ESTA PESQUISA")) failures.push("ArticlePage não renderiza bloco de citação da pesquisa");
+  if (!articlePage.includes("researchCitation.datasetUrl")) failures.push("bloco de citação não expõe o CSV correspondente");
+}
+
 if (failures.length) {
   console.error(`AUDITSEO resource lint: ${failures.length} falha(s).`);
   for (const failure of failures) console.error(`FAIL  ${failure}`);
   process.exit(1);
 }
 
-console.log("AUDITSEO resource lint aprovado: llms.txt e rel=describedby coerentes com os ativos de pesquisa.");
+console.log("AUDITSEO resource lint aprovado: descoberta, manifesto e citabilidade dos ativos de pesquisa estão coerentes.");
