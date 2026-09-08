@@ -8,6 +8,7 @@ const llmsPath = path.join(root, "public", "llms.txt");
 const seoPath = path.join(root, "src", "lib", "seo.ts");
 const citationsPath = path.join(root, "src", "content", "researchCitations.ts");
 const articlePagePath = path.join(root, "src", "components", "ArticlePage.tsx");
+const factsheetPath = path.join(root, "public", "dados", "auditseo-research-press-factsheet-2026-09-08.md");
 const failures = [];
 
 if (!fs.existsSync(llmsPath)) {
@@ -26,6 +27,7 @@ if (!fs.existsSync(llmsPath)) {
     "https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai",
     "https://www.auditseo.com.br/dados/benchmark-ofertas-seo-geo-ia-2026-09-08.csv",
     "https://www.auditseo.com.br/dados/benchmark-comunicacao-geo-search-ai-2026-09-08.csv",
+    "https://www.auditseo.com.br/dados/auditseo-research-press-factsheet-2026-09-08.md",
   ];
 
   for (const url of requiredUrls) {
@@ -72,10 +74,29 @@ if (!fs.existsSync(articlePagePath)) {
   if (!articlePage.includes("researchCitation.datasetUrl")) failures.push("bloco de citação não expõe o CSV correspondente");
 }
 
+if (!fs.existsSync(factsheetPath)) {
+  failures.push("press factsheet público ausente");
+} else {
+  const factsheet = fs.readFileSync(factsheetPath, "utf8");
+  const requiredFactsheetTokens = [
+    "# AUDITSEO Research — Press & Citation Factsheet",
+    "Benchmark #001",
+    "Benchmark #002",
+    "benchmark-ofertas-seo-geo-ia-2026-09-08.csv",
+    "benchmark-comunicacao-geo-search-ai-2026-09-08.csv",
+    "contato@auditseo.com.br",
+    "Não é censo do mercado brasileiro",
+    "Amostra pequena e exploratória",
+  ];
+  for (const token of requiredFactsheetTokens) {
+    if (!factsheet.includes(token)) failures.push(`press factsheet perdeu conteúdo obrigatório: ${token}`);
+  }
+}
+
 if (failures.length) {
   console.error(`AUDITSEO resource lint: ${failures.length} falha(s).`);
   for (const failure of failures) console.error(`FAIL  ${failure}`);
   process.exit(1);
 }
 
-console.log("AUDITSEO resource lint aprovado: descoberta, manifesto e citabilidade dos ativos de pesquisa estão coerentes.");
+console.log("AUDITSEO resource lint aprovado: descoberta, manifesto, citabilidade e factsheet dos ativos de pesquisa estão coerentes.");
