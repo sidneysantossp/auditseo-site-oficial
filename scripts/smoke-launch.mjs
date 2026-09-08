@@ -15,6 +15,7 @@ const INDEXABLE = [
   ["/solucoes", "https://www.auditseo.com.br/solucoes"],
   ["/geo-ia", "https://www.auditseo.com.br/geo-ia"],
   ["/diagnostico", "https://www.auditseo.com.br/diagnostico"],
+  ["/diagnostico?cenario=geo", "https://www.auditseo.com.br/diagnostico"],
   ["/solucoes/projetos-comecando-do-zero", "https://www.auditseo.com.br/solucoes/projetos-comecando-do-zero"],
   ["/solucoes/site-sem-tracao", "https://www.auditseo.com.br/solucoes/site-sem-tracao"],
   ["/solucoes/recuperacao-organica", "https://www.auditseo.com.br/solucoes/recuperacao-organica"],
