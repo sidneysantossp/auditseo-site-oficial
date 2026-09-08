@@ -16,6 +16,7 @@ const INDEXABLE = [
   ["/geo-ia", "https://www.auditseo.com.br/geo-ia"],
   ["/diagnostico", "https://www.auditseo.com.br/diagnostico"],
   ["/diagnostico?cenario=geo", "https://www.auditseo.com.br/diagnostico"],
+  ["/estudos-busca-ia", "https://www.auditseo.com.br/estudos-busca-ia"],
   ["/case-study/auditseo-search-intelligence", "https://www.auditseo.com.br/case-study/auditseo-search-intelligence"],
   ["/solucoes/projetos-comecando-do-zero", "https://www.auditseo.com.br/solucoes/projetos-comecando-do-zero"],
   ["/solucoes/site-sem-tracao", "https://www.auditseo.com.br/solucoes/site-sem-tracao"],
@@ -76,7 +77,7 @@ const REDIRECTS = [
   ["/blog/como-escolher-agencia-seo", "/blog/agencia-seo-consultoria-ou-time-interno"],
 ];
 
-const NOINDEX = ["/estudos-busca-ia"];
+const NOINDEX = [];
 
 function pick(html, pattern) { return html.match(pattern)?.[1]?.trim() || ""; }
 function count(html, pattern) { return [...html.matchAll(pattern)].length; }
