@@ -17,6 +17,8 @@ Comparação confirmada em 2026-09-08 antes dos últimos commits de preservaçã
 - PR #3: 48 commits à frente da branch do PR #2, 0 atrás;
 - PR #4: 94 commits à frente da branch do PR #3, 0 atrás naquele checkpoint.
 
+O PR #4 continuou recebendo commits lineares depois desse checkpoint. Antes do merge, executar nova comparação e validar `behind_by = 0` em cada camada.
+
 ## Preview hosts reportados pelo Vercel bot
 
 ### PR #2 — P0 técnico
@@ -44,6 +46,21 @@ npm run smoke:launch -- https://auditseo-site-oficial-git-content-search-intell-
 ```
 
 > Observação: a conexão Vercel disponível na sessão que gerou este runbook não possuía acesso ao projeto `auditseo-site-oficial`. Build/deploy foi validado via GitHub/Vercel status, mas o smoke HTTP autenticado não foi declarado como aprovado.
+
+## Baseline oficial antes do release
+
+A propriedade Search Console `https://auditseo.com.br/` está conectada com acesso `siteOwner`.
+
+Dados finalizados consultados em 2026-09-08:
+
+- período: **2026-08-09 a 2026-09-05**;
+- cliques: **0**;
+- impressões: **0**;
+- top queries: nenhuma retornada;
+- top pages: nenhuma retornada;
+- período anterior 2026-07-12 a 2026-08-08: também 0 cliques / 0 impressões.
+
+Esse é o ponto zero oficial do Case Study #001. Detalhamento metodológico em `docs/seo/baseline-2026-09-08.md`.
 
 ## Gate 1 — PR #2 / P0 técnico
 
@@ -133,17 +150,19 @@ Após o merge final:
 3. confirmar redirects históricos, incluindo a URL legada de agência;
 4. confirmar 404 real;
 5. confirmar `robots.txt` e sitemap publicados;
-6. verificar propriedade correta no Google Search Console;
+6. confirmar no Search Console que `https://auditseo.com.br/` continua acessível como propriedade correta;
 7. enviar/reenviar `https://www.auditseo.com.br/sitemap.xml`;
 8. solicitar indexação manual apenas das páginas centrais prioritárias e das URLs preservadas relevantes, não das 45 URLs indiscriminadamente;
-9. registrar baseline de Search Console: páginas indexadas, impressões, cliques, queries branded/não branded e cobertura;
-10. registrar baseline comercial: diagnóstico iniciado, formulário enviado, entrega confirmada e origem/cenário;
-11. executar a fila de correção de entidade externa somente depois que a nova narrativa estiver publicada;
-12. somente depois escolher o próximo ciclo editorial com base em demanda real.
+9. comparar o primeiro período pós-release ao baseline oficial de **0 impressões / 0 cliques**;
+10. registrar primeiras queries/páginas assim que aparecerem;
+11. separar branded vs non-branded somente quando existir amostra;
+12. registrar baseline comercial: diagnóstico iniciado, formulário enviado, entrega confirmada e origem/cenário;
+13. executar a fila de correção de entidade externa somente depois que a nova narrativa estiver publicada;
+14. somente depois escolher o próximo ciclo editorial com base em demanda real.
 
 ## Artefatos de baseline
 
-- `docs/seo/baseline-2026-09-08.md` — snapshot externo pré-lançamento, explicitamente separado de Search Console;
+- `docs/seo/baseline-2026-09-08.md` — Search Console oficial + snapshot externo pré-lançamento, com as fontes explicitamente separadas;
 - `docs/seo/entity-citation-cleanup-2026-09-08.md` — fila de inconsistências externas verificadas.
 
 ## Regra de segurança
