@@ -14,6 +14,7 @@ const LeadSchema = z
     faturamento: z.string().trim().max(100).optional(),
     clientUrl: z.string().trim().max(500).optional(),
     context: z.string().trim().max(5000).optional(),
+    discoverySource: z.string().trim().max(120).optional(),
     sourcePath: z.string().trim().max(500).optional(),
     referrer: z.string().trim().max(1000).optional(),
     utm: attributionRecord.optional(),
@@ -73,6 +74,7 @@ function formatLead(payload: LeadPayload) {
     `Site: ${payload.site || "-"}`,
     `Faturamento: ${payload.faturamento || "-"}`,
     `URL cliente/projeto: ${payload.clientUrl || "-"}`,
+    `Como conheceu a AUDITSEO (declarado): ${payload.discoverySource || "-"}`,
     `Primeiro touch AUDITSEO: ${payload.firstTouchPath || "-"}`,
     `Primeiro touch em: ${payload.firstTouchAt || "-"}`,
     `Referrer do primeiro touch: ${payload.firstTouchReferrer || "-"}`,
@@ -96,6 +98,7 @@ function whatsappFallback(payload: LeadPayload) {
     payload.site ? `Site: ${payload.site}` : "",
     payload.faturamento ? `Faturamento: ${payload.faturamento}` : "",
     payload.clientUrl ? `Projeto: ${payload.clientUrl}` : "",
+    payload.discoverySource ? `Como conheceu a AUDITSEO: ${payload.discoverySource}` : "",
     payload.firstTouchPath ? `Primeiro touch AUDITSEO: ${payload.firstTouchPath}` : "",
     payload.sourcePath ? `Origem da conversão: ${payload.sourcePath}` : "",
   ]
