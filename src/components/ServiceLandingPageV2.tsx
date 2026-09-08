@@ -4,6 +4,17 @@ import { serviceArticleRelations } from "@/content/serviceArticleRelations";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
 
+const scenarioIdByServicePath: Record<string, string> = {
+  "/solucoes/projetos-comecando-do-zero": "foundation",
+  "/solucoes/site-sem-tracao": "activation",
+  "/solucoes/recuperacao-organica": "recovery",
+  "/solucoes/autoridade-de-entidade": "authority",
+  "/solucoes/conteudo-por-intencao": "content",
+  "/solucoes/geo-ia-readiness": "geo",
+  "/solucoes/migracao-risco-seo": "migration",
+  "/solucoes/evolucao-organica": "evolution",
+};
+
 function navigate(sectionId: string) {
   if (typeof window === "undefined") return;
   const routes: Record<string, string> = {
@@ -30,6 +41,8 @@ function Heading({ eyebrow, title, text, dark = true, center = false }: { eyebro
 
 export default function ServiceLandingPageV2({ data }: { data: ServicePageData }) {
   const authorityLinks = serviceArticleRelations[data.slug] || [];
+  const scenarioId = scenarioIdByServicePath[data.slug];
+  const diagnosticHref = scenarioId ? `/diagnostico?cenario=${encodeURIComponent(scenarioId)}` : "/diagnostico";
 
   return (
     <main className="bg-[#11100f] text-[#f8f8f8]">
@@ -45,7 +58,7 @@ export default function ServiceLandingPageV2({ data }: { data: ServicePageData }
               <h1 className="mt-6 max-w-5xl font-display text-[clamp(46px,5.5vw,78px)] font-bold leading-[1.01] tracking-[-0.05em]">{data.title}</h1>
               <p className="mt-8 max-w-3xl text-lg leading-[1.7] text-[#e0d3c3] md:text-xl">{data.lead}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href="/diagnostico" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#b28453] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]">Avaliar se este é o meu cenário <ArrowRight size={15} /></a>
+                <a href={diagnosticHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#b28453] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar este cenário <ArrowRight size={15} /></a>
                 <a href="#evidencia-publica" className="inline-flex items-center justify-center rounded-full border border-[#b28453]/38 px-7 py-4 text-sm font-bold hover:bg-[#b28453]/10">Ver a base pública da solução</a>
               </div>
             </div>
@@ -142,7 +155,7 @@ export default function ServiceLandingPageV2({ data }: { data: ServicePageData }
           <ShieldCheck size={24} className="mx-auto text-[#b28453]" />
           <h2 className="mx-auto mt-6 max-w-3xl font-display text-3xl font-bold leading-[1.12] md:text-4xl">Antes de contratar {data.name}, confirme se o problema realmente pertence a esta frente.</h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.75] text-[#f8f8f8]/68">A avaliação estratégica existe para separar sintoma de causa, classificar o cenário e decidir se há uma hipótese de trabalho que justifique o investimento.</p>
-          <a href="/diagnostico" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]">Avaliar meu cenário <ArrowRight size={15} /></a>
+          <a href={diagnosticHref} className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar este cenário <ArrowRight size={15} /></a>
         </div>
       </section>
 
