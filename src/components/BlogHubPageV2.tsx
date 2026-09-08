@@ -134,7 +134,7 @@ export default function BlogHubPageV2() {
               <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453]">Ver estudo <ArrowRight size={14} /></span>
             </a>
 
-            <a href="/blog/protocolo-benchmark-search-ai" className="group rounded-[24px] border border-[#111000f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
+            <a href="/blog/protocolo-benchmark-search-ai" className="group rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
               <Search size={20} className="text-[#b28453]" />
               <span className="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">PRÓXIMO CICLO</span>
               <h3 className="mt-4 font-display text-2xl font-bold leading-[1.15]">AUDITSEO Search AI Observatory</h3>
