@@ -82,6 +82,8 @@ function localWhatsappFallback(payload: LeadPayload) {
     payload.site ? `Site: ${payload.site}` : "",
     payload.faturamento ? `Faturamento: ${payload.faturamento}` : "",
     payload.clientUrl ? `Projeto: ${payload.clientUrl}` : "",
+    payload.sourcePath ? `Origem no site: ${payload.sourcePath}` : "",
+    payload.context ? `Contexto do diagnóstico: ${payload.context.slice(0, 800)}` : "",
   ]
     .filter(Boolean)
     .join("\n");
