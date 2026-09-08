@@ -14,6 +14,9 @@ https://www.auditseo.com.br/estudos-busca-ia
 Case Study #001:
 https://www.auditseo.com.br/case-study/auditseo-search-intelligence
 
+Método público de evidência e prazos do Case Study #001:
+https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md
+
 Autor/fundador:
 Sidney Santos — https://www.auditseo.com.br/autor/sidney-santos
 
@@ -99,6 +102,24 @@ Promessa, prazo, método, mensuração e evidência são dimensões diferentes. 
 
 Citação sugerida:
 AUDITSEO; SANTOS, Sidney. Como o mercado brasileiro vende GEO e Search AI em 2026: benchmark de promessa, prazo e mensuração. Snapshot de 8 de setembro de 2026. AUDITSEO, 2026.
+
+---
+
+## Como a AUDITSEO interpreta evidência do próprio Case Study
+
+O Case Study #001 usa uma régua congelada antes do release:
+
+- `PRE`: implementação/protocolo preparado, sem efeito observado;
+- `M0`: baseline;
+- `M1`: primeiro sinal;
+- `M2`: tendência emergente;
+- `M3`: evidência operacional;
+- `M4`: evidência comercial.
+
+A AUDITSEO mede separadamente o tempo até descoberta/crawl, primeira impressão, query relevante, clique, menção/citação/recomendação em Search AI, referência externa, lead, reunião e receita. Um único marco nunca é convertido em prazo garantido.
+
+Metodologia completa:
+https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md
 
 ---
 
