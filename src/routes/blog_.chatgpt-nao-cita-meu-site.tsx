@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ArticlePage from "@/components/ArticlePage";
-import { searchAiOpsArticles } from "@/content/articlesSearchAiOps";
+import { chatgptCitationArticleV2 } from "@/content/articleChatgptCitationV2";
 import { createArticleHead } from "@/lib/articleSeo";
 
-const article = searchAiOpsArticles["chatgpt-nao-cita-meu-site"];
+const article = chatgptCitationArticleV2;
 
 export const Route = createFileRoute("/blog/chatgpt-nao-cita-meu-site")({
   head: () => createArticleHead(article),
