@@ -9,6 +9,7 @@ const rulesPath = path.join(root, "docs", "research", "case-study-001-evidence-m
 const timeToSignalPath = path.join(root, "docs", "research", "case-study-001-time-to-signal.csv");
 const leadCapturePath = path.join(root, "src", "components", "LeadCaptureBoundary.tsx");
 const leadApiPath = path.join(root, "src", "routes", "api", "leads.ts");
+const diagnosticPath = path.join(root, "src", "components", "CompanyDiagnosticPage.tsx");
 const legalPath = path.join(root, "src", "components", "LegalPage.tsx");
 const failures = [];
 
@@ -117,7 +118,8 @@ if (!fs.existsSync(ledgerPath)) {
 
   if (!ids.has("E001")) failures.push("Evidence Ledger perdeu o baseline E001");
   if (!ids.has("E003")) failures.push("Evidence Ledger perdeu o gate técnico E003");
-  if (!ids.has("E012")) failures.push("Evidence Ledger perdeu a instrumentação de atribuição E012");
+  if (!ids.has("E012")) failures.push("Evidence Ledger perdeu a instrumentação de first-touch E012");
+  if (!ids.has("E013")) failures.push("Evidence Ledger perdeu a atribuição declarada E013");
 }
 
 if (!fs.existsSync(rulesPath)) {
@@ -208,17 +210,30 @@ if (!fs.existsSync(leadCapturePath)) {
   for (const field of attributionFields) {
     if (!client.includes(field)) failures.push(`LeadCaptureBoundary não envia ${field}`);
   }
+  if (!client.includes("discoverySource")) failures.push("LeadCaptureBoundary não envia discoverySource declarado");
 }
 
 if (!fs.existsSync(leadApiPath)) {
-  failures.push("/api/leads ausente para validar first-touch attribution");
+  failures.push("/api/leads ausente para validar attribution");
 } else {
   const server = fs.readFileSync(leadApiPath, "utf8");
   for (const field of attributionFields) {
     if (!server.includes(field)) failures.push(`/api/leads não aceita/preserva ${field}`);
   }
+  if (!server.includes("discoverySource")) failures.push("/api/leads não aceita/preserva discoverySource");
   if (!server.includes("Primeiro touch AUDITSEO")) failures.push("/api/leads não diferencia primeiro touch nos avisos");
   if (!server.includes("Origem da conversão")) failures.push("/api/leads não diferencia origem da conversão nos avisos");
+  if (!server.includes("Como conheceu a AUDITSEO")) failures.push("/api/leads não diferencia descoberta declarada nos avisos");
+}
+
+if (!fs.existsSync(diagnosticPath)) {
+  failures.push("CompanyDiagnosticPage ausente para validar descoberta declarada");
+} else {
+  const diagnostic = fs.readFileSync(diagnosticPath, "utf8");
+  if (!diagnostic.includes('name="discoverySource"')) failures.push("Diagnóstico perdeu o campo discoverySource");
+  for (const option of ["Google", "ChatGPT", "Gemini", "Perplexity", "LinkedIn", "Indicação", "Outro"]) {
+    if (!diagnostic.includes(`value="${option}"`)) failures.push(`Diagnóstico perdeu opção de descoberta: ${option}`);
+  }
 }
 
 if (!fs.existsSync(legalPath)) {
@@ -227,6 +242,7 @@ if (!fs.existsSync(legalPath)) {
   const legal = fs.readFileSync(legalPath, "utf8");
   if (!legal.includes("sessionStorage")) failures.push("Política de Privacidade não declara sessionStorage para first touch");
   if (!legal.includes("primeiro contato")) failures.push("Política de Privacidade não explica first-touch attribution");
+  if (!legal.includes("origem declarada")) failures.push("Política de Privacidade não explica discovery source declarado");
 }
 
 if (failures.length) {
@@ -235,4 +251,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("AUDITSEO case-study lint aprovado: ledger, PRE/M0-M4, time-to-signal, regras de prazo e first-touch attribution coerentes.");
+console.log("AUDITSEO case-study lint aprovado: ledger, PRE/M0-M4, time-to-signal, first-touch e descoberta declarada coerentes.");
