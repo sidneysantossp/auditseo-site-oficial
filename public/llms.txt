@@ -1,0 +1,55 @@
+# AUDITSEO
+
+> AUDITSEO é uma consultoria brasileira de Search Intelligence que conecta SEO técnico, Search AI/GEO, autoridade de entidade, conteúdo, evidência e mensuração para descobrir por que uma empresa não é encontrada, compreendida, validada, considerada ou citada nas experiências de busca.
+
+Este arquivo é um mapa navegacional complementar para agentes e ferramentas que optem por usar a convenção llms.txt. Ele não substitui robots.txt, sitemap.xml ou as páginas canônicas do site e não representa garantia de inclusão, citação ou posicionamento em mecanismos de busca ou sistemas de IA.
+
+## Entidade e posicionamento
+
+- [AUDITSEO](https://www.auditseo.com.br/): Página principal e posicionamento de Search Intelligence.
+- [Sidney Santos](https://www.auditseo.com.br/autor/sidney-santos): Autor e especialista responsável pela metodologia e pelos conteúdos da AUDITSEO.
+- [Método S.I.G.N.A.L.](https://www.auditseo.com.br/metodo-signal): Método de diagnóstico e priorização usado pela AUDITSEO.
+- [O que é Search Intelligence](https://www.auditseo.com.br/blog/o-que-e-search-intelligence): Definição pública da disciplina e relação com SEO, intenção, entidades, autoridade, Search AI e conversão.
+
+## Consultoria e diagnóstico
+
+- [Consultoria de Search AI + GEO](https://www.auditseo.com.br/geo-ia): Hub comercial para empresas que precisam evoluir presença em busca e interfaces de IA.
+- [Auditoria GEO & Search AI](https://www.auditseo.com.br/solucoes/geo-ia-readiness): Diagnóstico de visibilidade, fontes, concorrentes, elegibilidade e mensuração em Search AI.
+- [Soluções de Search Intelligence](https://www.auditseo.com.br/solucoes): Conjunto de soluções por cenário de negócio.
+- [Diagnóstico AUDITSEO](https://www.auditseo.com.br/diagnostico): Entrada para avaliação estratégica por cenário.
+
+## Pesquisa proprietária
+
+- [AUDITSEO Research](https://www.auditseo.com.br/estudos-busca-ia): Research Hub com benchmarks publicados, datasets, Case Study #001 e o Search AI Observatory.
+- [Benchmark de preços de SEO + GEO/IA](https://www.auditseo.com.br/blog/quanto-custa-consultoria-seo-geo-ia): Estudo de ofertas públicas brasileiras por formato de compra, escopo e preço.
+- [Benchmark de comunicação do mercado GEO/Search AI](https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai): Estudo de promessa, prazo, método, mensuração e evidência em páginas públicas de fornecedores.
+- [Case Study #001 — AUDITSEO](https://www.auditseo.com.br/case-study/auditseo-search-intelligence): Estudo público em andamento sobre a construção da própria autoridade da AUDITSEO a partir de um baseline registrado antes dos resultados.
+- [Protocolo do Search AI Observatory](https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai): Regras de amostra, prompts, classificação, repetição e limitações antes da coleta.
+
+## Datasets públicos
+
+- [CSV — Benchmark de ofertas SEO + GEO/IA 2026-09-08](https://www.auditseo.com.br/dados/benchmark-ofertas-seo-geo-ia-2026-09-08.csv): Snapshot congelado das ofertas públicas usadas no benchmark de preços.
+- [CSV — Benchmark de comunicação GEO/Search AI 2026-09-08](https://www.auditseo.com.br/dados/benchmark-comunicacao-geo-search-ai-2026-09-08.csv): Snapshot congelado das páginas públicas classificadas por promessa, prazo, método, mensuração e evidência.
+
+## Search AI, citabilidade e entidades
+
+- [Como aparecer no ChatGPT](https://www.auditseo.com.br/blog/como-aparecer-no-chatgpt): O que uma empresa pode controlar e o que não pode garantir.
+- [Como entrar nas recomendações do ChatGPT como fornecedor](https://www.auditseo.com.br/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor): Diferença entre ser fonte, ser mencionado e entrar na consideração comercial.
+- [Por que o ChatGPT cita ou recomenda seu concorrente](https://www.auditseo.com.br/blog/chatgpt-nao-cita-meu-site): Diagnóstico comparativo de intenção, entidade, fontes, evidência e elegibilidade.
+- [Como IAs encontram e citam fontes](https://www.auditseo.com.br/blog/como-ias-encontram-e-citam-fontes): Crawl, recuperação, elegibilidade e citação explicados com fontes oficiais.
+- [Como criar conteúdo citável](https://www.auditseo.com.br/blog/como-criar-conteudo-citavel): Framework AUDITSEO para especificidade, evidência, atribuição e utilidade como fonte.
+- [Autoridade de entidade](https://www.auditseo.com.br/blog/autoridade-de-entidade-o-que-e): Como estruturar sinais verificáveis sem inventar um score oficial de entidade.
+- [Como estruturar uma entidade empresarial](https://www.auditseo.com.br/blog/como-estruturar-entidade-empresarial): Organização, pessoas, serviços, evidências e consistência pública.
+
+## Mensuração e técnica
+
+- [Como medir visibilidade em IA](https://www.auditseo.com.br/blog/como-medir-visibilidade-em-ia): Metodologia para menção, citação, recomendação, fontes e contexto.
+- [Como medir se GEO está funcionando](https://www.auditseo.com.br/blog/como-medir-se-geo-esta-funcionando): Baseline congelado, repetição e ligação com resultados comerciais.
+- [Como auditar crawlers de IA](https://www.auditseo.com.br/blog/como-auditar-crawlers-de-ia): OAI-SearchBot, GPTBot, robots.txt, WAF/CDN e logs.
+- [Framework Crawl → Index → Retrieve → Understand → Trust → Cite](https://www.auditseo.com.br/blog/framework-crawl-index-retrieve-understand-trust-cite): Framework operacional AUDITSEO para localizar a etapa quebrada da cadeia de busca.
+
+## Avaliação de fornecedores
+
+- [Como escolher uma consultoria de SEO que entende de IA](https://www.auditseo.com.br/blog/como-escolher-consultoria-seo): Critérios e perguntas de buyer validation aplicáveis inclusive à própria AUDITSEO.
+- [O que uma consultoria de SEO deve entregar](https://www.auditseo.com.br/blog/o-que-consultoria-seo-deve-entregar): Entregáveis, transparência, priorização e mensuração.
+- [Agência, consultoria ou time interno](https://www.auditseo.com.br/blog/agencia-seo-consultoria-ou-time-interno): Como comparar modelos operacionais antes da contratação.
