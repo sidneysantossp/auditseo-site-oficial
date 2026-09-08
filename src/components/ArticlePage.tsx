@@ -22,8 +22,25 @@ function formatDate(value: string) {
   return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
 }
 
+function slugifyHeading(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 72);
+}
+
+function headingId(text: string, index: number, explicitId?: string) {
+  return explicitId || `secao-${index + 1}-${slugifyHeading(text)}`;
+}
+
 export default function ArticlePage({ article }: { article: Article }) {
   const relatedArticles = articleRelations[article.slug] || [];
+  const headingLinks = article.blocks.flatMap((block, index) =>
+    block.type === "heading" ? [{ label: block.text, id: headingId(block.text, index, block.id) }] : [],
+  );
 
   return (
     <main className="bg-[#11100f] text-[#f8f8f8]">
@@ -73,9 +90,23 @@ export default function ArticlePage({ article }: { article: Article }) {
 
         <section className="bg-[#11100f] px-6 py-20 md:py-28 xl:px-12">
           <div className="mx-auto max-w-[860px]">
+            {headingLinks.length > 2 ? (
+              <nav aria-label="Neste documento" className="mb-14 rounded-[22px] border border-[#b28453]/20 bg-[#171614] p-7">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#b28453]">NESTE DOCUMENTO</span>
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                  {headingLinks.map((item, index) => (
+                    <a key={item.id} href={`#${item.id}`} className="group flex gap-3 text-sm leading-[1.55] text-[#f8f8f8]/66 hover:text-[#e0d3c3]">
+                      <span className="font-mono text-[10px] text-[#b28453]">{String(index + 1).padStart(2, "0")}</span>
+                      <span>{item.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </nav>
+            ) : null}
+
             {article.blocks.map((block, index) => {
               if (block.type === "heading") {
-                return <h2 id={block.id} key={`${block.text}-${index}`} className="mt-16 scroll-mt-28 font-display text-[34px] font-bold leading-[1.12] tracking-[-0.03em] text-[#f8f8f8] first:mt-0 md:text-[44px]">{block.text}</h2>;
+                return <h2 id={headingId(block.text, index, block.id)} key={`${block.text}-${index}`} className="mt-16 scroll-mt-28 font-display text-[34px] font-bold leading-[1.12] tracking-[-0.03em] text-[#f8f8f8] first:mt-0 md:text-[44px]">{block.text}</h2>;
               }
               if (block.type === "subheading") {
                 return <h3 key={`${block.text}-${index}`} className="mt-10 font-display text-2xl font-bold text-[#e0d3c3]">{block.text}</h3>;
@@ -127,7 +158,7 @@ export default function ArticlePage({ article }: { article: Article }) {
                 ))}
               </div>
             </div>
-            <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.12em] text-[#11100f]/46">Fontes consultadas e verificadas em 07/09/2026.</p>
+            <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.12em] text-[#11100f]/46">Fontes consultadas e verificadas em {formatDate(article.updatedAt)}.</p>
           </div>
         </section>
 
