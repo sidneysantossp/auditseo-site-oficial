@@ -6,6 +6,7 @@ import path from "node:path";
 const root = process.cwd();
 const ledgerPath = path.join(root, "docs", "research", "case-study-001-evidence-ledger.csv");
 const rulesPath = path.join(root, "docs", "research", "case-study-001-evidence-maturity-rules.md");
+const timeToSignalPath = path.join(root, "docs", "research", "case-study-001-time-to-signal.csv");
 const leadCapturePath = path.join(root, "src", "components", "LeadCaptureBoundary.tsx");
 const leadApiPath = path.join(root, "src", "routes", "api", "leads.ts");
 const legalPath = path.join(root, "src", "components", "LegalPage.tsx");
@@ -144,6 +145,58 @@ if (!fs.existsSync(rulesPath)) {
   }
 }
 
+if (!fs.existsSync(timeToSignalPath)) {
+  failures.push("Time-to-Signal Tracker ausente");
+} else {
+  const rows = parseCsv(fs.readFileSync(timeToSignalPath, "utf8"));
+  const header = rows[0] || [];
+  const requiredColumns = [
+    "milestone_id",
+    "signal",
+    "measurement_layer",
+    "start_event",
+    "start_date",
+    "first_observed_at",
+    "elapsed_days",
+    "status",
+    "evidence_maturity",
+    "primary_source",
+    "evidence_ref",
+    "notes",
+  ];
+
+  for (const column of requiredColumns) {
+    if (!header.includes(column)) failures.push(`Time-to-Signal sem coluna obrigatória: ${column}`);
+  }
+
+  const index = Object.fromEntries(header.map((name, i) => [name, i]));
+  const ids = new Set();
+  const requiredMilestones = ["T001", "T003", "T005", "T006", "T010", "T011", "T013", "T015", "T017", "T019"];
+
+  for (const row of rows.slice(1)) {
+    const id = row[index.milestone_id];
+    if (!id) {
+      failures.push("Time-to-Signal contém linha sem milestone_id");
+      continue;
+    }
+    if (ids.has(id)) failures.push(`Time-to-Signal contém milestone_id duplicado: ${id}`);
+    ids.add(id);
+
+    if (!row[index.signal] || !row[index.start_event] || !row[index.primary_source]) {
+      failures.push(`${id}: signal, start_event e primary_source são obrigatórios`);
+    }
+
+    const maturity = row[index.evidence_maturity];
+    if (!["PRE", "M0", "M1", "M2", "M3", "M4"].includes(maturity)) {
+      failures.push(`${id}: evidence_maturity inválida no Time-to-Signal: ${maturity}`);
+    }
+  }
+
+  for (const id of requiredMilestones) {
+    if (!ids.has(id)) failures.push(`Time-to-Signal perdeu milestone obrigatório: ${id}`);
+  }
+}
+
 const attributionFields = ["firstTouchPath", "firstTouchReferrer", "firstTouchUtm", "firstTouchAt"];
 
 if (!fs.existsSync(leadCapturePath)) {
@@ -182,4 +235,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("AUDITSEO case-study lint aprovado: ledger, PRE/M0-M4, regras de prazo e first-touch attribution coerentes.");
+console.log("AUDITSEO case-study lint aprovado: ledger, PRE/M0-M4, time-to-signal, regras de prazo e first-touch attribution coerentes.");
