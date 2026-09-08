@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { createFileRoute } from "@tanstack/react-router";
 
+const attributionRecord = z.record(z.string(), z.string().max(500));
+
 const LeadSchema = z
   .object({
     kind: z.enum(["consultation", "diagnostic", "newsletter"]),
@@ -14,7 +16,11 @@ const LeadSchema = z
     context: z.string().trim().max(5000).optional(),
     sourcePath: z.string().trim().max(500).optional(),
     referrer: z.string().trim().max(1000).optional(),
-    utm: z.record(z.string(), z.string().max(500)).optional(),
+    utm: attributionRecord.optional(),
+    firstTouchPath: z.string().trim().max(500).optional(),
+    firstTouchReferrer: z.string().trim().max(1000).optional(),
+    firstTouchUtm: attributionRecord.optional(),
+    firstTouchAt: z.string().datetime({ offset: true }).optional(),
   })
   .superRefine((data, ctx) => {
     if (data.kind === "newsletter") return;
@@ -47,12 +53,16 @@ function leadLabel(kind: LeadPayload["kind"]) {
   return "Avaliação estratégica";
 }
 
+function formatAttribution(values?: Record<string, string>) {
+  if (!values) return "";
+  return Object.entries(values)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join("\n");
+}
+
 function formatLead(payload: LeadPayload) {
-  const utm = payload.utm
-    ? Object.entries(payload.utm)
-        .map(([key, value]) => `${key}: ${value}`)
-        .join("\n")
-    : "";
+  const currentUtm = formatAttribution(payload.utm);
+  const firstTouchUtm = formatAttribution(payload.firstTouchUtm);
 
   return [
     `Tipo: ${leadLabel(payload.kind)}`,
@@ -63,9 +73,13 @@ function formatLead(payload: LeadPayload) {
     `Site: ${payload.site || "-"}`,
     `Faturamento: ${payload.faturamento || "-"}`,
     `URL cliente/projeto: ${payload.clientUrl || "-"}`,
-    `Origem: ${payload.sourcePath || "-"}`,
-    `Referrer: ${payload.referrer || "-"}`,
-    utm ? `UTM:\n${utm}` : "",
+    `Primeiro touch AUDITSEO: ${payload.firstTouchPath || "-"}`,
+    `Primeiro touch em: ${payload.firstTouchAt || "-"}`,
+    `Referrer do primeiro touch: ${payload.firstTouchReferrer || "-"}`,
+    firstTouchUtm ? `UTM do primeiro touch:\n${firstTouchUtm}` : "",
+    `Origem da conversão: ${payload.sourcePath || "-"}`,
+    `Referrer da conversão: ${payload.referrer || "-"}`,
+    currentUtm ? `UTM da conversão:\n${currentUtm}` : "",
     payload.context ? `Contexto:\n${payload.context}` : "",
   ]
     .filter(Boolean)
@@ -82,6 +96,8 @@ function whatsappFallback(payload: LeadPayload) {
     payload.site ? `Site: ${payload.site}` : "",
     payload.faturamento ? `Faturamento: ${payload.faturamento}` : "",
     payload.clientUrl ? `Projeto: ${payload.clientUrl}` : "",
+    payload.firstTouchPath ? `Primeiro touch AUDITSEO: ${payload.firstTouchPath}` : "",
+    payload.sourcePath ? `Origem da conversão: ${payload.sourcePath}` : "",
   ]
     .filter(Boolean)
     .join("\n");
