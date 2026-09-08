@@ -44,30 +44,43 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          "@id": "https://www.auditseo.com.br/#organization",
-          name: "AUDITSEO",
-          url: "https://www.auditseo.com.br/",
-          logo: "https://www.auditseo.com.br/auditseo-logo.png",
-          description:
-            "Consultoria de Search Intelligence que diagnostica onde a presença de busca de uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida e transforma os achados em um roadmap coordenado de implementação e mensuração.",
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: "BR",
-          },
-          serviceType: [
-            "Search Intelligence",
-            "Search Diagnosis",
-            "Autoridade de Entidade",
-            "Arquitetura de Conteúdo por Intenção",
-            "Generative Search Readiness",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://www.auditseo.com.br/#organization",
+              name: "AUDITSEO",
+              url: "https://www.auditseo.com.br/",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.auditseo.com.br/auditseo-logo.png",
+                contentUrl: "https://www.auditseo.com.br/auditseo-logo.png",
+              },
+              email: "contato@auditseo.com.br",
+              description:
+                "Consultoria de Search Intelligence que diagnostica onde a presença de busca de uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida e transforma os achados em um roadmap coordenado de implementação e mensuração.",
+              knowsAbout: [
+                "Search Intelligence",
+                "SEO técnico",
+                "Search AI",
+                "Autoridade de entidade",
+                "Arquitetura de conteúdo por intenção",
+                "Mensuração de busca",
+              ],
+              founder: {
+                "@id": "https://www.auditseo.com.br/autor/sidney-santos#person",
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://www.auditseo.com.br/#website",
+              url: "https://www.auditseo.com.br/",
+              name: "AUDITSEO",
+              inLanguage: "pt-BR",
+              publisher: {
+                "@id": "https://www.auditseo.com.br/#organization",
+              },
+            },
           ],
-          founder: {
-            "@type": "Person",
-            "@id": "https://www.auditseo.com.br/autor/sidney-santos#person",
-            name: "Sidney Santos",
-            url: "https://www.auditseo.com.br/autor/sidney-santos",
-          },
         }),
       },
     ],
