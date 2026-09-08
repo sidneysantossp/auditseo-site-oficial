@@ -29,7 +29,7 @@ const PRIVACY_SECTIONS: LegalSection[] = [
     items: [
       "dados de contato, como nome, e-mail e telefone ou WhatsApp;",
       "informações profissionais e empresariais, como empresa, site, faixa de faturamento informada e contexto do projeto;",
-      "respostas e contexto enviados no diagnóstico estratégico;",
+      "respostas e contexto enviados no diagnóstico estratégico, inclusive a origem de descoberta quando o próprio visitante opta por informá-la;",
       "e-mail informado voluntariamente para receber conteúdos e insights da AUDITSEO;",
       "dados de atribuição comercial, como página de entrada, referrer, parâmetros UTM e identificadores de lead/campanha quando presentes na URL;",
       "dados técnicos básicos de navegação e analytics, quando essas ferramentas estiverem habilitadas.",
@@ -56,7 +56,7 @@ const PRIVACY_SECTIONS: LegalSection[] = [
   },
   {
     title: "6. Leads, campanhas e atribuição",
-    text: "Quando um visitante chega ao site por uma campanha ou por outro canal de descoberta, podemos registrar parâmetros de origem, campanha, conteúdo, termo, referrer, página de entrada e identificadores técnicos de lead/campanha presentes na URL. Para diferenciar o primeiro contato da página em que a conversão ocorreu, a primeira origem da sessão pode ser mantida temporariamente no armazenamento de sessão do navegador (sessionStorage) e enviada somente quando o visitante solicita contato ou diagnóstico. Esse registro é limitado à sessão do navegador e não é usado, por si só, como identificador persistente do usuário. Os dados são usados para relacionar a origem do contato ao diagnóstico, reunião, proposta e demais etapas comerciais, sem alterar o conteúdo informado pelo titular.",
+    text: "Quando um visitante chega ao site por uma campanha ou por outro canal de descoberta, podemos registrar parâmetros de origem, campanha, conteúdo, termo, referrer, página de entrada e identificadores técnicos de lead/campanha presentes na URL. Para diferenciar o primeiro contato da página em que a conversão ocorreu, a primeira origem da sessão pode ser mantida temporariamente no armazenamento de sessão do navegador (sessionStorage) e enviada somente quando o visitante solicita contato ou diagnóstico. No diagnóstico, o visitante também pode optar por declarar como conheceu a AUDITSEO, por exemplo por Google, ChatGPT, Gemini, Perplexity, LinkedIn, indicação ou outro canal. A origem declarada é tratada separadamente dos sinais técnicos de atribuição. O registro de sessão é limitado à sessão do navegador e não é usado, por si só, como identificador persistente do usuário. Esses dados são usados para relacionar a origem do contato ao diagnóstico, reunião, proposta e demais etapas comerciais, sem alterar o conteúdo informado pelo titular.",
   },
   {
     title: "7. Newsletter e comunicações",
