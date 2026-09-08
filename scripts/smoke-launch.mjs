@@ -37,6 +37,7 @@ const INDEXABLE = [
   ["/blog/framework-crawl-index-retrieve-understand-trust-cite", "https://www.auditseo.com.br/blog/framework-crawl-index-retrieve-understand-trust-cite"],
   ["/blog/protocolo-benchmark-search-ai", "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai"],
   ["/blog/como-aparecer-no-chatgpt", "https://www.auditseo.com.br/blog/como-aparecer-no-chatgpt"],
+  ["/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor", "https://www.auditseo.com.br/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor"],
   ["/blog/llms-txt-funciona", "https://www.auditseo.com.br/blog/llms-txt-funciona"],
   ["/blog/chatgpt-nao-cita-meu-site", "https://www.auditseo.com.br/blog/chatgpt-nao-cita-meu-site"],
   ["/blog/site-indexado-mas-ausente-em-search-ai", "https://www.auditseo.com.br/blog/site-indexado-mas-ausente-em-search-ai"],
