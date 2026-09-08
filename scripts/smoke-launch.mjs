@@ -44,6 +44,7 @@ const INDEXABLE = [
   ["/blog/site-indexado-mas-ausente-em-search-ai", "https://www.auditseo.com.br/blog/site-indexado-mas-ausente-em-search-ai"],
   ["/blog/schema-ajuda-aparecer-no-chatgpt", "https://www.auditseo.com.br/blog/schema-ajuda-aparecer-no-chatgpt"],
   ["/blog/como-medir-se-geo-esta-funcionando", "https://www.auditseo.com.br/blog/como-medir-se-geo-esta-funcionando"],
+  ["/blog/como-mercado-brasileiro-vende-geo-search-ai", "https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai"],
   ["/blog/como-escolher-consultoria-seo", "https://www.auditseo.com.br/blog/como-escolher-consultoria-seo"],
   ["/blog/quanto-custa-consultoria-seo-geo-ia", "https://www.auditseo.com.br/blog/quanto-custa-consultoria-seo-geo-ia"],
   ["/blog/agencia-seo-consultoria-ou-time-interno", "https://www.auditseo.com.br/blog/agencia-seo-consultoria-ou-time-interno"],
