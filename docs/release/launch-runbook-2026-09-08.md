@@ -11,13 +11,13 @@ A arquitetura atual é empilhada e deve ser preservada sem rebase, amend, squash
 3. `content/search-intelligence-positioning-v1` — PR #3
 4. `content/search-intelligence-positioning-v2` — PR #4
 
-Comparação confirmada em 2026-09-08 antes dos últimos commits de preservação editorial:
+Estado observado em 2026-09-08 após a criação do CI de smoke no P0:
 
-- PR #2: 28 commits à frente de `main`, 0 atrás;
-- PR #3: 48 commits à frente da branch do PR #2, 0 atrás;
-- PR #4: 94 commits à frente da branch do PR #3, 0 atrás naquele checkpoint.
+- V1 permanece 48 commits à frente do antigo merge-base P0;
+- V1 está **4 commits atrás** do P0 atual porque o workflow/smoke protegido foi criado depois da ramificação editorial;
+- V2 está 111 commits à frente de V1 e 0 atrás.
 
-O PR #4 continuou recebendo commits lineares depois desse checkpoint. Antes do merge, executar nova comparação e validar `behind_by = 0` em cada camada.
+Esses 4 commits do P0 não devem ser propagados por rebase. Depois que PR #2 entrar em `main`, V1 deve incorporar o `main` atualizado por **merge normal**, validar o resultado e só então ser retargetado/mergeado. O mesmo princípio vale para V2 depois da integração da V1.
 
 ## Preview hosts reportados pelo Vercel bot
 
@@ -45,7 +45,36 @@ Smoke:
 npm run smoke:launch -- https://auditseo-site-oficial-git-content-search-intell-18a57a-auditseo.vercel.app
 ```
 
-> Observação: a conexão Vercel disponível na sessão que gerou este runbook não possuía acesso ao projeto `auditseo-site-oficial`. Build/deploy foi validado via GitHub/Vercel status, mas o smoke HTTP autenticado não foi declarado como aprovado.
+## Deployment Protection / Automation Bypass
+
+O GitHub Actions conseguiu alcançar o Preview P0 por rede externa, mas todas as rotas retornaram HTTP 302 para `/sso-api`. Isso confirmou que **Vercel Deployment Protection/SSO intercepta as requisições antes da aplicação**.
+
+O smoke P0 agora suporta o header oficial `x-vercel-protection-bypass` por meio da variável de ambiente `VERCEL_AUTOMATION_BYPASS_SECRET`. Nenhum segredo é versionado.
+
+Workflow:
+
+`.github/workflows/preview-smoke.yml`
+
+Configuração necessária antes de o gate poder executar contra o app:
+
+1. no projeto Vercel `auditseo-site-oficial`, habilitar/criar **Protection Bypass for Automation** em Deployment Protection;
+2. copiar o valor gerado sem colocá-lo em arquivo/commit;
+3. no repositório GitHub, criar um Actions secret chamado exatamente:
+
+   `VERCEL_AUTOMATION_BYPASS_SECRET`
+
+4. usar o mesmo valor gerado pela Vercel;
+5. rerodar o workflow `Preview HTTP smoke` ou fazer um novo commit/push na branch P0;
+6. exigir conclusão verde antes do merge.
+
+Última execução do workflow antes dessa configuração:
+
+- GitHub runner: alcançou o Preview;
+- Preview: protegido por SSO;
+- secret `VERCEL_AUTOMATION_BYPASS_SECRET`: **não configurado no GitHub Actions**;
+- smoke da aplicação: ainda não executado através da proteção.
+
+Esse é o blocker operacional atual. Não interpretar os antigos 302 como falha de SEO da aplicação.
 
 ## Baseline oficial antes do release
 
@@ -66,6 +95,7 @@ Esse é o ponto zero oficial do Case Study #001. Detalhamento metodológico em `
 
 Não fazer merge enquanto os seguintes pontos não forem executados contra o Preview do PR #2:
 
+- `Preview HTTP smoke` consegue atravessar Deployment Protection;
 - todas as rotas de lançamento retornam o status pretendido;
 - SSR contém title e canonical corretos;
 - páginas indexáveis não carregam `noindex`;
@@ -89,29 +119,34 @@ Somente depois disso:
 
 Depois que PR #2 estiver em `main`:
 
-1. retarget PR #3 de `fix/launch-p0-search-foundation` para `main`;
-2. confirmar que o diff representa apenas a camada editorial V1;
-3. confirmar build verde;
-4. não rebasear e não reescrever histórico;
-5. mergear PR #3 em `main` com merge commit normal;
-6. validar produção.
+1. fazer merge normal de `main` na branch `content/search-intelligence-positioning-v1` para incorporar os commits P0 posteriores ao antigo merge-base;
+2. resolver qualquer conflito preservando o smoke com suporte a Automation Bypass e a camada editorial V1;
+3. confirmar `behind_by = 0` contra `main`;
+4. retarget PR #3 para `main`;
+5. confirmar que o diff representa a camada editorial esperada;
+6. confirmar build verde;
+7. não rebasear e não reescrever histórico;
+8. mergear PR #3 em `main` com merge commit normal;
+9. validar produção.
 
 ## Gate 3 — PR #4 / V2 final
 
 Depois que PR #3 estiver em `main`:
 
-1. retarget PR #4 de `content/search-intelligence-positioning-v1` para `main`;
-2. confirmar diff final;
-3. confirmar `npm run build` verde;
-4. o build deve executar `content:check` antes do Vite;
-5. executar o smoke completo contra o Preview V2;
-6. confirmar `/diagnostico?cenario=geo` com canonical limpo em `/diagnostico`;
-7. validar redirects legados;
-8. validar `/estudos-busca-ia` como `noindex,follow`;
-9. confirmar que as **45 URLs canônicas pretendidas** estão cobertas;
-10. confirmar preservação em HTTP 200 das URLs indexadas `/blog/google-meu-negocio-guia-completo` e `/blog/core-web-vitals-guia`;
-11. confirmar HTTP 308 de `/blog/como-escolher-agencia-seo` para `/blog/agencia-seo-consultoria-ou-time-interno`;
-12. somente então tirar PR #4 de draft e mergear em `main`.
+1. fazer merge normal do `main` atualizado na branch `content/search-intelligence-positioning-v2` se houver commits de base ainda ausentes;
+2. confirmar `behind_by = 0`;
+3. retarget PR #4 para `main`;
+4. confirmar diff final;
+5. confirmar `npm run build` verde;
+6. o build deve executar `content:check` antes do Vite;
+7. executar o smoke completo contra o Preview V2;
+8. confirmar `/diagnostico?cenario=geo` com canonical limpo em `/diagnostico`;
+9. validar redirects legados;
+10. validar `/estudos-busca-ia` como `noindex,follow`;
+11. confirmar que as **45 URLs canônicas pretendidas** estão cobertas;
+12. confirmar preservação em HTTP 200 das URLs indexadas `/blog/google-meu-negocio-guia-completo` e `/blog/core-web-vitals-guia`;
+13. confirmar HTTP 308 de `/blog/como-escolher-agencia-seo` para `/blog/agencia-seo-consultoria-ou-time-interno`;
+14. somente então tirar PR #4 de draft e mergear em `main`.
 
 ## Preservação de URLs legadas já descobertas em busca
 
