@@ -9,6 +9,7 @@ const seoPath = path.join(root, "src", "lib", "seo.ts");
 const citationsPath = path.join(root, "src", "content", "researchCitations.ts");
 const articlePagePath = path.join(root, "src", "components", "ArticlePage.tsx");
 const factsheetPath = path.join(root, "public", "dados", "auditseo-research-press-factsheet-2026-09-08.md");
+const evidenceMethodPath = path.join(root, "public", "dados", "case-study-001-metodo-evidencia-prazos-2026-09-08.md");
 const failures = [];
 
 if (!fs.existsSync(llmsPath)) {
@@ -28,6 +29,7 @@ if (!fs.existsSync(llmsPath)) {
     "https://www.auditseo.com.br/dados/benchmark-ofertas-seo-geo-ia-2026-09-08.csv",
     "https://www.auditseo.com.br/dados/benchmark-comunicacao-geo-search-ai-2026-09-08.csv",
     "https://www.auditseo.com.br/dados/auditseo-research-press-factsheet-2026-09-08.md",
+    "https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md",
   ];
 
   for (const url of requiredUrls) {
@@ -84,6 +86,7 @@ if (!fs.existsSync(factsheetPath)) {
     "Benchmark #002",
     "benchmark-ofertas-seo-geo-ia-2026-09-08.csv",
     "benchmark-comunicacao-geo-search-ai-2026-09-08.csv",
+    "case-study-001-metodo-evidencia-prazos-2026-09-08.md",
     "contato@auditseo.com.br",
     "Não é censo do mercado brasileiro",
     "Amostra pequena e exploratória",
@@ -93,10 +96,32 @@ if (!fs.existsSync(factsheetPath)) {
   }
 }
 
+if (!fs.existsSync(evidenceMethodPath)) {
+  failures.push("método público de evidência/prazos ausente");
+} else {
+  const method = fs.readFileSync(evidenceMethodPath, "utf8");
+  const requiredMethodTokens = [
+    "# AUDITSEO Case Study #001 — método de evidência e prazos",
+    "## PRE — preparado, ainda sem evidência de efeito",
+    "## M0 — baseline",
+    "## M1 — sinal inicial",
+    "## M2 — tendência emergente",
+    "## M3 — evidência operacional",
+    "## M4 — evidência comercial",
+    "## Time-to-Signal",
+    "## Atribuição de lead",
+    "## Regra de integridade",
+    "Um único caso não vira promessa",
+  ];
+  for (const token of requiredMethodTokens) {
+    if (!method.includes(token)) failures.push(`método público de evidência perdeu conteúdo obrigatório: ${token}`);
+  }
+}
+
 if (failures.length) {
   console.error(`AUDITSEO resource lint: ${failures.length} falha(s).`);
   for (const failure of failures) console.error(`FAIL  ${failure}`);
   process.exit(1);
 }
 
-console.log("AUDITSEO resource lint aprovado: descoberta, manifesto, citabilidade e factsheet dos ativos de pesquisa estão coerentes.");
+console.log("AUDITSEO resource lint aprovado: descoberta, citabilidade, factsheet e método público de evidência estão coerentes.");
