@@ -26,10 +26,11 @@ Este arquivo é um mapa navegacional complementar para agentes e ferramentas que
 - [Case Study #001 — AUDITSEO](https://www.auditseo.com.br/case-study/auditseo-search-intelligence): Estudo público em andamento sobre a construção da própria autoridade da AUDITSEO a partir de um baseline registrado antes dos resultados.
 - [Protocolo do Search AI Observatory](https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai): Regras de amostra, prompts, classificação, repetição e limitações antes da coleta.
 
-## Datasets públicos
+## Datasets e material de citação
 
 - [CSV — Benchmark de ofertas SEO + GEO/IA 2026-09-08](https://www.auditseo.com.br/dados/benchmark-ofertas-seo-geo-ia-2026-09-08.csv): Snapshot congelado das ofertas públicas usadas no benchmark de preços.
 - [CSV — Benchmark de comunicação GEO/Search AI 2026-09-08](https://www.auditseo.com.br/dados/benchmark-comunicacao-geo-search-ai-2026-09-08.csv): Snapshot congelado das páginas públicas classificadas por promessa, prazo, método, mensuração e evidência.
+- [Press & Citation Factsheet — 2026-09-08](https://www.auditseo.com.br/dados/auditseo-research-press-factsheet-2026-09-08.md): Resumo curto dos dois benchmarks com amostra, achados citáveis, limitações, atribuição sugerida, URLs e contato editorial.
 
 ## Search AI, citabilidade e entidades
 
