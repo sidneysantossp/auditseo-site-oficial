@@ -51,6 +51,8 @@ const INDEXABLE = [
   ["/blog/queda-trafego-depois-redesign", "https://www.auditseo.com.br/blog/queda-trafego-depois-redesign"],
   ["/blog/conteudo-sem-trafego-atualizar-consolidar-remover", "https://www.auditseo.com.br/blog/conteudo-sem-trafego-atualizar-consolidar-remover"],
   ["/blog/trafego-organico-estagnado-proxima-oportunidade", "https://www.auditseo.com.br/blog/trafego-organico-estagnado-proxima-oportunidade"],
+  ["/blog/google-meu-negocio-guia-completo", "https://www.auditseo.com.br/blog/google-meu-negocio-guia-completo"],
+  ["/blog/core-web-vitals-guia", "https://www.auditseo.com.br/blog/core-web-vitals-guia"],
   ["/autor/sidney-santos", "https://www.auditseo.com.br/autor/sidney-santos"],
   ["/politica-de-privacidade", "https://www.auditseo.com.br/politica-de-privacidade"],
   ["/termos-de-uso", "https://www.auditseo.com.br/termos-de-uso"],
@@ -67,6 +69,7 @@ const REDIRECTS = [
   ["/guias/search-intelligence", "/blog/o-que-e-search-intelligence"],
   ["/guias/geo-readiness", "/blog/geo-o-que-e-o-que-nao-garante"],
   ["/guias/narrativa-semantica", "/blog/autoridade-de-entidade-o-que-e"],
+  ["/blog/como-escolher-agencia-seo", "/blog/agencia-seo-consultoria-ou-time-interno"],
 ];
 
 const NOINDEX = ["/estudos-busca-ia"];
