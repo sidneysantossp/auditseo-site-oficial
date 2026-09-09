@@ -4,6 +4,10 @@
   "snapshotDate": "2026-09-08",
   "snapshotType": "pre-release status",
   "methodUrl": "https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md",
+  "frozenSources": {
+    "evidenceLedger": "https://www.auditseo.com.br/dados/case-study-001-evidence-ledger-2026-09-08.csv",
+    "timeToSignal": "https://www.auditseo.com.br/dados/case-study-001-time-to-signal-2026-09-08.csv"
+  },
   "status": {
     "release": {
       "state": "blocked",
@@ -82,5 +86,5 @@
     "Post-launch distribution actually starts before earned-authority timing begins.",
     "Real Search, referral or commercial observations are recorded before any PRE item advances to M1."
   ],
-  "immutabilityNote": "This file is a dated snapshot. Future state changes must be published as a new dated snapshot rather than silently rewriting this historical record."
+  "immutabilityNote": "This file is a dated snapshot tied to frozen source files from 2026-09-08. Future state changes must be published as a new dated snapshot rather than silently rewriting this historical record."
 }
