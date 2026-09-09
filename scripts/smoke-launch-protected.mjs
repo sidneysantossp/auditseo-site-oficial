@@ -12,7 +12,6 @@ const originalFetch = globalThis.fetch.bind(globalThis);
 globalThis.fetch = (input, init = {}) => {
   const headers = new Headers(init.headers || {});
   headers.set("x-vercel-protection-bypass", secret);
-  headers.set("x-vercel-set-bypass-cookie", "true");
 
   return originalFetch(input, {
     ...init,
