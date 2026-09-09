@@ -1,0 +1,54 @@
+name: Preview HTTP/SEO Smoke
+
+on:
+  push:
+    branches:
+      - content/authority-to-lead-v1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: https://auditseo-site-oficial-git-content-authority-to-lead-v1-auditseo.vercel.app
+      VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Verify bypass secret is configured
+        shell: bash
+        run: |
+          if [ -z "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
+            echo "VERCEL_AUTOMATION_BYPASS_SECRET is not configured."
+            exit 1
+          fi
+
+      - name: Wait for branch Preview
+        shell: bash
+        run: |
+          for i in {1..24}; do
+            status=$(curl -sS -o /dev/null -w "%{http_code}" \
+              -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET" \
+              -H "x-vercel-set-bypass-cookie: true" \
+              "$BASE_URL/") || true
+            if [ "$status" = "200" ]; then
+              echo "Preview reachable with automation bypass."
+              exit 0
+            fi
+            echo "Preview not ready yet (HTTP $status), retrying..."
+            sleep 5
+          done
+          echo "Preview did not become reachable with HTTP 200."
+          exit 1
+
+      - name: Run protected HTTP/SEO smoke
+        run: node scripts/smoke-launch-protected.mjs "$BASE_URL"
