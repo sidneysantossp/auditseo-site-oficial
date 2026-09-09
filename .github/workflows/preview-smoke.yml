@@ -32,22 +32,29 @@ jobs:
             exit 1
           fi
 
-      - name: Wait for branch Preview
+      - name: Wait for protected branch Preview
         shell: bash
         run: |
           for i in {1..24}; do
-            status=$(curl -sS -o /dev/null -w "%{http_code}" \
+            headers=$(mktemp)
+            status=$(curl -sS -o /dev/null -D "$headers" -w "%{http_code}" \
               -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET" \
               -H "x-vercel-set-bypass-cookie: true" \
               "$BASE_URL/") || true
-            if [ "$status" = "200" ]; then
-              echo "Preview reachable with automation bypass."
+            location=$(awk 'BEGIN{IGNORECASE=1} /^location:/ {sub(/^location:[[:space:]]*/, ""); sub(/\r$/, ""); print; exit}' "$headers")
+            rm -f "$headers"
+
+            if [ "$status" = "302" ] && echo "$location" | grep -q "vercel.com/sso-api"; then
+              echo "Preview still behind Vercel SSO; retrying..."
+            elif [[ "$status" =~ ^[23][0-9][0-9]$ ]]; then
+              echo "Preview reachable with automation bypass (HTTP $status${location:+ -> $location})."
               exit 0
+            else
+              echo "Preview not ready yet (HTTP $status${location:+ -> $location}), retrying..."
             fi
-            echo "Preview not ready yet (HTTP $status), retrying..."
             sleep 5
           done
-          echo "Preview did not become reachable with HTTP 200."
+          echo "Preview did not become reachable through the automation bypass."
           exit 1
 
       - name: Run protected HTTP/SEO smoke
