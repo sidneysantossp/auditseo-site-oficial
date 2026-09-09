@@ -25,6 +25,7 @@ Este arquivo é um mapa navegacional complementar para agentes e ferramentas que
 - [Benchmark de comunicação do mercado GEO/Search AI](https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai): Estudo de promessa, prazo, método, mensuração e evidência em páginas públicas de fornecedores.
 - [Case Study #001 — AUDITSEO](https://www.auditseo.com.br/case-study/auditseo-search-intelligence): Estudo público em andamento sobre a construção da própria autoridade da AUDITSEO a partir de um baseline registrado antes dos resultados.
 - [Método de evidência e prazos do Case Study #001](https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md): Régua congelada PRE/M0–M4, Time-to-Signal, atribuição e limites para linguagem de prazo/causalidade.
+- [Snapshot de status pré-release do Case Study #001](https://www.auditseo.com.br/dados/case-study-001-status-2026-09-08.json): Fotografia imutável do estado do estudo em 08/09/2026, incluindo maturidade, baseline, blocker de release e milestones ainda não observados.
 - [Protocolo do Search AI Observatory](https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai): Regras de amostra, prompts, classificação, repetição e limitações antes da coleta.
 
 ## Datasets e material de citação
