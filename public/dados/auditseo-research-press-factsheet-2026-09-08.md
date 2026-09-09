@@ -17,6 +17,9 @@ https://www.auditseo.com.br/case-study/auditseo-search-intelligence
 Método público de evidência e prazos do Case Study #001:
 https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md
 
+Snapshot público de status pré-release do Case Study #001:
+https://www.auditseo.com.br/dados/case-study-001-status-2026-09-08.json
+
 Autor/fundador:
 Sidney Santos — https://www.auditseo.com.br/autor/sidney-santos
 
@@ -118,8 +121,13 @@ O Case Study #001 usa uma régua congelada antes do release:
 
 A AUDITSEO mede separadamente o tempo até descoberta/crawl, primeira impressão, query relevante, clique, menção/citação/recomendação em Search AI, referência externa, lead, reunião e receita. Um único marco nunca é convertido em prazo garantido.
 
+No snapshot público pré-release de 08/09/2026, o Evidence Ledger registrava 13 entradas: 12 ainda em PRE e 1 baseline M0. Nenhum item estava em M1, M2, M3 ou M4, e os 19 milestones do Time-to-Signal permaneciam pendentes. Essa fotografia é histórica e não será sobrescrita quando resultados futuros aparecerem.
+
 Metodologia completa:
 https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md
+
+Status congelado:
+https://www.auditseo.com.br/dados/case-study-001-status-2026-09-08.json
 
 ---
 
