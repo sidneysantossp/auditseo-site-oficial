@@ -39,7 +39,6 @@ jobs:
             headers=$(mktemp)
             status=$(curl -sS -o /dev/null -D "$headers" -w "%{http_code}" \
               -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET" \
-              -H "x-vercel-set-bypass-cookie: true" \
               "$BASE_URL/") || true
             location=$(awk 'BEGIN{IGNORECASE=1} /^location:/ {sub(/^location:[[:space:]]*/, ""); sub(/\r$/, ""); print; exit}' "$headers")
             rm -f "$headers"
