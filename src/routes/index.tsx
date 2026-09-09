@@ -56,8 +56,12 @@ export const Route = createFileRoute("/")({
                 contentUrl: "https://www.auditseo.com.br/auditseo-logo.png",
               },
               email: "contato@auditseo.com.br",
+              areaServed: {
+                "@type": "Country",
+                name: "Brasil",
+              },
               description:
-                "Consultoria de Search Intelligence que diagnostica onde a presença de busca de uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida e transforma os achados em um roadmap coordenado de implementação e mensuração.",
+                "Consultoria brasileira de Search Intelligence que diagnostica onde a presença de busca de uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida e transforma os achados em um roadmap coordenado de implementação e mensuração.",
               knowsAbout: [
                 "Search Intelligence",
                 "SEO técnico",
