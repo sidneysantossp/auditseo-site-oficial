@@ -4,8 +4,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const ledgerPath = path.join(root, "docs", "research", "case-study-001-evidence-ledger.csv");
-const timePath = path.join(root, "docs", "research", "case-study-001-time-to-signal.csv");
+const frozenLedgerPath = path.join(root, "public", "dados", "case-study-001-evidence-ledger-2026-09-08.csv");
+const frozenTimePath = path.join(root, "public", "dados", "case-study-001-time-to-signal-2026-09-08.csv");
 const snapshotPath = path.join(root, "public", "dados", "case-study-001-status-2026-09-08.json");
 const methodPath = path.join(root, "public", "dados", "case-study-001-metodo-evidencia-prazos-2026-09-08.md");
 const factsheetPath = path.join(root, "public", "dados", "auditseo-research-press-factsheet-2026-09-08.md");
@@ -73,13 +73,13 @@ function countBy(items, key, allowed) {
   return counts;
 }
 
-for (const required of [ledgerPath, timePath, snapshotPath, methodPath, factsheetPath, llmsPath]) {
+for (const required of [frozenLedgerPath, frozenTimePath, snapshotPath, methodPath, factsheetPath, llmsPath]) {
   if (!fs.existsSync(required)) failures.push(`Arquivo obrigatório ausente: ${path.relative(root, required)}`);
 }
 
 if (!failures.length) {
-  const ledger = toObjects(parseCsv(fs.readFileSync(ledgerPath, "utf8")));
-  const milestones = toObjects(parseCsv(fs.readFileSync(timePath, "utf8")));
+  const ledger = toObjects(parseCsv(fs.readFileSync(frozenLedgerPath, "utf8")));
+  const milestones = toObjects(parseCsv(fs.readFileSync(frozenTimePath, "utf8")));
   const snapshot = JSON.parse(fs.readFileSync(snapshotPath, "utf8"));
 
   const maturityOrder = ["PRE", "M0", "M1", "M2", "M3", "M4"];
@@ -93,30 +93,35 @@ if (!failures.length) {
   if (snapshot.snapshotDate !== "2026-09-08") failures.push("Snapshot #001 deve permanecer datado em 2026-09-08");
   if (snapshot.snapshotType !== "pre-release status") failures.push("Snapshot #001 deve permanecer classificado como pre-release status");
 
+  const expectedLedgerUrl = "https://www.auditseo.com.br/dados/case-study-001-evidence-ledger-2026-09-08.csv";
+  const expectedTimeUrl = "https://www.auditseo.com.br/dados/case-study-001-time-to-signal-2026-09-08.csv";
+  if (snapshot.frozenSources?.evidenceLedger !== expectedLedgerUrl) failures.push("Snapshot não aponta para o Evidence Ledger público congelado");
+  if (snapshot.frozenSources?.timeToSignal !== expectedTimeUrl) failures.push("Snapshot não aponta para o Time-to-Signal público congelado");
+
   if (snapshot.evidenceLedger?.entries !== ledger.length) {
-    failures.push(`Snapshot declara ${snapshot.evidenceLedger?.entries} entradas, ledger possui ${ledger.length}`);
+    failures.push(`Snapshot declara ${snapshot.evidenceLedger?.entries} entradas, ledger congelado possui ${ledger.length}`);
   }
 
   for (const level of maturityOrder) {
     if (snapshot.evidenceLedger?.maturityCounts?.[level] !== ledgerMaturity[level]) {
-      failures.push(`Snapshot maturityCounts.${level}=${snapshot.evidenceLedger?.maturityCounts?.[level]} mas ledger=${ledgerMaturity[level]}`);
+      failures.push(`Snapshot maturityCounts.${level}=${snapshot.evidenceLedger?.maturityCounts?.[level]} mas ledger congelado=${ledgerMaturity[level]}`);
     }
   }
 
   for (const polarity of polarityOrder) {
     if (snapshot.evidenceLedger?.directionalResultCounts?.[polarity] !== ledgerPolarity[polarity]) {
-      failures.push(`Snapshot directionalResultCounts.${polarity}=${snapshot.evidenceLedger?.directionalResultCounts?.[polarity]} mas ledger=${ledgerPolarity[polarity]}`);
+      failures.push(`Snapshot directionalResultCounts.${polarity}=${snapshot.evidenceLedger?.directionalResultCounts?.[polarity]} mas ledger congelado=${ledgerPolarity[polarity]}`);
     }
   }
 
   if (snapshot.timeToSignal?.milestonesDefined !== milestones.length) {
-    failures.push(`Snapshot declara ${snapshot.timeToSignal?.milestonesDefined} milestones, tracker possui ${milestones.length}`);
+    failures.push(`Snapshot declara ${snapshot.timeToSignal?.milestonesDefined} milestones, tracker congelado possui ${milestones.length}`);
   }
   if (snapshot.timeToSignal?.pending !== milestonePending) {
-    failures.push(`Snapshot pending=${snapshot.timeToSignal?.pending} mas tracker=${milestonePending}`);
+    failures.push(`Snapshot pending=${snapshot.timeToSignal?.pending} mas tracker congelado=${milestonePending}`);
   }
   if (snapshot.timeToSignal?.observed !== milestoneObserved) {
-    failures.push(`Snapshot observed=${snapshot.timeToSignal?.observed} mas tracker=${milestoneObserved}`);
+    failures.push(`Snapshot observed=${snapshot.timeToSignal?.observed} mas tracker congelado=${milestoneObserved}`);
   }
 
   const e001 = ledger.find((item) => item.evidence_id === "E001");
@@ -127,24 +132,24 @@ if (!failures.length) {
   }
 
   if (ledgerMaturity.M1 + ledgerMaturity.M2 + ledgerMaturity.M3 + ledgerMaturity.M4 !== 0) {
-    failures.push("Snapshot pré-release #001 não pode coexistir com M1+ no ledger; publique novo snapshot em vez de reescrever o histórico");
+    failures.push("Ledger congelado do snapshot #001 não pode conter M1+; um avanço exige novo snapshot datado");
   }
   if (snapshot.status?.release?.state !== "blocked" || snapshot.status?.release?.maturity !== "PRE") {
     failures.push("Snapshot #001 deve preservar release blocked/PRE");
   }
   if (snapshot.timeToSignal?.referenceEventObserved !== false) failures.push("Snapshot #001 não pode marcar release reference event como observado");
-  if (!/Future state changes must be published as a new dated snapshot/i.test(snapshot.immutabilityNote || "")) {
-    failures.push("Snapshot perdeu nota explícita de imutabilidade/versionamento por data");
+  if (!/tied to frozen source files from 2026-09-08/i.test(snapshot.immutabilityNote || "")) {
+    failures.push("Snapshot perdeu vínculo explícito com fontes congeladas");
   }
 
-  const publicUrl = "https://www.auditseo.com.br/dados/case-study-001-status-2026-09-08.json";
+  const publicSnapshotUrl = "https://www.auditseo.com.br/dados/case-study-001-status-2026-09-08.json";
   for (const [label, filePath] of [
     ["método público", methodPath],
     ["press factsheet", factsheetPath],
     ["llms.txt", llmsPath],
   ]) {
     const text = fs.readFileSync(filePath, "utf8");
-    if (!text.includes(publicUrl)) failures.push(`${label} não referencia o snapshot público #001`);
+    if (!text.includes(publicSnapshotUrl)) failures.push(`${label} não referencia o snapshot público #001`);
   }
 }
 
@@ -154,4 +159,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("AUDITSEO case-study snapshot lint aprovado: snapshot público #001 corresponde ao ledger e ao Time-to-Signal congelados.");
+console.log("AUDITSEO case-study snapshot lint aprovado: snapshot público #001 corresponde às fontes históricas congeladas, sem bloquear a evolução do ledger vivo.");
