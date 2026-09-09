@@ -1,7 +1,5 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/guias")({
-  beforeLoad: () => {
-    throw redirect({ to: "/blog", statusCode: 308 });
-  },
+  component: Outlet,
 });
