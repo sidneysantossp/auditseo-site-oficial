@@ -10,6 +10,9 @@ https://www.auditseo.com.br/case-study/auditseo-search-intelligence
 Research Hub:
 https://www.auditseo.com.br/estudos-busca-ia
 
+Snapshot público de status pré-release:
+https://www.auditseo.com.br/dados/case-study-001-status-2026-09-08.json
+
 ## Princípio
 
 O dado limita a narrativa. A narrativa não pode elevar a maturidade do dado.
@@ -138,6 +141,8 @@ O estudo diferencia:
 Resultados negativos, ausência de resultado e observações inconclusivas permanecem no histórico.
 
 A AUDITSEO não removerá um prompt, milestone ou período porque o resultado foi desfavorável.
+
+Snapshots públicos de status são datados e imutáveis. Quando o estado do estudo mudar, a AUDITSEO publicará um novo snapshot com nova data em vez de sobrescrever silenciosamente o anterior.
 
 ## O que este método não promete
 
