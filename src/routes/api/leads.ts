@@ -126,6 +126,10 @@ async function deliverWebhook(payload: LeadPayload) {
     }),
   });
 
+  if (!response.ok) {
+    console.error("Lead webhook returned non-success status", { status: response.status });
+  }
+
   return response.ok;
 }
 
@@ -149,6 +153,10 @@ async function deliverEmail(payload: LeadPayload) {
       text: formatLead(payload),
     }),
   });
+
+  if (!response.ok) {
+    console.error("Lead email returned non-success status", { status: response.status });
+  }
 
   return response.ok;
 }
@@ -203,6 +211,11 @@ export const Route = createFileRoute("/api/leads")({
         if (delivered) {
           return json({ success: true });
         }
+
+        console.warn("Lead delivery unavailable", {
+          webhookConfigured: Boolean(process.env["LEAD_WEBHOOK_URL"]),
+          emailConfigured: Boolean(process.env["RESEND_API_KEY"]),
+        });
 
         return json(
           {
