@@ -58,3 +58,25 @@ jobs:
 
       - name: Run protected HTTP/SEO smoke
         run: node scripts/smoke-launch-protected.mjs "$BASE_URL"
+
+      - name: Run one-shot lead delivery canary
+        if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[lead-canary]') }}
+        shell: bash
+        run: |
+          payload='{"kind":"diagnostic","nome":"AUDITSEO Release Smoke","email":"release-smoke@auditseo.com.br","whatsapp":"+5511000000000","context":"Automated Preview release canary. Ignore this lead; it only validates server-side delivery before release.","discoverySource":"release-validation","sourcePath":"/__release-smoke"}'
+          response_file=$(mktemp)
+          status=$(curl -sS -o "$response_file" -w "%{http_code}" \
+            -X POST \
+            -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET" \
+            -H "Content-Type: application/json" \
+            --data "$payload" \
+            "$BASE_URL/api/leads")
+          body=$(cat "$response_file")
+          rm -f "$response_file"
+
+          echo "Lead delivery canary returned HTTP $status."
+          if [ "$status" != "200" ] || ! echo "$body" | grep -Eq '"success"[[:space:]]*:[[:space:]]*true'; then
+            echo "Lead delivery canary failed: $body"
+            exit 1
+          fi
+          echo "Lead delivery canary approved: at least one server-side delivery channel confirmed success."
