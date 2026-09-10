@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const rawBase = process.argv[2] || process.env.BASE_URL;
+const vercelBypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET?.trim();
 
 if (!rawBase) {
   console.error("Uso: npm run smoke:launch -- https://preview.example.com");
@@ -58,6 +59,17 @@ const REDIRECTS = [
 
 const NOINDEX = ["/estudos-busca-ia"];
 
+function requestHeaders({ html = true } = {}) {
+  const headers = {
+    "user-agent": "AUDITSEO-Launch-Smoke/1.0 (+https://www.auditseo.com.br)",
+  };
+  if (html) headers.accept = "text/html,application/xhtml+xml";
+  if (vercelBypassSecret) {
+    headers["x-vercel-protection-bypass"] = vercelBypassSecret;
+  }
+  return headers;
+}
+
 function pick(html, pattern) {
   return html.match(pattern)?.[1]?.trim() || "";
 }
@@ -79,10 +91,7 @@ function normalizeLocation(location) {
 async function fetchManual(path) {
   return fetch(`${baseUrl}${path}`, {
     redirect: "manual",
-    headers: {
-      "user-agent": "AUDITSEO-Launch-Smoke/1.0 (+https://www.auditseo.com.br)",
-      accept: "text/html,application/xhtml+xml",
-    },
+    headers: requestHeaders(),
   });
 }
 
@@ -143,7 +152,10 @@ async function testNotFound() {
 }
 
 async function testInfrastructure(path, expectedStatus = 200) {
-  const response = await fetch(`${baseUrl}${path}`, { redirect: "manual" });
+  const response = await fetch(`${baseUrl}${path}`, {
+    redirect: "manual",
+    headers: requestHeaders({ html: false }),
+  });
   return {
     path,
     ok: response.status === expectedStatus,
@@ -192,6 +204,9 @@ for (const path of ["/robots.txt", "/sitemap.xml"]) {
 }
 
 console.log(`\nAUDITSEO launch smoke — ${baseUrl}\n`);
+if (!vercelBypassSecret && /\.vercel\.app$/i.test(new URL(baseUrl).hostname)) {
+  console.log("INFO  VERCEL_AUTOMATION_BYPASS_SECRET não definido; Preview protegido pode redirecionar para SSO.");
+}
 for (const result of results) {
   const marker = result.ok ? "PASS" : "FAIL";
   console.log(`${marker.padEnd(4)}  ${result.path}${result.ok ? "" : ` — ${result.failures.join("; ")}`}`);
