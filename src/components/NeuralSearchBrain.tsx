@@ -1,344 +1,129 @@
 import React from "react";
 
-// =================================================================
-// SEARCH CONSTELLATION VISUAL (NeuralSearchBrain.tsx)
-// Elite Abstract Search Intelligence Network Component for AUDITSEO
-// =================================================================
-
-const NODES: Record<string, { x: number; y: number }> = {
-  // Main nodes (A-Z)
-  A: { x: 410, y: 255 },
-  B: { x: 350, y: 230 },
-  C: { x: 465, y: 225 },
-  D: { x: 390, y: 305 },
-  E: { x: 475, y: 310 },
-  F: { x: 315, y: 280 },
-  G: { x: 520, y: 275 },
-  H: { x: 335, y: 170 },
-  I: { x: 455, y: 165 },
-  J: { x: 560, y: 205 },
-  K: { x: 245, y: 230 },
-  L: { x: 600, y: 335 },
-  M: { x: 300, y: 365 },
-  N: { x: 460, y: 390 },
-  O: { x: 215, y: 310 },
-  P: { x: 540, y: 140 },
-  Q: { x: 650, y: 240 },
-  R: { x: 610, y: 420 },
-  S: { x: 365, y: 420 },
-  T: { x: 180, y: 185 },
-  U: { x: 705, y: 320 },
-  V: { x: 250, y: 110 },
-  W: { x: 520, y: 95 },
-  X: { x: 690, y: 150 },
-  Y: { x: 145, y: 360 },
-  Z: { x: 570, y: 455 },
-
-  // Secondary nodes (n1-n20)
-  n1: { x: 370, y: 260 },
-  n2: { x: 438, y: 275 },
-  n3: { x: 398, y: 210 },
-  n4: { x: 430, y: 205 },
-  n5: { x: 330, y: 320 },
-  n6: { x: 500, y: 345 },
-  n7: { x: 285, y: 260 },
-  n8: { x: 550, y: 260 },
-  n9: { x: 470, y: 175 },
-  n10: { x: 305, y: 190 },
-  n11: { x: 590, y: 285 },
-  n12: { x: 240, y: 350 },
-  n13: { x: 375, y: 355 },
-  n14: { x: 520, y: 380 },
-  n15: { x: 625, y: 215 },
-  n16: { x: 690, y: 270 },
-  n17: { x: 210, y: 250 },
-  n18: { x: 165, y: 300 },
-  n19: { x: 340, y: 120 },
-  n20: { x: 480, y: 115 }
+type Node = {
+  x: number;
+  y: number;
+  r: number;
+  tier: "core" | "primary" | "secondary";
 };
 
-const CONNECTIONS = [
-  ["A", "B"], ["A", "C"], ["A", "D"], ["A", "E"],
-  ["A", "n1"], ["A", "n2"], ["A", "n3"], ["A", "n4"],
-  ["B", "H"], ["B", "K"], ["B", "F"], ["B", "n10"], ["B", "n3"],
-  ["C", "I"], ["C", "G"], ["C", "J"], ["C", "n9"], ["C", "n4"],
-  ["D", "M"], ["D", "F"], ["D", "n5"], ["D", "n13"],
-  ["E", "G"], ["E", "N"], ["E", "n6"], ["E", "n14"],
-  ["F", "K"], ["F", "O"], ["F", "n7"], ["F", "M"],
-  ["G", "J"], ["G", "L"], ["G", "n8"], ["G", "n11"],
-  ["H", "V"], ["H", "I"], ["H", "n19"], ["H", "n10"],
-  ["I", "P"], ["I", "W"], ["I", "n20"], ["I", "n9"],
-  ["J", "P"], ["J", "Q"], ["J", "X"], ["J", "n15"],
-  ["K", "T"], ["K", "O"], ["K", "n17"],
-  ["L", "R"], ["L", "U"], ["L", "n16"], ["L", "n11"],
-  ["M", "Y"], ["M", "S"], ["M", "n12"], ["M", "n13"],
-  ["N", "Z"], ["N", "R"], ["N", "n14"], ["N", "n6"],
-  ["O", "Y"], ["O", "n18"], ["O", "n17"],
-  ["P", "W"], ["P", "X"],
-  ["Q", "X"], ["Q", "U"],
-  ["R", "Z"],
-  ["S", "Z"],
-  ["n1", "n2"],
-  ["n2", "n6"],
-  ["n3", "n4"],
-  ["n5", "n13"],
-  ["n7", "n17"],
-  ["n8", "n11"],
-  ["n9", "n20"],
-  ["n12", "n18"],
-  ["n15", "n16"]
+const NODES: Node[] = [
+  { x: 410, y: 255, r: 5.2, tier: "core" },
+  { x: 350, y: 226, r: 3.2, tier: "primary" },
+  { x: 468, y: 224, r: 3.2, tier: "primary" },
+  { x: 382, y: 314, r: 3.0, tier: "primary" },
+  { x: 482, y: 314, r: 3.0, tier: "primary" },
+  { x: 315, y: 282, r: 2.7, tier: "primary" },
+  { x: 525, y: 276, r: 2.7, tier: "primary" },
+  { x: 334, y: 168, r: 2.5, tier: "primary" },
+  { x: 455, y: 162, r: 2.5, tier: "primary" },
+  { x: 560, y: 204, r: 2.5, tier: "primary" },
+  { x: 246, y: 230, r: 2.3, tier: "primary" },
+  { x: 604, y: 336, r: 2.3, tier: "primary" },
+  { x: 300, y: 368, r: 2.3, tier: "primary" },
+  { x: 464, y: 392, r: 2.3, tier: "primary" },
+  { x: 214, y: 312, r: 2.2, tier: "secondary" },
+  { x: 540, y: 140, r: 2.2, tier: "secondary" },
+  { x: 652, y: 240, r: 2.1, tier: "secondary" },
+  { x: 612, y: 420, r: 2.1, tier: "secondary" },
+  { x: 365, y: 422, r: 2.1, tier: "secondary" },
+  { x: 180, y: 186, r: 2.0, tier: "secondary" },
+  { x: 705, y: 320, r: 2.0, tier: "secondary" },
+  { x: 250, y: 110, r: 2.0, tier: "secondary" },
+  { x: 520, y: 95, r: 2.0, tier: "secondary" },
+  { x: 690, y: 150, r: 2.0, tier: "secondary" },
+  { x: 145, y: 360, r: 2.0, tier: "secondary" },
+  { x: 570, y: 455, r: 2.0, tier: "secondary" },
+  { x: 370, y: 260, r: 1.5, tier: "secondary" },
+  { x: 438, y: 275, r: 1.5, tier: "secondary" },
+  { x: 398, y: 210, r: 1.5, tier: "secondary" },
+  { x: 430, y: 205, r: 1.5, tier: "secondary" },
+  { x: 330, y: 320, r: 1.4, tier: "secondary" },
+  { x: 500, y: 345, r: 1.4, tier: "secondary" },
+  { x: 285, y: 260, r: 1.4, tier: "secondary" },
+  { x: 550, y: 260, r: 1.4, tier: "secondary" },
 ];
 
-// Generate exactly 85 deterministic coordinates using the elegant golden angle distribution
-const BACKGROUND_PARTICLES = Array.from({ length: 85 }).map((_, i) => {
-  const angle = (i * 137.5) * (Math.PI / 180);
-  const radius = 22 + (i * 4.3); // distributed softly outwards from the nucleus
-  const x = Number((410 + Math.cos(angle) * radius).toFixed(3));
-  const y = Number((255 + Math.sin(angle) * radius).toFixed(3));
-  
-  const size = 0.4 + (i % 3) * 0.3; // radius 0.4px to 1.0px (diameter 0.8px to 2.0px)
-  const opacity = 0.08 + (i % 5) * 0.05; // opacity 0.08 to 0.28
-  const delay = `${(i * 0.15) % 8}s`;
-  const duration = `${6 + (i % 7) * 2}s`;
-  const twinkleType = i % 3 === 0 ? "twinkle1" : (i % 3 === 1 ? "twinkle2" : "twinkle3");
+const CONNECTIONS: Array<[number, number]> = [
+  [0, 1], [0, 2], [0, 3], [0, 4], [0, 26], [0, 27], [0, 28], [0, 29],
+  [1, 5], [1, 7], [1, 9], [1, 26], [1, 28],
+  [2, 6], [2, 8], [2, 9], [2, 27], [2, 29],
+  [3, 5], [3, 11], [3, 12], [3, 30],
+  [4, 6], [4, 11], [4, 13], [4, 31],
+  [5, 9], [5, 14], [5, 32],
+  [6, 10], [6, 11], [6, 33],
+  [7, 21], [7, 8],
+  [8, 15], [8, 22],
+  [9, 10], [9, 19],
+  [10, 15], [10, 16], [10, 23],
+  [11, 17], [11, 20],
+  [12, 18], [12, 24],
+  [13, 17], [13, 25],
+  [14, 24], [15, 22], [16, 20], [17, 25], [18, 25], [21, 22], [23, 16],
+];
 
-  return { x, y, size, opacity, delay, duration, twinkleType };
+const PARTICLES = Array.from({ length: 58 }, (_, index) => {
+  const angle = index * 2.399963229728653;
+  const radius = 45 + index * 4.9;
+  return {
+    x: 410 + Math.cos(angle) * radius,
+    y: 255 + Math.sin(angle) * radius * 0.7,
+    r: 0.45 + (index % 3) * 0.25,
+    opacity: 0.08 + (index % 5) * 0.035,
+  };
 });
 
-const FLOW_PATHS = [
-  { id: 1, r: 2.2, fill: "#e0d3c3", dur: "10.0s", begin: "0", path: "M 245 230 L 350 230 L 410 255", hasGlow: true },
-  { id: 2, r: 2.2, fill: "#f8f8f8", dur: "12.5s", begin: "2.5", path: "M 145 360 L 300 365 L 390 305 L 410 255", hasGlow: true },
-  { id: 3, r: 2.0, fill: "#e0d3c3", dur: "10.8s", begin: "1.0", path: "M 520 95 L 455 165 L 465 225 L 410 255", hasGlow: true },
-  { id: 4, r: 2.2, fill: "#f8f8f8", dur: "13.0s", begin: "4.0", path: "M 610 420 L 600 335 L 520 275 L 410 255", hasGlow: true },
-  { id: 5, r: 1.8, fill: "#b28453", dur: "11.8s", begin: "3.0", path: "M 180 185 L 245 230 L 315 280 L 410 255", hasGlow: false },
-  { id: 6, r: 2.2, fill: "#e0d3c3", dur: "12.0s", begin: "5.5", path: "M 650 240 L 560 205 L 465 225 L 410 255", hasGlow: true },
-  { id: 7, r: 1.8, fill: "#ffffff", dur: "14.0s", begin: "3.5", path: "M 245 230 L 350 230 L 410 255", hasGlow: true, responsiveClass: "hidden sm:inline" },
-  { id: 8, r: 2.0, fill: "#b28453", dur: "15.5s", begin: "1.5", path: "M 610 420 L 600 335 L 520 275 L 410 255", hasGlow: true, responsiveClass: "hidden sm:inline" }
+const AXES = [
+  ["Descoberta", "Crawl · Index · Retrieve"],
+  ["Compreensão", "Entidades · Intenção · Semântica"],
+  ["Confiança", "Evidências · Reputação · Fontes"],
+  ["Evolução", "Medição · Prioridade · Learning Loop"],
 ];
 
 export default function NeuralSearchBrain() {
   const [mouseOffset, setMouseOffset] = React.useState({ x: 0, y: 0 });
   const [isCoreHovered, setIsCoreHovered] = React.useState(false);
-  const [isCoreOnly, setIsCoreOnly] = React.useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    
-    // Smooth responsive factor limiting maximum displacement to ~16px
-    const factorX = (x / (rect.width / 2)) * 16;
-    const factorY = (y / (rect.height / 2)) * 16;
-    setMouseOffset({ x: factorX, y: factorY });
-  };
-
-  const handleMouseLeave = () => {
-    setMouseOffset({ x: 0, y: 0 });
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    setMouseOffset({ x: x * 12, y: y * 12 });
   };
 
   return (
-    <div 
+    <div
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative w-full aspect-[760/520] max-w-[760px] mx-auto select-none overflow-visible flex items-center justify-center p-1 z-10 group/constellation"
+      onMouseLeave={() => {
+        setMouseOffset({ x: 0, y: 0 });
+        setIsCoreHovered(false);
+      }}
+      className="group/constellation relative mx-auto flex aspect-[760/520] w-full max-w-[760px] select-none items-center justify-center overflow-visible p-1"
+      aria-label="Visualização conceitual do ecossistema de Search Intelligence da AUDITSEO"
     >
-      
-      {/* 1. GLOW DE FUNDO (Premium luxurious background backdrop glow & Nebula clouds) */}
-      <div 
-        className="absolute pointer-events-none rounded-full"
+      <div
+        className="pointer-events-none absolute rounded-full"
         style={{
           width: "720px",
           height: "460px",
           right: "10px",
           top: "50%",
-          transform: `translateY(-50%) translate(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px)`,
-          transition: "transform 0.6s cubic-bezier(0.15, 0.85, 0.3, 1)",
-          background: "radial-gradient(circle at 52% 48%, rgba(178,132,83,0.22) 0%, rgba(178,132,83,0.12) 20%, rgba(140,97,60,0.06) 45%, transparent 75%)",
-          filter: "blur(28px)",
-          opacity: 0.95,
-          zIndex: 0
+          transform: `translateY(-50%) translate(${mouseOffset.x * 0.35}px, ${mouseOffset.y * 0.35}px)`,
+          transition: "transform 600ms cubic-bezier(0.15,0.85,0.3,1)",
+          background: "radial-gradient(circle at 52% 48%, rgba(178,132,83,0.22) 0%, rgba(178,132,83,0.11) 24%, rgba(140,97,60,0.05) 46%, transparent 74%)",
+          filter: "blur(30px)",
         }}
       />
 
-      {/* Primary SVG Constellation System */}
-      <svg
-        className="w-full h-full block overflow-visible z-10"
-        viewBox="0 0 760 520"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg className="relative z-10 h-full w-full overflow-visible" viewBox="0 0 760 520" fill="none" aria-hidden="true">
         <defs>
-          <style>
-            {`
-              @keyframes fadeEntrance {
-                0% { opacity: 0; transform: scale(0.98); }
-                100% { opacity: 1; transform: scale(1); }
-              }
-              @keyframes floatGeneralGroup {
-                0%, 100% { transform: scale(1.32) translateY(-4px) rotate(-0.5deg); }
-                50% { transform: scale(1.32) translateY(4px) rotate(0.5deg); }
-              }
-              @keyframes nucleusPulse {
-                0%, 100% { transform: scale(0.96); opacity: 0.85; }
-                50% { transform: scale(1.04); opacity: 1.0; }
-              }
-              @keyframes linePulse {
-                0%, 100% { opacity: 0.35; }
-                50% { opacity: 0.95; }
-              }
-              @keyframes twinkle1 {
-                0%, 100% { opacity: 0.12; }
-                50% { opacity: 0.85; }
-              }
-              @keyframes twinkle2 {
-                0%, 100% { opacity: 0.90; }
-                50% { opacity: 0.20; }
-              }
-              @keyframes twinkle3 {
-                0%, 100% { opacity: 0.30; }
-                50% { opacity: 0.95; }
-              }
-              @keyframes nebulaSlowMotion1 {
-                0%, 100% { transform: translate(0, 0) scale(1.0); opacity: 0.7; }
-                50% { transform: translate(12px, -8px) scale(1.08); opacity: 0.95; }
-              }
-              @keyframes nebulaSlowMotion2 {
-                0%, 100% { transform: translate(0, 0) scale(1.0); opacity: 0.6; }
-                50% { transform: translate(-15px, 12px) scale(0.93); opacity: 0.85; }
-              }
-              @keyframes orbitSpinClockwise {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-              @keyframes badgeOrbit1 {
-                0% { transform: translate(0px, 0px); }
-                25% { transform: translate(24px, -25px); }
-                50% { transform: translate(0px, -52px); }
-                75% { transform: translate(-24px, -25px); }
-                100% { transform: translate(0px, 0px); }
-              }
-              @keyframes badgeOrbit2 {
-                0% { transform: translate(0px, 0px); }
-                25% { transform: translate(-20px, -22px); }
-                50% { transform: translate(-35px, -46px); }
-                75% { transform: translate(-20px, -22px); }
-                100% { transform: translate(0px, 0px); }
-              }
-              @keyframes badgeOrbit3 {
-                0% { transform: translate(0px, 0px); }
-                25% { transform: translate(20px, -24px); }
-                50% { transform: translate(35px, -48px); }
-                75% { transform: translate(20px, -24px); }
-                100% { transform: translate(0px, 0px); }
-              }
-              @keyframes badgeOrbit4 {
-                0% { transform: translate(0px, 0px); }
-                25% { transform: translate(-24px, -26px); }
-                50% { transform: translate(0px, -55px); }
-                75% { transform: translate(24px, -26px); }
-                100% { transform: translate(0px, 0px); }
-              }
-              @keyframes badgeOrbit5 {
-                0% { transform: translate(0px, 0px); }
-                25% { transform: translate(20px, -25px); }
-                50% { transform: translate(0px, -50px); }
-                75% { transform: translate(-20px, -25px); }
-                100% { transform: translate(0px, 0px); }
-              }
-              .constellation-entrance {
-                animation: fadeEntrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-              }
-              .constellation-float-wrapper {
-                animation: floatGeneralGroup 30s ease-in-out infinite;
-                transform-origin: 410px 255px;
-              }
-              .constellation-spin-wrapper {
-                animation: orbitSpinClockwise 360s linear infinite;
-                transform-origin: 410px 255px;
-              }
-              .central-nucleus-group {
-                animation: nucleusPulse 4.8s ease-in-out infinite;
-                transform-origin: 410px 255px;
-              }
-              .line-animated {
-                transition: stroke-opacity 0.6s ease;
-              }
-              .spark-pulse-glow {
-                filter: drop-shadow(0 0 4px #faf6f0) drop-shadow(0 0 8px rgba(178, 132, 83, 0.7));
-              }
-              .nebula-gas-1 {
-                animation: nebulaSlowMotion1 14s ease-in-out infinite;
-                transform-origin: 360px 220px;
-              }
-              .nebula-gas-2 {
-                animation: nebulaSlowMotion2 18s ease-in-out infinite;
-                transform-origin: 480px 300px;
-              }
-              .badge-float-1 {
-                animation: badgeOrbit1 7s ease-in-out infinite;
-              }
-              .badge-float-2 {
-                animation: badgeOrbit2 8.5s ease-in-out infinite;
-              }
-              .badge-float-3 {
-                animation: badgeOrbit3 6.8s ease-in-out infinite;
-              }
-              .badge-float-4 {
-                animation: badgeOrbit4 7.6s ease-in-out infinite;
-              }
-              .badge-float-5 {
-                animation: badgeOrbit5 9s ease-in-out infinite;
-              }
-            `}
-          </style>
-
-          {/* Nebula/Cosmic Gradients */}
-          <radialGradient id="nebulaGold" cx="360" cy="220" r="180" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#b28453" stopOpacity="0.28" />
-            <stop offset="50%" stopColor="#b28453" stopOpacity="0.08" />
+          <radialGradient id="auditseo-core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+            <stop offset="28%" stopColor="#e0d3c3" stopOpacity="0.95" />
+            <stop offset="62%" stopColor="#b28453" stopOpacity="0.52" />
             <stop offset="100%" stopColor="#b28453" stopOpacity="0" />
           </radialGradient>
-
-          <radialGradient id="nebulaBronze" cx="480" cy="300" r="220" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#8c613c" stopOpacity="0.22" />
-            <stop offset="45%" stopColor="#b28453" stopOpacity="0.06" />
-            <stop offset="100%" stopColor="#11100f" stopOpacity="0" />
-          </radialGradient>
-
-          <radialGradient id="nebulaBeige" cx="280" cy="310" r="140" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#e0d3c3" stopOpacity="0.18" />
-            <stop offset="60%" stopColor="#8c613c" stopOpacity="0.04" />
-            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-          </radialGradient>
-
-          <radialGradient id="goldTransparentNucleus" cx="410" cy="255" r="78" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#b28453" stopOpacity="0.25" />
-            <stop offset="50%" stopColor="#b28453" stopOpacity="0.09" />
-            <stop offset="100%" stopColor="#b28453" stopOpacity="0" />
-          </radialGradient>
-
-          <radialGradient id="champagneMiddleNucleus" cx="410" cy="255" r="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#e0d3c3" stopOpacity="0.60" />
-            <stop offset="60%" stopColor="#b28453" stopOpacity="0.32" />
-            <stop offset="100%" stopColor="#11100f" stopOpacity="0" />
-          </radialGradient>
-
-          <radialGradient id="innerWhiteWarmNucleus" cx="410" cy="255" r="13" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="70%" stopColor="#f8f8f8" />
-            <stop offset="100%" stopColor="#e0d3c3" />
-          </radialGradient>
-
-          {/* Filters for premium glow rendering */}
-          <filter id="softSparkGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.8" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          <filter id="highEndCoreGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <filter id="auditseo-glow" x="-100%" y="-100%" width="300%" height="300%">
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -347,345 +132,96 @@ export default function NeuralSearchBrain() {
           </filter>
         </defs>
 
-        {/* Global Floating Animation Wrapper */}
-        <g className="constellation-entrance constellation-float-wrapper">
-          <g className="constellation-spin-wrapper">
+        <g
+          style={{
+            transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`,
+            transformOrigin: "410px 255px",
+            transition: "transform 600ms cubic-bezier(0.15,0.85,0.3,1)",
+          }}
+        >
+          <ellipse cx="410" cy="255" rx="205" ry="84" stroke="rgba(178,132,83,.16)" strokeWidth="0.9" strokeDasharray="3 16" transform="rotate(-13 410 255)" />
+          <ellipse cx="410" cy="255" rx="270" ry="126" stroke="rgba(224,211,195,.08)" strokeWidth="0.8" strokeDasharray="2 24" transform="rotate(18 410 255)" />
 
-          {/* Layer A - Deep Space Nebulae & Orbits (Lagging slightly with low density factor of 0.15) */}
-          <g 
-            style={{ 
-              transform: `translate(${mouseOffset.x * 0.15}px, ${mouseOffset.y * 0.15}px)`, 
-              transition: "transform 0.6s cubic-bezier(0.15, 0.85, 0.3, 1)",
-              transformOrigin: "410px 255px" 
-            }}
-          >
-            {/* ================================================================= */}
-            {/* DEEP SPACE GASEOUS NEBULAE (Slow drifting stellar dust gas clouds) */}
-            {/* ================================================================= */}
-            <g pointerEvents="none">
-              {/* Drifting Golden Nebulose Dust 1 */}
-              <circle cx="360" cy="220" r="180" fill="url(#nebulaGold)" className="nebula-gas-1" />
-              
-              {/* Drifting Bronze Nebulose Dust 2 */}
-              <circle cx="480" cy="300" r="220" fill="url(#nebulaBronze)" className="nebula-gas-2" />
+          {PARTICLES.map((particle, index) => (
+            <circle key={`particle-${index}`} cx={particle.x} cy={particle.y} r={particle.r} fill="#e0d3c3" opacity={particle.opacity} />
+          ))}
 
-              {/* Drifting Champagne Ethereal Dust 3 */}
-              <circle cx="280" cy="310" r="140" fill="url(#nebulaBeige)" opacity="0.8" />
-            </g>
-
-            {/* ================================================================= */}
-            {/* COSMIC ORBIT CHANNELS (Luxury orbiting dashboard intelligence paths) */}
-            {/* ================================================================= */}
-            <g pointerEvents="none" opacity="0.75">
-              {/* Elegant Dash Inner Orbit */}
-              <ellipse 
-                cx="410" 
-                cy="255" 
-                rx="135" 
-                ry="52" 
-                stroke="url(#nebulaGold)" 
-                strokeWidth="0.85" 
-                strokeDasharray="5 15" 
-                transform="rotate(-15, 410, 255)"
-                style={{
-                  animation: "orbitSpinClockwise 120s linear infinite",
-                  transformOrigin: "410px 255px"
-                }}
-              />
-
-              {/* Outer Elegant Dash Orbit */}
-              <ellipse 
-                cx="410" 
-                cy="255" 
-                rx="185" 
-                ry="68" 
-                stroke="rgba(224, 211, 195, 0.12)" 
-                strokeWidth="0.7" 
-                strokeDasharray="2 25" 
-                transform="rotate(22, 410, 255)"
-                style={{
-                  animation: "orbitSpinCounter 180s linear infinite",
-                  transformOrigin: "410px 255px"
-                }}
-              />
-            </g>
-          </g>
-
-          {/* Layer B - Background stellar dust (Movement factor 0.35) */}
-          <g 
-            style={{ 
-              transform: `translate(${mouseOffset.x * 0.35}px, ${mouseOffset.y * 0.35}px)`, 
-              transition: "transform 0.6s cubic-bezier(0.15, 0.85, 0.3, 1)",
-              transformOrigin: "410px 255px" 
-            }}
-          >
-            {/* ================================================================= */}
-            {/* 4. PARTÍCULAS PEQUENAS DE PROFUNDIDADE (Deterministic Background Stars) */}
-            {/* ================================================================= */}
-            <g>
-              {BACKGROUND_PARTICLES.map((particle, idx) => {
-                // Hide certain percentage of background particles on mobile screen to guarantee performance
-                const isFarBackground = idx % 2 === 0;
-                const responsiveClass = isFarBackground ? "hidden sm:inline" : "inline";
-
-                return (
-                  <circle
-                    key={`bg-ptcl-${idx}`}
-                    cx={particle.x}
-                    cy={particle.y}
-                    r={particle.size}
-                    fill="#e0d3c3"
-                    opacity={particle.opacity}
-                    className={responsiveClass}
-                    style={{
-                      animation: `${particle.twinkleType} ${particle.duration} ease-in-out infinite`,
-                      animationDelay: particle.delay,
-                    }}
-                  />
-                );
-              })}
-            </g>
-          </g>
-
-
-          {/* Layer C - Primary Constellation Rig (Full movement factor of 1.0 for parallax contrast) */}
-          <g 
-            style={{ 
-              transform: `translate(${mouseOffset.x * 1.0}px, ${mouseOffset.y * 1.0}px)`, 
-              transition: "transform 0.6s cubic-bezier(0.15, 0.85, 0.3, 1)",
-              transformOrigin: "410px 255px" 
-            }}
-          >
-            {/* ================================================================= */}
-            {/* 6. PULSOS DE FLUXO (Data packets traversing through connections towards Core with motion trails) */}
-            {/* ================================================================= */}
-            <g>
-            {FLOW_PATHS.map((flow) => {
-              const beginSec = parseFloat(flow.begin);
-              const responsiveClass = flow.responsiveClass || "";
-
-              // Elegant comet trail / motion trail steps (decreasing sizes and opacities lagging behind)
-              const trailSteps = [
-                { scale: 0.8, opacity: 0.65, delayDelta: 0.08 },
-                { scale: 0.6, opacity: 0.40, delayDelta: 0.16 },
-                { scale: 0.4, opacity: 0.20, delayDelta: 0.24 },
-                { scale: 0.2, opacity: 0.08, delayDelta: 0.32 }
-              ];
-
+          <g opacity="0.58">
+            {CONNECTIONS.map(([from, to], index) => {
+              const a = NODES[from];
+              const b = NODES[to];
+              if (!a || !b) return null;
               return (
-                <g key={`flow-path-${flow.id}`} className={responsiveClass}>
-                  {/* Faint ambient line representing the search pipeline path itself */}
-                  <path
-                    d={flow.path}
-                    stroke={flow.fill}
-                    strokeWidth="1.0"
-                    fill="none"
-                    opacity="0.05"
-                    className="pointer-events-none"
-                  />
-
-                  {/* Procedural trailing sparks */}
-                  {trailSteps.map((step, sIdx) => {
-                    const trailBegin = `${beginSec + step.delayDelta}s`;
-                    return (
-                      <circle
-                        key={`flow-${flow.id}-trail-${sIdx}`}
-                        r={flow.r * step.scale}
-                        fill={flow.fill}
-                        className={flow.hasGlow ? "spark-pulse-glow" : ""}
-                        style={{ opacity: step.opacity }}
-                        pointerEvents="none"
-                      >
-                        <animateMotion
-                          dur={flow.dur}
-                          begin={trailBegin}
-                          repeatCount="indefinite"
-                          path={flow.path}
-                        />
-                      </circle>
-                    );
-                  })}
-
-                  {/* Main leading spark node */}
-                  <circle
-                    r={flow.r}
-                    fill={flow.fill}
-                    className={flow.hasGlow ? "spark-pulse-glow" : ""}
-                    style={{ opacity: 0.95 }}
-                    pointerEvents="none"
-                  >
-                    <animateMotion
-                      dur={flow.dur}
-                      begin={`${beginSec}s`}
-                      repeatCount="indefinite"
-                      path={flow.path}
-                    />
-                  </circle>
-                </g>
-              );
-            })}
-          </g>
-
-          {/* ================================================================= */}
-          {/* 3. CONSTELAÇÃO DE NÓS PRINCIPAIS E SECUNDÁRIOS                    */}
-          {/* ================================================================= */}
-          <g>
-            {Object.entries(NODES).map(([id, { x, y }], index) => {
-              const isSecondary = id.startsWith("n");
-              
-              // Skip rendering secondary nodes if filtering for core only
-              if (isCoreOnly && isSecondary) return null;
-              
-              // Decide responsive visibility
-              let responsiveClass = "inline";
-              if (isSecondary) {
-                // Hide portion of secondary nodes on mobile screens to simplify layout
-                responsiveClass = index % 2 === 0 ? "hidden sm:inline" : "inline";
-              } else {
-                // Distant nodes hide on mobile to keep center visual prominence
-                if (["U", "X", "Z", "Y", "W", "R"].includes(id)) {
-                  responsiveClass = "hidden md:inline";
-                }
-              }
-
-              // Determine exact radius
-              let radius = 2.0;
-              if (isSecondary) {
-                radius = 1.0 + (index % 3) * 0.4; // 1.0px to 1.8px (diameter 2.0px to 3.6px)
-              } else {
-                radius = 2.0 + (index % 3) * 0.45; // 2.0px to 2.9px (diameter 4.0px to 5.8px)
-              }
-
-              // Determine aesthetic luxury colors
-              const isWhiteWarm = !isSecondary && ["A", "B", "C", "D", "E", "H", "I", "J"].includes(id);
-              const fill = isWhiteWarm ? "#f8f8f8" : (index % 2 === 0 ? "#b28453" : "#e0d3c3");
-
-              // Glow for white hot nodes
-              const filter = isWhiteWarm ? "url(#softSparkGlow)" : undefined;
-
-              // Twinkle animations
-              const twinkleType = index % 3 === 0 ? "twinkle1" : (index % 3 === 1 ? "twinkle2" : "twinkle3");
-              const duration = `${5 + (index % 4) * 1.5}s`;
-              const delay = `${(index * 0.25) % 6}s`;
-
-              return (
-                <circle
-                  key={`const-node-${id}`}
-                  cx={x}
-                  cy={y}
-                  r={radius}
-                  fill={fill}
-                  filter={filter}
-                  className={responsiveClass}
-                  style={{
-                    animation: `${twinkleType} ${duration} ease-in-out infinite`,
-                    animationDelay: delay,
-                  }}
+                <line
+                  key={`connection-${index}`}
+                  x1={a.x}
+                  y1={a.y}
+                  x2={b.x}
+                  y2={b.y}
+                  stroke={index % 4 === 0 ? "#b28453" : "#e0d3c3"}
+                  strokeOpacity={index % 4 === 0 ? 0.34 : 0.18}
+                  strokeWidth={index % 5 === 0 ? 1.1 : 0.75}
                 />
               );
             })}
           </g>
 
-          {/* ================================================================= */}
-          {/* 2. NÚCLEO CENTRAL (Motor de Search Intelligence at 410,255)         */}
-          {/* ================================================================= */}
-          <g 
-            className="central-nucleus-group cursor-pointer select-none" 
-            pointerEvents="auto"
+          {NODES.map((node, index) => (
+            <circle
+              key={`node-${index}`}
+              cx={node.x}
+              cy={node.y}
+              r={node.r}
+              fill={node.tier === "core" ? "#ffffff" : index % 3 === 0 ? "#b28453" : "#e0d3c3"}
+              opacity={node.tier === "secondary" ? 0.56 : 0.9}
+              filter={node.tier === "core" || (node.tier === "primary" && index % 4 === 0) ? "url(#auditseo-glow)" : undefined}
+            />
+          ))}
+
+          <g
             onMouseEnter={() => setIsCoreHovered(true)}
             onMouseLeave={() => setIsCoreHovered(false)}
+            className="cursor-pointer"
           >
-            {/* Círculo externo r=78, fill com radial gradient dourado transparente */}
-            <circle cx="410" cy="255" r="78" fill="url(#goldTransparentNucleus)" />
-
-            {/* Círculo médio r=42, fill com radial gradient champagne */}
-            <circle cx="410" cy="255" r="42" fill="url(#champagneMiddleNucleus)" />
-
-            {/* Círculo interno r=13, branco quente/bege com filter glow */}
-            <circle cx="410" cy="255" r="13" fill="url(#innerWhiteWarmNucleus)" filter="url(#highEndCoreGlow)" />
-
-            {/* Sharp laser-focus core seed */}
-            <circle cx="410" cy="255" r="3.2" fill="#ffffff" style={{ filter: "drop-shadow(0 0 3px rgba(255, 255, 255, 1.0))" }} />
+            <circle cx="410" cy="255" r="82" fill="url(#auditseo-core)" opacity="0.5" />
+            <circle cx="410" cy="255" r="45" fill="url(#auditseo-core)" opacity="0.72" />
+            <circle cx="410" cy="255" r="14" fill="#f8f8f8" filter="url(#auditseo-glow)" />
+            <circle cx="410" cy="255" r="70" fill="transparent" />
           </g>
-
-          </g>
-
-          </g>
-
         </g>
       </svg>
 
-      {/* ================================================================= */}
-      {/* 7. LABELS (Discrete HUD capsules positioned in responsive HTML space) */}
-      {/* ================================================================= */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-20 overflow-visible"
-        style={{
-          transform: `translate(${mouseOffset.x * 0.6}px, ${mouseOffset.y * 0.6}px)`,
-          transition: "transform 0.6s cubic-bezier(0.15, 0.85, 0.3, 1)"
-        }}
+      <div
+        className={`pointer-events-none absolute z-20 w-[330px] transition-all duration-500 ${isCoreHovered ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-95 opacity-0"}`}
+        style={{ left: "54%", top: "43%", transformOrigin: "bottom center" }}
       >
-        
-        {/* Core Interactive Overlay Card (Detailed Search Intelligence Info on Core Nucleus hover) */}
-        <div
-          className={`absolute transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none pointer-events-none ${
-            isCoreHovered ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
-          }`}
-          style={{
-            left: "54%", // Align near core A center
-            top: "43%",  // Positioned beautifully above the central core
-            transform: "translateX(-50%) translateY(-100%)",
-            width: "320px",
-            zIndex: 50,
-          }}
-        >
-          <div className="bg-[#11100f]/95 backdrop-blur-md border border-[#b28453]/50 rounded-lg p-5 shadow-[0_20px_48px_rgba(178,132,83,0.22)] text-left font-sans">
-            <div className="flex items-center justify-between border-b border-[#b28453]/20 pb-2 px-0.5 mb-3">
-              <span className="font-mono text-[9px] font-bold tracking-[0.16em] text-[#b28453] uppercase">
-                CORE STATUS: ACTIVE
-              </span>
-              <div className="flex items-center gap-1.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e0d3c3] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e0d3c3]"></span>
-                </span>
-                <span className="font-mono text-[8px] text-[#e0d3c3]/70 uppercase tracking-widest">
-                  LIVE
-                </span>
-              </div>
-            </div>
+        <div className="-translate-x-1/2 -translate-y-full rounded-lg border border-[#b28453]/50 bg-[#11100f]/95 p-5 text-left shadow-[0_20px_48px_rgba(178,132,83,0.22)] backdrop-blur-md">
+          <div className="mb-3 flex items-center justify-between border-b border-[#b28453]/20 pb-2">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
+              VISUALIZAÇÃO CONCEITUAL
+            </span>
+            <span className="font-mono text-[8px] uppercase tracking-widest text-[#e0d3c3]/60">
+              S.I.G.N.A.L.
+            </span>
+          </div>
 
-            <h4 className="text-sm font-semibold text-[#f8f8f8] tracking-wide mb-1.5">
-              SEARCH INTELLIGENCE NETWORK
-            </h4>
+          <h4 className="mb-1.5 text-sm font-semibold tracking-wide text-[#f8f8f8]">
+            SEARCH INTELLIGENCE ECOSYSTEM
+          </h4>
+          <p className="mb-4 text-[11px] font-normal leading-[1.55] text-[#e0d3c3]/85">
+            Representação visual de como sinais técnicos, intenção, entidades, conteúdo, reputação e evidências se conectam em uma estratégia integrada de busca. Não representa telemetria ou métricas em tempo real.
+          </p>
 
-            <p className="text-[11px] leading-[1.5] text-[#e0d3c3]/85 mb-4 font-normal">
-              Camada neural premium que mapeia co-ocorrências semânticas, grafos de conhecimento e inteligência de busca em tempo real para construção de autoridade de entidade em buscadores e plataformas de IA.
-            </p>
-
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 border-t border-[#b28453]/15 pt-3">
-              <div>
-                <div className="text-[8px] font-mono tracking-wider text-[#e0d3c3]/50 uppercase">Densidade de Sinal</div>
-                <div className="text-[12px] font-mono font-semibold text-[#b28453]">94.2% (Ótimo)</div>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#b28453]/15 pt-3">
+            {AXES.map(([label, value]) => (
+              <div key={label}>
+                <div className="font-mono text-[8px] uppercase tracking-wider text-[#e0d3c3]/50">{label}</div>
+                <div className="mt-0.5 font-mono text-[10px] font-semibold leading-[1.35] text-[#b28453]">{value}</div>
               </div>
-              <div>
-                <div className="text-[8px] font-mono tracking-wider text-[#e0d3c3]/50 uppercase">Pontos Conectados</div>
-                <div className="text-[12px] font-mono font-semibold text-[#b28453]">46 Nós Ativos</div>
-              </div>
-              <div>
-                <div className="text-[8px] font-mono tracking-wider text-[#e0d3c3]/50 uppercase">Latência Média</div>
-                <div className="text-[12px] font-mono font-semibold text-[#e0d3c3]">&lt; 12ms</div>
-              </div>
-              <div>
-                <div className="text-[8px] font-mono tracking-wider text-[#e0d3c3]/50 uppercase">Camada Estratégica</div>
-                <div className="text-[12px] font-mono font-semibold text-[#e0d3c3]">Autoridade L1</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }
