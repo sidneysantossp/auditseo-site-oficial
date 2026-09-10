@@ -48,3 +48,6 @@ jobs:
 
       - name: Run launch smoke
         run: node scripts/smoke-launch.mjs "$BASE_URL"
+
+      - name: Run lead delivery smoke
+        run: node scripts/smoke-lead-delivery.mjs "$BASE_URL"
