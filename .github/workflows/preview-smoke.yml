@@ -1,0 +1,113 @@
+name: Preview HTTP/SEO Smoke
+
+on:
+  push:
+    branches:
+      - fix/launch-p0-search-foundation
+      - content/search-intelligence-positioning-v1
+      - content/search-intelligence-positioning-v2
+      - content/authority-to-lead-v1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Resolve Preview URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$GITHUB_REF_NAME" in
+            fix/launch-p0-search-foundation)
+              url="https://auditseo-site-oficial-git-fix-launch-p0-search-6071ef-auditseo.vercel.app"
+              ;;
+            content/search-intelligence-positioning-v1)
+              url="https://auditseo-site-oficial-git-content-search-intell-728331-auditseo.vercel.app"
+              ;;
+            content/search-intelligence-positioning-v2)
+              url="https://auditseo-site-oficial-git-content-search-intell-18a57a-auditseo.vercel.app"
+              ;;
+            content/authority-to-lead-v1)
+              url="https://auditseo-site-oficial-git-content-authority-to-lead-v1-auditseo.vercel.app"
+              ;;
+            *)
+              echo "::error::No Preview URL mapping for branch $GITHUB_REF_NAME"
+              exit 2
+              ;;
+          esac
+          echo "BASE_URL=$url" >> "$GITHUB_ENV"
+          echo "Preview: $url"
+
+      - name: Verify bypass secret is configured
+        shell: bash
+        run: |
+          if [[ -z "${VERCEL_AUTOMATION_BYPASS_SECRET:-}" ]]; then
+            echo "::error::GitHub Actions secret VERCEL_AUTOMATION_BYPASS_SECRET is not configured."
+            exit 2
+          fi
+          echo "Automation bypass secret is configured."
+
+      - name: Wait for matching Vercel deployment
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          api="https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}/status"
+          for attempt in {1..30}; do
+            state=$(curl -fsS \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "$api" \
+              | jq -r '[.statuses[] | select(.context == "Vercel")][0].state // "missing"')
+            echo "Vercel status for ${GITHUB_SHA}: ${state} (attempt ${attempt})"
+            if [[ "$state" == "success" ]]; then
+              exit 0
+            fi
+            if [[ "$state" == "failure" || "$state" == "error" ]]; then
+              echo "::error::Vercel deployment failed for ${GITHUB_SHA}."
+              exit 1
+            fi
+            sleep 10
+          done
+          echo "::error::Timed out waiting for the Vercel status of ${GITHUB_SHA}."
+          exit 1
+
+      - name: Wait for protected Preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in {1..12}; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 \
+              -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET" \
+              "$BASE_URL/robots.txt" || true)
+            echo "Attempt $attempt: HTTP $code"
+            if [[ "$code" != "000" && "$code" != "302" && "$code" != "401" && "$code" != "403" ]]; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::Preview remained protected or unreachable."
+          exit 1
+
+      - name: Run protected HTTP/SEO smoke
+        run: node scripts/smoke-launch.mjs "$BASE_URL"
+
+      - name: Run one-shot lead delivery canary
+        if: contains(github.event.head_commit.message, '[lead-canary]')
+        run: node scripts/smoke-lead-delivery.mjs "$BASE_URL"
