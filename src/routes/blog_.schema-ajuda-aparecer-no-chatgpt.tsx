@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ArticlePage from "@/components/ArticlePage";
-import { crawlerArticleV2 } from "@/content/articleCrawlerV2";
+import { searchAiOpsArticles } from "@/content/articlesSearchAiOps";
 import { createArticleHead } from "@/lib/articleSeo";
 
-const article = crawlerArticleV2;
+const article = searchAiOpsArticles["schema-ajuda-aparecer-no-chatgpt"];
 
-export const Route = createFileRoute("/blog/como-auditar-crawlers-de-ia")({
+export const Route = createFileRoute("/blog/schema-ajuda-aparecer-no-chatgpt")({
   head: () => createArticleHead(article),
   component: () => <ArticlePage article={article} />,
 });

@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ArticlePage from "@/components/ArticlePage";
-import { crawlerArticleV2 } from "@/content/articleCrawlerV2";
+import { scenarioArticles } from "@/content/articlesScenarios";
 import { createArticleHead } from "@/lib/articleSeo";
 
-const article = crawlerArticleV2;
+const article = scenarioArticles["site-indexado-sem-impressoes"];
 
-export const Route = createFileRoute("/blog/como-auditar-crawlers-de-ia")({
+export const Route = createFileRoute("/blog/site-indexado-sem-impressoes")({
   head: () => createArticleHead(article),
   component: () => <ArticlePage article={article} />,
 });

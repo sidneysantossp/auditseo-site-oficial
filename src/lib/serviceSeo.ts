@@ -34,7 +34,7 @@ export function createServiceHead(data: ServicePageData) {
             name: data.name,
             description: data.directAnswer,
             provider: {
-              "@type": "ProfessionalService",
+              "@type": "Organization",
               "@id": "https://www.auditseo.com.br/#organization",
               name: "AUDITSEO",
             },

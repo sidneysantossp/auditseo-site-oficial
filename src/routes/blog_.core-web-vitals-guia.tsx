@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ArticlePage from "@/components/ArticlePage";
-import { crawlerArticleV2 } from "@/content/articleCrawlerV2";
+import { legacyPreservedArticles } from "@/content/articlesLegacyPreserved";
 import { createArticleHead } from "@/lib/articleSeo";
 
-const article = crawlerArticleV2;
+const article = legacyPreservedArticles["core-web-vitals-guia"];
 
-export const Route = createFileRoute("/blog/como-auditar-crawlers-de-ia")({
+export const Route = createFileRoute("/blog/core-web-vitals-guia")({
   head: () => createArticleHead(article),
   component: () => <ArticlePage article={article} />,
 });

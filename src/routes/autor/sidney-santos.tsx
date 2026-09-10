@@ -8,7 +8,7 @@ export const Route = createFileRoute("/autor/sidney-santos")({
       path: "/autor/sidney-santos",
       title: "Sidney Santos — Especialista em SEO e Search Intelligence | AUDITSEO",
       description:
-        "Sidney Santos atua com busca desde 2009 e é fundador da AUDITSEO, consultoria de Inteligência de Busca e Autoridade de Entidade.",
+        "Sidney Santos atua com busca desde 2009 e é fundador da AUDITSEO, consultoria de Search Intelligence orientada por diagnóstico, evidência e mensuração.",
     }),
     scripts: [
       {
@@ -21,17 +21,17 @@ export const Route = createFileRoute("/autor/sidney-santos")({
           url: "https://www.auditseo.com.br/autor/sidney-santos",
           jobTitle: "Fundador da AUDITSEO e especialista em SEO e Search Intelligence",
           description:
-            "Sidney Santos atua no mercado de busca desde 2009 e é fundador da AUDITSEO.",
+            "Sidney Santos atua no mercado de busca desde 2009 e é fundador da AUDITSEO, consultoria de Search Intelligence.",
           worksFor: {
             "@id": "https://www.auditseo.com.br/#organization",
           },
           knowsAbout: [
             "SEO técnico",
             "Search Intelligence",
+            "Search AI",
             "Autoridade de entidade",
             "Dados estruturados",
             "GEO",
-            "Busca generativa",
           ],
         }),
       },

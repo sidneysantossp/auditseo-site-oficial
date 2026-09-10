@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -115,6 +115,19 @@ function navigateTo(sectionId: string) {
   window.location.assign(routeByNav[sectionId] || "/");
 }
 
+function scenarioIdFromUrl() {
+  if (typeof window === "undefined") return null;
+  const requested = new URLSearchParams(window.location.search).get("cenario");
+  return requested && scenarios.some((scenario) => scenario.id === requested) ? requested : null;
+}
+
+function updateScenarioInUrl(id: string) {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  url.searchParams.set("cenario", id);
+  window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
 export default function CompanyDiagnosticPage() {
   const [selectedId, setSelectedId] = useState<string>("foundation");
   const selected = scenarios.find((scenario) => scenario.id === selectedId) || scenarios[0];
@@ -127,6 +140,16 @@ export default function CompanyDiagnosticPage() {
     projectUrl: "",
     context: "",
   });
+
+  useEffect(() => {
+    const requested = scenarioIdFromUrl();
+    if (requested) setSelectedId(requested);
+  }, []);
+
+  const selectScenario = (id: string) => {
+    setSelectedId(id);
+    updateScenarioInUrl(id);
+  };
 
   return (
     <div className="min-h-screen bg-[#11100f] text-[#f8f8f8]">
@@ -178,7 +201,7 @@ export default function CompanyDiagnosticPage() {
                   <button
                     key={scenario.id}
                     type="button"
-                    onClick={() => setSelectedId(scenario.id)}
+                    onClick={() => selectScenario(scenario.id)}
                     className={`min-h-[210px] rounded-[22px] border p-6 text-left transition-all duration-300 ${active ? "border-[#b28453] bg-[#11100f] text-[#f8f8f8] shadow-[0_22px_55px_rgba(17,16,15,0.22)]" : "border-[#11100f]/12 bg-[#f4eee5] text-[#11100f] hover:-translate-y-1 hover:border-[#b28453]/55"}`}
                     aria-pressed={active}
                   >

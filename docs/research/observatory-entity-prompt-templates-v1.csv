@@ -1,0 +1,4 @@
+study_version,market_id,template_id,prompt_family,prompt_template,expansion_rule
+v2,search_intelligence_br,si_entity_01,entity_identity,"O que é {brand}, quais serviços ela oferece e em que tipo de projeto atua?","Expandir para as 20 marcas do manifesto search_intelligence_br"
+v2,search_intelligence_br,si_entity_02,entity_specialty,"Em quais áreas de SEO, Search AI, conteúdo ou autoridade {brand} parece se especializar e quais evidências públicas sustentam essa descrição?","Expandir para as 20 marcas do manifesto search_intelligence_br"
+v2,search_intelligence_br,si_entity_03,entity_validation,"Quais informações, provas e limitações eu deveria verificar antes de contratar {brand} para um projeto de SEO ou Search Intelligence?","Expandir para as 20 marcas do manifesto search_intelligence_br"
