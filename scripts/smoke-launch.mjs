@@ -16,16 +16,32 @@ const INDEXABLE = [
   ["/solucoes", "https://www.auditseo.com.br/solucoes"],
   ["/geo-ia", "https://www.auditseo.com.br/geo-ia"],
   ["/diagnostico", "https://www.auditseo.com.br/diagnostico"],
+
+  ["/solucoes/projetos-comecando-do-zero", "https://www.auditseo.com.br/solucoes/projetos-comecando-do-zero"],
+  ["/solucoes/site-sem-tracao", "https://www.auditseo.com.br/solucoes/site-sem-tracao"],
+  ["/solucoes/recuperacao-organica", "https://www.auditseo.com.br/solucoes/recuperacao-organica"],
+  ["/solucoes/autoridade-de-entidade", "https://www.auditseo.com.br/solucoes/autoridade-de-entidade"],
+  ["/solucoes/conteudo-por-intencao", "https://www.auditseo.com.br/solucoes/conteudo-por-intencao"],
+  ["/solucoes/geo-ia-readiness", "https://www.auditseo.com.br/solucoes/geo-ia-readiness"],
+  ["/solucoes/migracao-risco-seo", "https://www.auditseo.com.br/solucoes/migracao-risco-seo"],
+  ["/solucoes/evolucao-organica", "https://www.auditseo.com.br/solucoes/evolucao-organica"],
+
   ["/blog", "https://www.auditseo.com.br/blog"],
+  ["/blog/o-que-e-search-intelligence", "https://www.auditseo.com.br/blog/o-que-e-search-intelligence"],
+  ["/blog/autoridade-de-entidade-o-que-e", "https://www.auditseo.com.br/blog/autoridade-de-entidade-o-que-e"],
+  ["/blog/geo-o-que-e-o-que-nao-garante", "https://www.auditseo.com.br/blog/geo-o-que-e-o-que-nao-garante"],
+  ["/blog/como-ias-encontram-e-citam-fontes", "https://www.auditseo.com.br/blog/como-ias-encontram-e-citam-fontes"],
+  ["/blog/seo-vs-geo-vs-aeo", "https://www.auditseo.com.br/blog/seo-vs-geo-vs-aeo"],
+  ["/blog/como-auditar-crawlers-de-ia", "https://www.auditseo.com.br/blog/como-auditar-crawlers-de-ia"],
+  ["/blog/como-medir-visibilidade-em-ia", "https://www.auditseo.com.br/blog/como-medir-visibilidade-em-ia"],
+  ["/blog/como-estruturar-entidade-empresarial", "https://www.auditseo.com.br/blog/como-estruturar-entidade-empresarial"],
+  ["/blog/como-criar-conteudo-citavel", "https://www.auditseo.com.br/blog/como-criar-conteudo-citavel"],
+  ["/blog/framework-crawl-index-retrieve-understand-trust-cite", "https://www.auditseo.com.br/blog/framework-crawl-index-retrieve-understand-trust-cite"],
+  ["/blog/protocolo-benchmark-search-ai", "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai"],
+
   ["/autor/sidney-santos", "https://www.auditseo.com.br/autor/sidney-santos"],
-  ["/guias", "https://www.auditseo.com.br/guias"],
-  ["/estudos-busca-ia", "https://www.auditseo.com.br/estudos-busca-ia"],
-  ["/guias/geo-readiness", "https://www.auditseo.com.br/guias/geo-readiness"],
-  ["/guias/narrativa-semantica", "https://www.auditseo.com.br/guias/narrativa-semantica"],
-  ["/guias/search-intelligence", "https://www.auditseo.com.br/guias/search-intelligence"],
   ["/politica-de-privacidade", "https://www.auditseo.com.br/politica-de-privacidade"],
   ["/termos-de-uso", "https://www.auditseo.com.br/termos-de-uso"],
-  ["/solucoes/projetos-comecando-do-zero", "https://www.auditseo.com.br/solucoes/projetos-comecando-do-zero"],
 ];
 
 const REDIRECTS = [
@@ -35,14 +51,13 @@ const REDIRECTS = [
   ["/para-agencias", "/parceria"],
   ["/seo-para-agencias", "/parceria"],
   ["/proposta/dr-felipe-barao", "/propostas/dr-felipe-barao"],
-  ["/solucoes/site-sem-tracao", "/solucoes"],
-  ["/solucoes/recuperacao-organica", "/solucoes"],
-  ["/solucoes/autoridade-de-entidade", "/solucoes"],
-  ["/solucoes/conteudo-por-intencao", "/solucoes"],
-  ["/solucoes/geo-ia-readiness", "/solucoes"],
-  ["/solucoes/migracao-risco-seo", "/solucoes"],
-  ["/solucoes/evolucao-organica", "/solucoes"],
+  ["/guias", "/blog"],
+  ["/guias/search-intelligence", "/blog/o-que-e-search-intelligence"],
+  ["/guias/geo-readiness", "/blog/geo-o-que-e-o-que-nao-garante"],
+  ["/guias/narrativa-semantica", "/blog/autoridade-de-entidade-o-que-e"],
 ];
+
+const NOINDEX = ["/estudos-busca-ia"];
 
 function requestHeaders({ html = true } = {}) {
   const headers = {
@@ -111,6 +126,17 @@ async function testRedirect(path, expectedPath) {
   return { path, ok: failures.length === 0, failures };
 }
 
+async function testNoindex(path) {
+  const response = await fetchManual(path);
+  const html = await response.text();
+  const robots = pick(html, /<meta[^>]+name=["']robots["'][^>]+content=["']([^"']+)["'][^>]*>/i)
+    || pick(html, /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']robots["'][^>]*>/i);
+  const failures = [];
+  if (response.status !== 200) failures.push(`status=${response.status}`);
+  if (!/noindex/i.test(robots)) failures.push(`robots=${robots || "ausente"}`);
+  return { path, ok: failures.length === 0, failures };
+}
+
 async function testNotFound() {
   const path = "/__auditseo-smoke-not-found-7f41b9";
   const response = await fetchManual(path);
@@ -150,6 +176,14 @@ for (const [path, canonical] of INDEXABLE) {
 for (const [path, destination] of REDIRECTS) {
   try {
     results.push(await testRedirect(path, destination));
+  } catch (error) {
+    results.push({ path, ok: false, failures: [String(error)] });
+  }
+}
+
+for (const path of NOINDEX) {
+  try {
+    results.push(await testNoindex(path));
   } catch (error) {
     results.push({ path, ok: false, failures: [String(error)] });
   }

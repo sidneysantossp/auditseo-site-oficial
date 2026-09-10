@@ -9,38 +9,38 @@ const navigationLinks = [
   ["Início", "/"],
   ["Método S.I.G.N.A.L", "/metodo-signal"],
   ["Soluções", "/solucoes"],
-  ["Conteúdo", "/blog"],
+  ["Biblioteca", "/blog"],
   ["GEO & IA", "/geo-ia"],
 ];
 
 const solutionLinks = [
-  ["Projetos começando do zero", "/solucoes/projetos-comecando-do-zero"],
-  ["Sites no ar sem tração", "/solucoes#organic-activation"],
-  ["Recuperação orgânica", "/solucoes#search-recovery"],
-  ["Autoridade de entidade", "/solucoes#entity-authority"],
-  ["Conteúdo por intenção", "/solucoes#intent-content-architecture"],
-  ["GEO & IA Readiness", "/solucoes#geo-ai-readiness"],
-  ["Migração e risco SEO", "/solucoes#seo-migration-risk-control"],
-  ["Evolução orgânica", "/solucoes#organic-evolution-cycle"],
+  ["Search Foundation", "/solucoes/projetos-comecando-do-zero"],
+  ["Organic Activation", "/solucoes/site-sem-tracao"],
+  ["Search Recovery", "/solucoes/recuperacao-organica"],
+  ["Entity Authority", "/solucoes/autoridade-de-entidade"],
+  ["Intent Content Architecture", "/solucoes/conteudo-por-intencao"],
+  ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
+  ["SEO Migration & Risk Control", "/solucoes/migracao-risco-seo"],
+  ["Organic Evolution Cycle", "/solucoes/evolucao-organica"],
 ];
 
 const consultingLinks = [
-  ["Como atuamos", "/#atuacao"],
+  ["Como atuamos", "/"],
   ["Método S.I.G.N.A.L", "/metodo-signal"],
-  ["Autoridade de entidade", "/solucoes#entity-authority"],
-  ["GEO & IA Readiness", "/geo-ia"],
+  ["Search Intelligence", "/blog/o-que-e-search-intelligence"],
+  ["Autoridade de entidade", "/solucoes/autoridade-de-entidade"],
+  ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
   ["Avaliação estratégica", "/diagnostico"],
-  ["Diagnóstico interativo", "/diagnostico"],
 ];
 
 const contentLinks = [
-  ["Blog Oficial", "/blog"],
+  ["Biblioteca AUDITSEO", "/blog"],
+  ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
+  ["Autoridade de entidade", "/blog/autoridade-de-entidade-o-que-e"],
+  ["GEO sem hype", "/blog/geo-o-que-e-o-que-nao-garante"],
+  ["Como IAs encontram fontes", "/blog/como-ias-encontram-e-citam-fontes"],
+  ["Programa de pesquisa", "/estudos-busca-ia"],
   ["Sidney Santos", "/autor/sidney-santos"],
-  ["Guias técnicos", "/guias"],
-  ["Estudos de busca com IA", "/estudos-busca-ia"],
-  ["GEO Readiness", "/guias/geo-readiness"],
-  ["Narrativa semântica", "/guias/narrativa-semantica"],
-  ["Search Intelligence", "/guias/search-intelligence"],
 ];
 
 const footerLinkClass = "block text-[#f8f8f8]/72 transition-colors hover:text-[#b28453]";
@@ -127,10 +127,10 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             <div className="min-w-0 max-w-2xl">
               <h4 className="mb-2 max-w-[760px] font-display text-lg font-bold leading-snug sm:text-xl">
-                Receba insights sobre inteligência de busca, GEO e autoridade de entidade
+                Receba análises sobre Search Intelligence, SEO e a nova busca
               </h4>
               <p className="max-w-[760px] text-xs font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-sm">
-                Tendências analíticas e bastidores do mercado orgânico diretamente no seu e-mail
+                Novos artigos, estudos e aprendizados da AUDITSEO diretamente no seu e-mail
               </p>
             </div>
 
@@ -191,12 +191,12 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
             <a href="/" className="mb-4 inline-flex w-fit">
               <img
                 src="/auditseo-logo.png"
-                alt="AUDITSEO - Search Intelligence Partner"
+                alt="AUDITSEO - Search Intelligence"
                 className="h-auto w-[240px] max-w-full object-contain"
               />
             </a>
             <p className="max-w-sm text-xs leading-[1.7] text-[#f8f8f8]/64">
-              Consultoria de Inteligência de Busca e Autoridade de Entidade. Identificamos o que limita a presença da sua empresa e coordenamos a estratégia para fortalecer autoridade, visibilidade e reconhecimento no Google e nas plataformas de inteligência artificial.
+              Consultoria de Search Intelligence e Autoridade de Entidade. Identificamos os sinais que limitam descoberta, compreensão, confiança e consideração da sua empresa — e coordenamos o plano para evoluir sua presença no Google e nas plataformas de IA.
             </p>
           </div>
 
@@ -237,7 +237,7 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
           <div className="flex flex-col items-center md:items-start">
             <span>© 2026 AUDITSEO. Todos os direitos reservados.</span>
             <span className="mt-1 block text-[10px] text-[#f8f8f8]/42">
-              Consultoria de Inteligência de Busca e Autoridade de Entidade.
+              Search Intelligence · SEO · Autoridade de Entidade · AI Search
             </span>
           </div>
 

@@ -1,9 +1,12 @@
-name: Preview HTTP smoke
+name: Preview HTTP/SEO Smoke
 
 on:
   push:
     branches:
       - fix/launch-p0-search-foundation
+      - content/search-intelligence-positioning-v1
+      - content/search-intelligence-positioning-v2
+      - content/authority-to-lead-v1
   workflow_dispatch:
 
 permissions:
@@ -15,22 +18,51 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      BASE_URL: https://auditseo-site-oficial-git-fix-launch-p0-search-6071ef-auditseo.vercel.app
       VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify automation bypass secret
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Resolve Preview URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$GITHUB_REF_NAME" in
+            fix/launch-p0-search-foundation)
+              url="https://auditseo-site-oficial-git-fix-launch-p0-search-6071ef-auditseo.vercel.app"
+              ;;
+            content/search-intelligence-positioning-v1)
+              url="https://auditseo-site-oficial-git-content-search-intell-728331-auditseo.vercel.app"
+              ;;
+            content/search-intelligence-positioning-v2)
+              url="https://auditseo-site-oficial-git-content-search-intell-18a57a-auditseo.vercel.app"
+              ;;
+            content/authority-to-lead-v1)
+              url="https://auditseo-site-oficial-git-content-authority-to-lead-v1-auditseo.vercel.app"
+              ;;
+            *)
+              echo "::error::No Preview URL mapping for branch $GITHUB_REF_NAME"
+              exit 2
+              ;;
+          esac
+          echo "BASE_URL=$url" >> "$GITHUB_ENV"
+          echo "Preview: $url"
+
+      - name: Verify bypass secret is configured
         shell: bash
         run: |
           if [[ -z "${VERCEL_AUTOMATION_BYPASS_SECRET:-}" ]]; then
-            echo "::error::GitHub Actions secret VERCEL_AUTOMATION_BYPASS_SECRET is not configured. The Preview is protected by Vercel SSO, so the HTTP smoke cannot reach the application."
+            echo "::error::GitHub Actions secret VERCEL_AUTOMATION_BYPASS_SECRET is not configured."
             exit 2
           fi
           echo "Automation bypass secret is configured."
 
-      - name: Wait for Vercel deployment of this commit
+      - name: Wait for matching Vercel deployment
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -56,7 +88,7 @@ jobs:
           echo "::error::Timed out waiting for the Vercel status of ${GITHUB_SHA}."
           exit 1
 
-      - name: Wait for Preview to respond
+      - name: Wait for protected Preview
         shell: bash
         run: |
           set -euo pipefail
@@ -70,11 +102,12 @@ jobs:
             fi
             sleep 10
           done
-          echo "Preview remained protected or unreachable."
+          echo "::error::Preview remained protected or unreachable."
           exit 1
 
-      - name: Run launch smoke
+      - name: Run protected HTTP/SEO smoke
         run: node scripts/smoke-launch.mjs "$BASE_URL"
 
-      - name: Run lead delivery smoke
+      - name: Run one-shot lead delivery canary
+        if: contains(github.event.head_commit.message, '[lead-canary]')
         run: node scripts/smoke-lead-delivery.mjs "$BASE_URL"
