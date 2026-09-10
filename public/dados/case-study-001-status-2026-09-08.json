@@ -1,0 +1,90 @@
+{
+  "study": "AUDITSEO Case Study #001",
+  "canonicalUrl": "https://www.auditseo.com.br/case-study/auditseo-search-intelligence",
+  "snapshotDate": "2026-09-08",
+  "snapshotType": "pre-release status",
+  "methodUrl": "https://www.auditseo.com.br/dados/case-study-001-metodo-evidencia-prazos-2026-09-08.md",
+  "frozenSources": {
+    "evidenceLedger": "https://www.auditseo.com.br/dados/case-study-001-evidence-ledger-2026-09-08.csv",
+    "timeToSignal": "https://www.auditseo.com.br/dados/case-study-001-time-to-signal-2026-09-08.csv"
+  },
+  "status": {
+    "release": {
+      "state": "blocked",
+      "maturity": "PRE",
+      "reason": "The protected Vercel Preview has not yet been reached by the automated HTTP smoke because the GitHub Actions VERCEL_AUTOMATION_BYPASS_SECRET is not configured.",
+      "claimAllowed": "Build and Preview deployment readiness may be described; production/runtime SEO success may not be claimed."
+    },
+    "googleSearch": {
+      "maturity": "M0",
+      "finalizedBaselinePeriod": {
+        "start": "2026-08-09",
+        "end": "2026-09-05"
+      },
+      "impressions": 0,
+      "clicks": 0,
+      "interpretation": "This is a Google Search Performance baseline only. It does not mean zero indexed URLs or zero Google awareness."
+    },
+    "searchAI": {
+      "maturity": "PRE",
+      "baselineCollected": false,
+      "frozenAuthorityToLeadPrompts": 40,
+      "interpretation": "The prompt set is frozen, but no Search AI visibility result may be claimed before the first protocol-compliant collection."
+    },
+    "earnedAuthority": {
+      "maturity": "PRE",
+      "distributionStarted": false,
+      "independentMentionsObserved": 0,
+      "independentBacklinksObserved": 0,
+      "interpretation": "Distribution assets are prepared, but no earned result is claimed before independent third-party evidence exists."
+    },
+    "commercialAttribution": {
+      "maturity": "PRE",
+      "productionLeadObserved": false,
+      "firstTouchInstrumentationPrepared": true,
+      "declaredDiscoverySourcePrepared": true,
+      "interpretation": "Attribution infrastructure is prepared; no lead, meeting or revenue result is claimed until a delivered real event exists."
+    }
+  },
+  "evidenceLedger": {
+    "entries": 13,
+    "maturityCounts": {
+      "PRE": 12,
+      "M0": 1,
+      "M1": 0,
+      "M2": 0,
+      "M3": 0,
+      "M4": 0
+    },
+    "directionalResultCounts": {
+      "positive": 0,
+      "negative": 0,
+      "neutral": 13,
+      "inconclusive": 0
+    }
+  },
+  "timeToSignal": {
+    "milestonesDefined": 19,
+    "pending": 19,
+    "observed": 0,
+    "firstReferenceEvent": "Production release verified",
+    "referenceEventObserved": false,
+    "interpretation": "No elapsed-time claim can begin until the relevant start event has actually occurred."
+  },
+  "integrityRules": [
+    "PRE is implementation readiness, not evidence of effect.",
+    "M1 is a first signal and cannot be converted into a promise of repeatability.",
+    "Negative and inconclusive outcomes remain in the historical record.",
+    "A time range may be proposed only after multiple comparable observations with sufficient maturity.",
+    "Search AI mention, citation, provider recommendation and lead attribution are measured separately.",
+    "A prospect declaration of discovery supports attribution but does not prove algorithmic causality."
+  ],
+  "nextStateChangeRequires": [
+    "Production HTTP/SEO smoke reaches the application and passes.",
+    "The new architecture is released to production.",
+    "The first protocol-compliant Search AI baseline is collected.",
+    "Post-launch distribution actually starts before earned-authority timing begins.",
+    "Real Search, referral or commercial observations are recorded before any PRE item advances to M1."
+  ],
+  "immutabilityNote": "This file is a dated snapshot tied to frozen source files from 2026-09-08. Future state changes must be published as a new dated snapshot rather than silently rewriting this historical record."
+}

@@ -1,11 +1,14 @@
 import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Search, ShieldCheck } from "lucide-react";
 import { articleList } from "@/content/articles";
 import { advancedArticleList } from "@/content/articlesAdvanced";
+import { authorityToLeadArticleList } from "@/content/articlesAuthorityToLead";
 import { buyerArticleList } from "@/content/articlesBuyer";
 import { buyerOpsArticleList } from "@/content/articlesBuyerOps";
 import { demandArticleList } from "@/content/articlesDemand";
+import { geoMarketBenchmarkArticleList } from "@/content/articlesGeoMarketBenchmark";
 import { growthOpsArticleList } from "@/content/articlesGrowthOps";
 import { legacyPreservedArticleList } from "@/content/articlesLegacyPreserved";
+import { pricingResearchArticleList } from "@/content/articlesPricingResearch";
 import { protocolArticleList } from "@/content/articlesProtocols";
 import { scenarioArticleList } from "@/content/articlesScenarios";
 import { searchAiOpsArticleList } from "@/content/articlesSearchAiOps";
@@ -103,15 +106,42 @@ export default function BlogHubPageV2() {
       <Collection id="fundamentos" eyebrow="FUNDAMENTOS" title="Os conceitos que definem como a AUDITSEO enxerga a busca." text="Comece aqui para entender Search Intelligence, autoridade de entidade, GEO sem hype e como fontes entram em experiências de busca com IA." items={articleList} />
       <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="tecnica" eyebrow="TÉCNICA E MENSURAÇÃO" title="Documentos para transformar conceitos em diagnóstico observável." text="Crawlers, arquitetura de entidade, SEO local, Core Web Vitals, diferenças entre SEO/GEO/AEO e medição de visibilidade em IA com fontes e limitações explícitas." items={[...advancedArticleList, ...legacyPreservedArticleList]} /></div>
       <Collection id="protocolos" eyebrow="PROTOCOLOS AUDITSEO" title="Metodologias proprietárias publicadas antes dos resultados." text="Esses documentos explicam como avaliamos citabilidade, como localizamos a etapa quebrada da cadeia de busca e como o benchmark de Search AI deve ser coletado e classificado." items={protocolArticleList} />
-      <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="mercado" eyebrow="PERGUNTAS DO MERCADO" title="Temas populares respondidos com mais restrição do que promessa." text="Aqui entram dúvidas com alta intenção prática, como aparecer no ChatGPT e o papel de llms.txt. O objetivo é separar o que a plataforma documenta, o que a evidência observa e o que continua incerto." items={demandArticleList} /></div>
+      <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="mercado" eyebrow="PERGUNTAS DO MERCADO" title="Temas populares respondidos com mais restrição do que promessa." text="Aqui entram dúvidas com alta intenção prática, como aparecer no ChatGPT, entrar na consideração como fornecedor e o papel de llms.txt. O objetivo é separar o que a plataforma documenta, o que a evidência observa e o que continua incerto." items={[...authorityToLeadArticleList, ...demandArticleList]} /></div>
       <Collection id="diagnostico-search-ai" eyebrow="DIAGNÓSTICO SEARCH AI" title="Quando a empresa já está testando IA e precisa descobrir por que não aparece." text="Playbooks para separar acesso, indexação, recuperação, entendimento, schema, citabilidade e mensuração — sem transformar ausência em IA em uma única causa genérica." items={searchAiOpsArticleList} />
       <div className="border-y border-[#b28453]/10 bg-[#151413]"><Collection id="cenarios" eyebrow="CENÁRIOS DE OPERAÇÃO" title="Problemas concretos que exigem diagnósticos diferentes." text="Do pré-lançamento à estagnação de uma operação madura: estes documentos conectam sintomas, decisões editoriais e ciclos de crescimento às frentes comerciais adequadas." items={[...scenarioArticleList, ...growthOpsArticleList]} /></div>
-      <Collection id="contratacao" eyebrow="DECISÃO DE CONTRATAÇÃO" title="Conteúdo para empresas que estão escolhendo como operar SEO." text="Critérios para avaliar consultorias, agências, auditorias, times internos e modelos híbridos sem transformar o processo de compra em uma comparação superficial de pacotes e promessas." items={[...buyerArticleList, ...buyerOpsArticleList]} />
+      <Collection id="contratacao" eyebrow="DECISÃO DE CONTRATAÇÃO" title="Conteúdo para empresas que estão escolhendo como operar SEO e Search AI." text="Critérios, benchmarks e perguntas para avaliar consultorias, agências, auditorias, times internos e modelos híbridos sem transformar a compra em comparação superficial de pacotes, siglas ou preços." items={[...geoMarketBenchmarkArticleList, ...pricingResearchArticleList, ...buyerArticleList, ...buyerOpsArticleList]} />
 
       <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-28 xl:px-12">
-        <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <div><span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">PRÓXIMO ATIVO DE PROVA</span><h2 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Pesquisa proprietária sobre o próprio mercado de Search Intelligence.</h2><p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#11100f]/70">O primeiro piloto do Observatory observa prestadores de SEO e Search Intelligence no Brasil. O protocolo, o universo e os prompts são definidos antes da coleta; nenhum percentual será publicado antes de existir dado revisado.</p></div>
-          <div className="rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8]"><FileText size={20} className="text-[#b28453]" /><h3 className="mt-5 font-display text-2xl font-bold">AUDITSEO Search AI Observatory</h3><ul className="mt-6 space-y-4 text-sm leading-[1.7] text-[#f8f8f8]/70"><li>20 prestadores do mercado de SEO/Search Intelligence;</li><li>prompts genéricos e branded congelados antes da coleta;</li><li>regras públicas para menção, citação, recomendação e precisão de entidade;</li><li>AUDITSEO incluída sob a mesma régua, com conflito de interesse declarado;</li><li>repetições, revisão humana e limitações junto com os resultados.</li></ul><a href="/blog/protocolo-benchmark-search-ai" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453] hover:text-[#e0d3c3]">Ler protocolo antes dos dados <ArrowRight size={14} /></a></div>
+        <div className="mx-auto max-w-[1240px]">
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">PESQUISA PROPRIETÁRIA</span>
+          <h2 className="mt-5 max-w-5xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Dados públicos antes da narrativa — e snapshots que não mudam depois do resultado.</h2>
+          <p className="mt-6 max-w-4xl text-base leading-[1.75] text-[#11100f]/70">A AUDITSEO já começou a publicar datasets congelados antes das conclusões. O objetivo é tornar preço, promessa, método e mensuração verificáveis. O Search AI Observatory continua como o próximo ciclo maior, com prompts e regras definidos antes da coleta.</p>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <a href="/blog/quanto-custa-consultoria-seo-geo-ia" className="group rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
+              <FileText size={20} className="text-[#b28453]" />
+              <span className="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">SNAPSHOT 08/09/2026</span>
+              <h3 className="mt-4 font-display text-2xl font-bold leading-[1.15]">Benchmark de preços e formatos de SEO + GEO/IA</h3>
+              <p className="mt-4 text-sm leading-[1.7] text-[#f8f8f8]/64">10 fornecedores/produtos, 23 ofertas e separação entre sessão, auditoria, sprint, retainer e software.</p>
+              <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453]">Ver estudo <ArrowRight size={14} /></span>
+            </a>
+
+            <a href="/blog/como-mercado-brasileiro-vende-geo-search-ai" className="group rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
+              <ShieldCheck size={20} className="text-[#b28453]" />
+              <span className="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">SNAPSHOT 08/09/2026</span>
+              <h3 className="mt-4 font-display text-2xl font-bold leading-[1.15]">Benchmark de promessa, prazo e mensuração em GEO</h3>
+              <p className="mt-4 text-sm leading-[1.7] text-[#f8f8f8]/64">12 páginas públicas classificadas por garantia, prazo, protocolo de medição, método e evidência.</p>
+              <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453]">Ver estudo <ArrowRight size={14} /></span>
+            </a>
+
+            <a href="/blog/protocolo-benchmark-search-ai" className="group rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
+              <Search size={20} className="text-[#b28453]" />
+              <span className="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">PRÓXIMO CICLO</span>
+              <h3 className="mt-4 font-display text-2xl font-bold leading-[1.15]">AUDITSEO Search AI Observatory</h3>
+              <p className="mt-4 text-sm leading-[1.7] text-[#f8f8f8]/64">Prompts, marcas, regras de menção/citação/recomendação e conflitos declarados antes da primeira coleta.</p>
+              <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453]">Ler protocolo <ArrowRight size={14} /></span>
+            </a>
+          </div>
         </div>
       </section>
 

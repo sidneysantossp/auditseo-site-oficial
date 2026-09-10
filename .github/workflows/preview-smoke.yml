@@ -106,7 +106,7 @@ jobs:
           exit 1
 
       - name: Run protected HTTP/SEO smoke
-        run: node scripts/smoke-launch.mjs "$BASE_URL"
+        run: node scripts/smoke-launch-protected.mjs "$BASE_URL"
 
       - name: Run one-shot lead delivery canary
         if: contains(github.event.head_commit.message, '[lead-canary]')

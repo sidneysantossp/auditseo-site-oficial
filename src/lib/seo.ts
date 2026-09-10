@@ -31,6 +31,9 @@ export function createSeoHead({
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      { rel: "describedby", href: `${SITE_URL}/llms.txt`, type: "text/markdown" },
+    ],
   };
 }

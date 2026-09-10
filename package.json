@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "content:check": "node scripts/content-lint.mjs",
+    "content:check": "node scripts/content-lint.mjs && node scripts/resource-lint.mjs && node scripts/case-study-lint.mjs && node scripts/case-study-snapshot-lint.mjs",
     "build": "npm run content:check && vite build",
     "build:dev": "npm run content:check && vite build --mode development",
     "preview": "vite preview",

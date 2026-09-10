@@ -1,4 +1,11 @@
-import { useRef, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, type FormEvent, type ReactNode } from "react";
+
+type AttributionTouch = {
+  sourcePath: string;
+  referrer?: string;
+  utm?: Record<string, string>;
+  at: string;
+};
 
 type LeadPayload = {
   kind: "consultation" | "diagnostic";
@@ -10,13 +17,19 @@ type LeadPayload = {
   faturamento?: string;
   clientUrl?: string;
   context?: string;
+  discoverySource?: string;
   sourcePath?: string;
   referrer?: string;
   utm?: Record<string, string>;
+  firstTouchPath?: string;
+  firstTouchReferrer?: string;
+  firstTouchUtm?: Record<string, string>;
+  firstTouchAt?: string;
 };
 
-function attribution() {
-  const params = new URLSearchParams(window.location.search);
+const FIRST_TOUCH_KEY = "auditseo:first-touch:v1";
+
+function collectUtm(params: URLSearchParams) {
   const utm: Record<string, string> = {};
 
   for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "lead_id", "campaign_id"]) {
@@ -24,17 +37,58 @@ function attribution() {
     if (value) utm[key] = value;
   }
 
+  return Object.keys(utm).length ? utm : undefined;
+}
+
+function currentTouch(): AttributionTouch {
   return {
     sourcePath: `${window.location.pathname}${window.location.search}`,
     referrer: document.referrer || undefined,
-    utm: Object.keys(utm).length ? utm : undefined,
+    utm: collectUtm(new URLSearchParams(window.location.search)),
+    at: new Date().toISOString(),
+  };
+}
+
+function readFirstTouch(): AttributionTouch | undefined {
+  try {
+    const raw = window.sessionStorage.getItem(FIRST_TOUCH_KEY);
+    if (!raw) return undefined;
+    const parsed = JSON.parse(raw) as Partial<AttributionTouch>;
+    if (!parsed.sourcePath || !parsed.at) return undefined;
+    return parsed as AttributionTouch;
+  } catch {
+    return undefined;
+  }
+}
+
+function persistFirstTouch() {
+  try {
+    if (window.sessionStorage.getItem(FIRST_TOUCH_KEY)) return;
+    window.sessionStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(currentTouch()));
+  } catch {
+    // Attribution persistence must never block the site or lead submission.
+  }
+}
+
+function attribution() {
+  const current = currentTouch();
+  const first = readFirstTouch();
+
+  return {
+    sourcePath: current.sourcePath,
+    referrer: current.referrer,
+    utm: current.utm,
+    firstTouchPath: first?.sourcePath,
+    firstTouchReferrer: first?.referrer,
+    firstTouchUtm: first?.utm,
+    firstTouchAt: first?.at,
   };
 }
 
 function buildPayload(form: HTMLFormElement): LeadPayload | null {
   if (form.closest("#form-contato")) {
     const inputs = Array.from(form.querySelectorAll<HTMLInputElement>("input"));
-    const revenue = form.querySelector<HTMLSelectElement>("select")?.value || undefined;
+    const revenue = form.querySelector<HTMLSelectElement>('select[name="faturamento"]')?.value || form.querySelector<HTMLSelectElement>("select")?.value || undefined;
 
     if (inputs.length < 4) return null;
 
@@ -52,6 +106,7 @@ function buildPayload(form: HTMLFormElement): LeadPayload | null {
   if (form.closest("#organic-opportunity-scan")) {
     const inputs = Array.from(form.querySelectorAll<HTMLInputElement>("input"));
     const context = form.querySelector<HTMLTextAreaElement>("textarea")?.value.trim();
+    const discoverySource = form.querySelector<HTMLSelectElement>('select[name="discoverySource"]')?.value.trim() || undefined;
     const diagnosticText = document.getElementById("diagnostic-result")?.textContent?.replace(/\s+/g, " ").trim();
 
     if (inputs.length < 5) return null;
@@ -64,6 +119,7 @@ function buildPayload(form: HTMLFormElement): LeadPayload | null {
       email: inputs[3]?.value.trim() || "",
       site: inputs[4]?.value.trim() || "",
       clientUrl: inputs[5]?.value.trim() || undefined,
+      discoverySource,
       context: [context, diagnosticText ? `Resumo exibido: ${diagnosticText.slice(0, 3000)}` : ""].filter(Boolean).join("\n\n") || undefined,
       ...attribution(),
     };
@@ -82,7 +138,9 @@ function localWhatsappFallback(payload: LeadPayload) {
     payload.site ? `Site: ${payload.site}` : "",
     payload.faturamento ? `Faturamento: ${payload.faturamento}` : "",
     payload.clientUrl ? `Projeto: ${payload.clientUrl}` : "",
-    payload.sourcePath ? `Origem no site: ${payload.sourcePath}` : "",
+    payload.discoverySource ? `Como conheceu a AUDITSEO: ${payload.discoverySource}` : "",
+    payload.firstTouchPath ? `Primeiro touch AUDITSEO: ${payload.firstTouchPath}` : "",
+    payload.sourcePath ? `Origem da conversão: ${payload.sourcePath}` : "",
     payload.context ? `Contexto do diagnóstico: ${payload.context.slice(0, 800)}` : "",
   ]
     .filter(Boolean)
@@ -93,6 +151,10 @@ function localWhatsappFallback(payload: LeadPayload) {
 
 export default function LeadCaptureBoundary({ children }: { children: ReactNode }) {
   const submittingRef = useRef(false);
+
+  useEffect(() => {
+    persistFirstTouch();
+  }, []);
 
   const handleSubmitCapture = async (event: FormEvent<HTMLDivElement>) => {
     const form = event.target;

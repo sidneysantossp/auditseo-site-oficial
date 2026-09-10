@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import CompanyGeoIaPage from "@/components/CompanyGeoIaPage";
+import CompanyGeoIaPageV2 from "@/components/CompanyGeoIaPageV2";
 import { createSeoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/geo-ia")({
   head: () =>
     createSeoHead({
       path: "/geo-ia",
-      title: "GEO e Presença em Plataformas de IA | AUDITSEO",
+      title: "Consultoria GEO, Search AI e SEO para IA | AUDITSEO",
       description:
-        "Como preparar sua empresa para AI Search: autoridade de entidade, dados estruturados, consistência de sinais e presença responsável nas plataformas generativas.",
+        "Consultoria de Search AI e GEO para empresas: diagnóstico de presença em Google e IA, autoridade de entidade, conteúdo, evidências, fontes e mensuração sem promessas de citação.",
     }),
-  component: CompanyGeoIaPage,
+  component: CompanyGeoIaPageV2,
 });

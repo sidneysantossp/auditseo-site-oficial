@@ -35,11 +35,12 @@ const consultingLinks = [
 
 const contentLinks = [
   ["Biblioteca AUDITSEO", "/blog"],
+  ["Pesquisas e datasets", "/estudos-busca-ia"],
+  ["Case Study #001", "/case-study/auditseo-search-intelligence"],
   ["O que é Search Intelligence", "/blog/o-que-e-search-intelligence"],
   ["Autoridade de entidade", "/blog/autoridade-de-entidade-o-que-e"],
   ["GEO sem hype", "/blog/geo-o-que-e-o-que-nao-garante"],
   ["Como IAs encontram fontes", "/blog/como-ias-encontram-e-citam-fontes"],
-  ["Programa de pesquisa", "/estudos-busca-ia"],
   ["Sidney Santos", "/autor/sidney-santos"],
 ];
 

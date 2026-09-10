@@ -32,9 +32,9 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Por que a arquitetura editorial deve nascer da jornada e do gargalo, não de um calendário fixo de publicações.", href: "/blog/o-que-e-search-intelligence" },
   ],
   "/solucoes/geo-ia-readiness": [
+    { eyebrow: "CONSIDERAÇÃO COMERCIAL", title: "Como entrar nas recomendações do ChatGPT como fornecedor", text: "A diferença entre ser citado como fonte e ser considerado como empresa quando um comprador pede fornecedores, especialistas ou consultorias.", href: "/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor" },
     { eyebrow: "DIAGNÓSTICO", title: "O ChatGPT não cita meu site: o que auditar?", text: "Playbook para separar acesso, recuperação, entendimento, confiança e citabilidade antes de prescrever uma tática de GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
     { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Prompts congelados, repetição e métricas separadas de menção, citação, recomendação e precisão da entidade.", href: "/blog/como-medir-se-geo-esta-funcionando" },
-    { eyebrow: "AUDITORIA TÉCNICA", title: "OAI-SearchBot vs GPTBot", text: "Como separar busca e possível treinamento antes de editar robots.txt, CDN ou WAF.", href: "/blog/como-auditar-crawlers-de-ia" },
   ],
   "/solucoes/migracao-risco-seo": [
     { eyebrow: "CENÁRIO", title: "Queda depois de redesign ou migração", text: "Como investigar equivalência de URLs, redirects, conteúdo, links, indexação e infraestrutura quando o tráfego cai após uma mudança estrutural.", href: "/blog/queda-trafego-depois-redesign" },

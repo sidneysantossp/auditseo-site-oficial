@@ -33,6 +33,10 @@ export function createServiceHead(data: ServicePageData) {
             "@id": `${url}#service`,
             name: data.name,
             description: data.directAnswer,
+            areaServed: {
+              "@type": "Country",
+              name: "Brasil",
+            },
             provider: {
               "@type": "Organization",
               "@id": "https://www.auditseo.com.br/#organization",
