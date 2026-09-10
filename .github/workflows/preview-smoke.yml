@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  statuses: read
 
 jobs:
   smoke:
@@ -28,6 +29,32 @@ jobs:
             exit 2
           fi
           echo "Automation bypass secret is configured."
+
+      - name: Wait for Vercel deployment of this commit
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          api="https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}/status"
+          for attempt in {1..30}; do
+            state=$(curl -fsS \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "$api" \
+              | jq -r '[.statuses[] | select(.context == "Vercel")][0].state // "missing"')
+            echo "Vercel status for ${GITHUB_SHA}: ${state} (attempt ${attempt})"
+            if [[ "$state" == "success" ]]; then
+              exit 0
+            fi
+            if [[ "$state" == "failure" || "$state" == "error" ]]; then
+              echo "::error::Vercel deployment failed for ${GITHUB_SHA}."
+              exit 1
+            fi
+            sleep 10
+          done
+          echo "::error::Timed out waiting for the Vercel status of ${GITHUB_SHA}."
+          exit 1
 
       - name: Wait for Preview to respond
         shell: bash
