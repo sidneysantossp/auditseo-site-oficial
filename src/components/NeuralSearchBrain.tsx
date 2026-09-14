@@ -7,6 +7,15 @@ type Node = {
   tier: "core" | "primary" | "secondary";
 };
 
+type FlowPath = {
+  d: string;
+  duration: string;
+  begin: string;
+  radius: number;
+  color: string;
+  opacity: number;
+};
+
 const NODES: Node[] = [
   { x: 410, y: 255, r: 5.2, tier: "core" },
   { x: 350, y: 226, r: 3.2, tier: "primary" },
@@ -62,16 +71,27 @@ const CONNECTIONS: Array<[number, number]> = [
   [14, 24], [15, 22], [16, 20], [17, 25], [18, 25], [21, 22], [23, 16],
 ];
 
-const PARTICLES = Array.from({ length: 58 }, (_, index) => {
+const PARTICLES = Array.from({ length: 72 }, (_, index) => {
   const angle = index * 2.399963229728653;
-  const radius = 45 + index * 4.9;
+  const radius = 38 + index * 4.15;
   return {
     x: 410 + Math.cos(angle) * radius,
     y: 255 + Math.sin(angle) * radius * 0.7,
-    r: 0.45 + (index % 3) * 0.25,
-    opacity: 0.08 + (index % 5) * 0.035,
+    r: 0.42 + (index % 3) * 0.25,
+    opacity: 0.07 + (index % 5) * 0.035,
+    duration: 5.5 + (index % 7) * 1.3,
+    delay: (index % 19) * -0.47,
   };
 });
+
+const FLOW_PATHS: FlowPath[] = [
+  { d: "M 145 360 L 214 312 L 315 282 L 350 226 L 410 255", duration: "10.5s", begin: "-1.8s", radius: 2.3, color: "#f8f8f8", opacity: 0.9 },
+  { d: "M 250 110 L 334 168 L 350 226 L 410 255", duration: "12s", begin: "-7.2s", radius: 1.8, color: "#b28453", opacity: 0.92 },
+  { d: "M 520 95 L 455 162 L 468 224 L 410 255", duration: "11.2s", begin: "-3.7s", radius: 2.1, color: "#e0d3c3", opacity: 0.86 },
+  { d: "M 690 150 L 652 240 L 525 276 L 410 255", duration: "13.5s", begin: "-10s", radius: 2.15, color: "#ffffff", opacity: 0.88 },
+  { d: "M 705 320 L 604 336 L 482 314 L 410 255", duration: "14.4s", begin: "-5.4s", radius: 1.85, color: "#b28453", opacity: 0.9 },
+  { d: "M 570 455 L 464 392 L 382 314 L 410 255", duration: "12.8s", begin: "-8.9s", radius: 2.2, color: "#f8f8f8", opacity: 0.86 },
+];
 
 const AXES = [
   ["Descoberta", "Crawl · Index · Retrieve"],
@@ -83,6 +103,16 @@ const AXES = [
 export default function NeuralSearchBrain() {
   const [mouseOffset, setMouseOffset] = React.useState({ x: 0, y: 0 });
   const [isCoreHovered, setIsCoreHovered] = React.useState(false);
+  const [reduceMotion, setReduceMotion] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(query.matches);
+    sync();
+    query.addEventListener?.("change", sync);
+    return () => query.removeEventListener?.("change", sync);
+  }, []);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -99,10 +129,10 @@ export default function NeuralSearchBrain() {
         setIsCoreHovered(false);
       }}
       className="group/constellation relative mx-auto flex aspect-[760/520] w-full max-w-[760px] select-none items-center justify-center overflow-visible p-1"
-      aria-label="Visualização conceitual do ecossistema de Search Intelligence da AUDITSEO"
+      aria-label="Visualização conceitual animada do ecossistema de Search Intelligence da AUDITSEO"
     >
       <div
-        className="pointer-events-none absolute rounded-full"
+        className="auditseo-nebula pointer-events-none absolute rounded-full"
         style={{
           width: "720px",
           height: "460px",
@@ -110,13 +140,75 @@ export default function NeuralSearchBrain() {
           top: "50%",
           transform: `translateY(-50%) translate(${mouseOffset.x * 0.35}px, ${mouseOffset.y * 0.35}px)`,
           transition: "transform 600ms cubic-bezier(0.15,0.85,0.3,1)",
-          background: "radial-gradient(circle at 52% 48%, rgba(178,132,83,0.22) 0%, rgba(178,132,83,0.11) 24%, rgba(140,97,60,0.05) 46%, transparent 74%)",
+          background: "radial-gradient(circle at 52% 48%, rgba(178,132,83,0.24) 0%, rgba(178,132,83,0.115) 24%, rgba(140,97,60,0.055) 46%, transparent 74%)",
           filter: "blur(30px)",
         }}
       />
 
       <svg className="relative z-10 h-full w-full overflow-visible" viewBox="0 0 760 520" fill="none" aria-hidden="true">
         <defs>
+          <style>{`
+            @keyframes auditseoFloat {
+              0%, 100% { transform: translateY(-2px) rotate(-0.22deg); }
+              50% { transform: translateY(4px) rotate(0.26deg); }
+            }
+            @keyframes auditseoTwinkle {
+              0%, 100% { opacity: var(--base-opacity); }
+              45% { opacity: calc(var(--base-opacity) * 3.2); }
+              70% { opacity: calc(var(--base-opacity) * 1.35); }
+            }
+            @keyframes auditseoLinePulse {
+              0%, 100% { stroke-opacity: var(--line-opacity); }
+              50% { stroke-opacity: calc(var(--line-opacity) * 2.1); }
+            }
+            @keyframes auditseoNodePulse {
+              0%, 100% { opacity: var(--node-opacity); }
+              50% { opacity: 1; }
+            }
+            @keyframes auditseoCorePulse {
+              0%, 100% { opacity: .72; transform: scale(.96); }
+              50% { opacity: 1; transform: scale(1.07); }
+            }
+            @keyframes auditseoOrbitDash {
+              to { stroke-dashoffset: -76; }
+            }
+            .auditseo-float {
+              transform-box: fill-box;
+              transform-origin: center;
+              animation: auditseoFloat 10s ease-in-out infinite;
+            }
+            .auditseo-particle {
+              animation: auditseoTwinkle var(--twinkle-duration) ease-in-out var(--twinkle-delay) infinite;
+            }
+            .auditseo-line {
+              animation: auditseoLinePulse var(--line-duration) ease-in-out var(--line-delay) infinite;
+            }
+            .auditseo-node {
+              animation: auditseoNodePulse var(--node-duration) ease-in-out var(--node-delay) infinite;
+            }
+            .auditseo-core-pulse {
+              transform-box: fill-box;
+              transform-origin: center;
+              animation: auditseoCorePulse 3.6s ease-in-out infinite;
+            }
+            .auditseo-orbit {
+              animation: auditseoOrbitDash 15s linear infinite;
+            }
+            .auditseo-orbit-slow {
+              animation-duration: 25s;
+              animation-direction: reverse;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .auditseo-float,
+              .auditseo-particle,
+              .auditseo-line,
+              .auditseo-node,
+              .auditseo-core-pulse,
+              .auditseo-orbit {
+                animation: none !important;
+              }
+            }
+          `}</style>
           <radialGradient id="auditseo-core" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
             <stop offset="28%" stopColor="#e0d3c3" stopOpacity="0.95" />
@@ -130,6 +222,13 @@ export default function NeuralSearchBrain() {
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+          <filter id="auditseo-flow-glow" x="-300%" y="-300%" width="700%" height="700%">
+            <feGaussianBlur stdDeviation="2.2" result="flowBlur" />
+            <feMerge>
+              <feMergeNode in="flowBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
         <g
@@ -139,54 +238,99 @@ export default function NeuralSearchBrain() {
             transition: "transform 600ms cubic-bezier(0.15,0.85,0.3,1)",
           }}
         >
-          <ellipse cx="410" cy="255" rx="205" ry="84" stroke="rgba(178,132,83,.16)" strokeWidth="0.9" strokeDasharray="3 16" transform="rotate(-13 410 255)" />
-          <ellipse cx="410" cy="255" rx="270" ry="126" stroke="rgba(224,211,195,.08)" strokeWidth="0.8" strokeDasharray="2 24" transform="rotate(18 410 255)" />
+          <g className="auditseo-float">
+            <ellipse className="auditseo-orbit" cx="410" cy="255" rx="205" ry="84" stroke="rgba(178,132,83,.16)" strokeWidth="0.9" strokeDasharray="3 16" transform="rotate(-13 410 255)" />
+            <ellipse className="auditseo-orbit auditseo-orbit-slow" cx="410" cy="255" rx="270" ry="126" stroke="rgba(224,211,195,.08)" strokeWidth="0.8" strokeDasharray="2 24" transform="rotate(18 410 255)" />
 
-          {PARTICLES.map((particle, index) => (
-            <circle key={`particle-${index}`} cx={particle.x} cy={particle.y} r={particle.r} fill="#e0d3c3" opacity={particle.opacity} />
-          ))}
+            {PARTICLES.map((particle, index) => (
+              <circle
+                key={`particle-${index}`}
+                className="auditseo-particle"
+                cx={particle.x}
+                cy={particle.y}
+                r={particle.r}
+                fill={index % 9 === 0 ? "#b28453" : "#e0d3c3"}
+                opacity={particle.opacity}
+                style={{
+                  ["--base-opacity" as string]: particle.opacity,
+                  ["--twinkle-duration" as string]: `${particle.duration}s`,
+                  ["--twinkle-delay" as string]: `${particle.delay}s`,
+                }}
+              />
+            ))}
 
-          <g opacity="0.58">
-            {CONNECTIONS.map(([from, to], index) => {
-              const a = NODES[from];
-              const b = NODES[to];
-              if (!a || !b) return null;
+            <g opacity="0.62">
+              {CONNECTIONS.map(([from, to], index) => {
+                const a = NODES[from];
+                const b = NODES[to];
+                if (!a || !b) return null;
+                const baseOpacity = index % 4 === 0 ? 0.34 : 0.18;
+                return (
+                  <line
+                    key={`connection-${index}`}
+                    className="auditseo-line"
+                    x1={a.x}
+                    y1={a.y}
+                    x2={b.x}
+                    y2={b.y}
+                    stroke={index % 4 === 0 ? "#b28453" : "#e0d3c3"}
+                    strokeOpacity={baseOpacity}
+                    strokeWidth={index % 5 === 0 ? 1.1 : 0.75}
+                    style={{
+                      ["--line-opacity" as string]: baseOpacity,
+                      ["--line-duration" as string]: `${4.8 + (index % 6) * 0.85}s`,
+                      ["--line-delay" as string]: `${(index % 13) * -0.43}s`,
+                    }}
+                  />
+                );
+              })}
+            </g>
+
+            {NODES.map((node, index) => {
+              const nodeOpacity = node.tier === "secondary" ? 0.56 : 0.9;
               return (
-                <line
-                  key={`connection-${index}`}
-                  x1={a.x}
-                  y1={a.y}
-                  x2={b.x}
-                  y2={b.y}
-                  stroke={index % 4 === 0 ? "#b28453" : "#e0d3c3"}
-                  strokeOpacity={index % 4 === 0 ? 0.34 : 0.18}
-                  strokeWidth={index % 5 === 0 ? 1.1 : 0.75}
+                <circle
+                  key={`node-${index}`}
+                  className="auditseo-node"
+                  cx={node.x}
+                  cy={node.y}
+                  r={node.r}
+                  fill={node.tier === "core" ? "#ffffff" : index % 3 === 0 ? "#b28453" : "#e0d3c3"}
+                  opacity={nodeOpacity}
+                  filter={node.tier === "core" || (node.tier === "primary" && index % 4 === 0) ? "url(#auditseo-glow)" : undefined}
+                  style={{
+                    ["--node-opacity" as string]: nodeOpacity,
+                    ["--node-duration" as string]: `${3.6 + (index % 5) * 0.9}s`,
+                    ["--node-delay" as string]: `${(index % 11) * -0.37}s`,
+                  }}
                 />
               );
             })}
-          </g>
 
-          {NODES.map((node, index) => (
-            <circle
-              key={`node-${index}`}
-              cx={node.x}
-              cy={node.y}
-              r={node.r}
-              fill={node.tier === "core" ? "#ffffff" : index % 3 === 0 ? "#b28453" : "#e0d3c3"}
-              opacity={node.tier === "secondary" ? 0.56 : 0.9}
-              filter={node.tier === "core" || (node.tier === "primary" && index % 4 === 0) ? "url(#auditseo-glow)" : undefined}
-            />
-          ))}
+            {!reduceMotion && FLOW_PATHS.map((flow, index) => (
+              <circle
+                key={`flow-${index}`}
+                r={flow.radius}
+                fill={flow.color}
+                opacity={flow.opacity}
+                filter="url(#auditseo-flow-glow)"
+              >
+                <animateMotion path={flow.d} dur={flow.duration} begin={flow.begin} repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.32 0 0.15 1" />
+              </circle>
+            ))}
 
-          <g
-            onMouseEnter={() => setIsCoreHovered(true)}
-            onMouseLeave={() => setIsCoreHovered(false)}
-            className="cursor-pointer"
-          >
-            <circle cx="410" cy="255" r="82" fill="url(#auditseo-core)" opacity="0.5" />
-            <circle cx="410" cy="255" r="45" fill="url(#auditseo-core)" opacity="0.72" />
-            <circle cx="410" cy="255" r="14" fill="#f8f8f8" filter="url(#auditseo-glow)" />
-            <circle cx="410" cy="255" r="70" fill="transparent" />
+            <g
+              onMouseEnter={() => setIsCoreHovered(true)}
+              onMouseLeave={() => setIsCoreHovered(false)}
+              className="cursor-pointer"
+            >
+              <g className="auditseo-core-pulse">
+                <circle cx="410" cy="255" r="82" fill="url(#auditseo-core)" opacity="0.5" />
+                <circle cx="410" cy="255" r="45" fill="url(#auditseo-core)" opacity="0.72" />
+              </g>
+              <circle cx="410" cy="255" r="14" fill="#f8f8f8" filter="url(#auditseo-glow)" />
+              <circle cx="410" cy="255" r="70" fill="transparent" />
+            </g>
           </g>
         </g>
       </svg>
@@ -222,6 +366,19 @@ export default function NeuralSearchBrain() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes auditseoNebulaDrift {
+          0%, 100% { opacity: .82; filter: blur(30px); }
+          50% { opacity: 1; filter: blur(36px); }
+        }
+        .auditseo-nebula {
+          animation: auditseoNebulaDrift 9s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .auditseo-nebula { animation: none !important; }
+        }
+      `}</style>
     </div>
   );
 }
