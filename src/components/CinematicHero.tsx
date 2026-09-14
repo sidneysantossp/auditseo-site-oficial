@@ -1,190 +1,420 @@
-const stars = Array.from({ length: 72 }, (_, index) => ({
-  left: `${(index * 37 + 11) % 100}%`,
-  top: `${(index * 53 + 7) % 92}%`,
-  size: 1 + (index % 3) * 0.7,
-  delay: `${-((index * 0.37) % 6)}s`,
-  duration: `${4.5 + (index % 7) * 0.8}s`,
-  opacity: 0.22 + (index % 5) * 0.11,
+import { useEffect, useRef } from "react";
+import p00 from "./cinematicHeroData/part00";
+import p01 from "./cinematicHeroData/part01";
+import p02 from "./cinematicHeroData/part02";
+import p03 from "./cinematicHeroData/part03";
+import p0405 from "./cinematicHeroData/part04_05";
+import p0607 from "./cinematicHeroData/part06_07";
+import p0809 from "./cinematicHeroData/part08_09";
+import p10 from "./cinematicHeroData/part10";
+import p11 from "./cinematicHeroData/part11";
+import p12 from "./cinematicHeroData/part12";
+import p13 from "./cinematicHeroData/part13";
+import p14 from "./cinematicHeroData/part14";
+import p15 from "./cinematicHeroData/part15";
+import p16 from "./cinematicHeroData/part16";
+import p17 from "./cinematicHeroData/part17";
+import p18 from "./cinematicHeroData/part18";
+
+const heroBase64 = [p00, p01, p02, p03, p0405, p0607, p0809, p10, p11, p12, p13, p14, p15, p16, p17, p18]
+  .join("")
+  .replace(/\s+/g, "");
+
+const SOURCE_WIDTH = 1672;
+const SOURCE_HEIGHT = 941;
+const SOURCE_CROP_X = 620;
+const SOURCE_CROP_WIDTH = SOURCE_WIDTH - SOURCE_CROP_X;
+
+const fieldStars = Array.from({ length: 86 }, (_, index) => ({
+  x: ((index * 67 + 17) % 1000) / 1000,
+  y: ((index * 43 + 29) % 1000) / 1000,
+  radius: 0.35 + (index % 4) * 0.28,
+  alpha: 0.1 + (index % 6) * 0.035,
+  phase: index * 0.77,
 }));
 
-const nodes = [
-  [220, 170], [270, 120], [328, 92], [382, 135], [430, 84], [492, 132], [545, 104],
-  [587, 160], [615, 222], [575, 260], [618, 315], [560, 356], [500, 330], [458, 382],
-  [395, 345], [335, 382], [290, 332], [235, 352], [205, 292], [248, 252], [198, 220],
-  [305, 205], [360, 248], [420, 206], [478, 246], [530, 210], [400, 292], [322, 286],
-];
+function base64ToBlob(base64: string, type: string) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type });
+}
 
-const links = [
-  [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,13],
-  [13,14],[14,15],[15,16],[16,17],[17,18],[18,19],[19,20],[20,0],[0,21],[21,3],[21,22],[22,23],
-  [23,24],[24,25],[25,7],[22,26],[26,12],[26,14],[22,27],[27,17],[27,20],[23,26],[24,26],[19,22],
-  [1,21],[3,23],[5,24],[9,25],[11,26],[15,27]
-];
-
-function BrainMark() {
+function BarsIcon() {
   return (
-    <svg viewBox="0 0 48 48" aria-hidden="true" className="h-9 w-9 overflow-visible">
-      <g fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M23.5 9.5c-3.8-5-11.3-2.1-10.5 4.2-5.2.3-7.3 6.8-3.2 9.9-3.7 4.5-.3 10.8 5.3 9.9.5 5.5 7.7 7.3 10.3 2.5" />
-        <path d="M24.5 9.5c3.8-5 11.3-2.1 10.5 4.2 5.2.3 7.3 6.8 3.2 9.9 3.7 4.5.3 10.8-5.3 9.9-.5 5.5-7.7 7.3-10.3 2.5" />
-        <path d="M24 8v30M14 15c4.8-.3 7.1 2.4 7.2 6.4M34 15c-4.8-.3-7.1 2.4-7.2 6.4M13 29c4.7 0 7.1-2 8.1-5.5M35 29c-4.7 0-7.1-2-8.1-5.5" />
+    <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <path d="M5 27V17h5v10M14 27V10h5v17M23 27V4h4v23" />
       </g>
     </svg>
   );
 }
 
-function NeuralBrain() {
+function CubeIcon() {
   return (
-    <svg className="cinematic-brain h-full w-full overflow-visible" viewBox="0 0 820 520" fill="none" aria-hidden="true">
-      <defs>
-        <radialGradient id="brainAura" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#f7d7a4" stopOpacity=".36" />
-          <stop offset="45%" stopColor="#b28453" stopOpacity=".15" />
-          <stop offset="100%" stopColor="#b28453" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="brainStroke" x1="180" y1="90" x2="635" y2="390">
-          <stop stopColor="#f4d9b0" />
-          <stop offset=".5" stopColor="#b28453" />
-          <stop offset="1" stopColor="#76502f" />
-        </linearGradient>
-        <filter id="brainGlow" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-
-      <ellipse className="brain-aura" cx="410" cy="245" rx="335" ry="245" fill="url(#brainAura)" />
-      <ellipse className="brain-orbit brain-orbit-a" cx="410" cy="242" rx="292" ry="116" stroke="#b28453" strokeOpacity=".17" strokeWidth="1" strokeDasharray="3 14" transform="rotate(-9 410 242)" />
-      <ellipse className="brain-orbit brain-orbit-b" cx="410" cy="242" rx="344" ry="155" stroke="#e0d3c3" strokeOpacity=".08" strokeWidth="1" strokeDasharray="2 21" transform="rotate(14 410 242)" />
-
-      <g className="brain-network">
-        {links.map(([from, to], index) => {
-          const a = nodes[from];
-          const b = nodes[to];
-          return <line key={`${from}-${to}`} className="brain-link" x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="url(#brainStroke)" strokeOpacity={0.2 + (index % 4) * 0.07} strokeWidth={index % 6 === 0 ? 1.35 : 0.82} />;
-        })}
-
-        <path className="brain-contour" d="M202 225c-28-42-8-91 39-95 4-48 58-72 93-42 31-39 91-25 103 20 42-17 89 12 83 57 47 4 66 59 35 93 31 42 1 96-47 91-18 48-75 60-110 25-37 32-94 19-108-25-49 5-78-44-55-85-17-9-28-23-33-39Z" stroke="url(#brainStroke)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" filter="url(#brainGlow)" />
-        <path className="brain-contour brain-contour-delay" d="M403 112c-26 25-28 57-10 81-24 16-33 43-22 69-20 20-20 52 1 71m18-188c31 7 48 28 47 55 30 2 50 20 54 48 26 6 42 24 43 50M318 118c-2 30 15 53 44 63-17 23-14 51 7 69-12 29 0 59 25 74M258 187c26-5 48 5 62 27-18 20-21 44-8 68-19 19-20 44-7 65M489 145c-14 27-9 52 12 73-14 23-10 49 10 68-8 22-2 42 16 58" stroke="url(#brainStroke)" strokeWidth="1.55" strokeLinecap="round" strokeOpacity=".63" />
-
-        {nodes.map(([x, y], index) => (
-          <g key={`${x}-${y}`} className="brain-node" style={{ animationDelay: `${-(index % 8) * 0.42}s` }}>
-            <circle cx={x} cy={y} r={index % 5 === 0 ? 5 : 3.2} fill={index % 4 === 0 ? "#f8ead5" : "#b28453"} opacity={index % 3 === 0 ? .95 : .72} filter={index % 5 === 0 ? "url(#brainGlow)" : undefined} />
-            {index % 5 === 0 ? <circle cx={x} cy={y} r="11" stroke="#b28453" strokeOpacity=".25" /> : null}
-          </g>
-        ))}
-
-        <circle className="brain-core" cx="401" cy="256" r="13" fill="#fff8ed" filter="url(#brainGlow)" />
-        <circle className="brain-core-ring" cx="401" cy="256" r="31" stroke="#d4aa77" strokeOpacity=".45" />
-      </g>
-
-      <g className="signal-flow">
-        <circle r="3.1" fill="#fff8ed" filter="url(#brainGlow)"><animateMotion path="M88 342 C180 330 225 280 305 268 S380 256 401 256" dur="8.5s" repeatCount="indefinite" /></circle>
-        <circle r="2.5" fill="#b28453" filter="url(#brainGlow)"><animateMotion path="M710 124 C625 142 573 189 510 219 S444 246 401 256" dur="10.5s" begin="-4s" repeatCount="indefinite" /></circle>
-        <circle r="2.7" fill="#ecd3b1" filter="url(#brainGlow)"><animateMotion path="M663 411 C582 370 541 341 500 317 S433 274 401 256" dur="11.7s" begin="-7s" repeatCount="indefinite" /></circle>
+    <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round">
+        <path d="m16 3 11 6.4v13L16 29 5 22.4v-13L16 3Z" />
+        <path d="m5 9.4 11 6.5 11-6.5M16 15.9V29" />
       </g>
     </svg>
   );
+}
+
+function TargetIcon() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.7">
+        <circle cx="16" cy="16" r="12" />
+        <circle cx="16" cy="16" r="7" />
+        <circle cx="16" cy="16" r="2.5" />
+      </g>
+    </svg>
+  );
+}
+
+function AnimatedApprovedScene() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const context = canvas.getContext("2d", { alpha: false });
+    if (!context) return;
+
+    let cancelled = false;
+    let frame = 0;
+    let drawable: CanvasImageSource | null = null;
+    let bitmap: ImageBitmap | null = null;
+    let fallbackUrl = "";
+    let cssWidth = 1;
+    let cssHeight = 1;
+    let dpr = 1;
+    let pointerX = 0;
+    let pointerY = 0;
+    let smoothX = 0;
+    let smoothY = 0;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      cssWidth = Math.max(1, rect.width);
+      cssHeight = Math.max(1, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.45);
+      const nextWidth = Math.round(cssWidth * dpr);
+      const nextHeight = Math.round(cssHeight * dpr);
+      if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
+        canvas.width = nextWidth;
+        canvas.height = nextHeight;
+      }
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      pointerX = event.clientX / Math.max(1, window.innerWidth) - 0.5;
+      pointerY = event.clientY / Math.max(1, window.innerHeight) - 0.5;
+    };
+
+    const drawGlow = (x: number, y: number, radius: number, alpha: number) => {
+      const gradient = context.createRadialGradient(x, y, 0, x, y, radius);
+      gradient.addColorStop(0, `rgba(255,245,224,${alpha})`);
+      gradient.addColorStop(0.18, `rgba(231,174,92,${alpha * 0.75})`);
+      gradient.addColorStop(1, "rgba(178,132,83,0)");
+      context.fillStyle = gradient;
+      context.beginPath();
+      context.arc(x, y, radius, 0, Math.PI * 2);
+      context.fill();
+    };
+
+    const render = (timeMs: number) => {
+      if (cancelled) return;
+      const time = timeMs * 0.001;
+      resize();
+
+      smoothX += (pointerX - smoothX) * 0.035;
+      smoothY += (pointerY - smoothY) * 0.035;
+
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      context.globalCompositeOperation = "source-over";
+      context.globalAlpha = 1;
+      context.fillStyle = "#040302";
+      context.fillRect(0, 0, cssWidth, cssHeight);
+
+      if (drawable) {
+        const artLeft = cssWidth * 0.347;
+        const parallaxX = reducedMotion ? 0 : smoothX * 9;
+        const parallaxY = reducedMotion ? 0 : smoothY * 6;
+        const breathe = reducedMotion ? 1 : 1 + Math.sin(time * 0.22) * 0.0035;
+        const artWidth = cssWidth * 0.668 * breathe;
+        const artHeight = cssHeight * breathe;
+        const dx = artLeft + parallaxX - (artWidth - cssWidth * 0.668) * 0.5;
+        const dy = parallaxY - (artHeight - cssHeight) * 0.5;
+
+        context.save();
+        context.globalAlpha = 0.995;
+        context.drawImage(
+          drawable,
+          SOURCE_CROP_X,
+          0,
+          SOURCE_CROP_WIDTH,
+          SOURCE_HEIGHT,
+          dx,
+          dy,
+          artWidth,
+          artHeight,
+        );
+        context.restore();
+
+        const sourceToCanvas = (sourceX: number, sourceY: number) => ({
+          x: dx + ((sourceX - SOURCE_CROP_X) / SOURCE_CROP_WIDTH) * artWidth,
+          y: dy + (sourceY / SOURCE_HEIGHT) * artHeight,
+        });
+
+        if (!reducedMotion) {
+          context.save();
+          context.globalCompositeOperation = "screen";
+
+          const core = sourceToCanvas(1230, 385);
+          drawGlow(core.x, core.y, 44 + Math.sin(time * 1.35) * 6, 0.16 + Math.sin(time * 1.35) * 0.025);
+          drawGlow(core.x, core.y, 13 + Math.sin(time * 1.7) * 2, 0.28);
+
+          const orbitCenter = sourceToCanvas(1230, 390);
+          const orbitRx = artWidth * 0.205;
+          const orbitRy = artHeight * 0.17;
+          for (let i = 0; i < 9; i += 1) {
+            const angle = time * (0.055 + i * 0.003) + i * 0.78;
+            const tilt = 0.56 + (i % 3) * 0.13;
+            const x = orbitCenter.x + Math.cos(angle) * orbitRx * (0.54 + (i % 4) * 0.13);
+            const y = orbitCenter.y + Math.sin(angle + i * 0.31) * orbitRy * tilt;
+            const radius = 1.2 + (i % 3) * 0.6;
+            drawGlow(x, y, 10 + radius * 4, 0.07 + (i % 2) * 0.025);
+            context.fillStyle = i % 2 === 0 ? "rgba(255,235,199,.9)" : "rgba(210,151,82,.82)";
+            context.beginPath();
+            context.arc(x, y, radius, 0, Math.PI * 2);
+            context.fill();
+          }
+
+          const galaxy = sourceToCanvas(790, 126);
+          const galaxySweep = context.createRadialGradient(galaxy.x, galaxy.y, 0, galaxy.x, galaxy.y, 95);
+          galaxySweep.addColorStop(0, `rgba(231,180,111,${0.035 + Math.sin(time * 0.38) * 0.01})`);
+          galaxySweep.addColorStop(1, "rgba(178,132,83,0)");
+          context.fillStyle = galaxySweep;
+          context.beginPath();
+          context.arc(galaxy.x, galaxy.y, 95, 0, Math.PI * 2);
+          context.fill();
+
+          context.restore();
+        }
+      }
+
+      context.save();
+      context.globalCompositeOperation = "screen";
+      for (let i = 0; i < fieldStars.length; i += 1) {
+        const star = fieldStars[i];
+        const twinkle = reducedMotion ? 0.5 : 0.45 + Math.sin(time * (0.55 + (i % 5) * 0.09) + star.phase) * 0.45;
+        const x = star.x * cssWidth;
+        const y = star.y * cssHeight;
+        context.fillStyle = `rgba(239,202,145,${star.alpha * Math.max(0.18, twinkle)})`;
+        context.beginPath();
+        context.arc(x, y, star.radius, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.restore();
+
+      const topFade = context.createLinearGradient(0, 0, 0, Math.min(118, cssHeight * 0.16));
+      topFade.addColorStop(0, "rgba(4,3,2,.98)");
+      topFade.addColorStop(0.7, "rgba(4,3,2,.82)");
+      topFade.addColorStop(1, "rgba(4,3,2,0)");
+      context.fillStyle = topFade;
+      context.fillRect(cssWidth * 0.43, 0, cssWidth * 0.57, Math.min(120, cssHeight * 0.17));
+
+      const leftFade = context.createLinearGradient(cssWidth * 0.3, 0, cssWidth * 0.53, 0);
+      leftFade.addColorStop(0, "rgba(4,3,2,1)");
+      leftFade.addColorStop(0.38, "rgba(4,3,2,.96)");
+      leftFade.addColorStop(0.72, "rgba(4,3,2,.34)");
+      leftFade.addColorStop(1, "rgba(4,3,2,0)");
+      context.fillStyle = leftFade;
+      context.fillRect(cssWidth * 0.27, 0, cssWidth * 0.3, cssHeight);
+
+      if (!reducedMotion) frame = requestAnimationFrame(render);
+    };
+
+    const loadArtwork = async () => {
+      try {
+        const blob = base64ToBlob(heroBase64, "image/avif");
+        if ("createImageBitmap" in window) {
+          bitmap = await createImageBitmap(blob);
+          drawable = bitmap;
+        } else {
+          fallbackUrl = URL.createObjectURL(blob);
+          const image = new Image();
+          image.decoding = "async";
+          image.src = fallbackUrl;
+          await image.decode();
+          drawable = image;
+        }
+      } catch (error) {
+        console.error("[AUDITSEO hero] approved cinematic artwork failed to decode", error);
+      }
+
+      if (cancelled) return;
+      if (reducedMotion) render(performance.now());
+      else frame = requestAnimationFrame(render);
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(canvas);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    resize();
+    void loadArtwork();
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener("pointermove", onPointerMove);
+      if (bitmap) bitmap.close();
+      if (fallbackUrl) URL.revokeObjectURL(fallbackUrl);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />;
 }
 
 export default function CinematicHero() {
   return (
-    <section id="inicio" className="cinematic-hero relative isolate min-h-[820px] overflow-hidden bg-[#070605] text-[#f8f8f8] lg:min-h-[900px]" aria-label="AUDITSEO Search Intelligence">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(178,132,83,0.16),transparent_28%),radial-gradient(circle_at_55%_66%,rgba(88,53,31,0.12),transparent_36%),linear-gradient(110deg,#070605_0%,#0d0a08_48%,#050403_100%)]" />
-      <div className="cinematic-nebula absolute -right-[12%] top-[6%] h-[72%] w-[68%] rounded-full bg-[radial-gradient(circle,rgba(178,132,83,0.17),rgba(115,74,43,0.08)_34%,transparent_70%)] blur-[45px]" />
-      <div className="cinematic-nebula cinematic-nebula-2 absolute -left-[18%] bottom-[-20%] h-[58%] w-[58%] rounded-full bg-[radial-gradient(circle,rgba(85,52,33,0.16),transparent_68%)] blur-[60px]" />
+    <section
+      id="inicio"
+      className="cinematic-approved-hero relative isolate min-h-[820px] overflow-hidden bg-[#040302] text-[#f8f8f8] lg:h-[min(941px,100svh)] lg:min-h-[820px]"
+      aria-label="AUDITSEO Search Intelligence"
+    >
+      <AnimatedApprovedScene />
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {stars.map((star, index) => (
-          <span key={index} className="cinematic-star absolute rounded-full bg-[#f6e5cd]" style={{ left: star.left, top: star.top, width: star.size, height: star.size, opacity: star.opacity, animationDelay: star.delay, animationDuration: star.duration }} />
-        ))}
-      </div>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_74%_42%,rgba(204,143,74,.06),transparent_30%),linear-gradient(90deg,rgba(4,3,2,.18),transparent_58%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[14%] bg-gradient-to-b from-transparent to-[#080604]/36" />
 
-      <div className="planet-wrap pointer-events-none absolute bottom-[-255px] right-[-170px] h-[610px] w-[610px] opacity-80 md:bottom-[-290px] md:right-[-120px] md:h-[720px] md:w-[720px]">
-        <div className="planet absolute inset-0 rounded-full border border-[#b28453]/20 bg-[radial-gradient(circle_at_32%_23%,rgba(221,188,145,.45),rgba(132,84,50,.23)_22%,rgba(35,23,17,.94)_55%,#050403_72%)] shadow-[0_-30px_130px_rgba(178,132,83,.2)]" />
-        <div className="planet-ring absolute left-[-15%] top-[39%] h-[18%] w-[130%] rotate-[-12deg] rounded-[50%] border border-[#d9b98e]/20" />
-      </div>
-
-      <div className="pointer-events-none absolute inset-y-[13%] right-[-8%] w-[67%] opacity-55 sm:opacity-70 lg:right-[1%] lg:w-[58%] lg:opacity-100">
-        <NeuralBrain />
-      </div>
-
-      <div className="observer pointer-events-none absolute bottom-[-8px] right-[16%] hidden h-[315px] w-[120px] opacity-70 xl:block">
-        <div className="observer-head absolute left-[39px] top-0 h-[46px] w-[42px] rounded-full bg-[radial-gradient(circle_at_30%_25%,#6d5747,#1b1511_55%,#050403_100%)] shadow-[-5px_0_20px_rgba(178,132,83,.2)]" />
-        <div className="observer-body absolute bottom-0 left-[12px] h-[272px] w-[96px] rounded-t-[48px] bg-[linear-gradient(100deg,rgba(178,132,83,.18),#17110d_18%,#050403_70%)] shadow-[-8px_0_28px_rgba(178,132,83,.12)]" />
-      </div>
-
-      <div className="relative z-20 mx-auto max-w-[1450px] px-6 sm:px-9 lg:px-12 xl:px-16">
-        <header className="flex h-[94px] items-center justify-between border-b border-white/[0.055]">
-          <a href="/" className="flex items-center gap-3 text-[#c69358]" aria-label="AUDITSEO — início">
-            <BrainMark />
-            <div className="leading-none">
-              <div className="text-[22px] font-semibold tracking-[0.09em] text-[#f2eee8]">AUDIT<span className="text-[#b28453]">SEO</span></div>
-              <div className="mt-1 font-mono text-[7px] uppercase tracking-[0.28em] text-[#987757]">Search Intelligence</div>
-            </div>
+      <div className="relative z-20 mx-auto h-full max-w-[1672px] px-6 sm:px-9 lg:px-0">
+        <header className="flex h-[96px] items-center justify-between lg:absolute lg:left-[4.75%] lg:right-[5.9%] lg:top-[1.8%] lg:h-[70px]">
+          <a href="/" className="inline-flex items-center" aria-label="AUDITSEO — início">
+            <img
+              src="/auditseo-logo.png"
+              alt="AUDITSEO — Search Intelligence Partner"
+              className="h-auto w-[220px] object-contain sm:w-[245px] lg:w-[270px]"
+              decoding="async"
+            />
           </a>
-          <nav className="hidden items-center gap-7 text-[13px] font-medium tracking-[0.02em] text-white/70 lg:flex xl:gap-9">
-            <a className="transition hover:text-[#d6ae7d]" href="/solucoes">Soluções</a>
-            <a className="transition hover:text-[#d6ae7d]" href="/blog/framework-crawl-index-retrieve-understand-trust-cite">Framework</a>
-            <a className="transition hover:text-[#d6ae7d]" href="/blog">Conteúdos</a>
-            <a className="transition hover:text-[#d6ae7d]" href="/autor/sidney-santos">Sobre</a>
-            <a className="rounded-full border border-[#b28453]/55 bg-[#b28453]/10 px-5 py-2.5 text-[#f4dbc0] transition hover:bg-[#b28453] hover:text-white" href="/diagnostico">Falar com um especialista</a>
+
+          <nav className="hidden items-center gap-9 text-[14px] font-medium text-[#f5f1ec]/88 lg:flex xl:gap-11">
+            <a className="transition-colors hover:text-[#d9a25e]" href="/solucoes">Soluções</a>
+            <a className="transition-colors hover:text-[#d9a25e]" href="/blog/framework-crawl-index-retrieve-understand-trust-cite">Framework</a>
+            <a className="transition-colors hover:text-[#d9a25e]" href="/blog">Conteúdos</a>
+            <a className="transition-colors hover:text-[#d9a25e]" href="/autor/sidney-santos">Sobre</a>
+            <a
+              className="group inline-flex items-center gap-3 rounded-full border border-[#c68b44]/80 bg-black/10 px-6 py-3 text-[13px] font-semibold text-[#f1cf9c] backdrop-blur-sm transition hover:border-[#e6b66f] hover:bg-[#c68b44]/12"
+              href="/diagnostico"
+            >
+              Falar com um especialista
+              <span className="text-lg leading-none transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
           </nav>
-          <a href="/diagnostico" className="rounded-full border border-[#b28453]/50 px-4 py-2 text-xs font-semibold text-[#e4c6a2] lg:hidden">Diagnóstico</a>
+
+          <a href="/diagnostico" className="rounded-full border border-[#c68b44]/60 px-4 py-2 text-xs font-semibold text-[#e8c28f] lg:hidden">Diagnóstico</a>
         </header>
 
-        <div className="grid min-h-[700px] items-center pb-24 pt-12 lg:grid-cols-12 lg:pb-20 lg:pt-2">
-          <div className="cinematic-copy relative z-30 max-w-[780px] lg:col-span-7">
-            <div className="mb-7 flex items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c69762]">
-              <span className="h-px w-11 bg-[#b28453]/70" /> Search Intelligence para empresas
+        <div className="relative z-30 pb-36 pt-10 lg:absolute lg:left-[4.75%] lg:top-[15.2%] lg:w-[40.4%] lg:pb-0 lg:pt-0">
+          <div className="mb-7 flex items-center gap-3 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-[#d19a58] sm:text-[10px]">
+            <span className="h-px w-8 bg-[#c48b4d]/80" />
+            Search Intelligence para empresas
+          </div>
+
+          <h1 className="font-display text-[clamp(44px,8.8vw,68px)] font-bold leading-[0.99] tracking-[-0.045em] text-[#f7f5f2] lg:text-[clamp(50px,3.8vw,65px)] xl:text-[64px]">
+            <span className="block">Antes de investir em</span>
+            <span className="block">mais SEO, conteúdo</span>
+            <span className="block">ou IA, descubra onde</span>
+            <span className="block">sua presença</span>
+            <span className="block text-[#d3a062]">realmente quebra.</span>
+          </h1>
+
+          <p className="mt-7 max-w-[650px] text-[15px] leading-[1.72] text-[#f3eee7]/88 sm:text-[16px] lg:mt-6 lg:text-[16px] xl:text-[17px]">
+            A AUDITSEO investiga em qual etapa sua empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida. Depois transforma a evidência em um roadmap coordenado, com prioridades, responsáveis e critérios de validação.
+          </p>
+
+          <p className="mt-4 max-w-[650px] text-[13px] leading-[1.7] text-[#e5ddd3]/68 sm:text-[14px]">
+            SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando o diagnóstico mostra que são parte da causa ou da solução.
+          </p>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4">
+            <a
+              href="/diagnostico"
+              className="group inline-flex min-h-[58px] items-center justify-center gap-5 rounded-full bg-[linear-gradient(100deg,#d8a260,#c98d48)] px-8 text-[14px] font-bold text-white shadow-[0_12px_34px_rgba(181,119,52,.22)] transition hover:-translate-y-0.5 hover:brightness-110"
+            >
+              Diagnosticar minha empresa
+              <span className="text-xl leading-none transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
+            <a
+              href="/blog/framework-crawl-index-retrieve-understand-trust-cite"
+              className="group inline-flex min-h-[58px] items-center justify-center gap-5 rounded-full border border-[#c99656]/70 bg-black/20 px-8 text-[14px] font-semibold text-[#f4eee7] backdrop-blur-sm transition hover:border-[#dfae6c] hover:bg-[#c99656]/8"
+            >
+              Ver o framework de diagnóstico
+              <span className="text-xl leading-none transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="absolute bottom-[4.5%] left-[4.75%] z-30 hidden items-center text-[#f2d194] lg:flex">
+          <div className="flex items-center gap-4 pr-7">
+            <BarsIcon />
+            <div>
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#f3eee7]">Diagnóstico</div>
+              <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.13em] text-[#f3eee7]/72">baseado em evidências</div>
             </div>
-            <h1 className="max-w-[790px] font-display text-[clamp(48px,5.4vw,82px)] font-semibold leading-[0.98] tracking-[-0.047em] text-[#f4f0eb]">
-              Antes de investir em mais SEO, conteúdo ou IA, <span className="text-[#c99862]">descubra onde sua presença realmente quebra.</span>
-            </h1>
-            <p className="mt-7 max-w-[700px] text-[17px] leading-[1.72] text-[#ddd3c7]/82 md:text-[19px]">
-              A AUDITSEO investiga em qual etapa sua empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida. Depois transforma a evidência em um roadmap coordenado, com prioridades, responsáveis e critérios de validação.
-            </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="/diagnostico" className="inline-flex items-center justify-center rounded-full bg-[#b28453] px-7 py-4 text-sm font-bold text-white shadow-[0_14px_50px_rgba(178,132,83,.2)] transition hover:-translate-y-0.5 hover:bg-[#c69662]">Diagnosticar minha empresa</a>
-              <a href="/blog/framework-crawl-index-retrieve-understand-trust-cite" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/[0.025] px-7 py-4 text-sm font-semibold text-[#eee4d9] backdrop-blur-sm transition hover:border-[#b28453]/50 hover:bg-[#b28453]/10">Ver o framework de diagnóstico <span aria-hidden="true">→</span></a>
+          </div>
+          <span className="h-11 w-px bg-[#f2eee8]/25" />
+          <div className="flex items-center gap-4 px-7">
+            <CubeIcon />
+            <div>
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#f3eee7]">Visão integrada</div>
+              <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.13em] text-[#f3eee7]/72">do seu ecossistema</div>
             </div>
-            <div className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[9px] uppercase tracking-[0.12em] text-white/35 sm:text-[10px]">
-              {['Crawl','Index','Retrieve','Understand','Trust','Cite','Convert'].map((label, index) => <span key={label}>{index > 0 ? <span className="mr-2 text-[#b28453]/45">→</span> : null}{label}</span>)}
+          </div>
+          <span className="h-11 w-px bg-[#f2eee8]/25" />
+          <div className="flex items-center gap-4 pl-7">
+            <TargetIcon />
+            <div>
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#f3eee7]">Roadmap prático</div>
+              <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.13em] text-[#f3eee7]/72">e prioritário</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-36 bg-gradient-to-b from-transparent to-[#11100f]" />
-
       <style>{`
-        @keyframes cinematicTwinkle { 0%,100% { transform:scale(.7); opacity:.18 } 45% { transform:scale(1.8); opacity:.9 } 70% { transform:scale(1); opacity:.45 } }
-        @keyframes cinematicDrift { 0%,100% { transform:translate3d(0,0,0) scale(1) } 50% { transform:translate3d(-2.5%,2%,0) scale(1.08) } }
-        @keyframes brainFloat { 0%,100% { transform:translateY(-4px) rotate(-.25deg) } 50% { transform:translateY(8px) rotate(.35deg) } }
-        @keyframes brainPulse { 0%,100% { opacity:.58; transform:scale(.96) } 50% { opacity:1; transform:scale(1.09) } }
-        @keyframes brainDash { to { stroke-dashoffset:-120 } }
-        @keyframes orbitSpin { to { stroke-dashoffset:-150 } }
-        @keyframes planetFloat { 0%,100% { transform:translateY(0) rotate(0deg) } 50% { transform:translateY(-10px) rotate(.6deg) } }
-        @keyframes observerBreath { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-4px) } }
-        @keyframes copyReveal { from { opacity:0; transform:translateY(18px) } to { opacity:1; transform:translateY(0) } }
-        .cinematic-star { animation: cinematicTwinkle ease-in-out infinite; box-shadow:0 0 7px rgba(239,213,178,.55); }
-        .cinematic-nebula { animation: cinematicDrift 16s ease-in-out infinite; }
-        .cinematic-nebula-2 { animation-delay:-8s; animation-duration:21s; }
-        .brain-network { transform-box:fill-box; transform-origin:center; animation:brainFloat 9s ease-in-out infinite; }
-        .brain-contour { stroke-dasharray:18 8; animation:brainDash 18s linear infinite; }
-        .brain-contour-delay { stroke-dasharray:8 7; animation-duration:24s; animation-direction:reverse; }
-        .brain-node { transform-box:fill-box; transform-origin:center; animation:brainPulse 3.8s ease-in-out infinite; }
-        .brain-core { transform-box:fill-box; transform-origin:center; animation:brainPulse 2.8s ease-in-out infinite; }
-        .brain-core-ring { transform-box:fill-box; transform-origin:center; animation:brainPulse 3.5s ease-in-out infinite reverse; }
-        .brain-orbit { animation:orbitSpin 18s linear infinite; }
-        .brain-orbit-b { animation-duration:28s; animation-direction:reverse; }
-        .brain-aura { animation:brainPulse 6s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
-        .planet-wrap { animation:planetFloat 13s ease-in-out infinite; }
-        .observer { animation:observerBreath 7s ease-in-out infinite; }
-        .cinematic-copy { animation:copyReveal .9s cubic-bezier(.2,.75,.2,1) both; }
-        @media (max-width:1023px) { .cinematic-brain { transform:scale(1.2); transform-origin:center; } }
-        @media (prefers-reduced-motion: reduce) {
-          .cinematic-star,.cinematic-nebula,.brain-network,.brain-contour,.brain-node,.brain-core,.brain-core-ring,.brain-orbit,.brain-aura,.planet-wrap,.observer,.cinematic-copy { animation:none !important; }
+        .cinematic-approved-hero::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 11;
+          opacity: .055;
+          mix-blend-mode: screen;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+        }
+        @media (max-width: 1023px) {
+          .cinematic-approved-hero { min-height: 900px; }
+          .cinematic-approved-hero canvas { opacity: .44; }
+          .cinematic-approved-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba(4,3,2,.98) 0%, rgba(4,3,2,.88) 56%, rgba(4,3,2,.25) 100%);
+          }
+        }
+        @media (max-width: 640px) {
+          .cinematic-approved-hero { min-height: 940px; }
+          .cinematic-approved-hero canvas { opacity: .32; transform: translateX(12%); }
         }
       `}</style>
     </section>
