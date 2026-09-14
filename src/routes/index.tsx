@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import HomePageV2 from "@/components/HomePageV2";
+import HomePageCinematic from "@/components/HomePageCinematic";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,5 +89,5 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: HomePageV2,
+  component: HomePageCinematic,
 });
