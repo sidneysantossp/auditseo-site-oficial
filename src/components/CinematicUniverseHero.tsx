@@ -5,6 +5,7 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { BarChart3, Box, Target } from "lucide-react";
+import { HERO_TUNING } from "./heroSceneTuning";
 
 const GOLD = new THREE.Color("#d59a54");
 const GOLD_HOT = new THREE.Color("#ffc777");
@@ -63,8 +64,9 @@ function addStarfield(scene: THREE.Scene, texture: THREE.Texture) {
 
 function addGalaxy(scene: THREE.Scene, texture: THREE.Texture) {
   const group = new THREE.Group();
-  group.position.set(-0.32, 3.30, -4.45);
-  group.rotation.set(0.74, 0.06, -0.20);
+  group.position.set(...HERO_TUNING.galaxy.position);
+  group.scale.setScalar(HERO_TUNING.galaxy.scale);
+  group.rotation.set(HERO_TUNING.galaxy.rotationX, 0.06, HERO_TUNING.galaxy.rotationZ);
   const count = 5200;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
@@ -86,7 +88,7 @@ function addGalaxy(scene: THREE.Scene, texture: THREE.Texture) {
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   group.add(new THREE.Points(
     geometry,
-    new THREE.PointsMaterial({ size: 0.034, map: texture, transparent: true, opacity: 0.82, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending })
+    new THREE.PointsMaterial({ size: HERO_TUNING.galaxy.pointSize, map: texture, transparent: true, opacity: 0.82, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending })
   ));
   const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xffedc7, transparent: true, opacity: 0.72, depthWrite: false, blending: THREE.AdditiveBlending }));
   core.scale.set(0.34, 0.34, 0.34);
@@ -115,7 +117,7 @@ function addBrainShell(group: THREE.Group) {
     color: 0xe2a45c,
     wireframe: true,
     transparent: true,
-    opacity: 0.085,
+    opacity: HERO_TUNING.brain.shellOpacity,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
   });
@@ -133,8 +135,8 @@ function addBrainShell(group: THREE.Group) {
 
 function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
   const group = new THREE.Group();
-  group.position.set(2.32, 0.40, -0.12);
-  group.scale.setScalar(1.34);
+  group.position.set(...HERO_TUNING.brain.position);
+  group.scale.setScalar(HERO_TUNING.brain.scale);
   const nodes: THREE.Vector3[] = [];
   const perLobe = 210;
   [-1, 1].forEach((side) => {
@@ -150,7 +152,7 @@ function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
   const pointGeometry = new THREE.BufferGeometry();
   pointGeometry.setAttribute("position", new THREE.BufferAttribute(pointPositions, 3));
   group.add(new THREE.Points(pointGeometry, new THREE.PointsMaterial({
-    size: 0.058,
+    size: HERO_TUNING.brain.nodeSize,
     map: texture,
     color: GOLD,
     transparent: true,
@@ -173,13 +175,13 @@ function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
   }
   const lineGeometry = new THREE.BufferGeometry();
   lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
-  group.add(new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({ color: 0xd99950, transparent: true, opacity: 0.23, blending: THREE.AdditiveBlending, depthWrite: false })));
+  group.add(new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({ color: 0xd99950, transparent: true, opacity: HERO_TUNING.brain.lineOpacity, blending: THREE.AdditiveBlending, depthWrite: false })));
 
   addBrainShell(group);
 
   const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: PALE, transparent: true, opacity: 0.95, depthWrite: false, blending: THREE.AdditiveBlending }));
   core.position.set(0.04, -0.02, 0.46);
-  core.scale.set(0.44, 0.44, 0.44);
+  core.scale.setScalar(HERO_TUNING.brain.coreScale);
   core.name = "brain-core";
   group.add(core);
 
@@ -187,21 +189,21 @@ function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
   for (let i = 0; i < 11; i++) {
     const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: i % 3 === 0 ? PALE : GOLD_HOT, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }));
     sprite.scale.setScalar(i % 3 === 0 ? 0.17 : 0.11);
-    sprite.userData = { rx: 1.72 + (i % 5) * 0.28, ry: 0.68 + (i % 4) * 0.12, rz: 0.45 + (i % 3) * 0.12, speed: 0.10 + i * 0.008, phase: i * 0.66 };
+    sprite.userData = { rx: 1.92 + (i % 5) * 0.31, ry: 0.72 + (i % 4) * 0.13, rz: 0.45 + (i % 3) * 0.12, speed: 0.10 + i * 0.008, phase: i * 0.66 };
     group.add(sprite);
     orbiters.push(sprite);
   }
 
   for (let i = 0; i < 7; i++) {
     const points: THREE.Vector3[] = [];
-    const rx = 1.78 + i * 0.23;
-    const ry = 0.68 + i * 0.09;
+    const rx = 1.98 + i * 0.27;
+    const ry = 0.72 + i * 0.10;
     for (let j = 0; j <= 180; j++) {
       const a = (j / 180) * Math.PI * 2;
       points.push(new THREE.Vector3(Math.cos(a) * rx, Math.sin(a) * ry, Math.sin(a * 2 + i) * 0.19));
     }
     const g = new THREE.BufferGeometry().setFromPoints(points);
-    const loop = new THREE.Line(g, new THREE.LineBasicMaterial({ color: i % 2 ? 0xc98640 : 0xe8b66f, transparent: true, opacity: 0.14 + (i % 3) * 0.025, blending: THREE.AdditiveBlending, depthWrite: false }));
+    const loop = new THREE.Line(g, new THREE.LineBasicMaterial({ color: i % 2 ? 0xc98640 : 0xe8b66f, transparent: true, opacity: 0.13 + (i % 3) * 0.022, blending: THREE.AdditiveBlending, depthWrite: false }));
     loop.rotation.set(0.12 + i * 0.055, 0.22 - i * 0.027, -0.26 + i * 0.09);
     loop.name = `orbit-${i}`;
     group.add(loop);
@@ -224,44 +226,56 @@ function addPlanet(scene: THREE.Scene, radius: number, position: [number, number
 
 function addWorld(scene: THREE.Scene, texture: THREE.Texture) {
   const world = new THREE.Mesh(
-    new THREE.SphereGeometry(8.6, 96, 56),
-    new THREE.MeshStandardMaterial({ color: 0x27170f, roughness: 1, emissive: 0x150b06, emissiveIntensity: 0.34 })
+    new THREE.SphereGeometry(HERO_TUNING.world.radius, 96, 56),
+    new THREE.MeshStandardMaterial({ color: 0x27170f, roughness: 1, emissive: 0x150b06, emissiveIntensity: 0.30 })
   );
-  world.position.set(0.9, -9.55, -2.7);
+  world.position.set(...HERO_TUNING.world.position);
   scene.add(world);
 
-  const cityCount = 760;
-  const positions = new Float32Array(cityCount * 3);
-  const colors = new Float32Array(cityCount * 3);
-  for (let i = 0; i < cityCount; i++) {
-    const phi = 0.12 + seeded(i, 120) * 0.95;
-    const theta = 0.10 * Math.PI + seeded(i, 121) * 0.80 * Math.PI;
-    const radius = 8.62;
-    positions[i * 3] = Math.sin(phi) * Math.cos(theta) * radius;
-    positions[i * 3 + 1] = Math.cos(phi) * radius;
-    positions[i * 3 + 2] = Math.sin(phi) * Math.sin(theta) * radius;
-    const hot = seeded(i, 122);
-    colors[i * 3] = 0.75 + hot * 0.25;
-    colors[i * 3 + 1] = 0.45 + hot * 0.34;
-    colors[i * 3 + 2] = 0.20 + hot * 0.25;
-  }
-  const cityGeometry = new THREE.BufferGeometry();
-  cityGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  cityGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const cityLights = new THREE.Points(cityGeometry, new THREE.PointsMaterial({ size: 0.055, map: texture, transparent: true, opacity: 0.78, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }));
-  world.add(cityLights);
-
-  const atmosphere = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xe6aa5d, transparent: true, opacity: 0.42, depthWrite: false, blending: THREE.AdditiveBlending }));
-  atmosphere.position.set(0.9, -2.64, -1.35);
-  atmosphere.scale.set(13.6, 0.72, 1);
+  const atmosphere = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xe6aa5d, transparent: true, opacity: 0.33, depthWrite: false, blending: THREE.AdditiveBlending }));
+  atmosphere.position.set(HERO_TUNING.world.position[0], HERO_TUNING.world.atmosphereY, -1.35);
+  atmosphere.scale.set(13.8, 0.58, 1);
   scene.add(atmosphere);
   return world;
 }
 
-function addObserver(scene: THREE.Scene) {
+function addHorizon(scene: THREE.Scene, texture: THREE.Texture) {
+  const points: THREE.Vector3[] = [];
+  const { width, y, curvature, lightCount } = HERO_TUNING.horizon;
+  for (let i = 0; i <= 180; i++) {
+    const t = i / 180;
+    const x = -width + t * width * 2;
+    points.push(new THREE.Vector3(x, y - curvature * x * x, -0.35));
+  }
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xd79b50, transparent: true, opacity: 0.42, blending: THREE.AdditiveBlending, depthWrite: false }));
+  scene.add(line);
+
+  const positions = new Float32Array(lightCount * 3);
+  const colors = new Float32Array(lightCount * 3);
+  for (let i = 0; i < lightCount; i++) {
+    const x = (seeded(i, 150) - 0.5) * width * 1.9;
+    const curveY = y - curvature * x * x;
+    positions[i * 3] = x;
+    positions[i * 3 + 1] = curveY - 0.08 - seeded(i, 151) * 1.45;
+    positions[i * 3 + 2] = -0.35 + (seeded(i, 152) - 0.5) * 1.4;
+    const hot = seeded(i, 153);
+    colors[i * 3] = 0.72 + hot * 0.28;
+    colors[i * 3 + 1] = 0.40 + hot * 0.36;
+    colors[i * 3 + 2] = 0.14 + hot * 0.28;
+  }
+  const lightGeometry = new THREE.BufferGeometry();
+  lightGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  lightGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  const lights = new THREE.Points(lightGeometry, new THREE.PointsMaterial({ size: 0.045, map: texture, transparent: true, opacity: 0.62, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  scene.add(lights);
+  return { line, lights };
+}
+
+function addObserver(scene: THREE.Scene, texture: THREE.Texture) {
   const group = new THREE.Group();
-  group.position.set(1.02, -2.88, 2.25);
-  group.scale.setScalar(1.62);
+  group.position.set(...HERO_TUNING.observer.position);
+  group.scale.setScalar(HERO_TUNING.observer.scale);
   const dark = new THREE.MeshStandardMaterial({ color: 0x020201, roughness: 1 });
   const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.19, 0.78, 8, 18), dark);
   body.position.y = 0.40;
@@ -271,6 +285,11 @@ function addObserver(scene: THREE.Scene) {
   legs.position.y = -0.36;
   group.add(body, head, legs);
   scene.add(group);
+
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xc88442, transparent: true, opacity: 0.12, depthWrite: false, blending: THREE.AdditiveBlending }));
+  glow.position.set(HERO_TUNING.observer.position[0], HERO_TUNING.observer.position[1] + 0.25, HERO_TUNING.observer.position[2] - 0.8);
+  glow.scale.set(1.8, 3.1, 1);
+  scene.add(glow);
   return group;
 }
 
@@ -323,11 +342,11 @@ export default function CinematicUniverseHero() {
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.86;
+    renderer.toneMappingExposure = HERO_TUNING.renderer.exposure;
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x020101, 0.030);
+    scene.fog = new THREE.FogExp2(0x020101, HERO_TUNING.renderer.fogDensity);
     const camera = new THREE.PerspectiveCamera(41, 1, 0.1, 100);
     camera.position.set(0, 0.12, 9.8);
 
@@ -336,26 +355,27 @@ export default function CinematicUniverseHero() {
     const galaxy = addGalaxy(scene, glow);
     const brain = addBrain(scene, glow);
     const world = addWorld(scene, glow);
-    const observer = addObserver(scene);
+    const horizon = addHorizon(scene, glow);
+    const observer = addObserver(scene, glow);
     const asteroids = addAsteroids(scene);
     const planets = [
-      addPlanet(scene, 0.54, [-3.7, 2.78, -2.2], 0x69401f),
+      addPlanet(scene, 0.52, [-2.0, 3.10, -2.2], 0x69401f),
       addPlanet(scene, 0.34, [4.95, 1.75, -2.8], 0x56321d),
       addPlanet(scene, 0.27, [-4.65, 0.28, -1.8], 0x55301a),
       addPlanet(scene, 1.08, [7.20, 2.25, -4.5], 0x4b2b19),
     ];
 
-    const key = new THREE.PointLight(0xffb965, 4.5, 17, 2);
-    key.position.set(2.9, 1.45, 2.3);
+    const key = new THREE.PointLight(0xffb965, 4.3, 17, 2);
+    key.position.set(3.35, 1.35, 2.3);
     scene.add(key);
-    const rim = new THREE.PointLight(0xffd08a, 2.8, 22, 2);
-    rim.position.set(-3.0, 3.7, 1.0);
+    const rim = new THREE.PointLight(0xffd08a, 2.5, 22, 2);
+    rim.position.set(-2.3, 3.8, 1.0);
     scene.add(rim);
-    scene.add(new THREE.AmbientLight(0x4a2d1f, 0.28));
+    scene.add(new THREE.AmbientLight(0x4a2d1f, 0.26));
 
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.78, 0.34, 0.44);
+    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), HERO_TUNING.renderer.bloomStrength, HERO_TUNING.renderer.bloomRadius, HERO_TUNING.renderer.bloomThreshold);
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
 
@@ -390,13 +410,13 @@ export default function CinematicUniverseHero() {
       camera.lookAt(0.42, -0.08, 0);
       if (!reduceMotion) {
         stars.rotation.z = t * 0.0014;
-        galaxy.rotation.z = -0.20 + t * 0.018;
+        galaxy.rotation.z = HERO_TUNING.galaxy.rotationZ + t * 0.018;
         brain.rotation.y = Math.sin(t * 0.19) * 0.045 + mouse.x * 0.045;
         brain.rotation.x = Math.sin(t * 0.15) * 0.015 - mouse.y * 0.022;
         const core = brain.getObjectByName("brain-core") as THREE.Sprite | undefined;
         if (core) {
           const pulse = 1 + Math.sin(t * 2.15) * 0.10;
-          core.scale.setScalar(0.44 * pulse);
+          core.scale.setScalar(HERO_TUNING.brain.coreScale * pulse);
         }
         const orbiters = brain.userData.orbiters as THREE.Sprite[];
         orbiters?.forEach((sprite, i) => {
@@ -412,8 +432,9 @@ export default function CinematicUniverseHero() {
           asteroid.rotation.y += 0.00075 + i * 0.000025;
         });
         planets.forEach((planet, i) => (planet.rotation.y += 0.00032 + i * 0.00006));
-        world.rotation.y += 0.00010;
-        observer.position.y = -2.88 + Math.sin(t * 0.6) * 0.012;
+        world.rotation.y += 0.00008;
+        horizon.lights.rotation.y = Math.sin(t * 0.08) * 0.005;
+        observer.position.y = HERO_TUNING.observer.position[1] + Math.sin(t * 0.6) * 0.012;
       }
       composer.render();
       raf = requestAnimationFrame(animate);
@@ -440,7 +461,7 @@ export default function CinematicUniverseHero() {
 
   return (
     <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_71%_41%,rgba(129,69,27,.075),transparent_30%),radial-gradient(circle_at_44%_12%,rgba(128,77,39,.055),transparent_21%),linear-gradient(112deg,#010101_0%,#050302_54%,#010101_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_71%_41%,rgba(129,69,27,.07),transparent_30%),radial-gradient(circle_at_44%_12%,rgba(128,77,39,.05),transparent_21%),linear-gradient(112deg,#010101_0%,#050302_54%,#010101_100%)]" />
       <div ref={mountRef} className="absolute inset-0" />
       {failed ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_40%,rgba(213,151,74,.10),transparent_28%),radial-gradient(circle_at_43%_12%,rgba(209,142,67,.06),transparent_22%)]" /> : null}
 
@@ -457,7 +478,7 @@ export default function CinematicUniverseHero() {
         <div className="absolute bottom-[4.6%] right-[5.1%] z-[4] font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#d4a05d]/90">Dados · Estratégia · Resultados reais</div>
       </div>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_45%,transparent_0%,transparent_34%,rgba(0,0,0,.08)_54%,rgba(0,0,0,.30)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_45%,transparent_0%,transparent_35%,rgba(0,0,0,.07)_55%,rgba(0,0,0,.29)_100%)]" />
     </div>
   );
 }
