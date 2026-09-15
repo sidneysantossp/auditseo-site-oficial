@@ -95,6 +95,18 @@ export default function Header({ onNavClick }: HeaderProps) {
           <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-[#b99a78]">Search Intelligence Partner</div>
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          #inicio > .relative.z-10 {
+            position: static !important;
+          }
+          #inicio > .relative.z-10 > div:last-child {
+            position: static !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
