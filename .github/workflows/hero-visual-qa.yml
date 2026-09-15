@@ -49,14 +49,25 @@ jobs:
         run: |
           node --input-type=module <<'EOF'
           import { chromium } from 'playwright';
-          const browser = await chromium.launch({ headless: true });
+          const browser = await chromium.launch({
+            headless: true,
+            args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']
+          });
           const page = await browser.newPage({ viewport: { width: 1672, height: 941 }, deviceScaleFactor: 1 });
+          page.on('console', msg => console.log('[browser]', msg.type(), msg.text()));
+          page.on('pageerror', err => console.log('[pageerror]', err.message));
           await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded', timeout: 30000 });
           await page.evaluate(() => {
             document.documentElement.style.scrollBehavior = 'auto';
             window.scrollTo(0, 0);
           });
-          await page.waitForTimeout(2500);
+          await page.waitForTimeout(3000);
+          const glInfo = await page.evaluate(() => {
+            const canvas = document.querySelector('#inicio canvas');
+            const gl = canvas?.getContext('webgl2') || canvas?.getContext('webgl');
+            return { hasCanvas: !!canvas, hasWebGL: !!gl, width: canvas?.width || 0, height: canvas?.height || 0 };
+          });
+          console.log('GL_INFO', JSON.stringify(glInfo));
           await page.screenshot({ path: 'hero-qa.png', fullPage: false, timeout: 30000 });
           const metrics = await page.evaluate(() => {
             const hero = document.querySelector('#inicio');
