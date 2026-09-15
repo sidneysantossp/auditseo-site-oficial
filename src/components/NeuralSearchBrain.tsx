@@ -1,251 +1,349 @@
 import React from "react";
-import * as THREE from "three";
 import { BarChart3, Box, Target } from "lucide-react";
 
-const GOLD = 0xd5a15f;
-const PALE = 0xffead0;
-
-function makeGlowTexture() {
-  const canvas = document.createElement("canvas");
-  canvas.width = 128;
-  canvas.height = 128;
-  const ctx = canvas.getContext("2d")!;
-  const gradient = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-  gradient.addColorStop(0, "rgba(255,255,255,1)");
-  gradient.addColorStop(0.14, "rgba(255,232,195,.95)");
-  gradient.addColorStop(0.38, "rgba(214,158,88,.46)");
-  gradient.addColorStop(1, "rgba(214,158,88,0)");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 128, 128);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  return texture;
-}
+const GOLD = "#d6a05d";
+const PALE = "#ffe3b8";
 
 function seeded(index: number, salt = 0) {
   const value = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453;
   return value - Math.floor(value);
 }
 
-function makeStars(scene: THREE.Scene, glow: THREE.Texture) {
-  const count = 1500;
-  const positions = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
-  for (let i = 0; i < count; i += 1) {
-    const spread = i < 950 ? 19 : 12;
-    positions[i * 3] = (seeded(i, 1) - 0.5) * spread;
-    positions[i * 3 + 1] = (seeded(i, 2) - 0.5) * 10;
-    positions[i * 3 + 2] = -2 - seeded(i, 3) * 10;
-    const warm = seeded(i, 4);
-    colors[i * 3] = 0.62 + warm * 0.38;
-    colors[i * 3 + 1] = 0.49 + warm * 0.36;
-    colors[i * 3 + 2] = 0.34 + warm * 0.3;
+const STARS = Array.from({ length: 560 }, (_, index) => ({
+  x: seeded(index, 1),
+  y: seeded(index, 2),
+  r: 0.35 + seeded(index, 3) * 1.2,
+  a: 0.18 + seeded(index, 4) * 0.72,
+  phase: seeded(index, 5) * Math.PI * 2,
+}));
+
+const GALAXY = Array.from({ length: 820 }, (_, index) => {
+  const arm = index % 4;
+  const radius = 0.035 + seeded(index, 10) * 1.0;
+  const theta = radius * 8.4 + arm * Math.PI * 0.5 + (seeded(index, 11) - 0.5) * 0.52;
+  return { radius, theta, spread: (seeded(index, 12) - 0.5) * (0.05 + radius * 0.13), heat: 1 - radius };
+});
+
+const BRAIN_NODES = Array.from({ length: 126 }, (_, index) => {
+  const side = index % 2 === 0 ? -1 : 1;
+  const i = Math.floor(index / 2);
+  const u = (i + 0.5) / 63;
+  const phi = Math.acos(1 - 2 * u);
+  const theta = seeded(index, 21) * Math.PI * 2;
+  const bulge = 1 + Math.sin(theta * 3 + phi * 4) * 0.11 + Math.sin(theta * 7 - phi * 2) * 0.055;
+  return {
+    x: side * (0.18 + Math.abs(Math.sin(phi) * Math.cos(theta)) * 0.82 * bulge),
+    y: Math.cos(phi) * 0.84 * bulge,
+    z: Math.sin(phi) * Math.sin(theta) * 0.55 * bulge,
+    phase: seeded(index, 22) * Math.PI * 2,
+  };
+});
+
+const STEM_NODES = Array.from({ length: 14 }, (_, index) => ({
+  x: (seeded(index, 30) - 0.5) * 0.10,
+  y: 0.70 + index * 0.075,
+  z: (seeded(index, 31) - 0.5) * 0.10,
+  phase: seeded(index, 32) * Math.PI * 2,
+}));
+
+const ALL_NODES = [...BRAIN_NODES, ...STEM_NODES];
+const BRAIN_LINKS: Array<[number, number]> = [];
+for (let i = 0; i < ALL_NODES.length; i += 1) {
+  const nearest: Array<{ j: number; d: number }> = [];
+  for (let j = 0; j < ALL_NODES.length; j += 1) {
+    if (i === j) continue;
+    const dx = ALL_NODES[i].x - ALL_NODES[j].x;
+    const dy = ALL_NODES[i].y - ALL_NODES[j].y;
+    const dz = ALL_NODES[i].z - ALL_NODES[j].z;
+    const d = dx * dx + dy * dy + dz * dz;
+    if (d < 0.22) nearest.push({ j, d });
   }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const material = new THREE.PointsMaterial({
-    size: 0.045,
-    map: glow,
-    transparent: true,
-    opacity: 0.82,
-    vertexColors: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
+  nearest.sort((a, b) => a.d - b.d).slice(0, 2).forEach(({ j }) => {
+    if (i < j) BRAIN_LINKS.push([i, j]);
   });
-  const points = new THREE.Points(geometry, material);
-  points.name = "stars";
-  scene.add(points);
-  return points;
-}
-
-function makeGalaxy(scene: THREE.Scene, glow: THREE.Texture) {
-  const group = new THREE.Group();
-  group.position.set(-0.55, 3.35, -4.2);
-  group.rotation.set(0.86, 0.1, -0.18);
-  const count = 1200;
-  const positions = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
-  for (let i = 0; i < count; i += 1) {
-    const arm = i % 4;
-    const radius = 0.15 + seeded(i, 7) * 2.1;
-    const theta = radius * 4.8 + arm * Math.PI * 0.5 + (seeded(i, 8) - 0.5) * 0.42;
-    positions[i * 3] = Math.cos(theta) * radius;
-    positions[i * 3 + 1] = Math.sin(theta) * radius;
-    positions[i * 3 + 2] = (seeded(i, 9) - 0.5) * (0.1 + radius * 0.16);
-    const hot = 1 - Math.min(1, radius / 2.2);
-    colors[i * 3] = 0.72 + hot * 0.28;
-    colors[i * 3 + 1] = 0.48 + hot * 0.42;
-    colors[i * 3 + 2] = 0.24 + hot * 0.5;
-  }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const material = new THREE.PointsMaterial({ size: 0.075, map: glow, transparent: true, opacity: 0.7, vertexColors: true, blending: THREE.AdditiveBlending, depthWrite: false });
-  group.add(new THREE.Points(geometry, material));
-  const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: PALE, transparent: true, opacity: 0.78, blending: THREE.AdditiveBlending, depthWrite: false }));
-  core.scale.set(1.1, 1.1, 1.1);
-  group.add(core);
-  scene.add(group);
-  return group;
-}
-
-function makeBrain(scene: THREE.Scene, glow: THREE.Texture) {
-  const group = new THREE.Group();
-  group.position.set(2.25, 0.65, 0.1);
-  group.scale.setScalar(1.34);
-
-  const nodes: THREE.Vector3[] = [];
-  const perLobe = 90;
-  for (let side = -1; side <= 1; side += 2) {
-    for (let i = 0; i < perLobe; i += 1) {
-      const u = (i + 0.5) / perLobe;
-      const v = seeded(i, side * 17 + 40);
-      const phi = Math.acos(1 - 2 * u);
-      const theta = v * Math.PI * 2;
-      const bulge = 1 + 0.12 * Math.sin(theta * 3 + phi * 5) + 0.07 * Math.sin(theta * 7 - phi * 2);
-      const x = side * (0.36 + Math.abs(Math.sin(phi) * Math.cos(theta)) * 1.08 * bulge);
-      const y = Math.cos(phi) * 1.28 * bulge;
-      const z = Math.sin(phi) * Math.sin(theta) * 0.86 * bulge;
-      nodes.push(new THREE.Vector3(x, y, z));
-    }
-  }
-
-  for (let i = 0; i < 18; i += 1) {
-    const t = i / 17;
-    nodes.push(new THREE.Vector3((seeded(i, 33) - 0.5) * 0.22, -1.22 - t * 1.18, (seeded(i, 34) - 0.5) * 0.16));
-  }
-
-  const positions = new Float32Array(nodes.length * 3);
-  nodes.forEach((node, i) => node.toArray(positions, i * 3));
-  const nodeGeometry = new THREE.BufferGeometry();
-  nodeGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  const nodeMaterial = new THREE.PointsMaterial({ size: 0.12, map: glow, color: GOLD, transparent: true, opacity: 0.96, depthWrite: false, blending: THREE.AdditiveBlending });
-  group.add(new THREE.Points(nodeGeometry, nodeMaterial));
-
-  const segments: number[] = [];
-  for (let i = 0; i < nodes.length; i += 1) {
-    const distances: { index: number; distance: number }[] = [];
-    for (let j = 0; j < nodes.length; j += 1) {
-      if (i === j) continue;
-      const distance = nodes[i].distanceToSquared(nodes[j]);
-      if (distance < 0.5) distances.push({ index: j, distance });
-    }
-    distances.sort((a, b) => a.distance - b.distance).slice(0, 3).forEach(({ index }) => {
-      segments.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[index].x, nodes[index].y, nodes[index].z);
-    });
-  }
-  const lineGeometry = new THREE.BufferGeometry();
-  lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(segments, 3));
-  group.add(new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending })));
-
-  const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: 0xfff6e9, transparent: true, opacity: 1, depthWrite: false, blending: THREE.AdditiveBlending }));
-  core.position.set(0.04, 0.08, 0.48);
-  core.scale.set(0.82, 0.82, 0.82);
-  core.name = "brainCore";
-  group.add(core);
-
-  for (let i = 0; i < 7; i += 1) {
-    const radiusX = 1.8 + i * 0.27;
-    const radiusY = 0.72 + i * 0.11;
-    const curve = new THREE.EllipseCurve(0, 0, radiusX, radiusY, 0, Math.PI * 2, false, i * 0.3);
-    const points = curve.getPoints(130).map((point) => new THREE.Vector3(point.x, point.y, (i - 3) * 0.11));
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const loop = new THREE.LineLoop(geometry, new THREE.LineBasicMaterial({ color: i % 2 ? 0xd89a50 : 0xf4c98a, transparent: true, opacity: 0.28 - i * 0.015, blending: THREE.AdditiveBlending }));
-    loop.rotation.set(0.18 + i * 0.05, 0.34 - i * 0.04, -0.22 + i * 0.09);
-    loop.name = `orbit-${i}`;
-    group.add(loop);
-  }
-
-  const orbiters: THREE.Sprite[] = [];
-  for (let i = 0; i < 8; i += 1) {
-    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: i % 3 === 0 ? PALE : GOLD, transparent: true, opacity: 0.95, blending: THREE.AdditiveBlending, depthWrite: false }));
-    sprite.scale.setScalar(i % 3 === 0 ? 0.34 : 0.22);
-    sprite.userData = { radiusX: 1.95 + (i % 4) * 0.38, radiusY: 0.74 + (i % 4) * 0.16, speed: 0.08 + i * 0.009, phase: i * 0.83 };
-    orbiters.push(sprite);
-    group.add(sprite);
-  }
-  group.userData.orbiters = orbiters;
-  scene.add(group);
-  return group;
-}
-
-function makePlanet(scene: THREE.Scene, radius: number, position: [number, number, number], color: number) {
-  const geometry = new THREE.SphereGeometry(radius, 48, 32);
-  const material = new THREE.MeshStandardMaterial({ color, roughness: 0.96, metalness: 0.05, emissive: new THREE.Color(color).multiplyScalar(0.08) });
-  const planet = new THREE.Mesh(geometry, material);
-  planet.position.set(...position);
-  scene.add(planet);
-  return planet;
-}
-
-function makeHorizon(scene: THREE.Scene, glow: THREE.Texture) {
-  const globe = new THREE.Mesh(new THREE.SphereGeometry(8.2, 96, 48), new THREE.MeshStandardMaterial({ color: 0x23160e, roughness: 1, metalness: 0, emissive: 0x170d07, emissiveIntensity: 0.38 }));
-  globe.position.set(1.05, -8.62, -2.4);
-  scene.add(globe);
-
-  const rim = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: 0xf2b968, transparent: true, opacity: 0.58, blending: THREE.AdditiveBlending, depthWrite: false }));
-  rim.position.set(1.1, -2.45, -1.3);
-  rim.scale.set(12.8, 1.0, 1);
-  scene.add(rim);
-
-  for (let i = 0; i < 85; i += 1) {
-    const city = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: i % 3 === 0 ? PALE : GOLD, transparent: true, opacity: 0.45 + seeded(i, 90) * 0.35, blending: THREE.AdditiveBlending, depthWrite: false }));
-    const angle = Math.PI * (0.16 + seeded(i, 91) * 0.68);
-    const x = 1.0 + Math.cos(angle) * (5.3 + seeded(i, 92) * 1.7);
-    const y = -3.02 + Math.sin(angle) * 0.44 + seeded(i, 93) * 0.25;
-    city.position.set(x, y, -0.5 - seeded(i, 94));
-    const scale = 0.06 + seeded(i, 95) * 0.12;
-    city.scale.set(scale, scale, scale);
-    scene.add(city);
-  }
-  return globe;
-}
-
-function makeObserver(scene: THREE.Scene) {
-  const group = new THREE.Group();
-  group.position.set(1.17, -2.8, 1.7);
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.2, 0.72, 8, 16), new THREE.MeshStandardMaterial({ color: 0x050403, roughness: 1 }));
-  body.position.y = 0.38;
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.15, 24, 16), new THREE.MeshStandardMaterial({ color: 0x070504, roughness: 1 }));
-  head.position.y = 1.02;
-  const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.12, 0.8, 10), new THREE.MeshStandardMaterial({ color: 0x030302, roughness: 1 }));
-  legs.position.y = -0.35;
-  group.add(body, head, legs);
-  scene.add(group);
-  return group;
-}
-
-function makeAsteroids(scene: THREE.Scene) {
-  const asteroids: THREE.Mesh[] = [];
-  const positions: Array<[number, number, number, number]> = [
-    [-4.8, -3.0, 0.4, 0.55], [-3.3, -3.7, 1.2, 0.7], [-1.8, -2.7, -0.4, 0.25], [3.8, -3.1, 0.5, 0.58], [4.7, -2.5, -0.8, 0.34], [5.2, 2.9, -3, 0.45], [-4.7, 1.7, -4, 0.35], [-2.9, 3.4, -5, 0.23], [4.9, 0.9, -5, 0.28]
-  ];
-  positions.forEach(([x, y, z, size], i) => {
-    const mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(size, 1), new THREE.MeshStandardMaterial({ color: 0x2a1b12, roughness: 0.92, metalness: 0.08 }));
-    mesh.position.set(x, y, z);
-    mesh.scale.set(1.2, 0.85 + seeded(i, 101) * 0.5, 1);
-    mesh.rotation.set(seeded(i, 102) * 2, seeded(i, 103) * 2, seeded(i, 104) * 2);
-    asteroids.push(mesh);
-    scene.add(mesh);
-  });
-  return asteroids;
 }
 
 const LABELS = [
-  ["CONTEÚDO", "55%", "22%"], ["AUTORIDADE", "79%", "19%"], ["SEO TÉCNICO", "85%", "35%"],
-  ["SEARCH AI", "86%", "51%"], ["RESULTADOS", "81%", "69%"], ["ESTRATÉGIA", "56%", "64%"], ["REPUTAÇÃO", "54%", "54%"],
+  ["CONTEÚDO", "54%", "21%"], ["AUTORIDADE", "80%", "18%"], ["SEO TÉCNICO", "86%", "34%"],
+  ["SEARCH AI", "87%", "50%"], ["RESULTADOS", "81%", "69%"], ["ESTRATÉGIA", "56%", "64%"], ["REPUTAÇÃO", "54%", "54%"],
 ] as const;
+
+function ellipse(ctx: CanvasRenderingContext2D, cx: number, cy: number, rx: number, ry: number, rotation: number) {
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, rx, ry, rotation, 0, Math.PI * 2);
+}
+
+function glow(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, strength = 1) {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, radius);
+  g.addColorStop(0, `rgba(255,250,237,${0.95 * strength})`);
+  g.addColorStop(0.12, `rgba(255,214,155,${0.75 * strength})`);
+  g.addColorStop(0.42, `rgba(214,138,58,${0.23 * strength})`);
+  g.addColorStop(1, "rgba(181,96,27,0)");
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawScene(ctx: CanvasRenderingContext2D, width: number, height: number, time: number, px: number, py: number) {
+  ctx.clearRect(0, 0, width, height);
+  const min = Math.min(width, height);
+
+  const wash = ctx.createRadialGradient(width * 0.74, height * 0.42, 0, width * 0.74, height * 0.42, width * 0.48);
+  wash.addColorStop(0, "rgba(118,64,26,.16)");
+  wash.addColorStop(0.38, "rgba(74,35,13,.075)");
+  wash.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = wash;
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.save();
+  ctx.globalCompositeOperation = "lighter";
+  for (let i = 0; i < STARS.length; i += 1) {
+    const star = STARS[i];
+    const flicker = 0.48 + 0.52 * Math.sin(time * (0.35 + (i % 7) * 0.06) + star.phase);
+    const x = star.x * width + px * (2 + (i % 3));
+    const y = star.y * height + py * (1 + (i % 2));
+    ctx.globalAlpha = star.a * (0.35 + flicker * 0.65);
+    ctx.fillStyle = i % 5 === 0 ? PALE : GOLD;
+    ctx.beginPath();
+    ctx.arc(x, y, star.r * (0.75 + flicker * 0.4), 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const gx = width * 0.445 + px * 8;
+  const gy = height * 0.13 + py * 4;
+  const gscale = min * 0.165;
+  const grot = time * 0.035;
+  for (let i = 0; i < GALAXY.length; i += 1) {
+    const point = GALAXY[i];
+    const theta = point.theta + grot;
+    const r = point.radius * gscale;
+    const x = gx + Math.cos(theta) * r * 1.35;
+    const y = gy + Math.sin(theta) * r * 0.58 + point.spread * gscale;
+    const alpha = 0.10 + point.heat * 0.62;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = i % 9 === 0 ? "#fff5df" : i % 3 === 0 ? "#d8984d" : "#a56733";
+    ctx.beginPath();
+    ctx.arc(x, y, 0.45 + point.heat * 1.15, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  glow(ctx, gx, gy, min * 0.055, 0.55);
+
+  ctx.globalAlpha = 0.33;
+  const ray = ctx.createLinearGradient(0, height * 0.05, width * 0.48, height * 0.34);
+  ray.addColorStop(0, "rgba(216,154,76,.75)");
+  ray.addColorStop(1, "rgba(216,154,76,0)");
+  ctx.strokeStyle = ray;
+  ctx.lineWidth = 1.2;
+  for (let i = 0; i < 4; i += 1) {
+    ctx.beginPath();
+    ctx.moveTo(-20, height * (0.07 + i * 0.035));
+    ctx.lineTo(width * (0.49 + i * 0.015), height * (0.31 + i * 0.02));
+    ctx.stroke();
+  }
+
+  const farX = width * 1.01 + px * 3;
+  const farY = height * 0.18 + py * 2;
+  const farR = min * 0.105;
+  const planetGrad = ctx.createRadialGradient(farX - farR * 0.35, farY - farR * 0.35, farR * 0.05, farX, farY, farR);
+  planetGrad.addColorStop(0, "rgba(169,109,61,.72)");
+  planetGrad.addColorStop(0.38, "rgba(88,50,28,.76)");
+  planetGrad.addColorStop(1, "rgba(8,5,3,.98)");
+  ctx.globalAlpha = 0.88;
+  ctx.fillStyle = planetGrad;
+  ctx.beginPath();
+  ctx.arc(farX, farY, farR, 0, Math.PI * 2);
+  ctx.fill();
+
+  const smallPlanets = [
+    [0.31, 0.115, 0.040], [0.51, 0.45, 0.026], [0.90, 0.27, 0.022], [0.87, 0.58, 0.020], [0.49, 0.66, 0.018],
+  ];
+  smallPlanets.forEach(([nx, ny, nr], i) => {
+    const x = width * nx + px * (4 + i);
+    const y = height * ny + py * (2 + i * 0.6);
+    const r = min * nr;
+    const pg = ctx.createRadialGradient(x - r * 0.35, y - r * 0.35, r * 0.05, x, y, r);
+    pg.addColorStop(0, "rgba(211,147,83,.9)");
+    pg.addColorStop(0.4, "rgba(103,58,31,.8)");
+    pg.addColorStop(1, "rgba(8,5,3,.98)");
+    ctx.fillStyle = pg;
+    ctx.globalAlpha = 0.82;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  const cx = width * 0.735 + px * 9;
+  const cy = height * 0.405 + py * 6;
+  const brainScale = min * 0.22;
+  const yaw = px * 0.006 + Math.sin(time * 0.23) * 0.018;
+  const pitch = py * 0.004;
+  const project = (node: { x: number; y: number; z: number }) => {
+    const cosy = Math.cos(yaw), siny = Math.sin(yaw);
+    const cosp = Math.cos(pitch), sinp = Math.sin(pitch);
+    const x1 = node.x * cosy - node.z * siny;
+    const z1 = node.x * siny + node.z * cosy;
+    const y1 = node.y * cosp - z1 * sinp;
+    const z2 = node.y * sinp + z1 * cosp;
+    const perspective = 1 + z2 * 0.10;
+    return { x: cx + x1 * brainScale * perspective, y: cy + y1 * brainScale * perspective, z: z2 };
+  };
+
+  const projected = ALL_NODES.map(project);
+  ctx.globalAlpha = 1;
+  const aura = ctx.createRadialGradient(cx, cy, 0, cx, cy, brainScale * 1.35);
+  aura.addColorStop(0, "rgba(216,154,76,.15)");
+  aura.addColorStop(0.55, "rgba(174,94,33,.07)");
+  aura.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = aura;
+  ctx.beginPath();
+  ctx.arc(cx, cy, brainScale * 1.35, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(-0.10);
+  for (let i = 0; i < 8; i += 1) {
+    const rx = brainScale * (0.86 + i * 0.10);
+    const ry = brainScale * (0.33 + i * 0.038);
+    ctx.strokeStyle = `rgba(224,157,75,${0.21 - i * 0.014})`;
+    ctx.lineWidth = i % 3 === 0 ? 1.25 : 0.8;
+    ctx.setLineDash(i % 2 ? [7, 12] : []);
+    ctx.lineDashOffset = time * (i % 2 ? 8 : -5);
+    ellipse(ctx, 0, 0, rx, ry, i * 0.13);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+  ctx.restore();
+
+  ctx.lineWidth = 0.75;
+  for (const [a, b] of BRAIN_LINKS) {
+    const pa = projected[a], pb = projected[b];
+    const depth = Math.max(0.12, 0.32 + (pa.z + pb.z) * 0.08);
+    ctx.strokeStyle = `rgba(221,156,78,${depth})`;
+    ctx.beginPath();
+    ctx.moveTo(pa.x, pa.y);
+    ctx.lineTo(pb.x, pb.y);
+    ctx.stroke();
+  }
+
+  for (let i = 0; i < projected.length; i += 1) {
+    const p = projected[i];
+    const pulse = 0.58 + 0.42 * Math.sin(time * (1.1 + (i % 5) * 0.07) + ALL_NODES[i].phase);
+    const radius = (i % 17 === 0 ? 3.2 : 1.2 + (i % 4) * 0.32) * (0.8 + pulse * 0.35);
+    if (i % 17 === 0) glow(ctx, p.x, p.y, radius * 8, 0.42);
+    ctx.fillStyle = i % 8 === 0 ? "#fff0d0" : GOLD;
+    ctx.globalAlpha = 0.52 + pulse * 0.48;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const corePulse = 0.5 + 0.5 * Math.sin(time * 2.2);
+  glow(ctx, cx + brainScale * 0.02, cy - brainScale * 0.02, brainScale * (0.18 + corePulse * 0.06), 0.92);
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "#fffaf0";
+  ctx.beginPath();
+  ctx.arc(cx + brainScale * 0.02, cy - brainScale * 0.02, 4.5 + corePulse * 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  for (let i = 0; i < 10; i += 1) {
+    const angle = time * (0.18 + i * 0.013) + i * 0.71;
+    const rx = brainScale * (0.94 + (i % 4) * 0.17);
+    const ry = brainScale * (0.35 + (i % 4) * 0.06);
+    const x = cx + Math.cos(angle) * rx;
+    const y = cy + Math.sin(angle) * ry;
+    glow(ctx, x, y, 10 + (i % 3) * 4, 0.18);
+    ctx.globalAlpha = 0.78;
+    ctx.fillStyle = i % 3 === 0 ? "#fff0d0" : GOLD;
+    ctx.beginPath();
+    ctx.arc(x, y, i % 3 === 0 ? 2.3 : 1.45, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const horizonY = height * 0.84;
+  const hg = ctx.createLinearGradient(0, horizonY - 20, 0, height);
+  hg.addColorStop(0, "rgba(226,154,72,.06)");
+  hg.addColorStop(0.22, "rgba(89,46,21,.52)");
+  hg.addColorStop(1, "rgba(6,4,3,.98)");
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = hg;
+  ctx.beginPath();
+  ctx.ellipse(width * 0.57, height * 1.08, width * 0.61, height * 0.28, 0, Math.PI, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(239,177,101,.55)";
+  ctx.lineWidth = 1.1;
+  ctx.beginPath();
+  ctx.ellipse(width * 0.57, height * 1.08, width * 0.61, height * 0.28, 0, Math.PI * 1.12, Math.PI * 1.88);
+  ctx.stroke();
+  for (let i = 0; i < 92; i += 1) {
+    const x = width * (0.18 + seeded(i, 70) * 0.70);
+    const y = horizonY + seeded(i, 71) * height * 0.13;
+    const rr = 0.45 + seeded(i, 72) * 1.6;
+    ctx.globalAlpha = 0.22 + seeded(i, 73) * 0.46;
+    ctx.fillStyle = i % 4 === 0 ? PALE : GOLD;
+    ctx.beginPath();
+    ctx.arc(x, y, rr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const ox = width * 0.675 + px * 3;
+  const oy = height * 0.88;
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "rgba(2,2,2,.97)";
+  ctx.beginPath();
+  ctx.arc(ox, oy - min * 0.115, min * 0.015, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(ox - min * 0.025, oy - min * 0.088);
+  ctx.quadraticCurveTo(ox, oy - min * 0.105, ox + min * 0.025, oy - min * 0.088);
+  ctx.lineTo(ox + min * 0.033, oy);
+  ctx.lineTo(ox + min * 0.010, oy);
+  ctx.lineTo(ox, oy - min * 0.035);
+  ctx.lineTo(ox - min * 0.010, oy);
+  ctx.lineTo(ox - min * 0.033, oy);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = "rgba(222,153,78,.18)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const asteroids = [
+    [0.45, 0.70, 0.034], [0.49, 0.86, 0.050], [0.92, 0.72, 0.036], [0.86, 0.91, 0.050], [0.61, 0.75, 0.020], [0.04, 0.75, 0.044],
+  ];
+  asteroids.forEach(([nx, ny, nr], i) => {
+    const x = width * nx + px * (6 + i * 0.7);
+    const y = height * ny + py * (3 + i * 0.35);
+    const r = min * nr;
+    ctx.fillStyle = i % 2 ? "#1d110b" : "#2b190f";
+    ctx.globalAlpha = 0.90;
+    ctx.beginPath();
+    for (let k = 0; k < 8; k += 1) {
+      const a = (k / 8) * Math.PI * 2;
+      const jitter = 0.72 + seeded(i * 11 + k, 88) * 0.42;
+      const xx = x + Math.cos(a) * r * jitter;
+      const yy = y + Math.sin(a) * r * jitter;
+      if (k === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    }
+    ctx.closePath();
+    ctx.fill();
+  });
+
+  ctx.restore();
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = "source-over";
+}
 
 export default function NeuralSearchBrain() {
   const hostRef = React.useRef<HTMLDivElement>(null);
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   React.useEffect(() => {
     const host = hostRef.current;
-    if (!host || host.getBoundingClientRect().width < 20) return;
+    const canvas = canvasRef.current;
+    if (!host || !canvas) return;
     const hero = host.closest("#inicio") as HTMLElement | null;
-    if (!hero || hero.dataset.universeMounted === "true") return;
-    hero.dataset.universeMounted = "true";
+    if (!hero) return;
 
     const heading = hero.querySelector("h1") as HTMLElement | null;
     if (heading && !heading.dataset.goldTail) {
@@ -256,122 +354,69 @@ export default function NeuralSearchBrain() {
       if (element.textContent?.replace(/\s/g, "").includes("CrawlIndexRetrieveUnderstandTrustCiteConvert")) (element as HTMLElement).style.display = "none";
     });
 
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x030201, 0.058);
-    const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 100);
-    camera.position.set(0.55, 0.25, 10.7);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-    renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.18;
-    renderer.domElement.style.position = "absolute";
-    renderer.domElement.style.inset = "0";
-    renderer.domElement.style.width = "100%";
-    renderer.domElement.style.height = "100%";
-    renderer.domElement.style.pointerEvents = "none";
-    host.appendChild(renderer.domElement);
-
-    const glow = makeGlowTexture();
-    const stars = makeStars(scene, glow);
-    const galaxy = makeGalaxy(scene, glow);
-    const brain = makeBrain(scene, glow);
-    const earth = makeHorizon(scene, glow);
-    const observer = makeObserver(scene);
-    const asteroids = makeAsteroids(scene);
-    const farPlanet = makePlanet(scene, 1.05, [5.4, 3.0, -5.0], 0x4c2d1a);
-    const smallPlanet = makePlanet(scene, 0.42, [-2.4, 3.3, -3.9], 0x6b4022);
-
-    scene.add(new THREE.AmbientLight(0x6e4a31, 0.48));
-    const key = new THREE.PointLight(0xffc77d, 25, 18, 2);
-    key.position.set(2.2, 0.7, 2.7);
-    scene.add(key);
-    const rimLight = new THREE.PointLight(0xffa94a, 12, 24, 2);
-    rimLight.position.set(-2.0, 3.3, -0.2);
-    scene.add(rimLight);
-
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+    let cssWidth = 1;
+    let cssHeight = 1;
+    let dpr = 1;
+    let raf = 0;
     let pointerX = 0;
     let pointerY = 0;
-    const handlePointer = (event: PointerEvent) => {
-      const rect = hero.getBoundingClientRect();
-      pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-      pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-    };
-    hero.addEventListener("pointermove", handlePointer);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const resize = () => {
       const rect = hero.getBoundingClientRect();
-      renderer.setSize(Math.max(1, rect.width), Math.max(1, rect.height), false);
-      camera.aspect = rect.width / Math.max(1, rect.height);
-      camera.updateProjectionMatrix();
-    };
-    const observerResize = new ResizeObserver(resize);
-    observerResize.observe(hero);
-    resize();
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const clock = new THREE.Clock();
-    let raf = 0;
-    const animate = () => {
-      const time = clock.getElapsedTime();
-      const drift = prefersReduced ? 0 : Math.sin(time * 0.45) * 0.055;
-      stars.rotation.y = time * 0.008;
-      galaxy.rotation.z = time * 0.035;
-      brain.rotation.y += ((pointerX * 0.11) - brain.rotation.y) * 0.035;
-      brain.rotation.x += ((-pointerY * 0.055) - brain.rotation.x) * 0.035;
-      brain.position.y = 0.65 + drift;
-      const core = brain.getObjectByName("brainCore") as THREE.Sprite | undefined;
-      if (core) {
-        const pulse = 0.78 + Math.sin(time * 2.2) * 0.16;
-        core.scale.setScalar(pulse);
+      cssWidth = Math.max(1, rect.width);
+      cssHeight = Math.max(1, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const w = Math.round(cssWidth * dpr);
+      const h = Math.round(cssHeight * dpr);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
       }
-      (brain.userData.orbiters as THREE.Sprite[]).forEach((sprite, index) => {
-        const data = sprite.userData as { radiusX: number; radiusY: number; speed: number; phase: number };
-        const angle = time * data.speed * Math.PI * 2 + data.phase;
-        sprite.position.set(Math.cos(angle) * data.radiusX, Math.sin(angle) * data.radiusY, Math.sin(angle * 0.7 + index) * 0.34);
-      });
-      brain.children.forEach((child) => {
-        if (child.name.startsWith("orbit-")) child.rotation.z += 0.0007 * (Number(child.name.split("-")[1]) % 2 ? 1 : -1);
-      });
-      asteroids.forEach((asteroid, index) => {
-        asteroid.rotation.x += 0.0006 + index * 0.00003;
-        asteroid.rotation.y += 0.0008 + index * 0.00002;
-      });
-      earth.rotation.y = time * 0.002;
-      observer.rotation.y = pointerX * -0.035;
-      farPlanet.rotation.y = time * 0.015;
-      smallPlanet.rotation.y = -time * 0.02;
-      camera.position.x += ((0.55 + pointerX * 0.12) - camera.position.x) * 0.025;
-      camera.position.y += ((0.25 - pointerY * 0.08) - camera.position.y) * 0.025;
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(animate);
     };
-    animate();
+
+    const handlePointer = (event: PointerEvent) => {
+      const rect = hero.getBoundingClientRect();
+      pointerX = ((event.clientX - rect.left) / Math.max(1, rect.width) - 0.5) * 2;
+      pointerY = ((event.clientY - rect.top) / Math.max(1, rect.height) - 0.5) * 2;
+    };
+
+    const start = performance.now();
+    const render = (now: number) => {
+      resize();
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const t = reduced ? 4.2 : (now - start) / 1000;
+      drawScene(ctx, cssWidth, cssHeight, t, pointerX, pointerY);
+      if (!reduced) raf = requestAnimationFrame(render);
+    };
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(hero);
+    hero.addEventListener("pointermove", handlePointer, { passive: true });
+    resize();
+    render(performance.now());
 
     return () => {
       cancelAnimationFrame(raf);
-      observerResize.disconnect();
+      ro.disconnect();
       hero.removeEventListener("pointermove", handlePointer);
-      delete hero.dataset.universeMounted;
-      renderer.dispose();
-      glow.dispose();
-      host.removeChild(renderer.domElement);
     };
   }, []);
 
   return (
-    <div ref={hostRef} className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[radial-gradient(circle_at_73%_42%,rgba(136,76,29,.19),transparent_24%),linear-gradient(110deg,#040302_0%,#080503_54%,#020101_100%)]" aria-hidden="true">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_18%,rgba(214,150,73,.08),transparent_23%),radial-gradient(circle_at_80%_72%,rgba(169,90,32,.11),transparent_32%)]" />
+    <div ref={hostRef} className="pointer-events-none absolute inset-0 z-[1] overflow-hidden bg-[radial-gradient(circle_at_73%_42%,rgba(136,76,29,.12),transparent_25%),linear-gradient(110deg,#030201_0%,#070402_54%,#020101_100%)]" aria-hidden="true">
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_43%_13%,rgba(214,150,73,.06),transparent_18%),radial-gradient(circle_at_79%_43%,rgba(170,92,34,.07),transparent_28%)]" />
       <div className="hidden lg:block">
-        {LABELS.map(([label, left, top]) => <span key={label} className="absolute z-20 font-mono text-[11px] font-semibold tracking-[0.28em] text-[#ead6b8]/90" style={{ left, top }}>{label}</span>)}
-        <div className="absolute bottom-[3.7%] left-[4.8%] z-20 flex items-center gap-8 text-[#f7ead8]">
-          <div className="flex items-center gap-3 border-r border-[#d8b27d]/35 pr-8"><BarChart3 size={24} className="text-[#dfaa62]"/><span className="font-mono text-[10px] font-semibold uppercase leading-[1.45] tracking-[0.16em]">Diagnóstico<br/>baseado em evidências</span></div>
-          <div className="flex items-center gap-3 border-r border-[#d8b27d]/35 pr-8"><Box size={24} className="text-[#dfaa62]"/><span className="font-mono text-[10px] font-semibold uppercase leading-[1.45] tracking-[0.16em]">Visão integrada<br/>do seu ecossistema</span></div>
-          <div className="flex items-center gap-3"><Target size={24} className="text-[#dfaa62]"/><span className="font-mono text-[10px] font-semibold uppercase leading-[1.45] tracking-[0.16em]">Roadmap prático<br/>e prioritário</span></div>
+        {LABELS.map(([label, left, top]) => <span key={label} className="absolute z-[4] font-mono text-[10px] font-semibold tracking-[0.27em] text-[#ecd8ba]/90" style={{ left, top }}>{label}</span>)}
+        <div className="absolute bottom-[3.7%] left-[4.8%] z-[4] flex items-center gap-8 text-[#f7ead8]">
+          <div className="flex items-center gap-3 border-r border-[#d8b27d]/35 pr-8"><BarChart3 size={23} className="text-[#dfaa62]"/><span className="font-mono text-[9px] font-semibold uppercase leading-[1.45] tracking-[0.15em]">Diagnóstico<br/>baseado em evidências</span></div>
+          <div className="flex items-center gap-3 border-r border-[#d8b27d]/35 pr-8"><Box size={23} className="text-[#dfaa62]"/><span className="font-mono text-[9px] font-semibold uppercase leading-[1.45] tracking-[0.15em]">Visão integrada<br/>do seu ecossistema</span></div>
+          <div className="flex items-center gap-3"><Target size={23} className="text-[#dfaa62]"/><span className="font-mono text-[9px] font-semibold uppercase leading-[1.45] tracking-[0.15em]">Roadmap prático<br/>e prioritário</span></div>
         </div>
-        <div className="absolute bottom-[4.3%] right-[5.1%] z-20 font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#d4a05d]/85">Dados · Estratégia · Resultados reais</div>
+        <div className="absolute bottom-[4.3%] right-[5.1%] z-[4] font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#d4a05d]/85">Dados · Estratégia · Resultados reais</div>
       </div>
       <style>{`
         #inicio { background:#030201 !important; }
