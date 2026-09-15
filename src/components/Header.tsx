@@ -6,24 +6,18 @@ interface HeaderProps {
   activeSection: string;
 }
 
-export default function Header({ onNavClick, activeSection }: HeaderProps) {
+export default function Header({ onNavClick }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { label: "Método S.I.G.N.A.L", id: "signal" },
-    { label: "Soluções", id: "solucoes" },
-    { label: "Biblioteca", id: "conteudo" },
-    { label: "Diagnóstico", id: "diagnostico" },
-  ];
-
-  const handleItemClick = (id: string) => {
+  const go = (id: string) => {
     onNavClick(id);
     setIsOpen(false);
   };
@@ -32,68 +26,73 @@ export default function Header({ onNavClick, activeSection }: HeaderProps) {
     <>
       <header
         id="navbar"
-        className={`fixed left-0 right-0 top-0 z-50 flex h-[68px] items-center justify-between transition-all duration-300 md:h-[82px] ${
-          scrolled ? "border-b border-[#b28453]/10 bg-[#11100f]/95 shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-md" : "border-b border-transparent bg-[#11100f]"
+        className={`fixed inset-x-0 top-0 z-50 flex h-[76px] items-center transition-all duration-500 md:h-[92px] ${
+          scrolled
+            ? "border-b border-[#b28453]/12 bg-[#080604]/90 shadow-[0_18px_50px_rgba(0,0,0,.34)] backdrop-blur-xl"
+            : "border-b border-white/[0.045] bg-transparent"
         }`}
       >
-        <div className="container mx-auto flex h-full w-full max-w-[1320px] items-center justify-between px-6 md:px-12">
-          <button onClick={() => handleItemClick("inicio")} className="flex cursor-pointer items-center select-none" aria-label="Ir para início">
-            <img src="/auditseo-logo.png" alt="AUDITSEO — Search Intelligence" className="h-[38px] w-auto object-contain md:h-[46px]" />
+        <div className="mx-auto flex h-full w-full max-w-[1536px] items-center justify-between px-6 md:px-10 xl:px-16">
+          <button onClick={() => go("inicio")} className="flex cursor-pointer items-center select-none" aria-label="Ir para o início">
+            <img
+              src="/auditseo-logo.png"
+              alt="AUDITSEO — Search Intelligence Partner"
+              className="h-[40px] w-auto object-contain md:h-[48px]"
+              decoding="async"
+            />
           </button>
 
-          <nav className="hidden w-[570px] shrink-0 items-center justify-between lg:flex">
-            {navItems.map((item) => (
-              <button
-                id={`nav-btn-${item.id}`}
-                key={item.id}
-                onClick={() => handleItemClick(item.id)}
-                className={`cursor-pointer text-[14px] font-medium tracking-wide transition-colors duration-250 ${activeSection === item.id ? "text-[#b28453]" : "text-[#c9c9c9] hover:text-[#b28453]"}`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          <div className="hidden lg:block">
-            <a id="header-cta" href="/diagnostico" className="inline-block rounded-full bg-[#b28453] px-6 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e0d3c3] hover:text-[#11100f]">
-              Solicitar avaliação
+          <nav className="hidden items-center gap-8 text-[14px] font-medium tracking-[0.01em] text-[#f4eee8]/82 lg:flex xl:gap-10">
+            <button onClick={() => go("solucoes")} className="transition-colors hover:text-[#d7a45f]">Soluções</button>
+            <a href="/blog/framework-crawl-index-retrieve-understand-trust-cite" className="transition-colors hover:text-[#d7a45f]">Framework</a>
+            <button onClick={() => go("conteudo")} className="transition-colors hover:text-[#d7a45f]">Conteúdos</button>
+            <a href="/autor/sidney-santos" className="transition-colors hover:text-[#d7a45f]">Sobre</a>
+            <a
+              href="/diagnostico"
+              className="group ml-1 inline-flex items-center gap-3 rounded-full border border-[#c68b44]/78 bg-black/10 px-6 py-3 text-[13px] font-semibold text-[#f1cf9c] backdrop-blur-sm transition hover:border-[#e6b66f] hover:bg-[#c68b44]/12"
+            >
+              Falar com um especialista
+              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </a>
-          </div>
+          </nav>
 
           <button
             id="mobile-menu-toggle"
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-[#f8f8f8] transition-colors hover:text-[#b28453] lg:hidden"
+            onClick={() => setIsOpen((value) => !value)}
+            className="rounded-full border border-[#b28453]/25 p-2.5 text-[#f8f8f8] transition-colors hover:border-[#b28453]/55 hover:text-[#d7a45f] lg:hidden"
             aria-label="Alternar menu"
           >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </header>
 
       <div
         id="mobile-drawer"
-        className={`fixed inset-0 z-40 flex select-none flex-col justify-between bg-[#11100f] px-6 pt-[90px] transition-all duration-500 ease-in-out md:px-12 ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-full opacity-0"}`}
+        className={`fixed inset-0 z-40 flex select-none flex-col justify-between bg-[#070504]/98 px-6 pt-[100px] backdrop-blur-xl transition-all duration-500 md:px-10 ${
+          isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-full opacity-0"
+        }`}
       >
-        <div className="mt-4 flex flex-col space-y-5 text-left">
-          {navItems.map((item, index) => (
-            <button
-              id={`mobile-nav-${item.id}`}
-              key={item.id}
-              onClick={() => handleItemClick(item.id)}
-              className="block border-b border-[#b28453]/10 pb-3 text-left text-2xl font-semibold text-[#f8f8f8] transition-all duration-300 hover:text-[#b28453]"
-              style={{ transitionDelay: `${index * 40}ms` }}
-            >
-              <div className="flex items-center justify-between"><span>{item.label}</span><ArrowRight size={18} className="text-[#b28453]" /></div>
-            </button>
-          ))}
+        <div className="mt-5 flex flex-col text-left">
+          <button onClick={() => go("solucoes")} className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-left text-2xl font-semibold text-[#f8f8f8]">
+            Soluções <ArrowRight size={18} className="text-[#b28453]" />
+          </button>
+          <a href="/blog/framework-crawl-index-retrieve-understand-trust-cite" className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-2xl font-semibold text-[#f8f8f8]">
+            Framework <ArrowRight size={18} className="text-[#b28453]" />
+          </a>
+          <button onClick={() => go("conteudo")} className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-left text-2xl font-semibold text-[#f8f8f8]">
+            Conteúdos <ArrowRight size={18} className="text-[#b28453]" />
+          </button>
+          <a href="/autor/sidney-santos" className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-2xl font-semibold text-[#f8f8f8]">
+            Sobre <ArrowRight size={18} className="text-[#b28453]" />
+          </a>
         </div>
 
         <div className="space-y-4 pb-12">
-          <a href="/diagnostico" className="block w-full rounded-full bg-[#b28453] py-4 text-center text-base font-bold text-white">
-            Solicitar avaliação estratégica
+          <a href="/diagnostico" className="block w-full rounded-full bg-[#c9904e] py-4 text-center text-base font-bold text-white">
+            Falar com um especialista
           </a>
-          <div className="text-center font-mono text-xs text-[#c9c9c9]">Search Intelligence para empresas</div>
+          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-[#b99a78]">Search Intelligence Partner</div>
         </div>
       </div>
     </>
