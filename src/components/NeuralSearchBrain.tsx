@@ -1,382 +1,432 @@
 import React from "react";
+import { BarChart3, Box, Target } from "lucide-react";
 
-type Node = {
-  x: number;
-  y: number;
-  r: number;
-  tier: "core" | "primary" | "secondary";
-};
+const GOLD = "#d6a05d";
+const PALE = "#ffe3b8";
 
-type FlowPath = {
-  d: string;
-  duration: string;
-  begin: string;
-  radius: number;
-  color: string;
-  opacity: number;
-};
+function seeded(index: number, salt = 0) {
+  const value = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453;
+  return value - Math.floor(value);
+}
 
-const NODES: Node[] = [
-  { x: 410, y: 255, r: 5.2, tier: "core" },
-  { x: 350, y: 226, r: 3.2, tier: "primary" },
-  { x: 468, y: 224, r: 3.2, tier: "primary" },
-  { x: 382, y: 314, r: 3.0, tier: "primary" },
-  { x: 482, y: 314, r: 3.0, tier: "primary" },
-  { x: 315, y: 282, r: 2.7, tier: "primary" },
-  { x: 525, y: 276, r: 2.7, tier: "primary" },
-  { x: 334, y: 168, r: 2.5, tier: "primary" },
-  { x: 455, y: 162, r: 2.5, tier: "primary" },
-  { x: 560, y: 204, r: 2.5, tier: "primary" },
-  { x: 246, y: 230, r: 2.3, tier: "primary" },
-  { x: 604, y: 336, r: 2.3, tier: "primary" },
-  { x: 300, y: 368, r: 2.3, tier: "primary" },
-  { x: 464, y: 392, r: 2.3, tier: "primary" },
-  { x: 214, y: 312, r: 2.2, tier: "secondary" },
-  { x: 540, y: 140, r: 2.2, tier: "secondary" },
-  { x: 652, y: 240, r: 2.1, tier: "secondary" },
-  { x: 612, y: 420, r: 2.1, tier: "secondary" },
-  { x: 365, y: 422, r: 2.1, tier: "secondary" },
-  { x: 180, y: 186, r: 2.0, tier: "secondary" },
-  { x: 705, y: 320, r: 2.0, tier: "secondary" },
-  { x: 250, y: 110, r: 2.0, tier: "secondary" },
-  { x: 520, y: 95, r: 2.0, tier: "secondary" },
-  { x: 690, y: 150, r: 2.0, tier: "secondary" },
-  { x: 145, y: 360, r: 2.0, tier: "secondary" },
-  { x: 570, y: 455, r: 2.0, tier: "secondary" },
-  { x: 370, y: 260, r: 1.5, tier: "secondary" },
-  { x: 438, y: 275, r: 1.5, tier: "secondary" },
-  { x: 398, y: 210, r: 1.5, tier: "secondary" },
-  { x: 430, y: 205, r: 1.5, tier: "secondary" },
-  { x: 330, y: 320, r: 1.4, tier: "secondary" },
-  { x: 500, y: 345, r: 1.4, tier: "secondary" },
-  { x: 285, y: 260, r: 1.4, tier: "secondary" },
-  { x: 550, y: 260, r: 1.4, tier: "secondary" },
-];
+const STARS = Array.from({ length: 560 }, (_, index) => ({
+  x: seeded(index, 1),
+  y: seeded(index, 2),
+  r: 0.35 + seeded(index, 3) * 1.2,
+  a: 0.18 + seeded(index, 4) * 0.72,
+  phase: seeded(index, 5) * Math.PI * 2,
+}));
 
-const CONNECTIONS: Array<[number, number]> = [
-  [0, 1], [0, 2], [0, 3], [0, 4], [0, 26], [0, 27], [0, 28], [0, 29],
-  [1, 5], [1, 7], [1, 9], [1, 26], [1, 28],
-  [2, 6], [2, 8], [2, 9], [2, 27], [2, 29],
-  [3, 5], [3, 11], [3, 12], [3, 30],
-  [4, 6], [4, 11], [4, 13], [4, 31],
-  [5, 9], [5, 14], [5, 32],
-  [6, 10], [6, 11], [6, 33],
-  [7, 21], [7, 8],
-  [8, 15], [8, 22],
-  [9, 10], [9, 19],
-  [10, 15], [10, 16], [10, 23],
-  [11, 17], [11, 20],
-  [12, 18], [12, 24],
-  [13, 17], [13, 25],
-  [14, 24], [15, 22], [16, 20], [17, 25], [18, 25], [21, 22], [23, 16],
-];
+const GALAXY = Array.from({ length: 820 }, (_, index) => {
+  const arm = index % 4;
+  const radius = 0.035 + seeded(index, 10) * 1.0;
+  const theta = radius * 8.4 + arm * Math.PI * 0.5 + (seeded(index, 11) - 0.5) * 0.52;
+  return { radius, theta, spread: (seeded(index, 12) - 0.5) * (0.05 + radius * 0.13), heat: 1 - radius };
+});
 
-const PARTICLES = Array.from({ length: 72 }, (_, index) => {
-  const angle = index * 2.399963229728653;
-  const radius = 38 + index * 4.15;
+const BRAIN_NODES = Array.from({ length: 126 }, (_, index) => {
+  const side = index % 2 === 0 ? -1 : 1;
+  const i = Math.floor(index / 2);
+  const u = (i + 0.5) / 63;
+  const phi = Math.acos(1 - 2 * u);
+  const theta = seeded(index, 21) * Math.PI * 2;
+  const bulge = 1 + Math.sin(theta * 3 + phi * 4) * 0.11 + Math.sin(theta * 7 - phi * 2) * 0.055;
   return {
-    x: 410 + Math.cos(angle) * radius,
-    y: 255 + Math.sin(angle) * radius * 0.7,
-    r: 0.42 + (index % 3) * 0.25,
-    opacity: 0.07 + (index % 5) * 0.035,
-    duration: 5.5 + (index % 7) * 1.3,
-    delay: (index % 19) * -0.47,
+    x: side * (0.18 + Math.abs(Math.sin(phi) * Math.cos(theta)) * 0.82 * bulge),
+    y: Math.cos(phi) * 0.84 * bulge,
+    z: Math.sin(phi) * Math.sin(theta) * 0.55 * bulge,
+    phase: seeded(index, 22) * Math.PI * 2,
   };
 });
 
-const FLOW_PATHS: FlowPath[] = [
-  { d: "M 145 360 L 214 312 L 315 282 L 350 226 L 410 255", duration: "10.5s", begin: "-1.8s", radius: 2.3, color: "#f8f8f8", opacity: 0.9 },
-  { d: "M 250 110 L 334 168 L 350 226 L 410 255", duration: "12s", begin: "-7.2s", radius: 1.8, color: "#b28453", opacity: 0.92 },
-  { d: "M 520 95 L 455 162 L 468 224 L 410 255", duration: "11.2s", begin: "-3.7s", radius: 2.1, color: "#e0d3c3", opacity: 0.86 },
-  { d: "M 690 150 L 652 240 L 525 276 L 410 255", duration: "13.5s", begin: "-10s", radius: 2.15, color: "#ffffff", opacity: 0.88 },
-  { d: "M 705 320 L 604 336 L 482 314 L 410 255", duration: "14.4s", begin: "-5.4s", radius: 1.85, color: "#b28453", opacity: 0.9 },
-  { d: "M 570 455 L 464 392 L 382 314 L 410 255", duration: "12.8s", begin: "-8.9s", radius: 2.2, color: "#f8f8f8", opacity: 0.86 },
-];
+const STEM_NODES = Array.from({ length: 14 }, (_, index) => ({
+  x: (seeded(index, 30) - 0.5) * 0.10,
+  y: 0.70 + index * 0.075,
+  z: (seeded(index, 31) - 0.5) * 0.10,
+  phase: seeded(index, 32) * Math.PI * 2,
+}));
 
-const AXES = [
-  ["Descoberta", "Crawl · Index · Retrieve"],
-  ["Compreensão", "Entidades · Intenção · Semântica"],
-  ["Confiança", "Evidências · Reputação · Fontes"],
-  ["Evolução", "Medição · Prioridade · Learning Loop"],
-];
+const ALL_NODES = [...BRAIN_NODES, ...STEM_NODES];
+const BRAIN_LINKS: Array<[number, number]> = [];
+for (let i = 0; i < ALL_NODES.length; i += 1) {
+  const nearest: Array<{ j: number; d: number }> = [];
+  for (let j = 0; j < ALL_NODES.length; j += 1) {
+    if (i === j) continue;
+    const dx = ALL_NODES[i].x - ALL_NODES[j].x;
+    const dy = ALL_NODES[i].y - ALL_NODES[j].y;
+    const dz = ALL_NODES[i].z - ALL_NODES[j].z;
+    const d = dx * dx + dy * dy + dz * dz;
+    if (d < 0.22) nearest.push({ j, d });
+  }
+  nearest.sort((a, b) => a.d - b.d).slice(0, 2).forEach(({ j }) => {
+    if (i < j) BRAIN_LINKS.push([i, j]);
+  });
+}
 
-export default function NeuralSearchBrain() {
-  const [mouseOffset, setMouseOffset] = React.useState({ x: 0, y: 0 });
-  const [isCoreHovered, setIsCoreHovered] = React.useState(false);
-  const [reduceMotion, setReduceMotion] = React.useState(false);
+const LABELS = [
+  ["CONTEÚDO", "54%", "21%"], ["AUTORIDADE", "80%", "18%"], ["SEO TÉCNICO", "86%", "34%"],
+  ["SEARCH AI", "87%", "50%"], ["RESULTADOS", "81%", "69%"], ["ESTRATÉGIA", "56%", "64%"], ["REPUTAÇÃO", "54%", "54%"],
+] as const;
 
-  React.useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduceMotion(query.matches);
-    sync();
-    query.addEventListener?.("change", sync);
-    return () => query.removeEventListener?.("change", sync);
-  }, []);
+function ellipse(ctx: CanvasRenderingContext2D, cx: number, cy: number, rx: number, ry: number, rotation: number) {
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, rx, ry, rotation, 0, Math.PI * 2);
+}
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    setMouseOffset({ x: x * 12, y: y * 12 });
+function glow(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, strength = 1) {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, radius);
+  g.addColorStop(0, `rgba(255,250,237,${0.95 * strength})`);
+  g.addColorStop(0.12, `rgba(255,214,155,${0.75 * strength})`);
+  g.addColorStop(0.42, `rgba(214,138,58,${0.23 * strength})`);
+  g.addColorStop(1, "rgba(181,96,27,0)");
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawScene(ctx: CanvasRenderingContext2D, width: number, height: number, time: number, px: number, py: number) {
+  ctx.clearRect(0, 0, width, height);
+  const min = Math.min(width, height);
+
+  const wash = ctx.createRadialGradient(width * 0.74, height * 0.42, 0, width * 0.74, height * 0.42, width * 0.48);
+  wash.addColorStop(0, "rgba(118,64,26,.16)");
+  wash.addColorStop(0.38, "rgba(74,35,13,.075)");
+  wash.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = wash;
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.save();
+  ctx.globalCompositeOperation = "lighter";
+  for (let i = 0; i < STARS.length; i += 1) {
+    const star = STARS[i];
+    const flicker = 0.48 + 0.52 * Math.sin(time * (0.35 + (i % 7) * 0.06) + star.phase);
+    const x = star.x * width + px * (2 + (i % 3));
+    const y = star.y * height + py * (1 + (i % 2));
+    ctx.globalAlpha = star.a * (0.35 + flicker * 0.65);
+    ctx.fillStyle = i % 5 === 0 ? PALE : GOLD;
+    ctx.beginPath();
+    ctx.arc(x, y, star.r * (0.75 + flicker * 0.4), 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const gx = width * 0.445 + px * 8;
+  const gy = height * 0.13 + py * 4;
+  const gscale = min * 0.165;
+  const grot = time * 0.035;
+  for (let i = 0; i < GALAXY.length; i += 1) {
+    const point = GALAXY[i];
+    const theta = point.theta + grot;
+    const r = point.radius * gscale;
+    const x = gx + Math.cos(theta) * r * 1.35;
+    const y = gy + Math.sin(theta) * r * 0.58 + point.spread * gscale;
+    const alpha = 0.10 + point.heat * 0.62;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = i % 9 === 0 ? "#fff5df" : i % 3 === 0 ? "#d8984d" : "#a56733";
+    ctx.beginPath();
+    ctx.arc(x, y, 0.45 + point.heat * 1.15, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  glow(ctx, gx, gy, min * 0.055, 0.55);
+
+  ctx.globalAlpha = 0.33;
+  const ray = ctx.createLinearGradient(0, height * 0.05, width * 0.48, height * 0.34);
+  ray.addColorStop(0, "rgba(216,154,76,.75)");
+  ray.addColorStop(1, "rgba(216,154,76,0)");
+  ctx.strokeStyle = ray;
+  ctx.lineWidth = 1.2;
+  for (let i = 0; i < 4; i += 1) {
+    ctx.beginPath();
+    ctx.moveTo(-20, height * (0.07 + i * 0.035));
+    ctx.lineTo(width * (0.49 + i * 0.015), height * (0.31 + i * 0.02));
+    ctx.stroke();
+  }
+
+  const farX = width * 1.01 + px * 3;
+  const farY = height * 0.18 + py * 2;
+  const farR = min * 0.105;
+  const planetGrad = ctx.createRadialGradient(farX - farR * 0.35, farY - farR * 0.35, farR * 0.05, farX, farY, farR);
+  planetGrad.addColorStop(0, "rgba(169,109,61,.72)");
+  planetGrad.addColorStop(0.38, "rgba(88,50,28,.76)");
+  planetGrad.addColorStop(1, "rgba(8,5,3,.98)");
+  ctx.globalAlpha = 0.88;
+  ctx.fillStyle = planetGrad;
+  ctx.beginPath();
+  ctx.arc(farX, farY, farR, 0, Math.PI * 2);
+  ctx.fill();
+
+  const smallPlanets = [
+    [0.31, 0.115, 0.040], [0.51, 0.45, 0.026], [0.90, 0.27, 0.022], [0.87, 0.58, 0.020], [0.49, 0.66, 0.018],
+  ];
+  smallPlanets.forEach(([nx, ny, nr], i) => {
+    const x = width * nx + px * (4 + i);
+    const y = height * ny + py * (2 + i * 0.6);
+    const r = min * nr;
+    const pg = ctx.createRadialGradient(x - r * 0.35, y - r * 0.35, r * 0.05, x, y, r);
+    pg.addColorStop(0, "rgba(211,147,83,.9)");
+    pg.addColorStop(0.4, "rgba(103,58,31,.8)");
+    pg.addColorStop(1, "rgba(8,5,3,.98)");
+    ctx.fillStyle = pg;
+    ctx.globalAlpha = 0.82;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  const cx = width * 0.735 + px * 9;
+  const cy = height * 0.405 + py * 6;
+  const brainScale = min * 0.22;
+  const yaw = px * 0.006 + Math.sin(time * 0.23) * 0.018;
+  const pitch = py * 0.004;
+  const project = (node: { x: number; y: number; z: number }) => {
+    const cosy = Math.cos(yaw), siny = Math.sin(yaw);
+    const cosp = Math.cos(pitch), sinp = Math.sin(pitch);
+    const x1 = node.x * cosy - node.z * siny;
+    const z1 = node.x * siny + node.z * cosy;
+    const y1 = node.y * cosp - z1 * sinp;
+    const z2 = node.y * sinp + z1 * cosp;
+    const perspective = 1 + z2 * 0.10;
+    return { x: cx + x1 * brainScale * perspective, y: cy + y1 * brainScale * perspective, z: z2 };
   };
 
+  const projected = ALL_NODES.map(project);
+  ctx.globalAlpha = 1;
+  const aura = ctx.createRadialGradient(cx, cy, 0, cx, cy, brainScale * 1.35);
+  aura.addColorStop(0, "rgba(216,154,76,.15)");
+  aura.addColorStop(0.55, "rgba(174,94,33,.07)");
+  aura.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = aura;
+  ctx.beginPath();
+  ctx.arc(cx, cy, brainScale * 1.35, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(-0.10);
+  for (let i = 0; i < 8; i += 1) {
+    const rx = brainScale * (0.86 + i * 0.10);
+    const ry = brainScale * (0.33 + i * 0.038);
+    ctx.strokeStyle = `rgba(224,157,75,${0.21 - i * 0.014})`;
+    ctx.lineWidth = i % 3 === 0 ? 1.25 : 0.8;
+    ctx.setLineDash(i % 2 ? [7, 12] : []);
+    ctx.lineDashOffset = time * (i % 2 ? 8 : -5);
+    ellipse(ctx, 0, 0, rx, ry, i * 0.13);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+  ctx.restore();
+
+  ctx.lineWidth = 0.75;
+  for (const [a, b] of BRAIN_LINKS) {
+    const pa = projected[a], pb = projected[b];
+    const depth = Math.max(0.12, 0.32 + (pa.z + pb.z) * 0.08);
+    ctx.strokeStyle = `rgba(221,156,78,${depth})`;
+    ctx.beginPath();
+    ctx.moveTo(pa.x, pa.y);
+    ctx.lineTo(pb.x, pb.y);
+    ctx.stroke();
+  }
+
+  for (let i = 0; i < projected.length; i += 1) {
+    const p = projected[i];
+    const pulse = 0.58 + 0.42 * Math.sin(time * (1.1 + (i % 5) * 0.07) + ALL_NODES[i].phase);
+    const radius = (i % 17 === 0 ? 3.2 : 1.2 + (i % 4) * 0.32) * (0.8 + pulse * 0.35);
+    if (i % 17 === 0) glow(ctx, p.x, p.y, radius * 8, 0.42);
+    ctx.fillStyle = i % 8 === 0 ? "#fff0d0" : GOLD;
+    ctx.globalAlpha = 0.52 + pulse * 0.48;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const corePulse = 0.5 + 0.5 * Math.sin(time * 2.2);
+  glow(ctx, cx + brainScale * 0.02, cy - brainScale * 0.02, brainScale * (0.18 + corePulse * 0.06), 0.92);
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "#fffaf0";
+  ctx.beginPath();
+  ctx.arc(cx + brainScale * 0.02, cy - brainScale * 0.02, 4.5 + corePulse * 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  for (let i = 0; i < 10; i += 1) {
+    const angle = time * (0.18 + i * 0.013) + i * 0.71;
+    const rx = brainScale * (0.94 + (i % 4) * 0.17);
+    const ry = brainScale * (0.35 + (i % 4) * 0.06);
+    const x = cx + Math.cos(angle) * rx;
+    const y = cy + Math.sin(angle) * ry;
+    glow(ctx, x, y, 10 + (i % 3) * 4, 0.18);
+    ctx.globalAlpha = 0.78;
+    ctx.fillStyle = i % 3 === 0 ? "#fff0d0" : GOLD;
+    ctx.beginPath();
+    ctx.arc(x, y, i % 3 === 0 ? 2.3 : 1.45, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const horizonY = height * 0.84;
+  const hg = ctx.createLinearGradient(0, horizonY - 20, 0, height);
+  hg.addColorStop(0, "rgba(226,154,72,.06)");
+  hg.addColorStop(0.22, "rgba(89,46,21,.52)");
+  hg.addColorStop(1, "rgba(6,4,3,.98)");
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = hg;
+  ctx.beginPath();
+  ctx.ellipse(width * 0.57, height * 1.08, width * 0.61, height * 0.28, 0, Math.PI, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(239,177,101,.55)";
+  ctx.lineWidth = 1.1;
+  ctx.beginPath();
+  ctx.ellipse(width * 0.57, height * 1.08, width * 0.61, height * 0.28, 0, Math.PI * 1.12, Math.PI * 1.88);
+  ctx.stroke();
+  for (let i = 0; i < 92; i += 1) {
+    const x = width * (0.18 + seeded(i, 70) * 0.70);
+    const y = horizonY + seeded(i, 71) * height * 0.13;
+    const rr = 0.45 + seeded(i, 72) * 1.6;
+    ctx.globalAlpha = 0.22 + seeded(i, 73) * 0.46;
+    ctx.fillStyle = i % 4 === 0 ? PALE : GOLD;
+    ctx.beginPath();
+    ctx.arc(x, y, rr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const ox = width * 0.675 + px * 3;
+  const oy = height * 0.88;
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "rgba(2,2,2,.97)";
+  ctx.beginPath();
+  ctx.arc(ox, oy - min * 0.115, min * 0.015, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(ox - min * 0.025, oy - min * 0.088);
+  ctx.quadraticCurveTo(ox, oy - min * 0.105, ox + min * 0.025, oy - min * 0.088);
+  ctx.lineTo(ox + min * 0.033, oy);
+  ctx.lineTo(ox + min * 0.010, oy);
+  ctx.lineTo(ox, oy - min * 0.035);
+  ctx.lineTo(ox - min * 0.010, oy);
+  ctx.lineTo(ox - min * 0.033, oy);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = "rgba(222,153,78,.18)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const asteroids = [
+    [0.45, 0.70, 0.034], [0.49, 0.86, 0.050], [0.92, 0.72, 0.036], [0.86, 0.91, 0.050], [0.61, 0.75, 0.020], [0.04, 0.75, 0.044],
+  ];
+  asteroids.forEach(([nx, ny, nr], i) => {
+    const x = width * nx + px * (6 + i * 0.7);
+    const y = height * ny + py * (3 + i * 0.35);
+    const r = min * nr;
+    ctx.fillStyle = i % 2 ? "#1d110b" : "#2b190f";
+    ctx.globalAlpha = 0.90;
+    ctx.beginPath();
+    for (let k = 0; k < 8; k += 1) {
+      const a = (k / 8) * Math.PI * 2;
+      const jitter = 0.72 + seeded(i * 11 + k, 88) * 0.42;
+      const xx = x + Math.cos(a) * r * jitter;
+      const yy = y + Math.sin(a) * r * jitter;
+      if (k === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    }
+    ctx.closePath();
+    ctx.fill();
+  });
+
+  ctx.restore();
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = "source-over";
+}
+
+export default function NeuralSearchBrain() {
+  const hostRef = React.useRef<HTMLDivElement>(null);
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+
+  React.useEffect(() => {
+    const host = hostRef.current;
+    const canvas = canvasRef.current;
+    if (!host || !canvas) return;
+    const hero = host.closest("#inicio") as HTMLElement | null;
+    if (!hero) return;
+
+    const heading = hero.querySelector("h1") as HTMLElement | null;
+    if (heading && !heading.dataset.goldTail) {
+      heading.innerHTML = 'Antes de investir em mais SEO, conteúdo ou IA, descubra onde sua presença <span style="color:#d7a15f">realmente quebra.</span>';
+      heading.dataset.goldTail = "true";
+    }
+    Array.from(hero.querySelectorAll("div")).forEach((element) => {
+      if (element.textContent?.replace(/\s/g, "").includes("CrawlIndexRetrieveUnderstandTrustCiteConvert")) (element as HTMLElement).style.display = "none";
+    });
+
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+    let cssWidth = 1;
+    let cssHeight = 1;
+    let dpr = 1;
+    let raf = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const resize = () => {
+      const rect = hero.getBoundingClientRect();
+      cssWidth = Math.max(1, rect.width);
+      cssHeight = Math.max(1, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const w = Math.round(cssWidth * dpr);
+      const h = Math.round(cssHeight * dpr);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+    };
+
+    const handlePointer = (event: PointerEvent) => {
+      const rect = hero.getBoundingClientRect();
+      pointerX = ((event.clientX - rect.left) / Math.max(1, rect.width) - 0.5) * 2;
+      pointerY = ((event.clientY - rect.top) / Math.max(1, rect.height) - 0.5) * 2;
+    };
+
+    const start = performance.now();
+    const render = (now: number) => {
+      resize();
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const t = reduced ? 4.2 : (now - start) / 1000;
+      drawScene(ctx, cssWidth, cssHeight, t, pointerX, pointerY);
+      if (!reduced) raf = requestAnimationFrame(render);
+    };
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(hero);
+    hero.addEventListener("pointermove", handlePointer, { passive: true });
+    resize();
+    render(performance.now());
+
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      hero.removeEventListener("pointermove", handlePointer);
+    };
+  }, []);
+
   return (
-    <div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => {
-        setMouseOffset({ x: 0, y: 0 });
-        setIsCoreHovered(false);
-      }}
-      className="group/constellation relative mx-auto flex aspect-[760/520] w-full max-w-[760px] select-none items-center justify-center overflow-visible p-1"
-      aria-label="Visualização conceitual animada do ecossistema de Search Intelligence da AUDITSEO"
-    >
-      <div
-        className="auditseo-nebula pointer-events-none absolute rounded-full"
-        style={{
-          width: "720px",
-          height: "460px",
-          right: "10px",
-          top: "50%",
-          transform: `translateY(-50%) translate(${mouseOffset.x * 0.35}px, ${mouseOffset.y * 0.35}px)`,
-          transition: "transform 600ms cubic-bezier(0.15,0.85,0.3,1)",
-          background: "radial-gradient(circle at 52% 48%, rgba(178,132,83,0.24) 0%, rgba(178,132,83,0.115) 24%, rgba(140,97,60,0.055) 46%, transparent 74%)",
-          filter: "blur(30px)",
-        }}
-      />
-
-      <svg className="relative z-10 h-full w-full overflow-visible" viewBox="0 0 760 520" fill="none" aria-hidden="true">
-        <defs>
-          <style>{`
-            @keyframes auditseoFloat {
-              0%, 100% { transform: translateY(-2px) rotate(-0.22deg); }
-              50% { transform: translateY(4px) rotate(0.26deg); }
-            }
-            @keyframes auditseoTwinkle {
-              0%, 100% { opacity: var(--base-opacity); }
-              45% { opacity: calc(var(--base-opacity) * 3.2); }
-              70% { opacity: calc(var(--base-opacity) * 1.35); }
-            }
-            @keyframes auditseoLinePulse {
-              0%, 100% { stroke-opacity: var(--line-opacity); }
-              50% { stroke-opacity: calc(var(--line-opacity) * 2.1); }
-            }
-            @keyframes auditseoNodePulse {
-              0%, 100% { opacity: var(--node-opacity); }
-              50% { opacity: 1; }
-            }
-            @keyframes auditseoCorePulse {
-              0%, 100% { opacity: .72; transform: scale(.96); }
-              50% { opacity: 1; transform: scale(1.07); }
-            }
-            @keyframes auditseoOrbitDash {
-              to { stroke-dashoffset: -76; }
-            }
-            .auditseo-float {
-              transform-box: fill-box;
-              transform-origin: center;
-              animation: auditseoFloat 10s ease-in-out infinite;
-            }
-            .auditseo-particle {
-              animation: auditseoTwinkle var(--twinkle-duration) ease-in-out var(--twinkle-delay) infinite;
-            }
-            .auditseo-line {
-              animation: auditseoLinePulse var(--line-duration) ease-in-out var(--line-delay) infinite;
-            }
-            .auditseo-node {
-              animation: auditseoNodePulse var(--node-duration) ease-in-out var(--node-delay) infinite;
-            }
-            .auditseo-core-pulse {
-              transform-box: fill-box;
-              transform-origin: center;
-              animation: auditseoCorePulse 3.6s ease-in-out infinite;
-            }
-            .auditseo-orbit {
-              animation: auditseoOrbitDash 15s linear infinite;
-            }
-            .auditseo-orbit-slow {
-              animation-duration: 25s;
-              animation-direction: reverse;
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .auditseo-float,
-              .auditseo-particle,
-              .auditseo-line,
-              .auditseo-node,
-              .auditseo-core-pulse,
-              .auditseo-orbit {
-                animation: none !important;
-              }
-            }
-          `}</style>
-          <radialGradient id="auditseo-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-            <stop offset="28%" stopColor="#e0d3c3" stopOpacity="0.95" />
-            <stop offset="62%" stopColor="#b28453" stopOpacity="0.52" />
-            <stop offset="100%" stopColor="#b28453" stopOpacity="0" />
-          </radialGradient>
-          <filter id="auditseo-glow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="auditseo-flow-glow" x="-300%" y="-300%" width="700%" height="700%">
-            <feGaussianBlur stdDeviation="2.2" result="flowBlur" />
-            <feMerge>
-              <feMergeNode in="flowBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        <g
-          style={{
-            transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`,
-            transformOrigin: "410px 255px",
-            transition: "transform 600ms cubic-bezier(0.15,0.85,0.3,1)",
-          }}
-        >
-          <g className="auditseo-float">
-            <ellipse className="auditseo-orbit" cx="410" cy="255" rx="205" ry="84" stroke="rgba(178,132,83,.16)" strokeWidth="0.9" strokeDasharray="3 16" transform="rotate(-13 410 255)" />
-            <ellipse className="auditseo-orbit auditseo-orbit-slow" cx="410" cy="255" rx="270" ry="126" stroke="rgba(224,211,195,.08)" strokeWidth="0.8" strokeDasharray="2 24" transform="rotate(18 410 255)" />
-
-            {PARTICLES.map((particle, index) => (
-              <circle
-                key={`particle-${index}`}
-                className="auditseo-particle"
-                cx={particle.x}
-                cy={particle.y}
-                r={particle.r}
-                fill={index % 9 === 0 ? "#b28453" : "#e0d3c3"}
-                opacity={particle.opacity}
-                style={{
-                  ["--base-opacity" as string]: particle.opacity,
-                  ["--twinkle-duration" as string]: `${particle.duration}s`,
-                  ["--twinkle-delay" as string]: `${particle.delay}s`,
-                }}
-              />
-            ))}
-
-            <g opacity="0.62">
-              {CONNECTIONS.map(([from, to], index) => {
-                const a = NODES[from];
-                const b = NODES[to];
-                if (!a || !b) return null;
-                const baseOpacity = index % 4 === 0 ? 0.34 : 0.18;
-                return (
-                  <line
-                    key={`connection-${index}`}
-                    className="auditseo-line"
-                    x1={a.x}
-                    y1={a.y}
-                    x2={b.x}
-                    y2={b.y}
-                    stroke={index % 4 === 0 ? "#b28453" : "#e0d3c3"}
-                    strokeOpacity={baseOpacity}
-                    strokeWidth={index % 5 === 0 ? 1.1 : 0.75}
-                    style={{
-                      ["--line-opacity" as string]: baseOpacity,
-                      ["--line-duration" as string]: `${4.8 + (index % 6) * 0.85}s`,
-                      ["--line-delay" as string]: `${(index % 13) * -0.43}s`,
-                    }}
-                  />
-                );
-              })}
-            </g>
-
-            {NODES.map((node, index) => {
-              const nodeOpacity = node.tier === "secondary" ? 0.56 : 0.9;
-              return (
-                <circle
-                  key={`node-${index}`}
-                  className="auditseo-node"
-                  cx={node.x}
-                  cy={node.y}
-                  r={node.r}
-                  fill={node.tier === "core" ? "#ffffff" : index % 3 === 0 ? "#b28453" : "#e0d3c3"}
-                  opacity={nodeOpacity}
-                  filter={node.tier === "core" || (node.tier === "primary" && index % 4 === 0) ? "url(#auditseo-glow)" : undefined}
-                  style={{
-                    ["--node-opacity" as string]: nodeOpacity,
-                    ["--node-duration" as string]: `${3.6 + (index % 5) * 0.9}s`,
-                    ["--node-delay" as string]: `${(index % 11) * -0.37}s`,
-                  }}
-                />
-              );
-            })}
-
-            {!reduceMotion && FLOW_PATHS.map((flow, index) => (
-              <circle
-                key={`flow-${index}`}
-                r={flow.radius}
-                fill={flow.color}
-                opacity={flow.opacity}
-                filter="url(#auditseo-flow-glow)"
-              >
-                <animateMotion path={flow.d} dur={flow.duration} begin={flow.begin} repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.32 0 0.15 1" />
-              </circle>
-            ))}
-
-            <g
-              onMouseEnter={() => setIsCoreHovered(true)}
-              onMouseLeave={() => setIsCoreHovered(false)}
-              className="cursor-pointer"
-            >
-              <g className="auditseo-core-pulse">
-                <circle cx="410" cy="255" r="82" fill="url(#auditseo-core)" opacity="0.5" />
-                <circle cx="410" cy="255" r="45" fill="url(#auditseo-core)" opacity="0.72" />
-              </g>
-              <circle cx="410" cy="255" r="14" fill="#f8f8f8" filter="url(#auditseo-glow)" />
-              <circle cx="410" cy="255" r="70" fill="transparent" />
-            </g>
-          </g>
-        </g>
-      </svg>
-
-      <div
-        className={`pointer-events-none absolute z-20 w-[330px] transition-all duration-500 ${isCoreHovered ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-95 opacity-0"}`}
-        style={{ left: "54%", top: "43%", transformOrigin: "bottom center" }}
-      >
-        <div className="-translate-x-1/2 -translate-y-full rounded-lg border border-[#b28453]/50 bg-[#11100f]/95 p-5 text-left shadow-[0_20px_48px_rgba(178,132,83,0.22)] backdrop-blur-md">
-          <div className="mb-3 flex items-center justify-between border-b border-[#b28453]/20 pb-2">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
-              VISUALIZAÇÃO CONCEITUAL
-            </span>
-            <span className="font-mono text-[8px] uppercase tracking-widest text-[#e0d3c3]/60">
-              S.I.G.N.A.L.
-            </span>
-          </div>
-
-          <h4 className="mb-1.5 text-sm font-semibold tracking-wide text-[#f8f8f8]">
-            SEARCH INTELLIGENCE ECOSYSTEM
-          </h4>
-          <p className="mb-4 text-[11px] font-normal leading-[1.55] text-[#e0d3c3]/85">
-            Representação visual de como sinais técnicos, intenção, entidades, conteúdo, reputação e evidências se conectam em uma estratégia integrada de busca. Não representa telemetria ou métricas em tempo real.
-          </p>
-
-          <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#b28453]/15 pt-3">
-            {AXES.map(([label, value]) => (
-              <div key={label}>
-                <div className="font-mono text-[8px] uppercase tracking-wider text-[#e0d3c3]/50">{label}</div>
-                <div className="mt-0.5 font-mono text-[10px] font-semibold leading-[1.35] text-[#b28453]">{value}</div>
-              </div>
-            ))}
-          </div>
+    <div ref={hostRef} className="pointer-events-none absolute inset-0 z-[1] overflow-hidden bg-[radial-gradient(circle_at_73%_42%,rgba(136,76,29,.12),transparent_25%),linear-gradient(110deg,#030201_0%,#070402_54%,#020101_100%)]" aria-hidden="true">
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_43%_13%,rgba(214,150,73,.06),transparent_18%),radial-gradient(circle_at_79%_43%,rgba(170,92,34,.07),transparent_28%)]" />
+      <div className="hidden lg:block">
+        {LABELS.map(([label, left, top]) => <span key={label} className="absolute z-[4] font-mono text-[10px] font-semibold tracking-[0.27em] text-[#ecd8ba]/90" style={{ left, top }}>{label}</span>)}
+        <div className="absolute bottom-[3.7%] left-[4.8%] z-[4] flex items-center gap-8 text-[#f7ead8]">
+          <div className="flex items-center gap-3 border-r border-[#d8b27d]/35 pr-8"><BarChart3 size={23} className="text-[#dfaa62]"/><span className="font-mono text-[9px] font-semibold uppercase leading-[1.45] tracking-[0.15em]">Diagnóstico<br/>baseado em evidências</span></div>
+          <div className="flex items-center gap-3 border-r border-[#d8b27d]/35 pr-8"><Box size={23} className="text-[#dfaa62]"/><span className="font-mono text-[9px] font-semibold uppercase leading-[1.45] tracking-[0.15em]">Visão integrada<br/>do seu ecossistema</span></div>
+          <div className="flex items-center gap-3"><Target size={23} className="text-[#dfaa62]"/><span className="font-mono text-[9px] font-semibold uppercase leading-[1.45] tracking-[0.15em]">Roadmap prático<br/>e prioritário</span></div>
         </div>
+        <div className="absolute bottom-[4.3%] right-[5.1%] z-[4] font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#d4a05d]/85">Dados · Estratégia · Resultados reais</div>
       </div>
-
       <style>{`
-        @keyframes auditseoNebulaDrift {
-          0%, 100% { opacity: .82; filter: blur(30px); }
-          50% { opacity: 1; filter: blur(36px); }
-        }
-        .auditseo-nebula {
-          animation: auditseoNebulaDrift 9s ease-in-out infinite;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .auditseo-nebula { animation: none !important; }
+        #inicio { background:#030201 !important; }
+        #inicio > div.relative.z-10 { max-width:1520px !important; }
+        #inicio h1 { max-width:690px !important; font-size:clamp(46px,4.4vw,72px) !important; line-height:.98 !important; }
+        #inicio p { max-width:680px !important; }
+        #inicio .lg\\:col-span-7 { position:relative; z-index:12; }
+        @media (min-width:1024px){
+          #inicio { min-height:900px !important; padding-top:112px !important; padding-bottom:110px !important; }
+          #inicio .lg\\:col-span-7 { grid-column:span 6 / span 6 !important; }
         }
       `}</style>
     </div>
