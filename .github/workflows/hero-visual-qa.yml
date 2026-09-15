@@ -1,0 +1,80 @@
+name: Hero Visual QA
+
+on:
+  push:
+    branches:
+      - feat/hero-cinematic-v3
+  workflow_dispatch:
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium for visual QA
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start app
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 4173 > /tmp/auditseo-vite.log 2>&1 &
+          echo $! > /tmp/auditseo-vite.pid
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              echo "App ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/auditseo-vite.log
+          exit 1
+
+      - name: Capture 1672x941 hero frame
+        run: |
+          node --input-type=module <<'EOF'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({ viewport: { width: 1672, height: 941 }, deviceScaleFactor: 1 });
+          await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
+          await page.evaluate(() => {
+            document.documentElement.style.scrollBehavior = 'auto';
+            window.scrollTo(0, 0);
+          });
+          await page.waitForTimeout(1800);
+          await page.screenshot({ path: 'hero-qa.png', fullPage: false });
+          const metrics = await page.evaluate(() => {
+            const hero = document.querySelector('#inicio');
+            const h1 = hero?.querySelector('h1');
+            const canvas = hero?.querySelector('canvas');
+            return {
+              viewport: [window.innerWidth, window.innerHeight],
+              hero: hero ? hero.getBoundingClientRect().toJSON() : null,
+              h1: h1 ? h1.getBoundingClientRect().toJSON() : null,
+              canvas: canvas ? canvas.getBoundingClientRect().toJSON() : null,
+              canvasPixels: canvas ? [canvas.width, canvas.height] : null,
+            };
+          });
+          console.log(JSON.stringify(metrics, null, 2));
+          await browser.close();
+          EOF
+
+      - name: Upload visual QA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hero-visual-qa-${{ github.sha }}
+          path: hero-qa.png
+          if-no-files-found: error
+          retention-days: 7
