@@ -128,9 +128,7 @@ export default function HomePageV2() {
       <Header onNavClick={navigate} activeSection="" />
 
       <section id="inicio" className="relative flex min-h-[850px] items-center overflow-hidden px-6 pb-20 pt-[118px] md:px-12 md:pt-[132px]">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[90px] z-0 flex items-center justify-center overflow-hidden lg:hidden">
-          <div className="aspect-[760/520] w-full max-w-[560px] -translate-y-16 scale-[1.35] opacity-[0.22]"><NeuralSearchBrain /></div>
-        </div>
+        <NeuralSearchBrain />
         <div className="relative z-10 mx-auto grid w-full max-w-[1320px] items-center gap-12 lg:grid-cols-12 lg:gap-6">
           <div className="lg:col-span-7">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">SEARCH INTELLIGENCE PARA EMPRESAS</span>
@@ -151,7 +149,6 @@ export default function HomePageV2() {
               {['Crawl', 'Index', 'Retrieve', 'Understand', 'Trust', 'Cite', 'Convert'].map((item, index) => <span key={item} className="inline-flex items-center gap-2">{index ? <span className="text-[#b28453]/35">→</span> : null}{item}</span>)}
             </div>
           </div>
-          <div className="hidden items-center justify-center lg:col-span-5 lg:flex lg:-translate-x-4 lg:scale-[1.05]"><NeuralSearchBrain /></div>
         </div>
       </section>
 
