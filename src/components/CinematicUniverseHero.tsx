@@ -6,9 +6,9 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { BarChart3, Box, Target } from "lucide-react";
 
-const GOLD = new THREE.Color("#d9a057");
-const GOLD_HOT = new THREE.Color("#ffca78");
-const PALE = new THREE.Color("#fff2d9");
+const GOLD = new THREE.Color("#d59a54");
+const GOLD_HOT = new THREE.Color("#ffc777");
+const PALE = new THREE.Color("#fff1d6");
 
 function seeded(index: number, salt = 0) {
   const value = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453;
@@ -21,9 +21,9 @@ function makeRadialTexture(size = 128) {
   const ctx = canvas.getContext("2d")!;
   const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
   g.addColorStop(0, "rgba(255,255,255,1)");
-  g.addColorStop(.12, "rgba(255,232,194,.96)");
-  g.addColorStop(.38, "rgba(235,165,81,.44)");
-  g.addColorStop(1, "rgba(208,118,40,0)");
+  g.addColorStop(.10, "rgba(255,236,207,.98)");
+  g.addColorStop(.32, "rgba(229,160,82,.42)");
+  g.addColorStop(1, "rgba(201,112,35,0)");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, size, size);
   const texture = new THREE.CanvasTexture(canvas);
@@ -32,7 +32,7 @@ function makeRadialTexture(size = 128) {
 }
 
 function addStarfield(scene: THREE.Scene, texture: THREE.Texture) {
-  const count = 2600;
+  const count = 3000;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
   for (let i = 0; i < count; i++) {
@@ -40,18 +40,18 @@ function addStarfield(scene: THREE.Scene, texture: THREE.Texture) {
     positions[i * 3 + 1] = (seeded(i, 2) - 0.5) * 13;
     positions[i * 3 + 2] = -2 - seeded(i, 3) * 14;
     const w = seeded(i, 4);
-    colors[i * 3] = 0.72 + w * 0.28;
-    colors[i * 3 + 1] = 0.54 + w * 0.36;
-    colors[i * 3 + 2] = 0.32 + w * 0.42;
+    colors[i * 3] = 0.62 + w * 0.38;
+    colors[i * 3 + 1] = 0.48 + w * 0.38;
+    colors[i * 3 + 2] = 0.31 + w * 0.39;
   }
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   const material = new THREE.PointsMaterial({
-    size: 0.042,
+    size: 0.028,
     map: texture,
     transparent: true,
-    opacity: 0.92,
+    opacity: 0.76,
     vertexColors: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
@@ -63,81 +63,101 @@ function addStarfield(scene: THREE.Scene, texture: THREE.Texture) {
 
 function addGalaxy(scene: THREE.Scene, texture: THREE.Texture) {
   const group = new THREE.Group();
-  group.position.set(-1.25, 3.25, -4.8);
-  group.rotation.set(0.92, 0.08, -0.24);
-  const count = 4200;
+  group.position.set(-0.32, 3.30, -4.45);
+  group.rotation.set(0.74, 0.06, -0.20);
+  const count = 5200;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
   for (let i = 0; i < count; i++) {
     const arm = i % 5;
-    const radius = 0.05 + seeded(i, 10) * 2.15;
-    const theta = radius * 5.5 + arm * (Math.PI * 2 / 5) + (seeded(i, 11) - 0.5) * 0.38;
-    const spread = (seeded(i, 12) - 0.5) * (0.12 + radius * 0.19);
-    positions[i * 3] = Math.cos(theta) * radius * 1.25;
-    positions[i * 3 + 1] = Math.sin(theta) * radius * 0.92 + spread;
-    positions[i * 3 + 2] = (seeded(i, 13) - 0.5) * (0.12 + radius * 0.22);
-    const hot = 1 - Math.min(1, radius / 2.15);
-    colors[i * 3] = 0.72 + hot * 0.28;
-    colors[i * 3 + 1] = 0.46 + hot * 0.46;
-    colors[i * 3 + 2] = 0.22 + hot * 0.58;
+    const radius = 0.04 + seeded(i, 10) * 2.1;
+    const theta = radius * 5.9 + arm * (Math.PI * 2 / 5) + (seeded(i, 11) - 0.5) * 0.34;
+    const spread = (seeded(i, 12) - 0.5) * (0.07 + radius * 0.14);
+    positions[i * 3] = Math.cos(theta) * radius * 1.28;
+    positions[i * 3 + 1] = Math.sin(theta) * radius * 0.84 + spread;
+    positions[i * 3 + 2] = (seeded(i, 13) - 0.5) * (0.09 + radius * 0.18);
+    const hot = 1 - Math.min(1, radius / 2.1);
+    colors[i * 3] = 0.66 + hot * 0.34;
+    colors[i * 3 + 1] = 0.48 + hot * 0.44;
+    colors[i * 3 + 2] = 0.30 + hot * 0.54;
   }
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const points = new THREE.Points(
+  group.add(new THREE.Points(
     geometry,
-    new THREE.PointsMaterial({ size: 0.065, map: texture, transparent: true, opacity: 0.82, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending })
-  );
-  group.add(points);
-  const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xfff0ce, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }));
-  core.scale.set(1.45, 1.45, 1.45);
+    new THREE.PointsMaterial({ size: 0.034, map: texture, transparent: true, opacity: 0.82, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending })
+  ));
+  const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xffedc7, transparent: true, opacity: 0.72, depthWrite: false, blending: THREE.AdditiveBlending }));
+  core.scale.set(0.34, 0.34, 0.34);
   group.add(core);
   scene.add(group);
   return group;
 }
 
-function brainPoint(i: number, side: number) {
-  const u = (i + 0.5) / 140;
+function brainPoint(i: number, side: number, total: number) {
+  const u = (i + 0.5) / total;
   const phi = Math.acos(1 - 2 * u);
   const theta = seeded(i, 30 + side) * Math.PI * 2;
   const x0 = Math.sin(phi) * Math.cos(theta);
   const y0 = Math.cos(phi);
   const z0 = Math.sin(phi) * Math.sin(theta);
-  const wrinkle = 1 + 0.14 * Math.sin(theta * 4 + phi * 5) + 0.08 * Math.sin(theta * 8 - phi * 3);
+  const wrinkle = 1 + 0.12 * Math.sin(theta * 4 + phi * 5) + 0.065 * Math.sin(theta * 8 - phi * 3);
   return new THREE.Vector3(
-    side * (0.38 + Math.abs(x0) * 1.15 * wrinkle),
-    y0 * 1.34 * wrinkle,
-    z0 * 0.93 * wrinkle
+    side * (0.34 + Math.abs(x0) * 1.08 * wrinkle),
+    y0 * 1.26 * wrinkle,
+    z0 * 0.86 * wrinkle
   );
+}
+
+function addBrainShell(group: THREE.Group) {
+  const shellMaterial = new THREE.MeshBasicMaterial({
+    color: 0xe2a45c,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.085,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+  [-1, 1].forEach((side) => {
+    const lobe = new THREE.Mesh(new THREE.SphereGeometry(1.08, 26, 20), shellMaterial.clone());
+    lobe.position.x = side * 0.46;
+    lobe.scale.set(0.94, 1.18, 0.72);
+    group.add(lobe);
+  });
+  const stem = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 1.25, 8, 14), shellMaterial.clone());
+  stem.position.set(0.02, -1.72, 0);
+  stem.scale.set(0.72, 1.0, 0.65);
+  group.add(stem);
 }
 
 function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
   const group = new THREE.Group();
-  group.position.set(2.55, 0.55, -0.05);
-  group.scale.setScalar(1.5);
+  group.position.set(2.32, 0.40, -0.12);
+  group.scale.setScalar(1.34);
   const nodes: THREE.Vector3[] = [];
+  const perLobe = 210;
   [-1, 1].forEach((side) => {
-    for (let i = 0; i < 140; i++) nodes.push(brainPoint(i, side));
+    for (let i = 0; i < perLobe; i++) nodes.push(brainPoint(i, side, perLobe));
   });
-  for (let i = 0; i < 26; i++) {
-    const t = i / 25;
-    nodes.push(new THREE.Vector3((seeded(i, 61) - 0.5) * 0.23, -1.26 - t * 1.35, (seeded(i, 62) - 0.5) * 0.18));
+  for (let i = 0; i < 34; i++) {
+    const t = i / 33;
+    nodes.push(new THREE.Vector3((seeded(i, 61) - 0.5) * 0.20, -1.24 - t * 1.34, (seeded(i, 62) - 0.5) * 0.16));
   }
 
   const pointPositions = new Float32Array(nodes.length * 3);
   nodes.forEach((n, i) => n.toArray(pointPositions, i * 3));
   const pointGeometry = new THREE.BufferGeometry();
   pointGeometry.setAttribute("position", new THREE.BufferAttribute(pointPositions, 3));
-  const nodeCloud = new THREE.Points(pointGeometry, new THREE.PointsMaterial({
-    size: 0.105,
+  group.add(new THREE.Points(pointGeometry, new THREE.PointsMaterial({
+    size: 0.058,
     map: texture,
     color: GOLD,
     transparent: true,
-    opacity: 0.98,
+    opacity: 0.92,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-  }));
-  group.add(nodeCloud);
+  })));
 
   const linePositions: number[] = [];
   for (let i = 0; i < nodes.length; i++) {
@@ -145,49 +165,44 @@ function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
     for (let j = 0; j < nodes.length; j++) {
       if (i === j) continue;
       const d = nodes[i].distanceToSquared(nodes[j]);
-      if (d < 0.32) nearest.push({ j, d });
+      if (d < 0.20) nearest.push({ j, d });
     }
-    nearest.sort((a, b) => a.d - b.d).slice(0, 3).forEach(({ j }) => {
+    nearest.sort((a, b) => a.d - b.d).slice(0, 4).forEach(({ j }) => {
       if (i < j) linePositions.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z);
     });
   }
   const lineGeometry = new THREE.BufferGeometry();
   lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
-  group.add(new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({ color: 0xe0a55d, transparent: true, opacity: 0.31, blending: THREE.AdditiveBlending, depthWrite: false })));
+  group.add(new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({ color: 0xd99950, transparent: true, opacity: 0.23, blending: THREE.AdditiveBlending, depthWrite: false })));
 
-  const membrane = new THREE.Mesh(
-    new THREE.SphereGeometry(1.7, 64, 48),
-    new THREE.MeshPhysicalMaterial({ color: 0x8a5126, transparent: true, opacity: 0.045, roughness: 0.5, transmission: 0.25, depthWrite: false, side: THREE.DoubleSide })
-  );
-  membrane.scale.set(1.08, 0.91, 0.7);
-  group.add(membrane);
+  addBrainShell(group);
 
-  const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: PALE, transparent: true, opacity: 1, depthWrite: false, blending: THREE.AdditiveBlending }));
-  core.position.set(0.04, -0.02, 0.42);
-  core.scale.set(1.1, 1.1, 1.1);
+  const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: PALE, transparent: true, opacity: 0.95, depthWrite: false, blending: THREE.AdditiveBlending }));
+  core.position.set(0.04, -0.02, 0.46);
+  core.scale.set(0.44, 0.44, 0.44);
   core.name = "brain-core";
   group.add(core);
 
   const orbiters: THREE.Sprite[] = [];
-  for (let i = 0; i < 10; i++) {
-    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: i % 3 === 0 ? PALE : GOLD_HOT, transparent: true, opacity: 0.96, depthWrite: false, blending: THREE.AdditiveBlending }));
-    sprite.scale.setScalar(i % 3 === 0 ? 0.3 : 0.18);
-    sprite.userData = { rx: 2.0 + (i % 5) * 0.32, ry: 0.74 + (i % 4) * 0.14, rz: 0.55 + (i % 3) * 0.16, speed: 0.12 + i * 0.009, phase: i * 0.66 };
+  for (let i = 0; i < 11; i++) {
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: i % 3 === 0 ? PALE : GOLD_HOT, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }));
+    sprite.scale.setScalar(i % 3 === 0 ? 0.17 : 0.11);
+    sprite.userData = { rx: 1.72 + (i % 5) * 0.28, ry: 0.68 + (i % 4) * 0.12, rz: 0.45 + (i % 3) * 0.12, speed: 0.10 + i * 0.008, phase: i * 0.66 };
     group.add(sprite);
     orbiters.push(sprite);
   }
 
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 7; i++) {
     const points: THREE.Vector3[] = [];
-    const rx = 2.02 + i * 0.25;
-    const ry = 0.72 + i * 0.10;
+    const rx = 1.78 + i * 0.23;
+    const ry = 0.68 + i * 0.09;
     for (let j = 0; j <= 180; j++) {
       const a = (j / 180) * Math.PI * 2;
-      points.push(new THREE.Vector3(Math.cos(a) * rx, Math.sin(a) * ry, Math.sin(a * 2 + i) * 0.22));
+      points.push(new THREE.Vector3(Math.cos(a) * rx, Math.sin(a) * ry, Math.sin(a * 2 + i) * 0.19));
     }
     const g = new THREE.BufferGeometry().setFromPoints(points);
-    const loop = new THREE.Line(g, new THREE.LineBasicMaterial({ color: i % 2 ? 0xd39146 : 0xf6c77e, transparent: true, opacity: 0.18 + (i % 3) * 0.035, blending: THREE.AdditiveBlending, depthWrite: false }));
-    loop.rotation.set(0.12 + i * 0.055, 0.28 - i * 0.032, -0.32 + i * 0.082);
+    const loop = new THREE.Line(g, new THREE.LineBasicMaterial({ color: i % 2 ? 0xc98640 : 0xe8b66f, transparent: true, opacity: 0.14 + (i % 3) * 0.025, blending: THREE.AdditiveBlending, depthWrite: false }));
+    loop.rotation.set(0.12 + i * 0.055, 0.22 - i * 0.027, -0.26 + i * 0.09);
     loop.name = `orbit-${i}`;
     group.add(loop);
   }
@@ -200,7 +215,7 @@ function addBrain(scene: THREE.Scene, texture: THREE.Texture) {
 function addPlanet(scene: THREE.Scene, radius: number, position: [number, number, number], base: number) {
   const planet = new THREE.Mesh(
     new THREE.SphereGeometry(radius, 64, 40),
-    new THREE.MeshStandardMaterial({ color: base, roughness: 0.98, metalness: 0.02, emissive: new THREE.Color(base).multiplyScalar(0.12) })
+    new THREE.MeshStandardMaterial({ color: base, roughness: 0.98, metalness: 0.02, emissive: new THREE.Color(base).multiplyScalar(0.07) })
   );
   planet.position.set(...position);
   scene.add(planet);
@@ -208,26 +223,52 @@ function addPlanet(scene: THREE.Scene, radius: number, position: [number, number
 }
 
 function addWorld(scene: THREE.Scene, texture: THREE.Texture) {
-  const world = new THREE.Mesh(new THREE.SphereGeometry(8.3, 96, 56), new THREE.MeshStandardMaterial({ color: 0x1a1009, roughness: 1, emissive: 0x120a05, emissiveIntensity: 0.52 }));
-  world.position.set(1.0, -8.45, -2.4);
+  const world = new THREE.Mesh(
+    new THREE.SphereGeometry(8.6, 96, 56),
+    new THREE.MeshStandardMaterial({ color: 0x27170f, roughness: 1, emissive: 0x150b06, emissiveIntensity: 0.34 })
+  );
+  world.position.set(0.9, -9.55, -2.7);
   scene.add(world);
-  const atmosphere = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xf0b666, transparent: true, opacity: 0.66, depthWrite: false, blending: THREE.AdditiveBlending }));
-  atmosphere.position.set(1.0, -2.45, -1.35);
-  atmosphere.scale.set(13.3, 1.25, 1);
+
+  const cityCount = 760;
+  const positions = new Float32Array(cityCount * 3);
+  const colors = new Float32Array(cityCount * 3);
+  for (let i = 0; i < cityCount; i++) {
+    const phi = 0.12 + seeded(i, 120) * 0.95;
+    const theta = 0.10 * Math.PI + seeded(i, 121) * 0.80 * Math.PI;
+    const radius = 8.62;
+    positions[i * 3] = Math.sin(phi) * Math.cos(theta) * radius;
+    positions[i * 3 + 1] = Math.cos(phi) * radius;
+    positions[i * 3 + 2] = Math.sin(phi) * Math.sin(theta) * radius;
+    const hot = seeded(i, 122);
+    colors[i * 3] = 0.75 + hot * 0.25;
+    colors[i * 3 + 1] = 0.45 + hot * 0.34;
+    colors[i * 3 + 2] = 0.20 + hot * 0.25;
+  }
+  const cityGeometry = new THREE.BufferGeometry();
+  cityGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  cityGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  const cityLights = new THREE.Points(cityGeometry, new THREE.PointsMaterial({ size: 0.055, map: texture, transparent: true, opacity: 0.78, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  world.add(cityLights);
+
+  const atmosphere = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, color: 0xe6aa5d, transparent: true, opacity: 0.42, depthWrite: false, blending: THREE.AdditiveBlending }));
+  atmosphere.position.set(0.9, -2.64, -1.35);
+  atmosphere.scale.set(13.6, 0.72, 1);
   scene.add(atmosphere);
   return world;
 }
 
 function addObserver(scene: THREE.Scene) {
   const group = new THREE.Group();
-  group.position.set(0.95, -2.63, 1.9);
-  const dark = new THREE.MeshStandardMaterial({ color: 0x030302, roughness: 1 });
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.2, 0.82, 8, 18), dark);
-  body.position.y = 0.42;
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.15, 28, 18), dark);
-  head.position.y = 1.08;
-  const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.86, 10), dark);
-  legs.position.y = -0.38;
+  group.position.set(1.02, -2.88, 2.25);
+  group.scale.setScalar(1.62);
+  const dark = new THREE.MeshStandardMaterial({ color: 0x020201, roughness: 1 });
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.19, 0.78, 8, 18), dark);
+  body.position.y = 0.40;
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.145, 28, 18), dark);
+  head.position.y = 1.04;
+  const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.10, 0.82, 10), dark);
+  legs.position.y = -0.36;
   group.add(body, head, legs);
   scene.add(group);
   return group;
@@ -236,10 +277,13 @@ function addObserver(scene: THREE.Scene) {
 function addAsteroids(scene: THREE.Scene) {
   const asteroids: THREE.Mesh[] = [];
   const defs: Array<[number, number, number, number]> = [
-    [-5.1, -3.2, 0.8, .62], [-3.1, -3.55, 1.2, .75], [-1.75, -2.58, -.5, .26], [3.7, -3.15, .7, .62], [4.9, -2.45, -.7, .38], [5.5, 3.1, -3.2, .42], [-5.25, 1.55, -4, .35], [-3.2, 3.55, -5, .22], [4.7, .92, -4.8, .24]
+    [-5.1, -3.1, 0.9, .58], [-3.1, -3.45, 1.3, .72], [-1.75, -2.52, -.4, .25], [3.75, -3.0, .8, .58], [4.9, -2.35, -.6, .36], [5.55, 3.0, -3.0, .40], [-5.15, 1.55, -4, .32], [-3.15, 3.52, -5, .20], [4.7, .92, -4.6, .22]
   ];
   defs.forEach(([x, y, z, size], i) => {
-    const mesh = new THREE.Mesh(new THREE.DodecahedronGeometry(size, 1), new THREE.MeshStandardMaterial({ color: 0x24160f, roughness: 0.95 }));
+    const mesh = new THREE.Mesh(
+      new THREE.DodecahedronGeometry(size, 1),
+      new THREE.MeshStandardMaterial({ color: 0x342016, roughness: 0.94, emissive: 0x100805, emissiveIntensity: 0.2 })
+    );
     mesh.position.set(x, y, z);
     mesh.scale.set(1.25, 0.85 + seeded(i, 90) * 0.45, 1);
     mesh.rotation.set(seeded(i, 91) * 3, seeded(i, 92) * 3, seeded(i, 93) * 3);
@@ -275,17 +319,17 @@ export default function CinematicUniverseHero() {
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
+    renderer.toneMappingExposure = 0.86;
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x030201, 0.045);
+    scene.fog = new THREE.FogExp2(0x020101, 0.030);
     const camera = new THREE.PerspectiveCamera(41, 1, 0.1, 100);
-    camera.position.set(0, 0.15, 9.7);
+    camera.position.set(0, 0.12, 9.8);
 
     const glow = makeRadialTexture();
     const stars = addStarfield(scene, glow);
@@ -295,23 +339,23 @@ export default function CinematicUniverseHero() {
     const observer = addObserver(scene);
     const asteroids = addAsteroids(scene);
     const planets = [
-      addPlanet(scene, 0.58, [-3.7, 2.78, -2.2], 0x75421f),
-      addPlanet(scene, 0.38, [4.95, 1.75, -2.8], 0x5c321b),
-      addPlanet(scene, 0.30, [-4.65, 0.28, -1.8], 0x5a301a),
-      addPlanet(scene, 1.15, [7.25, 2.25, -4.5], 0x57311d),
+      addPlanet(scene, 0.54, [-3.7, 2.78, -2.2], 0x69401f),
+      addPlanet(scene, 0.34, [4.95, 1.75, -2.8], 0x56321d),
+      addPlanet(scene, 0.27, [-4.65, 0.28, -1.8], 0x55301a),
+      addPlanet(scene, 1.08, [7.20, 2.25, -4.5], 0x4b2b19),
     ];
 
-    const key = new THREE.PointLight(0xffb965, 16, 18, 2);
-    key.position.set(2.9, 1.5, 2.3);
+    const key = new THREE.PointLight(0xffb965, 4.5, 17, 2);
+    key.position.set(2.9, 1.45, 2.3);
     scene.add(key);
-    const rim = new THREE.PointLight(0xffd08a, 8, 22, 2);
-    rim.position.set(-3.5, 4.0, 1.0);
+    const rim = new THREE.PointLight(0xffd08a, 2.8, 22, 2);
+    rim.position.set(-3.0, 3.7, 1.0);
     scene.add(rim);
-    scene.add(new THREE.AmbientLight(0x5a3b28, 0.55));
+    scene.add(new THREE.AmbientLight(0x4a2d1f, 0.28));
 
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 1.35, 0.72, 0.08);
+    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.78, 0.34, 0.44);
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
 
@@ -341,18 +385,18 @@ export default function CinematicUniverseHero() {
     const animate = () => {
       const t = clock.getElapsedTime();
       mouse.lerp(target, 0.035);
-      camera.position.x = mouse.x * 0.18;
-      camera.position.y = 0.15 + mouse.y * 0.11;
-      camera.lookAt(0.42, -0.05, 0);
+      camera.position.x = mouse.x * 0.16;
+      camera.position.y = 0.12 + mouse.y * 0.09;
+      camera.lookAt(0.42, -0.08, 0);
       if (!reduceMotion) {
-        stars.rotation.z = t * 0.0018;
-        galaxy.rotation.z = -0.24 + t * 0.024;
-        brain.rotation.y = Math.sin(t * 0.19) * 0.055 + mouse.x * 0.055;
-        brain.rotation.x = Math.sin(t * 0.15) * 0.018 - mouse.y * 0.026;
+        stars.rotation.z = t * 0.0014;
+        galaxy.rotation.z = -0.20 + t * 0.018;
+        brain.rotation.y = Math.sin(t * 0.19) * 0.045 + mouse.x * 0.045;
+        brain.rotation.x = Math.sin(t * 0.15) * 0.015 - mouse.y * 0.022;
         const core = brain.getObjectByName("brain-core") as THREE.Sprite | undefined;
         if (core) {
-          const pulse = 1 + Math.sin(t * 2.15) * 0.13;
-          core.scale.setScalar(1.1 * pulse);
+          const pulse = 1 + Math.sin(t * 2.15) * 0.10;
+          core.scale.setScalar(0.44 * pulse);
         }
         const orbiters = brain.userData.orbiters as THREE.Sprite[];
         orbiters?.forEach((sprite, i) => {
@@ -361,15 +405,15 @@ export default function CinematicUniverseHero() {
           sprite.position.set(Math.cos(a) * d.rx, Math.sin(a) * d.ry, Math.sin(a * 1.7 + i) * d.rz);
         });
         brain.children.forEach((child, i) => {
-          if (child.name.startsWith("orbit-")) child.rotation.z += (i % 2 ? 1 : -1) * 0.0007;
+          if (child.name.startsWith("orbit-")) child.rotation.z += (i % 2 ? 1 : -1) * 0.00045;
         });
         asteroids.forEach((asteroid, i) => {
-          asteroid.rotation.x += 0.0008 + i * 0.00004;
-          asteroid.rotation.y += 0.001 + i * 0.00003;
+          asteroid.rotation.x += 0.00055 + i * 0.00003;
+          asteroid.rotation.y += 0.00075 + i * 0.000025;
         });
-        planets.forEach((planet, i) => (planet.rotation.y += 0.00045 + i * 0.00008));
-        world.rotation.y += 0.00022;
-        observer.position.y = -2.63 + Math.sin(t * 0.6) * 0.018;
+        planets.forEach((planet, i) => (planet.rotation.y += 0.00032 + i * 0.00006));
+        world.rotation.y += 0.00010;
+        observer.position.y = -2.88 + Math.sin(t * 0.6) * 0.012;
       }
       composer.render();
       raf = requestAnimationFrame(animate);
@@ -396,9 +440,9 @@ export default function CinematicUniverseHero() {
 
   return (
     <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_41%,rgba(139,76,27,.20),transparent_30%),radial-gradient(circle_at_43%_12%,rgba(124,71,34,.12),transparent_21%),linear-gradient(112deg,#020201_0%,#060301_52%,#020101_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_71%_41%,rgba(129,69,27,.075),transparent_30%),radial-gradient(circle_at_44%_12%,rgba(128,77,39,.055),transparent_21%),linear-gradient(112deg,#010101_0%,#050302_54%,#010101_100%)]" />
       <div ref={mountRef} className="absolute inset-0" />
-      {failed ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_40%,rgba(213,151,74,.19),transparent_28%),radial-gradient(circle_at_43%_12%,rgba(209,142,67,.10),transparent_22%)]" /> : null}
+      {failed ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_40%,rgba(213,151,74,.10),transparent_28%),radial-gradient(circle_at_43%_12%,rgba(209,142,67,.06),transparent_22%)]" /> : null}
 
       <div className="hidden lg:block">
         {labels.map(([label, left, top]) => (
@@ -413,7 +457,7 @@ export default function CinematicUniverseHero() {
         <div className="absolute bottom-[4.6%] right-[5.1%] z-[4] font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#d4a05d]/90">Dados · Estratégia · Resultados reais</div>
       </div>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_45%,transparent_0%,transparent_32%,rgba(0,0,0,.12)_50%,rgba(0,0,0,.42)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_45%,transparent_0%,transparent_34%,rgba(0,0,0,.08)_54%,rgba(0,0,0,.30)_100%)]" />
     </div>
   );
 }
