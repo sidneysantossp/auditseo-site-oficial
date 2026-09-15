@@ -61,13 +61,14 @@ jobs:
             document.documentElement.style.scrollBehavior = 'auto';
             window.scrollTo(0, 0);
           });
-          await page.waitForTimeout(3000);
-          const glInfo = await page.evaluate(() => {
-            const canvas = document.querySelector('#inicio canvas');
-            const gl = canvas?.getContext('webgl2') || canvas?.getContext('webgl');
-            return { hasCanvas: !!canvas, hasWebGL: !!gl, width: canvas?.width || 0, height: canvas?.height || 0 };
-          });
-          console.log('GL_INFO', JSON.stringify(glInfo));
+          let hydratedCanvas = false;
+          try {
+            await page.waitForSelector('#inicio canvas', { state: 'attached', timeout: 15000 });
+            hydratedCanvas = true;
+          } catch {
+            console.log('Canvas did not hydrate within 15s');
+          }
+          await page.waitForTimeout(hydratedCanvas ? 2200 : 1000);
           await page.screenshot({ path: 'hero-qa.png', fullPage: false, timeout: 30000 });
           const metrics = await page.evaluate(() => {
             const hero = document.querySelector('#inicio');
