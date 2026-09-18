@@ -133,8 +133,8 @@ export default function HomePageV2() {
           <div className="lg:col-span-10">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">SEARCH INTELLIGENCE PARA EMPRESAS</span>
             <h1 className="mt-6 max-w-[1120px] font-display text-[clamp(44px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.05em]">
-              <span className="md:block md:whitespace-nowrap">Antes de investir em mais SEO,</span>
-              <span className="md:block md:whitespace-nowrap">conteúdo ou IA</span>
+              <span className="md:block md:whitespace-nowrap">Antes de investir em</span>
+              <span className="md:block md:whitespace-nowrap">mais SEO, conteúdo ou IA</span>
             </h1>
             <p className="mt-6 max-w-[760px] font-display text-2xl font-semibold leading-[1.25] tracking-[-0.02em] text-[#e0d3c3] md:text-3xl">
               Descubra onde sua presença realmente quebra.
