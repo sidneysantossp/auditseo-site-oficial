@@ -139,8 +139,9 @@ export default function HomePageV2() {
             <p className="mt-6 max-w-[760px] font-display text-2xl font-semibold leading-[1.25] tracking-[-0.02em] text-[#e0d3c3] md:text-3xl">
               Descubra onde sua presença realmente quebra.
             </p>
-            <p className="mt-5 max-w-[760px] text-sm leading-[1.75] text-[#f8f8f8]/58">
-              SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando o diagnóstico mostra que são parte da causa ou da solução.
+            <p className="mt-5 max-w-[920px] text-sm leading-[1.75] text-[#f8f8f8]/58">
+              <span className="md:block md:whitespace-nowrap">SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando</span>
+              <span className="md:block md:whitespace-nowrap">o diagnóstico mostra que são parte da causa ou da solução.</span>
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
