@@ -135,7 +135,10 @@ export default function HomePageV2() {
             <h1 className="mt-6 max-w-[900px] font-display text-[clamp(48px,5vw,76px)] font-bold leading-[0.98] tracking-[-0.05em]">
               Antes de investir em mais SEO,<br className="hidden lg:block" /> <span className="lg:whitespace-nowrap">conteúdo ou IA</span>
             </h1>
-            <p className="mt-7 max-w-[760px] text-sm leading-[1.75] text-[#f8f8f8]/58">
+            <p className="mt-6 max-w-[760px] font-display text-2xl font-semibold leading-[1.25] tracking-[-0.02em] text-[#e0d3c3] md:text-3xl">
+              Descubra onde sua presença realmente quebra.
+            </p>
+            <p className="mt-5 max-w-[760px] text-sm leading-[1.75] text-[#f8f8f8]/58">
               SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando o diagnóstico mostra que são parte da causa ou da solução.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
