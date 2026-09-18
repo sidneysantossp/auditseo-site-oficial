@@ -133,7 +133,7 @@ export default function HomePageV2() {
           <div className="lg:col-span-7">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">SEARCH INTELLIGENCE PARA EMPRESAS</span>
             <h1 className="mt-6 max-w-[850px] font-display text-[clamp(48px,5vw,76px)] font-bold leading-[0.98] tracking-[-0.05em]">
-              Antes de investir em mais SEO, conteúdo ou IA, descubra onde sua presença realmente quebra.
+              Antes de investir em mais SEO,<br className="hidden lg:block" /> conteúdo ou IA
             </h1>
             <p className="mt-8 max-w-[780px] text-lg font-medium leading-[1.7] text-[#e0d3c3] md:text-xl">
               SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando o diagnóstico mostra que são parte da causa ou da solução.
