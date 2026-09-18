@@ -136,9 +136,6 @@ export default function HomePageV2() {
               Antes de investir em mais SEO, conteúdo ou IA, descubra onde sua presença realmente quebra.
             </h1>
             <p className="mt-8 max-w-[780px] text-lg font-medium leading-[1.7] text-[#e0d3c3] md:text-xl">
-              A AUDITSEO investiga em qual etapa sua empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida. Depois transforma a evidência em um roadmap coordenado, com prioridades, responsáveis e critérios de validação.
-            </p>
-            <p className="mt-4 max-w-[760px] text-sm leading-[1.75] text-[#f8f8f8]/58">
               SEO técnico, conteúdo, autoridade de entidade, reputação e Search AI entram apenas quando o diagnóstico mostra que são parte da causa ou da solução.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
