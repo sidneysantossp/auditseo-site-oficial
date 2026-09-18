@@ -140,7 +140,7 @@ export default function HomePageV2() {
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
-              <a href="/blog/framework-crawl-index-retrieve-understand-trust-cite" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b28453]/45 px-8 py-4 text-base font-semibold transition-all hover:bg-[#b28453]/10">Ver o framework de diagnóstico <ArrowRight size={15} /></a>
+              <a href="https://wa.me/5511996384376" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b28453]/45 px-8 py-4 text-base font-semibold transition-all hover:bg-[#b28453]/10">AGENDAR UMA REUNIÃO <ArrowRight size={15} /></a>
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[10px] uppercase tracking-[0.08em] text-[#8c8275]">
               {['Crawl', 'Index', 'Retrieve', 'Understand', 'Trust', 'Cite', 'Convert'].map((item, index) => <span key={item} className="inline-flex items-center gap-2">{index ? <span className="text-[#b28453]/35">→</span> : null}{item}</span>)}
