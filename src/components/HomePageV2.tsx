@@ -130,10 +130,11 @@ export default function HomePageV2() {
       <section id="inicio" className="relative flex min-h-[850px] items-center overflow-hidden px-6 pb-20 pt-[118px] md:px-12 md:pt-[132px]">
         <NeuralSearchBrain />
         <div className="relative z-10 mx-auto grid w-full max-w-[1320px] items-center gap-12 lg:grid-cols-12 lg:gap-6">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-10">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">SEARCH INTELLIGENCE PARA EMPRESAS</span>
-            <h1 className="mt-6 max-w-[900px] font-display text-[clamp(48px,5vw,76px)] font-bold leading-[0.98] tracking-[-0.05em]">
-              Antes de investir em mais SEO,<br className="hidden lg:block" /> <span className="lg:whitespace-nowrap">conteúdo ou IA</span>
+            <h1 className="mt-6 max-w-[1120px] font-display text-[clamp(44px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.05em]">
+              <span className="md:block md:whitespace-nowrap">Antes de investir em mais SEO,</span>
+              <span className="md:block md:whitespace-nowrap">conteúdo ou IA</span>
             </h1>
             <p className="mt-6 max-w-[760px] font-display text-2xl font-semibold leading-[1.25] tracking-[-0.02em] text-[#e0d3c3] md:text-3xl">
               Descubra onde sua presença realmente quebra.
