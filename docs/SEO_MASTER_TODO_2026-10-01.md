@@ -178,15 +178,18 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - recovery case with comparable periods and limitations;
   - backlog/implementation example;
   - authorized testimonials with identity/context.
-- [ ] **P1.10 Strengthen Organization entity**
+- [~] **P1.10 Strengthen Organization entity**
   - Add verified `sameAs` references only.
   - Add appropriate business identity details where accurate and public.
+  - Branch progress: commercial WhatsApp references were unified to the number already approved for the Hero. A company-level `sameAs` remains intentionally pending until an external company profile is verified/updated; no weak self-referential identity was added.
   - Criterion: Organization graph points to corroborated external identities, not self-created filler.
-- [ ] **P1.11 Strengthen founder page**
+- [~] **P1.11 Strengthen founder page**
   - Add verifiable trajectory, work history, publications/cases and references.
+  - Branch progress: the public LinkedIn profile matching Sidney Santos + AUDITSEO was verified externally and added to the Person schema `sameAs` plus the founder page. Broader trajectory/case corroboration remains pending.
   - Criterion: claims have supporting evidence where reasonably possible.
-- [ ] **P1.12 Create/strengthen a company About destination**
+- [~] **P1.12 Create/strengthen a company About destination**
   - Current audit observed “Sobre” routing toward author rather than a standalone company presentation.
+  - Branch implementation: new `/sobre` company page created; Header “Sobre” now points to the organization page, while the founder remains linked separately. Sitemap and llms.txt were updated. Pending preview/production validation before [x].
   - Criterion: company identity separate from founder identity.
 
 ### P2 — Internal linking and applied content
