@@ -54,14 +54,14 @@ const diagnosticPillars: Array<{ icon: ReactNode; title: string; text: string; i
 ];
 
 const scenarios = [
-  ["Search Foundation", "Projeto começando do zero", "Arquitetura, intenção, entidades e medição antes que decisões de lançamento virem dívida.", "/solucoes/projetos-comecando-do-zero"],
-  ["Organic Activation", "Site no ar, mas sem tração", "Diagnóstico para descobrir por que um site indexado ainda não constrói cobertura, demanda ou oportunidades.", "/solucoes/site-sem-tracao"],
-  ["Search Recovery", "Perda de tráfego ou posições", "Investigação causal antes de executar correções em uma operação que já teve desempenho orgânico.", "/solucoes/recuperacao-organica"],
-  ["Entity Authority", "Autoridade pouco reconhecida", "Organização de empresa, especialistas, provas e fontes para reduzir ambiguidade e fortalecer confiança.", "/solucoes/autoridade-de-entidade"],
-  ["Intent Content Architecture", "Conteúdo sem direção", "Transformação de páginas isoladas em uma arquitetura conectada às perguntas que levam à contratação.", "/solucoes/conteudo-por-intencao"],
-  ["Generative Search Readiness", "Pouca presença em Search AI", "Medição responsável de menções, citações e fontes antes de definir o que realmente precisa ser fortalecido.", "/solucoes/geo-ia-readiness"],
-  ["SEO Migration & Risk Control", "Migração ou reformulação", "Proteção de URLs, conteúdo, autoridade e demanda durante mudanças de domínio, CMS, design ou arquitetura.", "/solucoes/migracao-risco-seo"],
-  ["Organic Evolution Cycle", "Crescimento estagnado", "Ciclos contínuos para transformar dados, concorrência e novas intenções em próximos movimentos de crescimento.", "/solucoes/evolucao-organica"],
+  ["Search Foundation", "Planejamento SEO para novos sites", "Arquitetura, intenção, entidades e medição antes que decisões de lançamento virem dívida.", "/solucoes/projetos-comecando-do-zero"],
+  ["Organic Activation", "Diagnóstico SEO para sites sem tráfego", "Diagnóstico para descobrir por que um site indexado ainda não constrói cobertura, demanda ou oportunidades.", "/solucoes/site-sem-tracao"],
+  ["Search Recovery", "Recuperação de tráfego orgânico", "Investigação causal antes de executar correções em uma operação que já teve desempenho orgânico.", "/solucoes/recuperacao-organica"],
+  ["Entity Authority", "Consultoria de autoridade de entidade", "Organização de empresa, especialistas, provas e fontes para reduzir ambiguidade e fortalecer confiança.", "/solucoes/autoridade-de-entidade"],
+  ["Intent Content Architecture", "Estratégia e arquitetura de conteúdo SEO", "Transformação de páginas isoladas em uma arquitetura conectada às perguntas que levam à contratação.", "/solucoes/conteudo-por-intencao"],
+  ["Generative Search Readiness", "Auditoria GEO e de visibilidade em IA", "Medição responsável de menções, citações e fontes antes de definir o que realmente precisa ser fortalecido.", "/solucoes/geo-ia-readiness"],
+  ["SEO Migration & Risk Control", "Consultoria SEO para migração de sites", "Proteção de URLs, conteúdo, autoridade e demanda durante mudanças de domínio, CMS, design ou arquitetura.", "/solucoes/migracao-risco-seo"],
+  ["Organic Evolution Cycle", "Consultoria SEO contínua", "Ciclos contínuos para transformar dados, concorrência e novas intenções em próximos movimentos de crescimento.", "/solucoes/evolucao-organica"],
 ];
 
 const signalSteps = [
@@ -131,7 +131,7 @@ export default function HomePageV2() {
         <NeuralSearchBrain />
         <div className="relative z-10 mx-auto grid w-full max-w-[1320px] items-center gap-12 lg:grid-cols-12 lg:gap-6">
           <div className="lg:col-span-10">
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">SEARCH INTELLIGENCE PARA EMPRESAS</span>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">CONSULTORIA SEO, GEO E SEARCH INTELLIGENCE</span>
             <h1 className="mt-6 max-w-[1120px] font-display text-[clamp(44px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.05em]">
               <span className="md:block md:whitespace-nowrap">Antes de investir em</span>
               <span className="md:block md:whitespace-nowrap">mais SEO ou IA</span>
