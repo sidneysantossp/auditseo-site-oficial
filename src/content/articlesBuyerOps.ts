@@ -141,7 +141,7 @@ export const buyerOpsArticles: Record<string, Article> = {
       { label: "Google — conteúdo útil", url: googleHelpful, note: "Referência para qualidade, autoria, utilidade e valor editorial." },
       { label: "Google — orientações sobre terceiros", url: googleThirdParty, note: "Alerta sobre extrapolações de ferramentas e conselhos de SEO de terceiros." },
     ],
-    relatedServices: [["Search Foundation", "/solucoes/projetos-comecando-do-zero"], ["Organic Activation", "/solucoes/site-sem-tracao"], ["Search Recovery", "/solucoes/recuperacao-organica"]],
+    relatedServices: [["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO", "/consultoria-seo"], ["Search Recovery", "/solucoes/recuperacao-organica"]],
   },
 };
 
