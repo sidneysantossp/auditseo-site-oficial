@@ -378,7 +378,7 @@ export const servicePages: Record<string, ServicePageData> = {
       { question: "A AUDITSEO pode trabalhar com nosso time interno?", answer: "Sim. Esse é um dos cenários mais adequados: a consultoria organiza hipóteses, prioridades e validação enquanto o time executa." },
       { question: "Com que frequência o roadmap muda?", answer: "Sempre que novas evidências justificarem. A governança precisa evitar tanto mudanças impulsivas quanto planos congelados que ignoram o mercado." },
     ],
-  },,
+  },
 
   auditSeo: {
     slug: "/auditoria-seo",
