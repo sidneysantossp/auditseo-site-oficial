@@ -31,6 +31,36 @@ const currentSearchCheckpoint = [
   ["24,58", "posição média", "Período finalizado no GSC"],
 ];
 
+const appliedEvidence = [
+  [
+    "Canibalização de intenção comercial",
+    "Evidência",
+    "A consulta “auditoria de seo” apareceu simultaneamente na Home (7 impressões; posição média 71,86) e no artigo educacional (2 impressões; posição média 57,50).",
+    "Decisão",
+    "Criar /auditoria-seo como proprietário transacional e fazer Home + artigo apontarem para esse destino, sem apagar o conteúdo editorial.",
+    "Validação",
+    "Depois do release, observar se a consulta passa a concentrar impressões na landing comercial e se posição/CTR evoluem em janelas finalizadas.",
+  ],
+  [
+    "Página em primeira página sem clique",
+    "Evidência",
+    "/blog/site-indexado-sem-impressoes registrou 19 impressões, posição média 8,95 e CTR 0%, com consultas observadas como “site indexado”, “pagina indexada” e “páginas indexadas”.",
+    "Decisão",
+    "Preservar o conteúdo e ajustar somente title/description para responder de forma mais direta à intenção já observada no GSC.",
+    "Validação",
+    "Comparar CTR e posição da mesma URL após recrawl, sem atribuir eventual melhora apenas ao snippet.",
+  ],
+  [
+    "Preservação de URLs históricas",
+    "Evidência",
+    "Sitemaps anteriores continham /guias e três subguias que não fazem parte da arquitetura editorial atual.",
+    "Decisão",
+    "Manter rotas 308 para destinos equivalentes em vez de permitir 404 ou migrar URLs atuais sem necessidade.",
+    "Validação",
+    "Revisar logs/GSC antes de remover qualquer redirect histórico e registrar toda futura migração no inventário de URLs.",
+  ],
+];
+
 const hypotheses = [
   ["H1", "Categoria e entidade", "Se a AUDITSEO comunicar de forma consistente Search Intelligence, serviços, autoria e provas, sistemas e pessoas terão menos ambiguidade sobre quem somos e quando somos relevantes."],
   ["H2", "Demanda comercial", "Se páginas comerciais e documentos responderem às perguntas que antecedem a contratação, a marca deverá começar a aparecer para consultas e jornadas mais próximas de decisão."],
@@ -130,6 +160,28 @@ export default function AuditseoCaseStudyPage() {
             </div>
             <div className="mt-10 rounded-[20px] border border-[#b28453]/22 bg-[#171614] p-6">
               <p className="text-sm leading-[1.75] text-[#f8f8f8]/68"><strong className="text-[#e0d3c3]">Sinal comercial observado:</strong> o Search Console já retorna consultas como “auditoria de seo”, “auditoria seo”, “contratar auditoria seo”, “serviço de auditoria de seo”, “agencia seo ai” e “migração de seo”. A nova arquitetura comercial foi preparada para dar a essas intenções destinos mais claros. A validação de efeito só começa depois do release, rastreamento e nova janela finalizada no GSC.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#e0d3c3] px-6 py-20 text-[#11100f] md:py-28 xl:px-12">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="max-w-4xl">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">EVIDÊNCIA DE EXECUÇÃO</span>
+              <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] md:text-5xl">Problema, evidência, decisão e validação — com casos reais do próprio projeto.</h2>
+              <p className="mt-6 max-w-3xl text-base leading-[1.78] text-[#2a2927]/72">A prova não é um print de ranking. Estes exemplos mostram como sinais reais foram transformados em decisões e deixam definido, antes do resultado, o que será observado depois.</p>
+            </div>
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {appliedEvidence.map(([title, label1, evidence, label2, decision, label3, validation]) => (
+                <article key={title} className="rounded-[24px] border border-[#11100f]/10 bg-[#f4eee5] p-7">
+                  <h3 className="font-display text-2xl font-bold leading-[1.15]">{title}</h3>
+                  <div className="mt-6 space-y-5">
+                    <div><span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#8c613c]">{label1}</span><p className="mt-2 text-sm leading-[1.7] text-[#2a2927]/72">{evidence}</p></div>
+                    <div><span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#8c613c]">{label2}</span><p className="mt-2 text-sm leading-[1.7] text-[#2a2927]/72">{decision}</p></div>
+                    <div><span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#8c613c]">{label3}</span><p className="mt-2 text-sm leading-[1.7] text-[#2a2927]/72">{validation}</p></div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
