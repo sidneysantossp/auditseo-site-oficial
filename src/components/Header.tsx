@@ -35,10 +35,10 @@ export default function Header({ onNavClick }: HeaderProps) {
         <div className="mx-auto flex h-full w-full max-w-[1536px] items-center justify-between px-6 md:px-10 xl:px-16">
           <button onClick={() => go("inicio")} className="flex cursor-pointer items-center select-none" aria-label="Ir para o início">
             <img
-              src="/auditseo-logo.png"
+              src="/auditseo-logo-ui.webp"
               alt="AUDITSEO — Search Intelligence Partner"
-              width={1500}
-              height={400}
+              width={600}
+              height={160}
               className="h-[40px] w-auto object-contain md:h-[48px]"
               decoding="async"
             />
