@@ -221,11 +221,12 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Branch refactor now renders one semantic card per step and uses layout classes only for positioning. Branch Lighthouse passes heading order and accessibility.
 - [~] **P2.5 Validate forms and conversion instrumentation**
   - Contact, diagnostic, WhatsApp CTA, success/failure states, analytics events.
-  - The site had overlapping contact-submit logic: the root `LeadCaptureBoundary` intercepted submissions while Home also maintained its own handler/state. Branch cleanup centralizes submission in the boundary so attribution, fallback and success behavior have one owner.
-  - `/api/leads` validation was tested locally: invalid payload → 422; valid payload with delivery services unavailable → 503 plus a correctly populated WhatsApp fallback to `+55 11 99638-4376`.
-  - Production `/api/leads` also returned the expected 422 for an invalid QA payload, confirming the route is active without sending a fake lead.
-  - All discovered WhatsApp destinations were normalized to `+55 11 99638-4376`. Submission/success/fallback/error events are pushed to `dataLayer` and dispatched as `auditseo:lead` custom events.
-  - Remaining before [x]: the repository and current production HTML expose no GA/GTM measurement snippet, so analytics transport still needs an approved measurement destination; actual successful lead delivery should be verified after Preview/production deployment without generating test spam.
+  - Contact submission is centralized in the root `LeadCaptureBoundary`, preserving source/referrer/UTM attribution and a single success/fallback path.
+  - `/api/leads` validation passed locally for error handling and in production for invalid-payload handling.
+  - A production lead-delivery canary then passed for **consultation, diagnostic and newsletter** using clearly labeled `[RELEASE-QA]` payloads; all three received server-side delivery confirmation.
+  - Vercel production contains `RESEND_API_KEY`, `LEAD_FROM_EMAIL` and `LEAD_NOTIFICATION_EMAIL`; no GA/GTM measurement variable is configured.
+  - All discovered WhatsApp destinations are normalized to `+55 11 99638-4376`. Submission/success/fallback/error events are emitted to `dataLayer` and as `auditseo:lead` custom events.
+  - Remaining before [x]: connect those events to an approved GA/GTM measurement destination and verify the conversion events in that analytics property.
 - [~] **P2.6 Validate mobile and Core Web Vitals**
   - Pre-merge production baseline in `docs/SEO_CWV_BASELINE_2026-10-01.md`: Performance 85, Accessibility 94, Best Practices 100, SEO 100; FCP 2.6s, LCP 3.6s, TBT 60ms, CLS 0.062.
   - Post-merge production Lighthouse: **Performance 94, Accessibility 100, Best Practices 100, SEO 100**; FCP 2.5s, LCP 2.6s, TBT 10ms, CLS 0, TTI 2.6s.
