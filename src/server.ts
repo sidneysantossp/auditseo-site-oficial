@@ -9,6 +9,13 @@ type ServerEntry = {
 
 let serverEntryPromise: Promise<ServerEntry> | undefined;
 
+const legacyRedirects = new Map<string, string>([
+  ["/fontes-e-metodos", "/estudos-busca-ia"],
+  ["/servicos/seo-local-para-odontologia-em-curitiba", "/consultoria-seo"],
+  ["/servicos/seo-para-dermatologistas", "/consultoria-seo"],
+  ["/servicos/seo-local-para-clinicas-medicas-em-rio-de-janeiro", "/consultoria-seo"],
+]);
+
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {
     serverEntryPromise = import("@tanstack/react-start/server-entry").then(
@@ -48,8 +55,17 @@ export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const url = new URL(request.url);
+      const normalizedPath =
+        url.pathname.length > 1 ? url.pathname.replace(/\/+$/, "") : url.pathname;
+
+      const legacyTarget = legacyRedirects.get(normalizedPath);
+      if (legacyTarget) {
+        url.pathname = legacyTarget;
+        return Response.redirect(url.toString(), 308);
+      }
+
       if (url.pathname.length > 1 && url.pathname.endsWith("/")) {
-        url.pathname = url.pathname.replace(/\/+$/, "");
+        url.pathname = normalizedPath;
         return Response.redirect(url.toString(), 308);
       }
 
