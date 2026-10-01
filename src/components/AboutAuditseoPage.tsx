@@ -44,7 +44,7 @@ export default function AboutAuditseoPage() {
               Search Intelligence para transformar sinais de busca em decisões verificáveis.
             </h1>
             <p className="mt-8 max-w-4xl text-lg leading-[1.78] text-[#e0d3c3] md:text-xl">
-              A AUDITSEO é uma consultoria brasileira que conecta SEO, conteúdo, autoridade de entidade, GEO, Search AI e mensuração para localizar onde uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida.
+              A AUDITSEO é uma consultoria de Search Intelligence com atuação a partir de São Paulo e atendimento a empresas em todo o Brasil. Conectamos SEO, conteúdo, autoridade de entidade, GEO, Search AI e mensuração para localizar onde uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a href="/consultoria-seo" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#b28453] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]">
@@ -64,7 +64,7 @@ export default function AboutAuditseoPage() {
               <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Uma consultoria de busca, não um pacote fixo de tarefas.</h2>
             </div>
             <div className="space-y-5 text-base leading-[1.82] text-[#2a2927]/78 md:text-lg">
-              <p>O trabalho começa pelo problema: perda de tráfego, ausência de tração, migração, conteúdo sem direção, autoridade pouco reconhecida, baixa presença em Search AI ou crescimento estagnado.</p>
+              <p>Com base operacional em São Paulo e atuação nacional, o trabalho começa pelo problema: perda de tráfego, ausência de tração, migração, conteúdo sem direção, autoridade pouco reconhecida, baixa presença em Search AI ou crescimento estagnado.</p>
               <p>Depois, a AUDITSEO escolhe as disciplinas necessárias e transforma os achados em prioridades, responsáveis, critérios de aceite e sinais de validação. Search Intelligence é o nome que usamos para coordenar esse sistema de decisão.</p>
             </div>
           </div>
