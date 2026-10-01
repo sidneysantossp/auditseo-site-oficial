@@ -36,8 +36,8 @@ const researchAssets = [
   {
     eyebrow: "CASE STUDY #001 · EM ANDAMENTO",
     title: "Construindo a autoridade da AUDITSEO do zero.",
-    text: "O próprio domínio é o primeiro caso público do método: baseline registrado antes do release, hipóteses documentadas e métricas que não poderão ser reescritas depois.",
-    metrics: ["GSC: 0 impressões", "GSC: 0 cliques", "40 prompts congelados"],
+    text: "O próprio domínio é o primeiro caso público do método: baseline histórico preservado, checkpoint posterior registrado, hipóteses documentadas e métricas que não podem ser reescritas depois.",
+    metrics: ["Baseline histórico: 0/0", "Checkpoint 01/10: 199 imp. · 2 cliques", "40 prompts congelados"],
     href: "/case-study/auditseo-search-intelligence",
     dataset: null,
   },
