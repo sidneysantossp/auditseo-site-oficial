@@ -72,6 +72,7 @@ export default function FounderPage() {
                   Consultoria de Search AI e GEO <ArrowRight size={15} />
                 </a>
                 <a href="/case-study/auditseo-search-intelligence" className="inline-flex items-center justify-center rounded-full border border-[#b28453]/38 px-7 py-4 text-sm font-bold transition-colors hover:border-[#b28453] hover:text-[#b28453]">Ver o Case Study #001</a>
+                <a href="https://br.linkedin.com/in/sidney-especialista-em-seo" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-[#b28453]/22 px-7 py-4 text-sm font-bold text-[#e0d3c3] transition-colors hover:border-[#b28453] hover:text-[#b28453]">Perfil profissional no LinkedIn</a>
               </div>
             </div>
           </div>
