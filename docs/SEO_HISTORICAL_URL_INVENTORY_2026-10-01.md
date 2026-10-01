@@ -46,6 +46,19 @@ No existing indexable URL has been removed by this remediation branch.
 
 These historical URLs were preserved as redirect routes instead of being allowed to become 404s.
 
+## Additional GSC-active legacy URLs recovered after production QA
+
+Search Console planning data exposed historical URLs that were still receiving impressions but were returning 404 after canonical trailing-slash normalization. They are now preserved with direct permanent redirects:
+
+| Legacy URL | Current destination | Reason |
+|---|---|---|
+| `/fontes-e-metodos` | `/estudos-busca-ia` | Historical research/methodology destination still visible in GSC |
+| `/servicos/seo-local-para-odontologia-em-curitiba` | `/consultoria-seo` | Historical service URL associated with consulting/local-intent queries |
+| `/servicos/seo-para-dermatologistas` | `/consultoria-seo` | Historical service URL still visible in GSC low-CTR pages |
+| `/servicos/seo-local-para-clinicas-medicas-em-rio-de-janeiro` | `/consultoria-seo` | Historical service URL still receiving GSC impressions |
+
+These mappings run before generic trailing-slash normalization so the old trailing-slash URLs reach the final destination in a single application redirect.
+
 ## Additional compatibility redirects currently present
 
 | Legacy/alias URL | Current destination | Status |
