@@ -107,7 +107,8 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Problem: case says `https://auditseo.com.br/` and 0/0 baseline; current verified property is www and now contains data.
   - Provenance check: the baseline text entered the repository in commit `c225e282a9e8625040377a7162af951a14a6ecdc` on 2026-09-08. The repository contains the published values/property wording, but no raw GSC export supporting that exact 2026-08-09 → 2026-09-05 extraction.
   - Action: confirm original extraction source and either correct the property/methodology note or preserve the original observation with an explicit methodological correction.
-  - Criterion: case names property, filters, period and extraction date reproducibly.
+  - Branch action completed: case now labels the value as a historical recorded baseline, identifies that the current connected property is `https://www.auditseo.com.br/`, and states that the raw original export was not preserved in the repository. This avoids presenting the old 0/0 as directly comparable while preserving the historical record.
+  - Remaining criterion: reproduce the exact original property/filters/period before marking this item complete.
 - [!] **P0.3 Verify domain property / alternate URL-prefix properties**
   - Desired: `sc-domain:auditseo.com.br`, `https://auditseo.com.br/`, `https://www.auditseo.com.br/`.
   - Current limitation: only the www URL-prefix is exposed by the active connector.
