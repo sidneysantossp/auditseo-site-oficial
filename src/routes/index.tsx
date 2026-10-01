@@ -27,7 +27,10 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://www.auditseo.com.br/" },
       { property: "og:site_name", content: "AUDITSEO" },
       { property: "og:locale", content: "pt_BR" },
+      { property: "og:image", content: "https://www.auditseo.com.br/auditseo-logo.png" },
+      { property: "og:image:alt", content: "AUDITSEO — Search Intelligence" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.auditseo.com.br/auditseo-logo.png" },
       {
         name: "twitter:title",
         content: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO",
