@@ -115,105 +115,43 @@ export default function SignalMethod({ onCtaClick, ctaText, subtitleText, steps:
               return (
                 <div
                   key={st.letter}
-                  className="relative flex flex-col md:flex-row items-start md:items-center"
+                  className="relative flex flex-col items-start md:flex-row md:items-center"
                 >
-                  
-                  {/* CENTRAL CIRCLE LETTER INDICATOR */}
-                  {/* Desktop configuration */}
-                  <div className="absolute left-6 lg:left-1/2 transform -translate-x-1/2 z-10 w-12 h-12 rounded-full bg-[#11100f] border-2 border-[#b28453] flex items-center justify-center font-display text-[#e0d3c3] text-lg font-bold shadow-lg shadow-[#11100f]/20 hidden md:flex">
+                  <div className="absolute left-6 z-10 hidden h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#b28453] bg-[#11100f] font-display text-lg font-bold text-[#e0d3c3] shadow-lg shadow-[#11100f]/20 md:flex lg:left-1/2">
                     {st.letter}
                   </div>
 
-                  {/* Mobile track indicator badge */}
-                  <div className="absolute left-6 transform -translate-x-1/2 z-10 w-8 h-8 rounded-full bg-[#11100f] border-2 border-[#b28453] flex items-center justify-center font-display text-[#e0d3c3] text-xs font-bold md:hidden">
+                  <div className="absolute left-6 z-10 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#b28453] bg-[#11100f] font-display text-xs font-bold text-[#e0d3c3] md:hidden">
                     {st.letter}
                   </div>
 
-                  {/* TIMELINE CARD */}
-                  <div className="grid grid-cols-1 md:grid-cols-12 w-full pl-12 md:pl-0">
-                    
-                    {/* LEFT SIDE AREA IF CORRESPONDING */}
+                  <div className="grid w-full grid-cols-1 pl-12 md:grid-cols-12 md:pl-0">
                     <div
                       className={`md:col-span-5 ${
-                        isEven
-                          ? "lg:text-right pr-0 lg:pr-12 md:order-1"
-                          : "md:order-3 pointer-events-none md:block hidden"
+                        isEven ? "md:col-start-1 lg:pr-12" : "md:col-start-8 lg:pl-12"
                       }`}
                     >
-                      {isEven && (
-                        <div className="bg-[#f4eee5] rounded-xl p-6 lg:p-8 shadow-[0_14px_36px_rgba(17,16,15,0.05)] border border-[#b28453]/10 text-left">
-                          <div className="flex items-center space-x-2 lg:justify-between mb-4">
-                            <span className="p-2 bg-[#b28453]/15 rounded-lg border border-[#b28453]/20">
-                              {st.icon}
-                            </span>
-                            <span className="font-mono text-xs text-[#b28453] font-bold uppercase tracking-widest hidden lg:inline">
-                              STEP_0{idx + 1}
-                            </span>
-                          </div>
-                          <h4 className="text-[18px] sm:text-[22px] font-bold text-[#11100f] mb-1 font-display">
-                            {st.letter} — {st.title}
-                          </h4>
-                          <p className="text-[#b28453] text-[13px] font-semibold italic mb-3">
-                            {st.subtitle}
-                          </p>
-                          <p className="text-[#2a2927] text-[14px] leading-[1.6]">
-                            {st.description}
-                          </p>
+                      <div className="rounded-xl border border-[#b28453]/10 bg-[#f4eee5] p-5 text-left shadow-[0_14px_36px_rgba(17,16,15,0.05)] md:p-6 lg:p-8">
+                        <div className="mb-4 flex items-center justify-between space-x-2">
+                          <span className="rounded-lg border border-[#b28453]/20 bg-[#b28453]/15 p-2">
+                            {st.icon}
+                          </span>
+                          <span className="hidden font-mono text-xs font-bold uppercase tracking-widest text-[#b28453] lg:inline">
+                            STEP_0{idx + 1}
+                          </span>
                         </div>
-                      )}
-                    </div>
-
-                    {/* GAP IN CENTER COLUMN (SPAN 2 IN 12 COLS CHASSIS) */}
-                    <div className="md:col-span-2 md:order-2" />
-
-                    {/* RIGHT SIDE AREA IF CORRESPONDING */}
-                    <div
-                      className={`md:col-span-5 ${
-                        !isEven
-                          ? "lg:text-left pl-0 lg:pl-12 md:order-3"
-                          : "md:order-1 pointer-events-none md:block hidden"
-                      }`}
-                    >
-                      {!isEven && (
-                        <div className="bg-[#f4eee5] rounded-xl p-6 lg:p-8 shadow-[0_14px_36px_rgba(17,16,15,0.05)] border border-[#b28453]/10 text-left">
-                          <div className="flex items-center space-x-2 mb-4 justify-between">
-                            <span className="p-2 bg-[#b28453]/15 rounded-lg border border-[#b28453]/20">
-                              {st.icon}
-                            </span>
-                            <span className="font-mono text-xs text-[#b28453] font-bold uppercase tracking-widest hidden lg:inline">
-                              STEP_0{idx + 1}
-                            </span>
-                          </div>
-                          <h4 className="text-[18px] sm:text-[22px] font-bold text-[#11100f] mb-1 font-display">
-                            {st.letter} — {st.title}
-                          </h4>
-                          <p className="text-[#b28453] text-[13px] font-semibold italic mb-3">
-                            {st.subtitle}
-                          </p>
-                          <p className="text-[#2a2927] text-[14px] leading-[1.6]">
-                            {st.description}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* FALLBACK DUPLICATE CARD MOBILE (ONLY Renders when isEven/isOdd layout collapses to stacked layout on tablet/mobile) */}
-                    <div className="col-span-12 md:hidden mt-2">
-                      <div className="bg-[#f4eee5] rounded-xl p-5 shadow-md border border-[#b28453]/10 text-left">
-                        <h4 className="text-[18px] font-bold text-[#11100f] mb-1 font-display">
+                        <h4 className="mb-1 font-display text-[18px] font-bold text-[#11100f] sm:text-[22px]">
                           {st.letter} — {st.title}
                         </h4>
-                        <p className="text-[#b28453] text-[12px] font-semibold italic mb-2">
+                        <p className="mb-3 text-[13px] font-semibold italic text-[#b28453]">
                           {st.subtitle}
                         </p>
-                        <p className="text-[#2a2927] text-[13.5px] leading-[1.55]">
+                        <p className="text-[14px] leading-[1.6] text-[#2a2927]">
                           {st.description}
                         </p>
                       </div>
                     </div>
-
                   </div>
-
                 </div>
               );
             })}
