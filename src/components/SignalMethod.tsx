@@ -19,12 +19,12 @@ interface SignalMethodProps {
 
 export default function SignalMethod({ onCtaClick, ctaText, subtitleText, steps: stepsOverride, footnote }: SignalMethodProps) {
   const defaultIcons = [
-    <CornerDownRight size={20} className="text-[#b28453]" />,
-    <Compass size={20} className="text-[#b28453]" />,
-    <Network size={20} className="text-[#b28453]" />,
-    <Award size={20} className="text-[#b28453]" />,
-    <Milestone size={20} className="text-[#b28453]" />,
-    <Lightbulb size={20} className="text-[#b28453]" />,
+    <CornerDownRight size={20} className="text-[#8c613c]" />,
+    <Compass size={20} className="text-[#8c613c]" />,
+    <Network size={20} className="text-[#8c613c]" />,
+    <Award size={20} className="text-[#8c613c]" />,
+    <Milestone size={20} className="text-[#8c613c]" />,
+    <Lightbulb size={20} className="text-[#8c613c]" />,
   ];
   const defaultSteps: SignalStep[] = [
 
@@ -33,42 +33,42 @@ export default function SignalMethod({ onCtaClick, ctaText, subtitleText, steps:
       title: "Search Diagnosis",
       subtitle: "Antes de otimizar, entendemos onde está a oportunidade.",
       description: "Mapeamos o cenário real de visibilidade orgânica do cliente: saúde técnica do site, concorrentes diretos, lacunas temáticas, volume regional e auditoria de presença em buscadores tradicionais e modelos de IA.",
-      icon: <CornerDownRight size={20} className="text-[#b28453]" />
+      icon: <CornerDownRight size={20} className="text-[#8c613c]" />
     },
     {
       letter: "I",
       title: "Intent Mapping",
       subtitle: "SEO não começa na palavra-chave. Começa na intenção do usuário.",
       description: "Identificamos as intenções de busca que realmente movem o ponteiro comercial de cada negócio: descoberta informativa, consideração/comparação neutra, decisão geográfica e etapas imediatas de conversão.",
-      icon: <Compass size={20} className="text-[#b28453]" />
+      icon: <Compass size={20} className="text-[#8c613c]" />
     },
     {
       letter: "G",
       title: "GEO & AI Readiness",
       subtitle: "Seu cliente precisa ser encontrado e entendido pelas IAs.",
       description: "Preparamos a infraestrutura digital da marca para ser processável, citável e recomendável pelos principais mecanismos generativos do mercado (como AI Overviews do Google, ChatGPT, Gemini, Copilot e Perplexity).",
-      icon: <Network size={20} className="text-[#b28453]" />
+      icon: <Network size={20} className="text-[#8c613c]" />
     },
     {
       letter: "N",
       title: "Narrative & Entity Authority",
       subtitle: "Autoridade não nasce de um único schema. Ela nasce da consistência entre marca, conteúdo, reputação, dados e presença pública.",
       description: "Organizamos a narrativa, a estrutura semântica e os sinais de autoridade que ajudam buscadores, IAs e usuários a entenderem por que aquela marca deve ser considerada uma opção confiável.",
-      icon: <Award size={20} className="text-[#b28453]" />
+      icon: <Award size={20} className="text-[#8c613c]" />
     },
     {
       letter: "A",
       title: "Action Roadmap",
       subtitle: "Menos achismo. Mais direção.",
       description: "Transformamos o diagnóstico semântico em planos táticos de execução rápida de 90 dias: tarefas claras, grau de esforço, priorização de impacto e responsáveis pela codificação ou redação.",
-      icon: <Milestone size={20} className="text-[#b28453]" />
+      icon: <Milestone size={20} className="text-[#8c613c]" />
     },
     {
       letter: "L",
       title: "Learning Loop",
       subtitle: "SEO não é campanha estática. É um sistema constante de evolução.",
       description: "Acompanhamos indexações, tráfego ganho, flutuações e novas oportunidades, fornecendo inteligência para ajustar o roadmap mês após mês à luz das novidades estruturais de busca.",
-      icon: <Lightbulb size={20} className="text-[#b28453]" />
+      icon: <Lightbulb size={20} className="text-[#8c613c]" />
     }
   ];
 
@@ -88,7 +88,7 @@ export default function SignalMethod({ onCtaClick, ctaText, subtitleText, steps:
         
         {/* HEADING STANDARD BLOCK */}
         <div className="text-center flex flex-col items-center mb-16 md:mb-24">
-          <span className="text-[#b28453] text-[13px] tracking-[0.12em] font-mono font-bold uppercase mb-4">
+          <span className="text-[#7a522f] text-[13px] tracking-[0.12em] font-mono font-bold uppercase mb-4">
             A METODOLOGIA EXCLUSIVA AUDITSEO
           </span>
           <h2 className="font-display text-[36px] sm:text-[44px] md:text-[52px] font-bold text-[#11100f] leading-[1.1] tracking-tight">
@@ -136,14 +136,14 @@ export default function SignalMethod({ onCtaClick, ctaText, subtitleText, steps:
                           <span className="rounded-lg border border-[#b28453]/20 bg-[#b28453]/15 p-2">
                             {st.icon}
                           </span>
-                          <span className="hidden font-mono text-xs font-bold uppercase tracking-widest text-[#b28453] lg:inline">
+                          <span className="hidden font-mono text-xs font-bold uppercase tracking-widest text-[#7a522f] lg:inline">
                             STEP_0{idx + 1}
                           </span>
                         </div>
-                        <h4 className="mb-1 font-display text-[18px] font-bold text-[#11100f] sm:text-[22px]">
+                        <h3 className="mb-1 font-display text-[18px] font-bold text-[#11100f] sm:text-[22px]">
                           {st.letter} — {st.title}
-                        </h4>
-                        <p className="mb-3 text-[13px] font-semibold italic text-[#b28453]">
+                        </h3>
+                        <p className="mb-3 text-[13px] font-semibold italic text-[#7a522f]">
                           {st.subtitle}
                         </p>
                         <p className="text-[14px] leading-[1.6] text-[#2a2927]">
