@@ -227,10 +227,10 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - All discovered WhatsApp destinations were normalized to `+55 11 99638-4376`. Submission/success/fallback/error events are pushed to `dataLayer` and dispatched as `auditseo:lead` custom events.
   - Remaining before [x]: the repository and current production HTML expose no GA/GTM measurement snippet, so analytics transport still needs an approved measurement destination; actual successful lead delivery should be verified after Preview/production deployment without generating test spam.
 - [~] **P2.6 Validate mobile and Core Web Vitals**
-  - Production mobile Lighthouse baseline documented in `docs/SEO_CWV_BASELINE_2026-10-01.md`: Performance 85, Accessibility 94, Best Practices 100, SEO 100; FCP 2.6s, LCP 3.6s, TBT 60ms, CLS 0.062.
-  - LCP is the Hero H1; server response is not the main bottleneck. Branch adds local font preloads and already uses the optimized WebP UI logo.
-  - Branch Lighthouse accessibility/SEO validation returned **100/100**, including passing color contrast and heading order.
-  - Remaining before [x]: rerun mobile performance on production after merge and obtain field CWV/CrUX data when the Search Console/Core Web Vitals source is accessible.
+  - Pre-merge production baseline in `docs/SEO_CWV_BASELINE_2026-10-01.md`: Performance 85, Accessibility 94, Best Practices 100, SEO 100; FCP 2.6s, LCP 3.6s, TBT 60ms, CLS 0.062.
+  - Post-merge production Lighthouse: **Performance 94, Accessibility 100, Best Practices 100, SEO 100**; FCP 2.5s, LCP 2.6s, TBT 10ms, CLS 0, TTI 2.6s.
+  - color-contrast and heading-order pass; local font preloads and the optimized WebP UI logo are active in production.
+  - Remaining before [x]: obtain field CWV/CrUX data. Lighthouse is laboratory evidence, not a field CWV pass.
 - [!] **P2.7 Validate crawler access at infrastructure/log level**
   - OAI-SearchBot and PerplexityBot separately from training bots.
   - User-agent spoofing alone is not sufficient evidence.
@@ -245,7 +245,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - `/solucoes/` → `/solucoes` was observed as 307 in the audit. Current branch server normalization explicitly returns **308 Permanent Redirect** for every non-root trailing-slash path.
   - Branch implementation: server entry now intercepts all non-root trailing-slash paths and returns 308 while preserving query parameters. Pending Preview HTTP verification before [x].
 - [!] **P3.3 Simplify HTTP → canonical redirect chain**
-  - Verified public chain on 2026-10-01: `http://auditseo.com.br/` → 308 `https://auditseo.com.br/` → 308 `https://www.auditseo.com.br/` → 200. Simplification requires domain-level hosting configuration; the current project connector does not expose the necessary domain redirect mutation.
+  - Revalidated after merge: `https://auditseo.com.br/` → 308 `https://www.auditseo.com.br/` → 200; `http://www.auditseo.com.br/` → 308 canonical HTTPS in one hop.
+  - Remaining double-hop: `http://auditseo.com.br/` → 308 `https://auditseo.com.br/` → 308 `https://www.auditseo.com.br/` → 200.
+  - Simplification still requires domain-level hosting/DNS redirect configuration.
 
 ## 3. Execution safeguards
 
