@@ -6,6 +6,16 @@ export type ServiceAuthorityLink = {
 };
 
 export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
+  "/auditoria-seo": [
+    { eyebrow: "GUIA EDITORIAL", title: "Auditoria SEO: o que deve conter", text: "O artigo educa sobre escopo, evidência, priorização e validação sem substituir a página comercial da auditoria.", href: "/blog/auditoria-seo-o-que-deve-conter" },
+    { eyebrow: "DECISÃO DE CONTRATAÇÃO", title: "O que uma consultoria de SEO deve entregar", text: "Ajuda a separar um diagnóstico útil de um pacote de entregáveis desconectados do problema.", href: "/blog/o-que-consultoria-seo-deve-entregar" },
+    { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Modelo usado para localizar a etapa quebrada antes de transformar achados em ações.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
+  ],
+  "/consultoria-seo": [
+    { eyebrow: "BUYER GUIDE", title: "Como escolher uma consultoria de SEO", text: "Critérios para avaliar método, transparência, escopo, mensuração e aderência ao contexto da empresa.", href: "/blog/como-escolher-consultoria-seo" },
+    { eyebrow: "ENTREGÁVEIS", title: "O que uma consultoria de SEO deve entregar", text: "Diagnóstico, prioridades, implementação coordenada, validação e aprendizado contínuo.", href: "/blog/o-que-consultoria-seo-deve-entregar" },
+    { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "A disciplina usada pela AUDITSEO para conectar técnica, conteúdo, autoridade, IA e resultado em um mesmo sistema de decisão.", href: "/blog/o-que-e-search-intelligence" },
+  ],
   "/solucoes/projetos-comecando-do-zero": [
     { eyebrow: "PRÉ-LANÇAMENTO", title: "Checklist SEO antes de lançar um site", text: "Arquitetura, HTTP, robots, canonicals, sitemap, conteúdo, entidade, medição e smoke que precisam estar definidos antes do go-live.", href: "/blog/checklist-seo-antes-lancar-site" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "A cadeia de dependências usada para definir o que precisa estar correto antes de um novo projeto acumular dívida de busca.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
@@ -32,6 +42,7 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Por que a arquitetura editorial deve nascer da jornada e do gargalo, não de um calendário fixo de publicações.", href: "/blog/o-que-e-search-intelligence" },
   ],
   "/solucoes/geo-ia-readiness": [
+    { eyebrow: "CONSULTORIA CONTÍNUA", title: "Consultoria GEO, Search AI e SEO para IA", text: "Se o diagnóstico mostrar necessidade de acompanhamento e implementação por ciclos, esta é a frente consultiva mais ampla da AUDITSEO.", href: "/geo-ia" },
     { eyebrow: "CONSIDERAÇÃO COMERCIAL", title: "Como entrar nas recomendações do ChatGPT como fornecedor", text: "A diferença entre ser citado como fonte e ser considerado como empresa quando um comprador pede fornecedores, especialistas ou consultorias.", href: "/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor" },
     { eyebrow: "DIAGNÓSTICO", title: "O ChatGPT não cita meu site: o que auditar?", text: "Playbook para separar acesso, recuperação, entendimento, confiança e citabilidade antes de prescrever uma tática de GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
     { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Prompts congelados, repetição e métricas separadas de menção, citação, recomendação e precisão da entidade.", href: "/blog/como-medir-se-geo-esta-funcionando" },

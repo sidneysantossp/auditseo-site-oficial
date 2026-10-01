@@ -35,8 +35,10 @@ export default function Header({ onNavClick }: HeaderProps) {
         <div className="mx-auto flex h-full w-full max-w-[1536px] items-center justify-between px-6 md:px-10 xl:px-16">
           <button onClick={() => go("inicio")} className="flex cursor-pointer items-center select-none" aria-label="Ir para o início">
             <img
-              src="/auditseo-logo.png"
+              src="/auditseo-logo-ui-v3.webp"
               alt="AUDITSEO — Search Intelligence Partner"
+              width={360}
+              height={96}
               className="h-[40px] w-auto object-contain md:h-[48px]"
               decoding="async"
             />
@@ -46,7 +48,7 @@ export default function Header({ onNavClick }: HeaderProps) {
             <button onClick={() => go("solucoes")} className="transition-colors hover:text-[#d7a45f]">Soluções</button>
             <a href="/blog/framework-crawl-index-retrieve-understand-trust-cite" className="transition-colors hover:text-[#d7a45f]">Framework</a>
             <button onClick={() => go("conteudo")} className="transition-colors hover:text-[#d7a45f]">Conteúdos</button>
-            <a href="/autor/sidney-santos" className="transition-colors hover:text-[#d7a45f]">Sobre</a>
+            <a href="/sobre" className="transition-colors hover:text-[#d7a45f]">Sobre</a>
             <a
               href="/diagnostico"
               className="group ml-1 inline-flex items-center gap-3 rounded-full border border-[#c68b44]/78 bg-black/10 px-6 py-3 text-[13px] font-semibold text-[#f1cf9c] backdrop-blur-sm transition hover:border-[#e6b66f] hover:bg-[#c68b44]/12"
@@ -83,7 +85,7 @@ export default function Header({ onNavClick }: HeaderProps) {
           <button onClick={() => go("conteudo")} className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-left text-2xl font-semibold text-[#f8f8f8]">
             Conteúdos <ArrowRight size={18} className="text-[#b28453]" />
           </button>
-          <a href="/autor/sidney-santos" className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-2xl font-semibold text-[#f8f8f8]">
+          <a href="/sobre" className="flex items-center justify-between border-b border-[#b28453]/12 py-5 text-2xl font-semibold text-[#f8f8f8]">
             Sobre <ArrowRight size={18} className="text-[#b28453]" />
           </a>
         </div>

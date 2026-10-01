@@ -87,9 +87,13 @@ for (const match of sitemap.matchAll(/<loc>https:\/\/www\.auditseo\.com\.br\/blo
   }
 }
 
+const intentionalEditorialRedirects = new Set([
+  "como-escolher-agencia-seo",
+]);
+
 for (const file of fs.readdirSync(routesDir).filter((name) => /^blog_\..+\.tsx$/.test(name))) {
   const slug = file.replace(/^blog_\./, "").replace(/\.tsx$/, "");
-  if (slug && !articleSlugs.has(slug)) {
+  if (slug && !articleSlugs.has(slug) && !intentionalEditorialRedirects.has(slug)) {
     warnings.push(`rota de blog sem registro em articles*.ts: ${slug}`);
   }
 }

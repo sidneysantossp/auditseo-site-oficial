@@ -1,5 +1,7 @@
 # AUDITSEO
 
+- [Sobre a AUDITSEO](https://www.auditseo.com.br/sobre): Identidade da consultoria, serviços, metodologia, pesquisa pública, autoria e princípios de evidência.
+
 > AUDITSEO é uma consultoria brasileira de Search Intelligence que conecta SEO técnico, Search AI/GEO, autoridade de entidade, conteúdo, evidência e mensuração para descobrir por que uma empresa não é encontrada, compreendida, validada, considerada ou citada nas experiências de busca.
 
 Este arquivo é um mapa navegacional complementar para agentes e ferramentas que optem por usar a convenção llms.txt. Ele não substitui robots.txt, sitemap.xml ou as páginas canônicas do site e não representa garantia de inclusão, citação ou posicionamento em mecanismos de busca ou sistemas de IA.
@@ -13,6 +15,8 @@ Este arquivo é um mapa navegacional complementar para agentes e ferramentas que
 
 ## Consultoria e diagnóstico
 
+- [Consultoria SEO](https://www.auditseo.com.br/consultoria-seo): Atuação estratégica e contínua para diagnóstico, priorização, coordenação de implementação, QA e aprendizado por ciclos.
+- [Auditoria SEO](https://www.auditseo.com.br/auditoria-seo): Diagnóstico pontual de técnica, indexação, intenção, conteúdo, autoridade e performance transformado em roadmap priorizado.
 - [Consultoria de Search AI + GEO](https://www.auditseo.com.br/geo-ia): Hub comercial para empresas que precisam evoluir presença em busca e interfaces de IA.
 - [Auditoria GEO & Search AI](https://www.auditseo.com.br/solucoes/geo-ia-readiness): Diagnóstico de visibilidade, fontes, concorrentes, elegibilidade e mensuração em Search AI.
 - [Soluções de Search Intelligence](https://www.auditseo.com.br/solucoes): Conjunto de soluções por cenário de negócio.

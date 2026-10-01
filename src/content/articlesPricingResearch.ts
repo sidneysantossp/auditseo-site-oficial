@@ -15,9 +15,9 @@ export const pricingResearchArticles: Record<string, Article> = {
   "quanto-custa-consultoria-seo-geo-ia": {
     slug: "quanto-custa-consultoria-seo-geo-ia",
     title: "Quanto custa uma consultoria de SEO + GEO/IA em 2026? Benchmark de ofertas públicas no Brasil",
-    metaTitle: "Quanto Custa Consultoria SEO + GEO/IA em 2026? | AUDITSEO",
+    metaTitle: "Quanto Custa Consultoria SEO e GEO no Brasil em 2026? | AUDITSEO",
     description:
-      "Benchmark AUDITSEO de preços públicos de SEO, GEO e Search AI no Brasil em 08/09/2026, separado por sessão, auditoria, sprint, mensalidade e software — sem média enganosa.",
+      "Quanto custa consultoria SEO e GEO no Brasil? Benchmark 2026 com preços públicos por sessão, auditoria, sprint, mensalidade e software, com escopos separados.",
     eyebrow: "BENCHMARK AUDITSEO · PREÇOS PÚBLICOS",
     publishedAt: "2026-09-08",
     updatedAt: "2026-09-08",
@@ -137,7 +137,7 @@ export const pricingResearchArticles: Record<string, Article> = {
       { label: "AgentRank — AI Readiness", url: agentRank, note: "Software brasileiro com planos públicos; separado de honorários humanos." },
       { label: "Contentor — AI Search", url: contentor, note: "Software/bundle com planos públicos; separado de consultoria pura." },
     ],
-    relatedServices: [["Auditoria GEO & Search AI", "/solucoes/geo-ia-readiness"], ["Consultoria de Search AI + GEO", "/geo-ia"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Consultoria de Search AI + GEO", "/geo-ia"], ["Auditoria GEO e de visibilidade em IA", "/solucoes/geo-ia-readiness"]],
   },
 };
 

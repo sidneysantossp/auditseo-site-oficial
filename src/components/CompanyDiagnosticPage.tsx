@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -30,7 +30,7 @@ const scenarios: Scenario[] = [
     id: "foundation",
     title: "Projeto começando do zero",
     description: "Site novo, marca nova ou uma operação que ainda não construiu presença orgânica relevante.",
-    solution: "Search Foundation",
+    solution: "Planejamento SEO para novos sites",
     solutionPath: "/solucoes/projetos-comecando-do-zero",
     diagnosis: "O principal risco é estruturar tecnologia, conteúdo e marca sem uma fundação de busca coerente desde o início.",
     priorities: ["arquitetura e indexabilidade", "mapa de intenção", "entidade e dados estruturados", "base editorial e mensuração"],
@@ -39,7 +39,7 @@ const scenarios: Scenario[] = [
     id: "activation",
     title: "Site no ar, mas sem tração",
     description: "O projeto existe, porém impressões, tráfego e oportunidades orgânicas continuam abaixo do potencial.",
-    solution: "Organic Activation",
+    solution: "Diagnóstico SEO para sites sem tráfego",
     solutionPath: "/solucoes/site-sem-tracao",
     diagnosis: "Precisamos descobrir se o bloqueio está em indexação, arquitetura, demanda, conteúdo, autoridade ou combinação desses sinais.",
     priorities: ["diagnóstico de cobertura", "gaps técnicos e semânticos", "intenção comercial", "priorização por impacto"],
@@ -48,7 +48,7 @@ const scenarios: Scenario[] = [
     id: "recovery",
     title: "Perda de tráfego ou posições",
     description: "A empresa já teve visibilidade e registrou queda relevante ou dificuldade de recuperação.",
-    solution: "Search Recovery",
+    solution: "Recuperação de tráfego orgânico",
     solutionPath: "/solucoes/recuperacao-organica",
     diagnosis: "Antes de executar novas ações, é necessário separar causas técnicas, algorítmicas, competitivas, editoriais e de mudança de intenção.",
     priorities: ["linha do tempo da perda", "URLs e consultas afetadas", "mudanças técnicas", "concorrentes e intenção"],
@@ -57,7 +57,7 @@ const scenarios: Scenario[] = [
     id: "authority",
     title: "Autoridade pouco reconhecida",
     description: "A empresa possui experiência real, mas ainda não é percebida como referência no ecossistema de busca.",
-    solution: "Entity Authority",
+    solution: "Consultoria de autoridade de entidade",
     solutionPath: "/solucoes/autoridade-de-entidade",
     diagnosis: "O desafio deixa de ser apenas ranking: precisamos tornar a entidade mais clara, consistente, verificável e sustentada por evidências.",
     priorities: ["narrativa da entidade", "provas e especialistas", "consistência pública", "fontes e menções externas"],
@@ -66,7 +66,7 @@ const scenarios: Scenario[] = [
     id: "content",
     title: "Conteúdo sem direção",
     description: "Existe produção de conteúdo, mas falta conexão com demanda, jornada de decisão e objetivos comerciais.",
-    solution: "Intent Content Architecture",
+    solution: "Estratégia e arquitetura de conteúdo SEO",
     solutionPath: "/solucoes/conteudo-por-intencao",
     diagnosis: "Volume de publicação não substitui uma arquitetura que conecte intenção, entidades, serviços e decisão.",
     priorities: ["mapa de intenções", "clusters temáticos", "páginas de serviço", "links internos e atualização"],
@@ -75,7 +75,7 @@ const scenarios: Scenario[] = [
     id: "geo",
     title: "Preparação para busca com IA",
     description: "A empresa quer entender sua presença em ChatGPT, Gemini, AI Overviews e outros ambientes generativos.",
-    solution: "Generative Search Readiness",
+    solution: "Auditoria GEO e de visibilidade em IA",
     solutionPath: "/solucoes/geo-ia-readiness",
     diagnosis: "Não existe atalho para garantir menções em IA. O trabalho começa pela clareza, recuperação, autoridade e verificabilidade dos sinais da empresa.",
     priorities: ["entidades e semântica", "conteúdo recuperável", "fontes e evidências", "baseline de menções/citações"],
@@ -84,7 +84,7 @@ const scenarios: Scenario[] = [
     id: "migration",
     title: "Migração ou reformulação",
     description: "O site passará por redesign, troca de plataforma, arquitetura ou domínio.",
-    solution: "SEO Migration & Risk Control",
+    solution: "Consultoria SEO para migração de sites",
     solutionPath: "/solucoes/migracao-risco-seo",
     diagnosis: "Uma migração pode apagar sinais construídos por anos se URLs, conteúdo, links, indexação e equivalências não forem controlados.",
     priorities: ["inventário de URLs", "mapa de redirects", "paridade de conteúdo", "validação pré e pós-release"],
@@ -93,7 +93,7 @@ const scenarios: Scenario[] = [
     id: "evolution",
     title: "Crescimento orgânico estagnado",
     description: "A empresa já possui base e histórico, mas os ciclos atuais não estão criando novas frentes de crescimento.",
-    solution: "Organic Evolution Cycle",
+    solution: "Consultoria SEO contínua",
     solutionPath: "/solucoes/evolucao-organica",
     diagnosis: "O próximo salto exige transformar dados, concorrência, novas intenções e aprendizados em um ciclo contínuo de decisão.",
     priorities: ["baseline e oportunidades", "novas consultas e jornadas", "concorrência", "learning loop e roadmap"],
@@ -141,6 +141,7 @@ export default function CompanyDiagnosticPage() {
     discoverySource: "",
     context: "",
   });
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   useEffect(() => {
     const requested = scenarioIdFromUrl();
@@ -150,6 +151,71 @@ export default function CompanyDiagnosticPage() {
   const selectScenario = (id: string) => {
     setSelectedId(id);
     updateScenarioInUrl(id);
+  };
+
+  const handleDiagnosticSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (submitStatus === "submitting") return;
+
+    const params = new URLSearchParams(window.location.search);
+    const utm: Record<string, string> = {};
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "lead_id", "campaign_id"]) {
+      const value = params.get(key);
+      if (value) utm[key] = value;
+    }
+
+    setSubmitStatus("submitting");
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "diagnostic",
+          nome: contact.name.trim(),
+          empresa: contact.company.trim(),
+          whatsapp: contact.whatsapp.trim(),
+          email: contact.email.trim(),
+          site: contact.site.trim(),
+          clientUrl: contact.projectUrl.trim() || undefined,
+          discoverySource: contact.discoverySource || undefined,
+          context: [
+            `Cenário selecionado: ${selected.title} (${selected.solution})`,
+            contact.context.trim(),
+          ].filter(Boolean).join("\n\n"),
+          sourcePath: `${window.location.pathname}${window.location.search}`,
+          referrer: document.referrer || undefined,
+          utm: Object.keys(utm).length ? utm : undefined,
+        }),
+      });
+
+      const result = (await response.json().catch(() => null)) as { success?: boolean; fallbackUrl?: string } | null;
+
+      if (response.ok && result?.success) {
+        setSubmitStatus("success");
+        setContact({
+          name: "",
+          company: "",
+          whatsapp: "",
+          email: "",
+          site: "",
+          projectUrl: "",
+          discoverySource: "",
+          context: "",
+        });
+        return;
+      }
+
+      if (result?.fallbackUrl) {
+        window.location.assign(result.fallbackUrl);
+        return;
+      }
+
+      setSubmitStatus("error");
+    } catch (error) {
+      console.error("Diagnostic lead submission failed", error);
+      setSubmitStatus("error");
+    }
   };
 
   return (
@@ -244,7 +310,7 @@ export default function CompanyDiagnosticPage() {
                   <h2 className="mt-5 font-display text-3xl font-bold leading-[1.12]">Quer aprofundar esse cenário com a AUDITSEO?</h2>
                   <p className="mt-4 text-sm leading-[1.7] text-[#f8f8f8]/64">Envie os dados essenciais. A solicitação só será confirmada quando o site conseguir entregar o contato ao nosso canal operacional.</p>
 
-                  <form className="mt-8 grid gap-4">
+                  <form onSubmit={handleDiagnosticSubmit} className="mt-8 grid gap-4">
                     <div className="grid gap-4 sm:grid-cols-2">
                       <TextInput label="Seu nome" value={contact.name} onChange={(value) => setContact((current) => ({ ...current, name: value }))} required />
                       <TextInput label="Empresa" value={contact.company} onChange={(value) => setContact((current) => ({ ...current, company: value }))} required />
@@ -283,9 +349,11 @@ export default function CompanyDiagnosticPage() {
                         className="w-full rounded-[18px] border border-[#b28453]/24 bg-[#171614] px-5 py-4 text-sm text-[#f8f8f8] outline-none placeholder:text-[#f8f8f8]/28 focus:border-[#b28453]/65"
                       />
                     </label>
-                    <button type="submit" className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]">
-                      Solicitar avaliação estratégica <Send size={15} />
+                    <button disabled={submitStatus === "submitting"} type="submit" className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f] disabled:cursor-not-allowed disabled:opacity-65">
+                      {submitStatus === "submitting" ? "Enviando..." : "Solicitar avaliação estratégica"} <Send size={15} />
                     </button>
+                    {submitStatus === "success" ? <p role="status" className="text-center text-sm font-semibold text-[#e0d3c3]">Solicitação enviada. A AUDITSEO recebeu o contexto do diagnóstico.</p> : null}
+                    {submitStatus === "error" ? <p role="alert" className="text-center text-sm font-semibold text-[#e0d3c3]">Não foi possível entregar a solicitação agora. Tente novamente ou use o WhatsApp comercial.</p> : null}
                     <p className="text-center text-[11px] leading-[1.6] text-[#f8f8f8]/44">Sem garantia de posição ou menção em plataformas terceiras. A avaliação existe para definir prioridades com base no cenário real.</p>
                   </form>
                 </div>

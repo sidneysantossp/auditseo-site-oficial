@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -54,14 +54,14 @@ const diagnosticPillars: Array<{ icon: ReactNode; title: string; text: string; i
 ];
 
 const scenarios = [
-  ["Search Foundation", "Projeto começando do zero", "Arquitetura, intenção, entidades e medição antes que decisões de lançamento virem dívida.", "/solucoes/projetos-comecando-do-zero"],
-  ["Organic Activation", "Site no ar, mas sem tração", "Diagnóstico para descobrir por que um site indexado ainda não constrói cobertura, demanda ou oportunidades.", "/solucoes/site-sem-tracao"],
-  ["Search Recovery", "Perda de tráfego ou posições", "Investigação causal antes de executar correções em uma operação que já teve desempenho orgânico.", "/solucoes/recuperacao-organica"],
-  ["Entity Authority", "Autoridade pouco reconhecida", "Organização de empresa, especialistas, provas e fontes para reduzir ambiguidade e fortalecer confiança.", "/solucoes/autoridade-de-entidade"],
-  ["Intent Content Architecture", "Conteúdo sem direção", "Transformação de páginas isoladas em uma arquitetura conectada às perguntas que levam à contratação.", "/solucoes/conteudo-por-intencao"],
-  ["Generative Search Readiness", "Pouca presença em Search AI", "Medição responsável de menções, citações e fontes antes de definir o que realmente precisa ser fortalecido.", "/solucoes/geo-ia-readiness"],
-  ["SEO Migration & Risk Control", "Migração ou reformulação", "Proteção de URLs, conteúdo, autoridade e demanda durante mudanças de domínio, CMS, design ou arquitetura.", "/solucoes/migracao-risco-seo"],
-  ["Organic Evolution Cycle", "Crescimento estagnado", "Ciclos contínuos para transformar dados, concorrência e novas intenções em próximos movimentos de crescimento.", "/solucoes/evolucao-organica"],
+  ["Search Foundation", "Planejamento SEO para novos sites", "Arquitetura, intenção, entidades e medição antes que decisões de lançamento virem dívida.", "/solucoes/projetos-comecando-do-zero"],
+  ["Organic Activation", "Diagnóstico SEO para sites sem tráfego", "Diagnóstico para descobrir por que um site indexado ainda não constrói cobertura, demanda ou oportunidades.", "/solucoes/site-sem-tracao"],
+  ["Search Recovery", "Recuperação de tráfego orgânico", "Investigação causal antes de executar correções em uma operação que já teve desempenho orgânico.", "/solucoes/recuperacao-organica"],
+  ["Entity Authority", "Consultoria de autoridade de entidade", "Organização de empresa, especialistas, provas e fontes para reduzir ambiguidade e fortalecer confiança.", "/solucoes/autoridade-de-entidade"],
+  ["Intent Content Architecture", "Estratégia e arquitetura de conteúdo SEO", "Transformação de páginas isoladas em uma arquitetura conectada às perguntas que levam à contratação.", "/solucoes/conteudo-por-intencao"],
+  ["Generative Search Readiness", "Auditoria GEO e de visibilidade em IA", "Medição responsável de menções, citações e fontes antes de definir o que realmente precisa ser fortalecido.", "/solucoes/geo-ia-readiness"],
+  ["SEO Migration & Risk Control", "Consultoria SEO para migração de sites", "Proteção de URLs, conteúdo, autoridade e demanda durante mudanças de domínio, CMS, design ou arquitetura.", "/solucoes/migracao-risco-seo"],
+  ["Organic Evolution Cycle", "Consultoria SEO contínua", "Ciclos contínuos para transformar dados, concorrência e novas intenções em próximos movimentos de crescimento.", "/solucoes/evolucao-organica"],
 ];
 
 const signalSteps = [
@@ -115,7 +115,7 @@ function navigate(id: string) {
 function SectionTitle({ eyebrow, title, text, dark = true, center = false }: { eyebrow: string; title: string; text?: string; dark?: boolean; center?: boolean }) {
   return (
     <div className={`${center ? "mx-auto items-center text-center" : "items-start text-left"} flex max-w-4xl flex-col`}>
-      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.17em] text-[#b28453]">{eyebrow}</span>
+      <span className={`font-mono text-[11px] font-bold uppercase tracking-[0.17em] ${dark ? "text-[#b28453]" : "text-[#7a522f]"}`}>{eyebrow}</span>
       <h2 className={`mt-5 font-display text-[36px] font-bold leading-[1.06] tracking-[-0.035em] md:text-[54px] ${dark ? "text-[#f8f8f8]" : "text-[#11100f]"}`}>{title}</h2>
       {text ? <p className={`mt-7 max-w-3xl text-base leading-[1.75] md:text-lg ${dark ? "text-[#f8f8f8]/70" : "text-[#11100f]/70"}`}>{text}</p> : null}
     </div>
@@ -131,7 +131,7 @@ export default function HomePageV2() {
         <NeuralSearchBrain />
         <div className="relative z-10 mx-auto grid w-full max-w-[1320px] items-center gap-12 lg:grid-cols-12 lg:gap-6">
           <div className="lg:col-span-10">
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">SEARCH INTELLIGENCE PARA EMPRESAS</span>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a69580]">CONSULTORIA SEO, GEO E SEARCH INTELLIGENCE</span>
             <h1 className="mt-6 max-w-[1120px] font-display text-[clamp(44px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.05em]">
               <span className="md:block md:whitespace-nowrap">Antes de investir em</span>
               <span className="md:block md:whitespace-nowrap">mais SEO ou IA</span>
@@ -144,7 +144,7 @@ export default function HomePageV2() {
               <span className="md:block md:whitespace-nowrap">o diagnóstico mostra que são parte da causa ou da solução.</span>
             </p>
             <div className="mt-16 flex flex-col gap-4 md:mt-20 sm:flex-row">
-              <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
+              <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#8c613c] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
               <a href="https://wa.me/5511996384376" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b28453]/45 px-8 py-4 text-base font-semibold transition-all hover:bg-[#b28453]/10">AGENDAR UMA REUNIÃO <ArrowRight size={15} /></a>
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[10px] uppercase tracking-[0.08em] text-[#8c8275]">
@@ -191,7 +191,11 @@ export default function HomePageV2() {
         <div className="mx-auto max-w-[1320px]">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <SectionTitle eyebrow="SOLUÇÕES POR CENÁRIO" title="Não existe um pacote AUDITSEO. Existe um problema que precisa ser corretamente classificado." text="Cada solução corresponde a um estágio, risco ou tipo de gargalo diferente. O diagnóstico define a frente; o nome da frente não define o diagnóstico." />
-            <a href="/solucoes" className="inline-flex shrink-0 items-center gap-2 font-bold text-[#b28453] hover:text-[#e0d3c3]">Ver todas as soluções <ArrowRight size={15} /></a>
+            <div className="flex shrink-0 flex-wrap items-center gap-x-5 gap-y-3">
+              <a href="/consultoria-seo" className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] hover:text-[#b28453]">Consultoria SEO <ArrowRight size={14} /></a>
+              <a href="/auditoria-seo" className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] hover:text-[#b28453]">Auditoria SEO <ArrowRight size={14} /></a>
+              <a href="/solucoes" className="inline-flex items-center gap-2 text-sm font-bold text-[#b28453] hover:text-[#e0d3c3]">Ver todas as soluções <ArrowRight size={15} /></a>
+            </div>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {scenarios.map(([label, title, text, href]) => (
@@ -260,13 +264,13 @@ export default function HomePageV2() {
           </div>
           <form className="mt-10 space-y-6">
             <div className="grid gap-6 md:grid-cols-2">
-              <Field label="Nome completo"><input required type="text" placeholder="Seu nome" className={inputClass} /></Field>
-              <Field label="E-mail corporativo"><input required type="email" placeholder="voce@empresa.com.br" className={inputClass} /></Field>
-              <Field label="WhatsApp com DDD"><input required type="tel" placeholder="(11) 99999-9999" className={inputClass} /></Field>
-              <Field label="Site da empresa"><input required type="url" placeholder="https://www.suaempresa.com.br" className={inputClass} /></Field>
+              <Field label="Nome completo"><input name="nome" required type="text" placeholder="Seu nome" className={inputClass} /></Field>
+              <Field label="E-mail corporativo"><input name="email" required type="email" placeholder="voce@empresa.com.br" className={inputClass} /></Field>
+              <Field label="WhatsApp com DDD"><input name="whatsapp" required type="tel" placeholder="(11) 99999-9999" className={inputClass} /></Field>
+              <Field label="Site da empresa"><input name="site" required type="url" placeholder="https://www.suaempresa.com.br" className={inputClass} /></Field>
             </div>
-            <Field label="Faturamento médio mensal"><select required defaultValue="" className={`${inputClass} appearance-none`}><option value="" disabled>Selecione uma faixa</option><option value="Ate 50k">Até R$ 50 mil</option><option value="50k a 200k">R$ 50 mil a R$ 200 mil</option><option value="Acima de 200k">Acima de R$ 200 mil</option></select></Field>
-            <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Solicitar contato estratégico <ArrowRight size={16} /></button>
+            <Field label="Faturamento médio mensal"><select name="faturamento" required defaultValue="" className={`${inputClass} appearance-none`}><option value="" disabled>Selecione uma faixa</option><option value="Ate 50k">Até R$ 50 mil</option><option value="50k a 200k">R$ 50 mil a R$ 200 mil</option><option value="Acima de 200k">Acima de R$ 200 mil</option></select></Field>
+            <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#8c613c] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f] disabled:cursor-not-allowed disabled:opacity-65">Solicitar contato estratégico <ArrowRight size={16} /></button>
             <p className="text-center text-xs leading-[1.65] text-[#f8f8f8]/48">O contato direto não substitui o diagnóstico. Ele existe para empresas que já conseguem descrever o contexto e querem discutir o próximo passo.</p>
           </form>
         </div>

@@ -63,7 +63,7 @@ export default function FounderPage() {
                 Sidney Santos — especialista em SEO, Search AI e Search Intelligence
               </h1>
               <div className="mt-8 max-w-3xl space-y-5 text-lg leading-[1.75] text-[#f8f8f8]/74">
-                <p>Sidney Santos atua no mercado de busca desde 2009 e é fundador da AUDITSEO, consultoria de Search Intelligence.</p>
+                <p>Sidney Santos é fundador da AUDITSEO e responde publicamente pela metodologia e pelo conteúdo técnico da consultoria.</p>
                 <p>Seu trabalho conecta SEO técnico, intenção de busca, conteúdo, dados estruturados, autoridade de entidade e Search AI para descobrir por que uma empresa deixa de ser encontrada, compreendida, validada, citada ou considerada.</p>
                 <p>Em vez de tratar GEO ou IA como um pacote separado, a abordagem parte do diagnóstico: qual etapa da presença de busca está quebrada, quais evidências sustentam essa conclusão e qual mudança pode ser medida depois da implementação.</p>
               </div>
@@ -72,6 +72,7 @@ export default function FounderPage() {
                   Consultoria de Search AI e GEO <ArrowRight size={15} />
                 </a>
                 <a href="/case-study/auditseo-search-intelligence" className="inline-flex items-center justify-center rounded-full border border-[#b28453]/38 px-7 py-4 text-sm font-bold transition-colors hover:border-[#b28453] hover:text-[#b28453]">Ver o Case Study #001</a>
+                <a href="https://br.linkedin.com/in/sidney-especialista-em-seo" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-[#b28453]/22 px-7 py-4 text-sm font-bold text-[#e0d3c3] transition-colors hover:border-[#b28453] hover:text-[#b28453]">Perfil profissional no LinkedIn</a>
               </div>
             </div>
           </div>

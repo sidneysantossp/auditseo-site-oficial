@@ -63,7 +63,7 @@ export const buyerOpsArticles: Record<string, Article> = {
       { label: "Google Search Central — Você precisa de SEO?", url: googleHireSeo, note: "O Google recomenda avaliar transparência, lógica das mudanças, referências, interesse pelo negócio e estimativas realistas." },
       { label: "Google — serviços e conselhos de terceiros", url: googleThirdParty, note: "Orientação para validar recomendações de terceiros contra documentação oficial e desconfiar de claims sem base." },
     ],
-    relatedServices: [["Search Foundation", "/solucoes/projetos-comecando-do-zero"], ["Organic Activation", "/solucoes/site-sem-tracao"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO contínua", "/solucoes/evolucao-organica"]],
   },
 
   "auditoria-seo-o-que-deve-conter": {
@@ -141,8 +141,86 @@ export const buyerOpsArticles: Record<string, Article> = {
       { label: "Google — conteúdo útil", url: googleHelpful, note: "Referência para qualidade, autoria, utilidade e valor editorial." },
       { label: "Google — orientações sobre terceiros", url: googleThirdParty, note: "Alerta sobre extrapolações de ferramentas e conselhos de SEO de terceiros." },
     ],
-    relatedServices: [["Search Foundation", "/solucoes/projetos-comecando-do-zero"], ["Organic Activation", "/solucoes/site-sem-tracao"], ["Search Recovery", "/solucoes/recuperacao-organica"]],
+    relatedServices: [["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO", "/consultoria-seo"], ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"]],
   },
+
+  "auditoria-seo-aplicada-auditseo": {
+    slug: "auditoria-seo-aplicada-auditseo",
+    title: "Auditoria SEO aplicada: o que encontramos na própria AUDITSEO antes de corrigir",
+    metaTitle: "Auditoria SEO Aplicada: Case AUDITSEO com GSC | AUDITSEO",
+    description: "Auditoria SEO aplicada na AUDITSEO: baseline no Search Console, canibalização, arquitetura comercial, CTR, entidade e critérios de validação.",
+    eyebrow: "ESTUDO APLICADO · 01/10/2026",
+    publishedAt: "2026-10-01",
+    updatedAt: "2026-10-01",
+    readTime: "12 min",
+    author: "Sidney Santos",
+    authorUrl: "/autor/sidney-santos",
+    directAnswer: "Em 1º de outubro de 2026, a AUDITSEO consolidou auditoria técnica e Google Search Console antes de iniciar uma nova rodada de correções no próprio domínio. A base técnica estava saudável, mas o site tinha intenções comerciais mal distribuídas, canibalização para 'auditoria de seo', páginas em boas posições com CTR zero, lacunas de entidade/prova e inconsistências de conversão. O trabalho foi tratado como diagnóstico: registrar baseline, proteger ativos, definir um proprietário por intenção, implementar em branch e validar antes do merge.",
+    takeaways: [
+      "A propriedade verificada usada no checkpoint foi https://www.auditseo.com.br/.",
+      "O período finalizado de 01/09/2026 a 28/09/2026 registrou 199 impressões, 2 cliques, CTR de 1,01% e posição média 24,58.",
+      "A query 'auditoria de seo' aparecia dividida entre Home e artigo editorial, sem landing page comercial dedicada.",
+      "Páginas entre posições 3 e 11 foram protegidas contra reescrita indiscriminada; title/meta só mudaram quando havia evidência de intenção no GSC.",
+      "O trabalho criou /auditoria-seo e /consultoria-seo sem remover os artigos existentes.",
+      "Este é um estudo de implementação e mensuração em andamento, não uma prova de causalidade ou promessa de ranking.",
+    ],
+    blocks: [
+      { type: "heading", text: "1. O que foi congelado antes da correção" },
+      { type: "paragraph", text: "Antes de alterar títulos, URLs ou arquitetura, registramos o desempenho da propriedade verificada no Search Console e criamos um inventário de páginas protegidas. O objetivo era evitar que uma correção apagasse um ativo que já começava a ganhar posição." },
+      { type: "list", items: [
+        "01/09/2026 a 28/09/2026: 199 impressões",
+        "2 cliques",
+        "CTR de 1,01%",
+        "posição média 24,58",
+        "período comparável anterior: 264 impressões, 2 cliques, CTR 0,76% e posição média 57,00",
+      ] },
+      { type: "paragraph", text: "A melhora de posição média não foi tratada como sucesso isolado: as impressões caíram e os cliques ficaram estáveis. Métricas precisam ser lidas juntas." },
+
+      { type: "heading", text: "2. A arquitetura explicava o método melhor do que o serviço" },
+      { type: "paragraph", text: "A Home e as soluções explicavam Search Intelligence com profundidade, mas parte da nomenclatura exigia que o comprador traduzisse nomes proprietários para categorias conhecidas. O problema não era abandonar o método; era inverter a hierarquia: linguagem de compra primeiro, assinatura proprietária depois." },
+      { type: "paragraph", text: "Por isso a nova arquitetura mantém Search Intelligence e S.I.G.N.A.L. como diferenciação, mas torna Consultoria SEO, Auditoria SEO, Recuperação de Tráfego, Migração SEO e outras categorias explícitas." },
+
+      { type: "heading", text: "3. Canibalização: 'auditoria de seo' não tinha um proprietário comercial" },
+      { type: "paragraph", text: "No GSC, 'auditoria de seo' aparecia na Home e no artigo 'Auditoria SEO: o que deve conter'. O artigo é informacional; a Home é uma porta de entrada de marca/categoria. Nenhum dos dois deveria carregar sozinho a intenção de contratação." },
+      { type: "paragraph", text: "A decisão foi adicionar /auditoria-seo como destino transacional e fazer Home e artigo apoiarem essa página por links e papéis de intenção diferentes. O artigo não foi apagado nem redirecionado." },
+
+      { type: "heading", text: "4. Consultoria SEO também precisava de um destino próprio" },
+      { type: "paragraph", text: "Conteúdos sobre como escolher consultoria ou o que uma consultoria deve entregar já existiam. Eles ajudam a decisão, mas não substituem uma página que explique o modelo de atuação, responsabilidades, cadência, governança, QA, mensuração e limites." },
+      { type: "paragraph", text: "A nova /consultoria-seo assume a intenção comercial genérica; os artigos continuam educando e passam a direcionar a jornada para o serviço quando a leitura chega à etapa de contratação." },
+
+      { type: "heading", text: "5. CTR zero não virou autorização para reescrever tudo" },
+      { type: "paragraph", text: "Várias páginas estavam entre posições 3 e 11 com impressões e nenhum clique. Em vez de trocar títulos em massa, revisamos relação query → página. Só duas receberam ajuste inicial com evidência direta de intenção: o artigo sobre site indexado sem impressões e o benchmark sobre custo de consultoria SEO/GEO." },
+      { type: "callout", title: "Regra de mudança", text: "Página bem posicionada só é reescrita quando existe evidência de desalinhamento, conteúdo factual desatualizado, conflito de intenção ou snippet claramente incompatível com a query observada." },
+
+      { type: "heading", text: "6. Entidade e prova: o que podíamos afirmar e o que não podíamos" },
+      { type: "paragraph", text: "Criamos uma página institucional separada do fundador, reforçamos Organization/Person schema, ligamos autoria, método, estudos e case e mantivemos sameAs apenas onde havia referência externa verificada. Não adicionamos perfis ou depoimentos inexistentes apenas para preencher checklist." },
+      { type: "paragraph", text: "O próprio Case Study #001 recebeu um checkpoint de GSC atual e uma correção metodológica sobre o baseline histórico, preservando o registro antigo sem fingir que propriedades e filtros eram comparáveis quando o export original não estava disponível." },
+
+      { type: "heading", text: "7. Conversão também entrou na auditoria" },
+      { type: "paragraph", text: "A revisão encontrou destinos de WhatsApp diferentes e lógica de submissão sobreposta no formulário da Home. A branch de remediação centralizou a captura, preservou source/referrer/UTM, normalizou o número comercial e manteve fallback para WhatsApp quando o canal de entrega do servidor não estiver disponível." },
+
+      { type: "heading", text: "8. Acessibilidade e performance foram medidas, não presumidas" },
+      { type: "paragraph", text: "O Lighthouse mobile da produção anterior à remediação registrou Performance 85, Accessibility 94, Best Practices 100 e SEO 100. FCP ficou em 2,6 s, LCP em 3,6 s, TBT em 60 ms e CLS em 0,062." },
+      { type: "paragraph", text: "Os problemas de acessibilidade encontrados foram contraste e ordem de headings no markup antigo do S.I.G.N.A.L. A branch corrigida foi testada separadamente e atingiu 100 em Accessibility e 100 em SEO no Lighthouse local. Performance de laboratório será repetida no domínio canônico depois do merge; CWV de campo não será inferido a partir de Lighthouse." },
+
+      { type: "heading", text: "9. O que ainda não podemos chamar de resultado" },
+      { type: "list", items: [
+        "a nova arquitetura ainda precisa ser publicada e rastreada antes de qualquer comparação",
+        "a canibalização só pode ser reavaliada depois de indexação e nova janela finalizada do GSC",
+        "melhora de ranking não será atribuída a uma única mudança quando várias intervenções forem publicadas juntas",
+        "não há depoimento de cliente ou case externo sendo inventado para completar prova social",
+        "Core Web Vitals de campo dependem de dados reais de usuários e não de um único teste de laboratório",
+      ] },
+      { type: "callout", title: "Por que publicar isso agora", text: "Um estudo aplicado é mais útil quando deixa claro o ponto zero, as decisões e os limites antes de saber se a curva vai melhorar. O próximo checkpoint deve confirmar, enfraquecer ou rejeitar as hipóteses registradas aqui." },
+    ],
+    sources: [
+      { label: "AUDITSEO — Case Study #001", url: "https://www.auditseo.com.br/case-study/auditseo-search-intelligence", note: "Ledger público do ponto zero, hipóteses, intervenções, métricas aceitas e regras de evidência." },
+      { label: "Google — Você precisa de SEO?", url: googleHireSeo, note: "Referência para transparência, auditoria, comunicação de mudanças e expectativas realistas." },
+      { label: "Google — crawling e indexing", url: googleCrawling, note: "Base oficial para rastreamento, indexação, redirects, canonicals e sitemaps." },
+    ],
+    relatedServices: [["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO", "/consultoria-seo"], ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"]],
+  },
+
 };
 
 export const buyerOpsArticleList = Object.values(buyerOpsArticles);

@@ -7,6 +7,7 @@ interface SiteFooterProps {
 
 const navigationLinks = [
   ["Início", "/"],
+  ["Sobre a AUDITSEO", "/sobre"],
   ["Método S.I.G.N.A.L", "/metodo-signal"],
   ["Soluções", "/solucoes"],
   ["Biblioteca", "/blog"],
@@ -14,22 +15,22 @@ const navigationLinks = [
 ];
 
 const solutionLinks = [
-  ["Search Foundation", "/solucoes/projetos-comecando-do-zero"],
-  ["Organic Activation", "/solucoes/site-sem-tracao"],
-  ["Search Recovery", "/solucoes/recuperacao-organica"],
-  ["Entity Authority", "/solucoes/autoridade-de-entidade"],
-  ["Intent Content Architecture", "/solucoes/conteudo-por-intencao"],
-  ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
-  ["SEO Migration & Risk Control", "/solucoes/migracao-risco-seo"],
-  ["Organic Evolution Cycle", "/solucoes/evolucao-organica"],
+  ["Planejamento SEO para novos sites", "/solucoes/projetos-comecando-do-zero"],
+  ["Diagnóstico SEO para sites sem tráfego", "/solucoes/site-sem-tracao"],
+  ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"],
+  ["Consultoria de autoridade de entidade", "/solucoes/autoridade-de-entidade"],
+  ["Estratégia e arquitetura de conteúdo SEO", "/solucoes/conteudo-por-intencao"],
+  ["Auditoria GEO e de visibilidade em IA", "/solucoes/geo-ia-readiness"],
+  ["Consultoria SEO para migração de sites", "/solucoes/migracao-risco-seo"],
+  ["Consultoria SEO contínua", "/solucoes/evolucao-organica"],
 ];
 
 const consultingLinks = [
-  ["Como atuamos", "/"],
+  ["Consultoria SEO", "/consultoria-seo"],
+  ["Auditoria SEO", "/auditoria-seo"],
   ["Método S.I.G.N.A.L", "/metodo-signal"],
   ["Search Intelligence", "/blog/o-que-e-search-intelligence"],
   ["Autoridade de entidade", "/solucoes/autoridade-de-entidade"],
-  ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
   ["Avaliação estratégica", "/diagnostico"],
 ];
 
@@ -45,16 +46,16 @@ const contentLinks = [
 ];
 
 const footerLinkClass = "block text-[#f8f8f8]/72 transition-colors hover:text-[#b28453]";
-const whatsappHref = "https://wa.me/5511995250742";
+const whatsappHref = "https://wa.me/5511996384376";
 
 type NewsletterStatus = "idle" | "submitting" | "success" | "error";
 
 function FooterColumn({ title, links }: { title: string; links: string[][] }) {
   return (
     <div>
-      <h5 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
+      <h3 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
         {title}
-      </h5>
+      </h3>
       <ul className="space-y-2.5 text-xs leading-relaxed">
         {links.map(([label, href]) => (
           <li key={`${title}-${label}-${href}`}>
@@ -123,14 +124,14 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
 
   return (
     <footer className="border-t border-[#b28453]/10 bg-[#11100f] text-[#f8f8f8]">
-      <div className="bg-[#b28453] py-12 text-white">
+      <div className="bg-[#8c613c] py-12 text-white">
         <div className="container mx-auto max-w-[1320px] px-6 xl:px-12">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             <div className="min-w-0 max-w-2xl">
-              <h4 className="mb-2 max-w-[760px] font-display text-lg font-bold leading-snug sm:text-xl">
+              <h2 className="mb-2 max-w-[760px] font-display text-lg font-bold leading-snug sm:text-xl">
                 Receba análises sobre Search Intelligence, SEO e a nova busca
-              </h4>
-              <p className="max-w-[760px] text-xs font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-sm">
+              </h2>
+              <p className="max-w-[760px] text-xs font-semibold uppercase tracking-[0.12em] text-white sm:text-sm">
                 Novos artigos, estudos e aprendizados da AUDITSEO diretamente no seu e-mail
               </p>
             </div>
@@ -191,8 +192,10 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
           <div className="flex flex-col justify-start sm:col-span-2 lg:col-span-1">
             <a href="/" className="mb-4 inline-flex w-fit">
               <img
-                src="/auditseo-logo.png"
+                src="/auditseo-logo-ui-v3.webp"
                 alt="AUDITSEO - Search Intelligence"
+                width={360}
+                height={96}
                 className="h-auto w-[240px] max-w-full object-contain"
               />
             </a>
@@ -207,9 +210,9 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
           <FooterColumn title="CONTEÚDOS" links={contentLinks} />
 
           <div>
-            <h5 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
+            <h3 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
               FALE CONOSCO
-            </h5>
+            </h3>
             <span className="mb-3 block font-mono text-[10px] text-[#f8f8f8]/60">Inicie um projeto</span>
             <ul className="space-y-2.5 text-xs">
               <li>

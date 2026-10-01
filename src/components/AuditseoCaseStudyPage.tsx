@@ -24,6 +24,43 @@ const baseline = [
   ["Não medido", "leads atribuídos à busca", "Atribuição será registrada somente quando existir evidência"],
 ];
 
+const currentSearchCheckpoint = [
+  ["199", "impressões", "01/09/2026 → 28/09/2026"],
+  ["2", "cliques", "Mesma propriedade e período"],
+  ["1,01%", "CTR", "2 cliques em 199 impressões"],
+  ["24,58", "posição média", "Período finalizado no GSC"],
+];
+
+const appliedEvidence = [
+  [
+    "Canibalização de intenção comercial",
+    "Evidência",
+    "A consulta “auditoria de seo” apareceu simultaneamente na Home (7 impressões; posição média 71,86) e no artigo educacional (2 impressões; posição média 57,50).",
+    "Decisão",
+    "Criar /auditoria-seo como proprietário transacional e fazer Home + artigo apontarem para esse destino, sem apagar o conteúdo editorial.",
+    "Validação",
+    "Depois do release, observar se a consulta passa a concentrar impressões na landing comercial e se posição/CTR evoluem em janelas finalizadas.",
+  ],
+  [
+    "Página em primeira página sem clique",
+    "Evidência",
+    "/blog/site-indexado-sem-impressoes registrou 19 impressões, posição média 8,95 e CTR 0%, com consultas observadas como “site indexado”, “pagina indexada” e “páginas indexadas”.",
+    "Decisão",
+    "Preservar o conteúdo e ajustar somente title/description para responder de forma mais direta à intenção já observada no GSC.",
+    "Validação",
+    "Comparar CTR e posição da mesma URL após recrawl, sem atribuir eventual melhora apenas ao snippet.",
+  ],
+  [
+    "Preservação de URLs históricas",
+    "Evidência",
+    "Sitemaps anteriores continham /guias e três subguias que não fazem parte da arquitetura editorial atual.",
+    "Decisão",
+    "Manter rotas 308 para destinos equivalentes em vez de permitir 404 ou migrar URLs atuais sem necessidade.",
+    "Validação",
+    "Revisar logs/GSC antes de remover qualquer redirect histórico e registrar toda futura migração no inventário de URLs.",
+  ],
+];
+
 const hypotheses = [
   ["H1", "Categoria e entidade", "Se a AUDITSEO comunicar de forma consistente Search Intelligence, serviços, autoria e provas, sistemas e pessoas terão menos ambiguidade sobre quem somos e quando somos relevantes."],
   ["H2", "Demanda comercial", "Se páginas comerciais e documentos responderem às perguntas que antecedem a contratação, a marca deverá começar a aparecer para consultas e jornadas mais próximas de decisão."],
@@ -32,6 +69,7 @@ const hypotheses = [
 ];
 
 const interventionLog = [
+  ["Arquitetura comercial SEO", "PREPARADO PARA RELEASE", "Páginas dedicadas de Auditoria SEO e Consultoria SEO, Home recalibrada, soluções renomeadas em linguagem de compra e links internos reorganizados para reduzir ambiguidade de intenção."],
   ["Fundação técnica de Search", "PREPARADO PARA RELEASE", "SSR de metadata/canonical, 404 real, redirects, sitemap, rotas indexáveis e smoke gate para reduzir problemas básicos antes da expansão."],
   ["Reposicionamento da entidade", "PREPARADO PARA RELEASE", "Home, serviços e schema reorganizados em torno de Search Intelligence, com SEO, Entity Authority e Search AI como disciplinas coordenadas."],
   ["Biblioteca de autoridade", "EM EXPANSÃO", "Fundamentos, protocolos, diagnósticos, buyer content e artigos de alta proximidade comercial — com content lint e grafo de links internos."],
@@ -81,9 +119,9 @@ export default function AuditseoCaseStudyPage() {
           <div className="mx-auto max-w-[1240px]">
             <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
               <div>
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">BASELINE OFICIAL</span>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">BASELINE HISTÓRICO REGISTRADO</span>
                 <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Antes de contar a história, registramos onde ela começa.</h2>
-                <p className="mt-6 text-base leading-[1.78] text-[#2a2927]/75">O Search Console da propriedade `https://auditseo.com.br/` foi consultado usando um período já finalizado. O dado abaixo é um baseline de Search Performance — não um diagnóstico de indexação.</p>
+                <p className="mt-6 text-base leading-[1.78] text-[#2a2927]/75">Este ponto zero foi publicado em 08/09/2026 com base em uma consulta então registrada como pertencente à propriedade `https://auditseo.com.br/`. O dado abaixo representa o registro histórico publicado naquele momento — não um diagnóstico de indexação.</p>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 {baseline.map(([value, label, note]) => (
@@ -96,7 +134,54 @@ export default function AuditseoCaseStudyPage() {
               </div>
             </div>
             <div className="mt-10 rounded-[20px] border border-[#11100f]/10 bg-[#11100f] p-6 text-[#f8f8f8]">
-              <p className="text-sm leading-[1.75] text-[#f8f8f8]/72"><strong className="text-[#e0d3c3]">Fonte do baseline:</strong> Google Search Console da AUDITSEO. Período finalizado de 09/08/2026 a 05/09/2026: 0 impressões, 0 cliques e nenhuma top query/top page retornada na consulta. Período anterior comparável também retornou 0/0.</p>
+              <p className="text-sm leading-[1.75] text-[#f8f8f8]/72"><strong className="text-[#e0d3c3]">Fonte do baseline histórico:</strong> registro publicado em 08/09/2026 como extraído do Google Search Console da AUDITSEO para o período finalizado de 09/08/2026 a 05/09/2026: 0 impressões, 0 cliques e nenhuma top query/top page retornada na consulta. <strong className="text-[#e0d3c3]">Revisão metodológica em andamento:</strong> a propriedade atualmente conectada e verificada neste trabalho é `https://www.auditseo.com.br/`. O repositório não preserva o export bruto daquela extração histórica; por isso o valor original é mantido como registro, sem tratá-lo como comparável ao desempenho atual até a propriedade e os filtros originais serem reproduzidos.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#11100f] px-6 py-20 md:py-28 xl:px-12">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">CHECKPOINT GSC · 01 OUT 2026</span>
+                <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] md:text-5xl">O estudo agora possui um checkpoint reproduzível na propriedade verificada.</h2>
+                <p className="mt-6 text-base leading-[1.78] text-[#f8f8f8]/68">A propriedade atualmente conectada é <code className="text-[#e0d3c3]">https://www.auditseo.com.br/</code>. Para o período finalizado de 01/09/2026 a 28/09/2026, registramos o desempenho abaixo antes de publicar esta nova rodada de remediação SEO.</p>
+                <p className="mt-5 text-sm leading-[1.75] text-[#f8f8f8]/54">Comparação homogênea no mesmo GSC: 04/08/2026 → 31/08/2026 registrou 2 cliques, 264 impressões, CTR de 0,76% e posição média 57,00. A posição média melhorou, enquanto impressões caíram e cliques permaneceram estáveis. Isso descreve o período; não prova causalidade de uma intervenção específica.</p>
+              </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                {currentSearchCheckpoint.map(([value, label, note]) => (
+                  <article key={label} className="rounded-[22px] border border-[#b28453]/20 bg-[#171614] p-7">
+                    <p className="font-display text-4xl font-bold tracking-[-0.04em] text-[#e0d3c3]">{value}</p>
+                    <h3 className="mt-3 text-sm font-bold uppercase tracking-[0.05em]">{label}</h3>
+                    <p className="mt-3 text-xs leading-[1.65] text-[#f8f8f8]/52">{note}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div className="mt-10 rounded-[20px] border border-[#b28453]/22 bg-[#171614] p-6">
+              <p className="text-sm leading-[1.75] text-[#f8f8f8]/68"><strong className="text-[#e0d3c3]">Sinal comercial observado:</strong> o Search Console já retorna consultas como “auditoria de seo”, “auditoria seo”, “contratar auditoria seo”, “serviço de auditoria de seo”, “agencia seo ai” e “migração de seo”. A nova arquitetura comercial foi preparada para dar a essas intenções destinos mais claros. A validação de efeito só começa depois do release, rastreamento e nova janela finalizada no GSC.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#e0d3c3] px-6 py-20 text-[#11100f] md:py-28 xl:px-12">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="max-w-4xl">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">EVIDÊNCIA DE EXECUÇÃO</span>
+              <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] md:text-5xl">Problema, evidência, decisão e validação — com casos reais do próprio projeto.</h2>
+              <p className="mt-6 max-w-3xl text-base leading-[1.78] text-[#2a2927]/72">A prova não é um print de ranking. Estes exemplos mostram como sinais reais foram transformados em decisões e deixam definido, antes do resultado, o que será observado depois.</p>
+            </div>
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {appliedEvidence.map(([title, label1, evidence, label2, decision, label3, validation]) => (
+                <article key={title} className="rounded-[24px] border border-[#11100f]/10 bg-[#f4eee5] p-7">
+                  <h3 className="font-display text-2xl font-bold leading-[1.15]">{title}</h3>
+                  <div className="mt-6 space-y-5">
+                    <div><span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#8c613c]">{label1}</span><p className="mt-2 text-sm leading-[1.7] text-[#2a2927]/72">{evidence}</p></div>
+                    <div><span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#8c613c]">{label2}</span><p className="mt-2 text-sm leading-[1.7] text-[#2a2927]/72">{decision}</p></div>
+                    <div><span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#8c613c]">{label3}</span><p className="mt-2 text-sm leading-[1.7] text-[#2a2927]/72">{validation}</p></div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

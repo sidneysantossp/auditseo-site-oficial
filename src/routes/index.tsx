@@ -4,7 +4,7 @@ import HomePageV2 from "@/components/HomePageV2";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade" },
+      { title: "AUDITSEO | Consultoria SEO, GEO e Search Intelligence" },
       {
         name: "google-site-verification",
         content: "uT9b97Zdg7PX0Cc_he99g0aDbxKzDq5K0O4gUa4630c",
@@ -12,11 +12,11 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Identifique onde sua presença de busca quebra — rastreamento, indexação, intenção, entidade, autoridade, citabilidade ou conversão — antes de investir em mais SEO, conteúdo ou IA.",
+          "Consultoria SEO, GEO e Search Intelligence para identificar gargalos de rastreamento, indexação, intenção, autoridade, citabilidade e conversão antes de priorizar a execução.",
       },
       {
         property: "og:title",
-        content: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade",
+        content: "AUDITSEO | Consultoria SEO, GEO e Search Intelligence",
       },
       {
         property: "og:description",
@@ -27,10 +27,13 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://www.auditseo.com.br/" },
       { property: "og:site_name", content: "AUDITSEO" },
       { property: "og:locale", content: "pt_BR" },
+      { property: "og:image", content: "https://www.auditseo.com.br/auditseo-logo.png" },
+      { property: "og:image:alt", content: "AUDITSEO — Search Intelligence" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.auditseo.com.br/auditseo-logo.png" },
       {
         name: "twitter:title",
-        content: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade",
+        content: "AUDITSEO | Consultoria SEO, GEO e Search Intelligence",
       },
       {
         name: "twitter:description",
@@ -56,6 +59,13 @@ export const Route = createFileRoute("/")({
                 contentUrl: "https://www.auditseo.com.br/auditseo-logo.png",
               },
               email: "contato@auditseo.com.br",
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "sales",
+                telephone: "+55 11 99638-4376",
+                availableLanguage: "pt-BR",
+                areaServed: "BR",
+              },
               areaServed: {
                 "@type": "Country",
                 name: "Brasil",
