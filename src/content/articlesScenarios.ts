@@ -72,7 +72,7 @@ export const scenarioArticles: Record<string, Article> = {
       { label: "Google Search Console — Indexação de páginas", url: googlePageIndex, note: "Diferencia indexação de presença garantida em resultados e orienta inspeção das páginas importantes." },
       { label: "Google Search Console — Inspeção de URL", url: googleInspection, note: "Ferramenta oficial para entender o estado de uma URL no índice e testar a versão ativa." },
     ],
-    relatedServices: [["Organic Activation", "/solucoes/site-sem-tracao"], ["Intent Content Architecture", "/solucoes/conteudo-por-intencao"], ["Entity Authority", "/solucoes/autoridade-de-entidade"]],
+    relatedServices: [["Diagnóstico SEO para sites sem tráfego", "/solucoes/site-sem-tracao"], ["Estratégia e arquitetura de conteúdo SEO", "/solucoes/conteudo-por-intencao"], ["Consultoria de autoridade de entidade", "/solucoes/autoridade-de-entidade"]],
   },
 
   "checklist-seo-antes-lancar-site": {
@@ -147,7 +147,7 @@ export const scenarioArticles: Record<string, Article> = {
       { label: "Google Search Central — começar com Search Console", url: googleSearchConsole, note: "Orientações para verificar propriedade, monitorar rastreamento, indexação e mudanças do site." },
       { label: "Google Search Central — mudanças de hospedagem", url: googleHostingMove, note: "Documenta testes de infraestrutura e remoção de bloqueios temporários antes do go-live." },
     ],
-    relatedServices: [["Search Foundation", "/solucoes/projetos-comecando-do-zero"], ["SEO Migration & Risk Control", "/solucoes/migracao-risco-seo"], ["Entity Authority", "/solucoes/autoridade-de-entidade"]],
+    relatedServices: [["Planejamento SEO para novos sites", "/solucoes/projetos-comecando-do-zero"], ["Consultoria SEO para migração de sites", "/solucoes/migracao-risco-seo"], ["Consultoria de autoridade de entidade", "/solucoes/autoridade-de-entidade"]],
   },
 
   "queda-trafego-depois-redesign": {
@@ -213,7 +213,7 @@ export const scenarioArticles: Record<string, Article> = {
       { label: "Google Search Central — mudança de hospedagem", url: googleHostingMove, note: "Guia para infraestrutura, Googlebot, bloqueios temporários e monitoramento após mudança de hosting/CDN." },
       { label: "Google Search Console — começar", url: googleSearchConsole, note: "Referência para monitorar tráfego, indexação e mudanças relevantes com Search Console." },
     ],
-    relatedServices: [["Search Recovery", "/solucoes/recuperacao-organica"], ["SEO Migration & Risk Control", "/solucoes/migracao-risco-seo"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
+    relatedServices: [["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"], ["Consultoria SEO para migração de sites", "/solucoes/migracao-risco-seo"], ["Consultoria SEO contínua", "/solucoes/evolucao-organica"]],
   },
 };
 
