@@ -16,9 +16,9 @@ Reduce external entity ambiguity without manufacturing citations, reviews, addre
 |---|---|---|---|---|
 | LinkedIn — founder profile | Sidney Santos is associated with AUDITSEO and São Paulo, Brasil. | aligned | protect | Keep linked to the Person entity; do not use the personal profile as Organization `sameAs`. |
 | LinkedIn — AUDITSEO company presence | Public AUDITSEO posts are indexed and identify a corporate presence. | partially aligned | high | Verify the canonical company-profile URL from the authenticated company account before adding Organization `sameAs`. |
-| Tray partner directory | Listing title still describes AUDITSEO as an agency specialized in digital marketing. | stale / conflicting | high | Request factual update to current company description and canonical www URL. Do not request a backlink. |
+| Tray partner directory | Profile was corrected by the account owner on 2026-10-01: display name AUDITSEO, canonical www URL, Search Intelligence description, SEO as primary activity, and SEO + Consultoria e Assessoria as specialties. Public search may temporarily show the previous cached title. | corrected / awaiting recrawl | monitor | Re-check the public listing after recrawl; do not request a backlink. |
 | BuiltWith | Historical technology profile for auditseo.com.br. | neutral | low | No correction unless factual domain ownership/history is wrong. Treat as technical corroboration only. |
-| BabyLoveGrowth | Third-party article attributes a “Search Intelligence AI Suite”, pricing from R$ 3.000/month and offer language not controlled by AUDITSEO. | potentially inaccurate | high | Request factual review of product naming, pricing and any guarantee-like wording. Preserve the publisher's editorial independence. |
+| BabyLoveGrowth | Third-party article attributes a “Search Intelligence AI Suite”, pricing from R$ 3.000/month and offer language not controlled by AUDITSEO. | correction requested · 2026-10-01 | high | Await editorial response and re-check the public page; preserve the publisher's editorial independence. |
 
 ## Correction doctrine
 
@@ -65,9 +65,9 @@ A street-level PostalAddress should be published only when a real public busines
 ## Next actions
 
 1. Verify canonical LinkedIn company URL from the authenticated AUDITSEO company account.
-2. Submit Tray correction.
-3. Submit BabyLoveGrowth factual correction request.
-4. Re-check the historical Opendi listing documented in the repository and correct it if it still presents AUDITSEO as an agency.
+2. Monitor Tray recrawl after owner-side correction completed on 2026-10-01.
+3. Monitor BabyLoveGrowth after factual correction request sent on 2026-10-01.
+4. Opendi was re-checked on 2026-10-01 and still presents AUDITSEO as “Agência de SEO”; correct or claim the listing if the account can be verified, without propagating any unverified street-level address.
 5. Connect Google Business Profile and reconcile name/category/site/phone/service area with the canonical entity.
 6. Add only verified Organization `sameAs` URLs after the release gate passes.
 7. Record every external correction as an intervention in Case Study #001.
