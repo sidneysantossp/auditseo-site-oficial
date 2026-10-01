@@ -208,8 +208,8 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: decisions use query/page evidence.
 
 ### P2 — Technical/UX verification
-- [ ] **P2.4 Fix or validate S.I.G.N.A.L. duplicate crawl/render output**
-  - Verify whether desktop/mobile duplication is present in indexable HTML and remove redundant accessible content if confirmed.
+- [~] **P2.4 Fix or validate S.I.G.N.A.L. duplicate crawl/render output**
+  - Confirmed in `SignalMethod.tsx`: each step had a desktop/tablet card plus a separate `md:hidden` fallback containing the same text. Branch refactor now renders one semantic card per step and uses layout classes only for positioning. Pending preview/SSR verification before [x].
 - [ ] **P2.5 Validate forms and conversion instrumentation**
   - Contact, diagnostic, WhatsApp CTA, success/failure states, analytics events.
 - [ ] **P2.6 Validate mobile and Core Web Vitals**
@@ -219,11 +219,13 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - User-agent spoofing alone is not sufficient evidence.
 
 ### P3 — Metadata and normalization
-- [ ] **P3.1 Add OG images**
+- [~] **P3.1 Add OG images**
   - Audit found no `og:image` on the 50 examined pages.
   - Include Twitter image metadata where appropriate.
-- [ ] **P3.2 Review trailing-slash redirect**
+  - Branch implementation: default `og:image`, `og:image:alt` and `twitter:image` added through `createSeoHead`, with equivalent metadata on the custom Home head. Uses the existing AUDITSEO logo as a safe fallback; a dedicated 1200×630 creative can replace it later without changing metadata architecture.
+- [~] **P3.2 Review trailing-slash redirect**
   - `/solucoes/` → `/solucoes` observed as 307; use permanent normalization if this behavior is intended.
+  - Branch implementation: server entry now intercepts all non-root trailing-slash paths and returns 308 while preserving query parameters. Pending Preview HTTP verification before [x].
 - [ ] **P3.3 Simplify HTTP → canonical redirect chain**
   - Review `http://auditseo.com.br/` double-hop when infrastructure allows.
 
