@@ -175,12 +175,14 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: entity/home signals and branded SERP reviewed; no blind title churn.
 
 ### P1 — Proof, E-E-A-T/entity corroboration
-- [ ] **P1.9 Publish execution proof**
+- [~] **P1.9 Publish execution proof**
   - anonymized audit with problem → evidence → decision → validation;
   - migration example with URL map;
   - recovery case with comparable periods and limitations;
   - backlog/implementation example;
   - authorized testimonials with identity/context.
+  - Branch progress: Case Study #001 now contains a verified 01/10/2026 GSC checkpoint, intervention ledger and methodological limitations. A new applied article, `/blog/auditoria-seo-aplicada-auditseo`, publishes the actual audit → evidence → decision → implementation sequence from this remediation, including GSC, cannibalization, conversion QA, accessibility and CWV lab baseline.
+  - Remaining: client-specific migration/recovery proof and testimonials require real, authorized evidence and will not be fabricated.
 - [~] **P1.10 Strengthen Organization entity**
   - Add verified `sameAs` references only.
   - Add appropriate business identity details where accurate and public.
@@ -199,7 +201,7 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
 - [x] **P2.1 Rewire internal journeys**
   - Pattern: problem query → evidence/explanation → relevant service → conversion.
   - Completed on priority buyer/scenario content: audit, consulting selection, consulting deliverables, agency-vs-consulting, pricing research, indexed-without-impressions, launch and redesign/recovery journeys now use buyer-language anchors and route to the intended commercial owner.
-- [ ] **P2.2 Publish applied content rather than more definitions**
+- [x] **P2.2 Publish applied content rather than more definitions**
   - audit example;
   - canonical/indexing fix case;
   - migration map;
@@ -207,6 +209,7 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - consulting-cycle example;
   - entity before/after;
   - repeated AI benchmark including non-improvement.
+  - Completed first applied proof asset: `/blog/auditoria-seo-aplicada-auditseo` documents the current AUDITSEO remediation with real baseline, decisions, implementation boundaries and unresolved items instead of publishing another definition-only article.
 - [x] **P2.3 Review overlapping AI/GEO editorial clusters using GSC before consolidation**
   - Do not consolidate solely because titles are similar.
   - GSC review found no AI/GEO cannibalization candidate comparable to the audit-SEO conflict. High-position Search AI pages represent distinct intents (schema, benchmark, pricing, measurement, market research, research hub), so consolidation is intentionally deferred.
