@@ -25,6 +25,9 @@ export const Route = createFileRoute("/autor/sidney-santos")({
           worksFor: {
             "@id": "https://www.auditseo.com.br/#organization",
           },
+          sameAs: [
+            "https://br.linkedin.com/in/sidney-especialista-em-seo",
+          ],
           knowsAbout: [
             "SEO técnico",
             "Search Intelligence",
