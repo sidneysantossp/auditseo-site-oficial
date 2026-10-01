@@ -69,11 +69,12 @@ const hypotheses = [
 ];
 
 const interventionLog = [
-  ["Arquitetura comercial SEO", "PREPARADO PARA RELEASE", "Páginas dedicadas de Auditoria SEO e Consultoria SEO, Home recalibrada, soluções renomeadas em linguagem de compra e links internos reorganizados para reduzir ambiguidade de intenção."],
-  ["Fundação técnica de Search", "PREPARADO PARA RELEASE", "SSR de metadata/canonical, 404 real, redirects, sitemap, rotas indexáveis e smoke gate para reduzir problemas básicos antes da expansão."],
-  ["Reposicionamento da entidade", "PREPARADO PARA RELEASE", "Home, serviços e schema reorganizados em torno de Search Intelligence, com SEO, Entity Authority e Search AI como disciplinas coordenadas."],
+  ["Arquitetura comercial SEO", "PUBLICADO · 01/10/2026", "Páginas dedicadas de Auditoria SEO e Consultoria SEO, Home recalibrada, soluções renomeadas em linguagem de compra e links internos reorganizados para reduzir ambiguidade de intenção."],
+  ["Fundação técnica de Search", "PUBLICADO · 01/10/2026", "SSR de metadata/canonical, 404 real, redirects, sitemap, rotas indexáveis e smoke gate para reduzir problemas básicos antes da expansão."],
+  ["Reposicionamento da entidade", "PUBLICADO · 01/10/2026", "Home, serviços e schema reorganizados em torno de Search Intelligence, com SEO, Entity Authority e Search AI como disciplinas coordenadas."],
+  ["Corroboração externa da entidade", "EM EXECUÇÃO · 01/10/2026", "São Paulo passou a ser declarado de forma consistente no site e no Organization schema sem inventar endereço de rua. Referências externas estão sendo inventariadas para corrigir descrições antigas, validar perfis corporativos e registrar divergências sem pedir backlinks."],
   ["Biblioteca de autoridade", "EM EXPANSÃO", "Fundamentos, protocolos, diagnósticos, buyer content e artigos de alta proximidade comercial — com content lint e grafo de links internos."],
-  ["Consultoria Search AI / GEO", "PREPARADO PARA RELEASE", "Página comercial de categoria para capturar demanda direta sem prometer controle sobre plataformas de terceiros."],
+  ["Consultoria Search AI / GEO", "PUBLICADO · 01/10/2026", "Página comercial de categoria para capturar demanda direta sem prometer controle sobre plataformas de terceiros."],
   ["Authority → Lead", "EM TESTE", "Nova camada editorial que mede se conteúdo e presença da entidade conseguem levar um prospect de descoberta → confiança → diagnóstico → reunião."],
   ["Search AI Observatory", "PROTOCOLO DEFINIDO", "Metodologia e regras existem antes dos números; nenhum percentual será publicado até a primeira amostra ser realmente coletada e revisada."],
 ];
