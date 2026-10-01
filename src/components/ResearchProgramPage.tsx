@@ -36,8 +36,8 @@ const researchAssets = [
   {
     eyebrow: "CASE STUDY #001 · EM ANDAMENTO",
     title: "Construindo a autoridade da AUDITSEO do zero.",
-    text: "O próprio domínio é o primeiro caso público do método: baseline registrado antes do release, hipóteses documentadas e métricas que não poderão ser reescritas depois.",
-    metrics: ["GSC: 0 impressões", "GSC: 0 cliques", "40 prompts congelados"],
+    text: "O próprio domínio é o primeiro caso público do método: baseline histórico preservado, checkpoint posterior registrado, hipóteses documentadas e métricas que não podem ser reescritas depois.",
+    metrics: ["Baseline histórico: 0/0", "Checkpoint 01/10: 199 imp. · 2 cliques", "40 prompts congelados"],
     href: "/case-study/auditseo-search-intelligence",
     dataset: null,
   },
@@ -69,7 +69,7 @@ export default function ResearchProgramPage() {
           <div className="mt-10 flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.13em] text-[#e0d3c3]">
             <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">2 DATASETS PUBLICADOS</span>
             <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">CASE STUDY #001 EM ANDAMENTO</span>
-            <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">SEARCH AI OBSERVATORY PRÉ-REGISTRADO</span>
+            <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">OBSERVATORY · INTERFACES CONGELADAS</span>
           </div>
         </div>
       </section>
@@ -155,14 +155,14 @@ export default function ResearchProgramPage() {
               Depois de medir o mercado que vende Search AI, vamos medir quem aparece nas próprias respostas de IA.
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#11100f]/70">
-              O primeiro ciclo do Observatory observa prestadores de SEO e Search Intelligence com atuação no Brasil. O universo, os prompts e as regras de classificação foram definidos antes da coleta. A AUDITSEO entra na mesma régua, com conflito de interesse declarado.
+              O primeiro ciclo do Observatory observa prestadores de SEO e Search Intelligence com atuação no Brasil. Universo, prompts, regras e interfaces foram definidos antes da coleta. O ciclo usará ChatGPT Search, Google AI Mode, Gemini Web e Perplexity Search, com duas repetições independentes. A AUDITSEO entra na mesma régua, com conflito de interesse declarado.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {[
                 ["20 prestadores", "Universo competitivo congelado para o piloto."],
                 ["140 prompts únicos", "80 genéricos + 60 branded."],
-                ["4 interfaces", "Desenho-alvo multi-interface."],
+                ["4 interfaces congeladas", "ChatGPT Search, Google AI Mode, Gemini Web e Perplexity Search."],
                 ["Até 1.120 respostas", "Duas repetições por prompt/interface."],
               ].map(([title, text]) => (
                 <div key={title} className="rounded-[20px] border border-[#11100f]/10 bg-[#f4eee5] p-6">
