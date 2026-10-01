@@ -4,7 +4,7 @@ import HomePageV2 from "@/components/HomePageV2";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO" },
+      { title: "AUDITSEO | Consultoria SEO, GEO e Search Intelligence" },
       {
         name: "google-site-verification",
         content: "uT9b97Zdg7PX0Cc_he99g0aDbxKzDq5K0O4gUa4630c",
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO",
+        content: "AUDITSEO | Consultoria SEO, GEO e Search Intelligence",
       },
       {
         property: "og:description",
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: "https://www.auditseo.com.br/auditseo-logo.png" },
       {
         name: "twitter:title",
-        content: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO",
+        content: "AUDITSEO | Consultoria SEO, GEO e Search Intelligence",
       },
       {
         name: "twitter:description",
