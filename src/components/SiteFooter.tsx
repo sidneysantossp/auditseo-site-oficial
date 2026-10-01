@@ -231,7 +231,7 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
                 </a>
               </li>
               <li className="pt-2 text-[10px] leading-relaxed text-[#f8f8f8]/60">
-                Atendimento executivo nacional de segunda a sexta.
+                São Paulo, SP · atendimento a empresas em todo o Brasil.
               </li>
             </ul>
           </div>
