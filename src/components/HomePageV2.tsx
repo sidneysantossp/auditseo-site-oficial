@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -123,6 +123,60 @@ function SectionTitle({ eyebrow, title, text, dark = true, center = false }: { e
 }
 
 export default function HomePageV2() {
+  const [contactStatus, setContactStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (contactStatus === "submitting") return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const params = new URLSearchParams(window.location.search);
+    const utm: Record<string, string> = {};
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "lead_id", "campaign_id"]) {
+      const value = params.get(key);
+      if (value) utm[key] = value;
+    }
+
+    setContactStatus("submitting");
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "consultation",
+          nome: String(data.get("nome") || "").trim(),
+          email: String(data.get("email") || "").trim(),
+          whatsapp: String(data.get("whatsapp") || "").trim(),
+          site: String(data.get("site") || "").trim(),
+          faturamento: String(data.get("faturamento") || "").trim(),
+          sourcePath: `${window.location.pathname}${window.location.search}`,
+          referrer: document.referrer || undefined,
+          utm: Object.keys(utm).length ? utm : undefined,
+        }),
+      });
+
+      const result = (await response.json().catch(() => null)) as { success?: boolean; fallbackUrl?: string } | null;
+
+      if (response.ok && result?.success) {
+        form.reset();
+        setContactStatus("success");
+        return;
+      }
+
+      if (result?.fallbackUrl) {
+        window.location.assign(result.fallbackUrl);
+        return;
+      }
+
+      setContactStatus("error");
+    } catch (error) {
+      console.error("Contact form submission failed", error);
+      setContactStatus("error");
+    }
+  };
+
   return (
     <main className="bg-[#11100f] text-[#f8f8f8]">
       <Header onNavClick={navigate} activeSection="" />
@@ -262,15 +316,17 @@ export default function HomePageV2() {
           <div className="mt-7 text-center">
             <a href="/diagnostico" className="inline-flex items-center gap-2 text-sm font-bold text-[#b28453] hover:text-[#e0d3c3]">Prefiro começar pelo diagnóstico <ArrowRight size={14} /></a>
           </div>
-          <form className="mt-10 space-y-6">
+          <form onSubmit={handleContactSubmit} className="mt-10 space-y-6">
             <div className="grid gap-6 md:grid-cols-2">
-              <Field label="Nome completo"><input required type="text" placeholder="Seu nome" className={inputClass} /></Field>
-              <Field label="E-mail corporativo"><input required type="email" placeholder="voce@empresa.com.br" className={inputClass} /></Field>
-              <Field label="WhatsApp com DDD"><input required type="tel" placeholder="(11) 99999-9999" className={inputClass} /></Field>
-              <Field label="Site da empresa"><input required type="url" placeholder="https://www.suaempresa.com.br" className={inputClass} /></Field>
+              <Field label="Nome completo"><input name="nome" required type="text" placeholder="Seu nome" className={inputClass} /></Field>
+              <Field label="E-mail corporativo"><input name="email" required type="email" placeholder="voce@empresa.com.br" className={inputClass} /></Field>
+              <Field label="WhatsApp com DDD"><input name="whatsapp" required type="tel" placeholder="(11) 99999-9999" className={inputClass} /></Field>
+              <Field label="Site da empresa"><input name="site" required type="url" placeholder="https://www.suaempresa.com.br" className={inputClass} /></Field>
             </div>
-            <Field label="Faturamento médio mensal"><select required defaultValue="" className={`${inputClass} appearance-none`}><option value="" disabled>Selecione uma faixa</option><option value="Ate 50k">Até R$ 50 mil</option><option value="50k a 200k">R$ 50 mil a R$ 200 mil</option><option value="Acima de 200k">Acima de R$ 200 mil</option></select></Field>
-            <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Solicitar contato estratégico <ArrowRight size={16} /></button>
+            <Field label="Faturamento médio mensal"><select name="faturamento" required defaultValue="" className={`${inputClass} appearance-none`}><option value="" disabled>Selecione uma faixa</option><option value="Ate 50k">Até R$ 50 mil</option><option value="50k a 200k">R$ 50 mil a R$ 200 mil</option><option value="Acima de 200k">Acima de R$ 200 mil</option></select></Field>
+            <button disabled={contactStatus === "submitting"} type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f] disabled:cursor-not-allowed disabled:opacity-65">{contactStatus === "submitting" ? "Enviando..." : "Solicitar contato estratégico"} <ArrowRight size={16} /></button>
+            {contactStatus === "success" ? <p role="status" className="text-center text-sm font-semibold text-[#e0d3c3]">Solicitação enviada. A AUDITSEO recebeu seus dados.</p> : null}
+            {contactStatus === "error" ? <p role="alert" className="text-center text-sm font-semibold text-[#e0d3c3]">Não foi possível enviar agora. Tente novamente ou use o WhatsApp comercial.</p> : null}
             <p className="text-center text-xs leading-[1.65] text-[#f8f8f8]/48">O contato direto não substitui o diagnóstico. Ele existe para empresas que já conseguem descrever o contexto e querem discutir o próximo passo.</p>
           </form>
         </div>
