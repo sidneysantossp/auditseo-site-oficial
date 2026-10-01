@@ -57,3 +57,25 @@ After production merge:
 2. compare LCP/FCP/CLS/TBT to this baseline;
 3. use field Core Web Vitals from Search Console/CrUX when available;
 4. do not claim a CWV pass from Lighthouse alone, because CWV status is field data.
+
+
+## Post-merge production validation
+Production commit: `4dae97b8f4c1c98a528ea7d4ae1e1ed1cf891375`
+
+A fresh Lighthouse mobile run against the canonical production URL after the remediation merge returned:
+- Performance: **94**
+- Accessibility: **100**
+- Best Practices: **100**
+- SEO: **100**
+- First Contentful Paint: **2.5 s**
+- Largest Contentful Paint: **2.6 s**
+- Speed Index: **2.5 s**
+- Total Blocking Time: **10 ms**
+- Cumulative Layout Shift: **0**
+- Time to Interactive: **2.6 s**
+- color-contrast: pass
+- heading-order: pass
+
+Compared with the pre-merge lab baseline, Performance improved from 85 to 94, LCP from 3.6 s to 2.6 s, TBT from 60 ms to 10 ms, CLS from 0.062 to 0, and Accessibility from 94 to 100.
+
+This is a laboratory comparison, not field Core Web Vitals. Field status still requires Search Console/CrUX user data.
