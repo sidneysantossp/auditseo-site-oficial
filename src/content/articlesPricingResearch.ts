@@ -15,9 +15,9 @@ export const pricingResearchArticles: Record<string, Article> = {
   "quanto-custa-consultoria-seo-geo-ia": {
     slug: "quanto-custa-consultoria-seo-geo-ia",
     title: "Quanto custa uma consultoria de SEO + GEO/IA em 2026? Benchmark de ofertas públicas no Brasil",
-    metaTitle: "Quanto Custa Consultoria SEO + GEO/IA em 2026? | AUDITSEO",
+    metaTitle: "Quanto Custa Consultoria SEO e GEO no Brasil em 2026? | AUDITSEO",
     description:
-      "Benchmark AUDITSEO de preços públicos de SEO, GEO e Search AI no Brasil em 08/09/2026, separado por sessão, auditoria, sprint, mensalidade e software — sem média enganosa.",
+      "Quanto custa consultoria SEO e GEO no Brasil? Benchmark 2026 com preços públicos por sessão, auditoria, sprint, mensalidade e software, com escopos separados.",
     eyebrow: "BENCHMARK AUDITSEO · PREÇOS PÚBLICOS",
     publishedAt: "2026-09-08",
     updatedAt: "2026-09-08",
