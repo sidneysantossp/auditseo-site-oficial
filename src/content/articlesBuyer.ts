@@ -143,7 +143,7 @@ export const buyerArticles: Record<string, Article> = {
       { label: "OpenAI — Como pesquisar na web com o ChatGPT", url: openAiSearch, note: "Documentação atual sobre OAI-SearchBot, múltiplos fatores de ranking e ausência de garantia de posicionamento." },
       { label: "OpenAI — Editores e desenvolvedores — FAQ", url: openAiPublishers, note: "Diretrizes atuais sobre descoberta de sites, OAI-SearchBot, citações e referrals de ChatGPT Search." },
     ],
-    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Auditoria SEO", "/auditoria-seo"], ["Generative Search Readiness", "/solucoes/geo-ia-readiness"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Auditoria SEO", "/auditoria-seo"], ["Auditoria GEO e de visibilidade em IA", "/solucoes/geo-ia-readiness"]],
   },
 
   "agencia-seo-consultoria-ou-time-interno": {
@@ -235,7 +235,7 @@ export const buyerArticles: Record<string, Article> = {
       { label: "Google Search Central — Você precisa de SEO?", url: googleHireSeo, note: "Descrição oficial de tipos de trabalho que profissionais de SEO podem oferecer e critérios para avaliar contratação." },
       { label: "Google Search Central — Serviços e conselhos de SEO de terceiros", url: googleThirdParty, note: "Orientação para avaliar promessas, ferramentas e serviços externos sem confundir previsão com garantia." },
     ],
-    relatedServices: [["Organic Evolution Cycle", "/solucoes/evolucao-organica"], ["Search Recovery", "/solucoes/recuperacao-organica"], ["SEO Migration & Risk Control", "/solucoes/migracao-risco-seo"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Consultoria SEO contínua", "/solucoes/evolucao-organica"], ["Auditoria SEO", "/auditoria-seo"]],
   },
 };
 
