@@ -219,6 +219,7 @@ export const buyerOpsArticles: Record<string, Article> = {
       { label: "Google — crawling e indexing", url: googleCrawling, note: "Base oficial para rastreamento, indexação, redirects, canonicals e sitemaps." },
     ],
     relatedServices: [["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO", "/consultoria-seo"], ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"]],
+  },
 
 };
 
