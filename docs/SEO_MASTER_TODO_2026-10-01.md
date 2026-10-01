@@ -162,10 +162,11 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: distinct intent, scope, deliverable and CTA.
 
 ### P1 — CTR and snippet recovery
-- [ ] **P1.7 Review high-position / zero-click pages before content rewrites**
+- [~] **P1.7 Review high-position / zero-click pages before content rewrites**
   - Priority set from GSC table above.
   - Action per URL: query alignment, title, description, SERP promise, snippet eligibility, internal CTA.
-  - Criterion: all changes have pre-change baseline captured.
+  - Branch actions so far: preserved strong pages whose metadata already matches intent; improved only two snippets with direct GSC support — `/blog/site-indexado-sem-impressoes` and `/blog/quanto-custa-consultoria-seo-geo-ia`. Content lint passed after both changes.
+  - Criterion: all changes have pre-change baseline captured; remaining high-position pages will be changed only when query evidence justifies it.
 - [~] **P1.8 Brand query improvement**
   - Current `auditseo`: 10 impressions, avg. position 15.6, 0 clicks.
   - Previous comparable: 3 impressions, avg. position 24, 2 clicks.
