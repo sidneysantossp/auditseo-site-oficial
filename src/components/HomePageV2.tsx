@@ -191,7 +191,11 @@ export default function HomePageV2() {
         <div className="mx-auto max-w-[1320px]">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <SectionTitle eyebrow="SOLUÇÕES POR CENÁRIO" title="Não existe um pacote AUDITSEO. Existe um problema que precisa ser corretamente classificado." text="Cada solução corresponde a um estágio, risco ou tipo de gargalo diferente. O diagnóstico define a frente; o nome da frente não define o diagnóstico." />
-            <a href="/solucoes" className="inline-flex shrink-0 items-center gap-2 font-bold text-[#b28453] hover:text-[#e0d3c3]">Ver todas as soluções <ArrowRight size={15} /></a>
+            <div className="flex shrink-0 flex-wrap items-center gap-x-5 gap-y-3">
+              <a href="/consultoria-seo" className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] hover:text-[#b28453]">Consultoria SEO <ArrowRight size={14} /></a>
+              <a href="/auditoria-seo" className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] hover:text-[#b28453]">Auditoria SEO <ArrowRight size={14} /></a>
+              <a href="/solucoes" className="inline-flex items-center gap-2 text-sm font-bold text-[#b28453] hover:text-[#e0d3c3]">Ver todas as soluções <ArrowRight size={15} /></a>
+            </div>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {scenarios.map(([label, title, text, href]) => (
