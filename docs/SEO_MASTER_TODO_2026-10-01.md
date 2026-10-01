@@ -105,15 +105,17 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
 - [~] **P0.2 Reconcile the public case-study baseline**
   - Files: `src/components/AuditseoCaseStudyPage.tsx`
   - Problem: case says `https://auditseo.com.br/` and 0/0 baseline; current verified property is www and now contains data.
+  - Provenance check: the baseline text entered the repository in commit `c225e282a9e8625040377a7162af951a14a6ecdc` on 2026-09-08. The repository contains the published values/property wording, but no raw GSC export supporting that exact 2026-08-09 → 2026-09-05 extraction.
   - Action: confirm original extraction source and either correct the property/methodology note or preserve the original observation with an explicit methodological correction.
   - Criterion: case names property, filters, period and extraction date reproducibly.
 - [!] **P0.3 Verify domain property / alternate URL-prefix properties**
   - Desired: `sc-domain:auditseo.com.br`, `https://auditseo.com.br/`, `https://www.auditseo.com.br/`.
   - Current limitation: only the www URL-prefix is exposed by the active connector.
   - Criterion: same-period comparison or documented absence/unavailability.
-- [~] **P0.4 Build protected-page inventory before changing URLs/titles**
+- [x] **P0.4 Build protected-page inventory before changing URLs/titles**
   - Protect pages already ranking in positions 3–11 and pages with current impressions.
   - Criterion: every proposed title/H1/URL change references baseline impressions, position and intended query.
+  - Completed in this document via the protected high-position pages table, commercial query baseline and cannibalization evidence.
 - [ ] **P0.5 Capture historical URL inventory beyond the current sitemap**
   - Include legacy URLs, redirects and pages with previous organic demand.
   - Criterion: redirect/retention map approved before any URL migration.
