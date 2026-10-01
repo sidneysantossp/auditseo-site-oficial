@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Consultoria SEO, auditoria SEO, GEO e Search Intelligence para identificar gargalos de rastreamento, indexação, intenção, autoridade, citabilidade e conversão antes de priorizar a execução.",
+          "Consultoria SEO, GEO e Search Intelligence para identificar gargalos de rastreamento, indexação, intenção, autoridade, citabilidade e conversão antes de priorizar a execução.",
       },
       {
         property: "og:title",
