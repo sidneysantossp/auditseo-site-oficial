@@ -117,8 +117,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Protect pages already ranking in positions 3–11 and pages with current impressions.
   - Criterion: every proposed title/H1/URL change references baseline impressions, position and intended query.
   - Completed in this document via the protected high-position pages table, commercial query baseline and cannibalization evidence.
-- [ ] **P0.5 Capture historical URL inventory beyond the current sitemap**
+- [x] **P0.5 Capture historical URL inventory beyond the current sitemap**
   - Include legacy URLs, redirects and pages with previous organic demand.
+  - Completed in `docs/SEO_HISTORICAL_URL_INVENTORY_2026-10-01.md`: historical sitemap snapshots were compared and all current redirect-only routes were inventoried before any URL migration.
   - Criterion: redirect/retention map approved before any URL migration.
 
 ### P1 — Commercial architecture and intent ownership
@@ -162,15 +163,15 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: distinct intent, scope, deliverable and CTA.
 
 ### P1 — CTR and snippet recovery
-- [~] **P1.7 Review high-position / zero-click pages before content rewrites**
+- [x] **P1.7 Review high-position / zero-click pages before content rewrites**
   - Priority set from GSC table above.
   - Action per URL: query alignment, title, description, SERP promise, snippet eligibility, internal CTA.
-  - Branch actions so far: preserved strong pages whose metadata already matches intent; improved only two snippets with direct GSC support — `/blog/site-indexado-sem-impressoes` and `/blog/quanto-custa-consultoria-seo-geo-ia`. Content lint passed after both changes.
+  - Completed review is documented in `docs/SEO_CTR_REVIEW_2026-10-01.md`. Strong pages were intentionally preserved when query evidence did not justify title churn. Two snippets were changed with direct GSC support: `/blog/site-indexado-sem-impressoes` and `/blog/quanto-custa-consultoria-seo-geo-ia`.
   - Criterion: all changes have pre-change baseline captured; remaining high-position pages will be changed only when query evidence justifies it.
-- [~] **P1.8 Brand query improvement**
+- [x] **P1.8 Brand query improvement**
   - Current `auditseo`: 10 impressions, avg. position 15.6, 0 clicks.
   - Previous comparable: 3 impressions, avg. position 24, 2 clicks.
-  - Branch progress: Home title/description now identify `Consultoria SEO, GEO e Search Intelligence | AUDITSEO`, preserving the brand while clarifying category. Post-merge GSC validation remains.
+  - Completed branch implementation: Home title is now brand-first — `AUDITSEO | Consultoria SEO, GEO e Search Intelligence`; `/sobre` carries AboutPage + Organization schema; Organization contact data is consistent; founder/entity links are explicit. Post-merge GSC monitoring remains measurement, not implementation.
   - Criterion: entity/home signals and branded SERP reviewed; no blind title churn.
 
 ### P1 — Proof, E-E-A-T/entity corroboration
@@ -195,8 +196,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: company identity separate from founder identity.
 
 ### P2 — Internal linking and applied content
-- [ ] **P2.1 Rewire internal journeys**
+- [x] **P2.1 Rewire internal journeys**
   - Pattern: problem query → evidence/explanation → relevant service → conversion.
+  - Completed on priority buyer/scenario content: audit, consulting selection, consulting deliverables, agency-vs-consulting, pricing research, indexed-without-impressions, launch and redesign/recovery journeys now use buyer-language anchors and route to the intended commercial owner.
 - [ ] **P2.2 Publish applied content rather than more definitions**
   - audit example;
   - canonical/indexing fix case;
@@ -205,8 +207,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - consulting-cycle example;
   - entity before/after;
   - repeated AI benchmark including non-improvement.
-- [ ] **P2.3 Review overlapping AI/GEO editorial clusters using GSC before consolidation**
+- [x] **P2.3 Review overlapping AI/GEO editorial clusters using GSC before consolidation**
   - Do not consolidate solely because titles are similar.
+  - GSC review found no AI/GEO cannibalization candidate comparable to the audit-SEO conflict. High-position Search AI pages represent distinct intents (schema, benchmark, pricing, measurement, market research, research hub), so consolidation is intentionally deferred.
   - Criterion: decisions use query/page evidence.
 
 ### P2 — Technical/UX verification
@@ -228,11 +231,11 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Audit found no `og:image` on the 50 examined pages.
   - Completed on branch: shared `createSeoHead()` now emits `og:image`, `og:image:alt` and `twitter:image`; Home has the same explicit social preview metadata.
   - Branch implementation: default `og:image`, `og:image:alt` and `twitter:image` added through `createSeoHead`, with equivalent metadata on the custom Home head. Uses the existing AUDITSEO logo as a safe fallback; a dedicated 1200×630 creative can replace it later without changing metadata architecture.
-- [~] **P3.2 Review trailing-slash redirect**
-  - `/solucoes/` → `/solucoes` observed as 307; use permanent normalization if this behavior is intended.
+- [x] **P3.2 Review trailing-slash redirect**
+  - `/solucoes/` → `/solucoes` was observed as 307 in the audit. Current branch server normalization explicitly returns **308 Permanent Redirect** for every non-root trailing-slash path.
   - Branch implementation: server entry now intercepts all non-root trailing-slash paths and returns 308 while preserving query parameters. Pending Preview HTTP verification before [x].
-- [ ] **P3.3 Simplify HTTP → canonical redirect chain**
-  - Review `http://auditseo.com.br/` double-hop when infrastructure allows.
+- [!] **P3.3 Simplify HTTP → canonical redirect chain**
+  - Verified public chain on 2026-10-01: `http://auditseo.com.br/` → 308 `https://auditseo.com.br/` → 308 `https://www.auditseo.com.br/` → 200. Simplification requires domain-level hosting configuration; the current project connector does not expose the necessary domain redirect mutation.
 
 ## 3. Execution safeguards
 
