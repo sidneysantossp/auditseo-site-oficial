@@ -143,7 +143,7 @@ export const buyerArticles: Record<string, Article> = {
       { label: "OpenAI — Como pesquisar na web com o ChatGPT", url: openAiSearch, note: "Documentação atual sobre OAI-SearchBot, múltiplos fatores de ranking e ausência de garantia de posicionamento." },
       { label: "OpenAI — Editores e desenvolvedores — FAQ", url: openAiPublishers, note: "Diretrizes atuais sobre descoberta de sites, OAI-SearchBot, citações e referrals de ChatGPT Search." },
     ],
-    relatedServices: [["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"], ["Search Foundation", "/solucoes/projetos-comecando-do-zero"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Auditoria SEO", "/auditoria-seo"], ["Generative Search Readiness", "/solucoes/geo-ia-readiness"]],
   },
 
   "agencia-seo-consultoria-ou-time-interno": {
