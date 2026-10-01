@@ -17,6 +17,23 @@ Turn proprietary research into third-party discovery signals that can be measure
 
 The objective is **not** to ask the web for backlinks. The objective is to publish evidence useful enough that journalists, specialists, companies and communities have a legitimate reason to reference AUDITSEO.
 
+## Operational checkpoint — 2026-10-01
+
+Wave 0 publication QA has been re-checked before outbound distribution:
+
+- Research Hub resolves publicly and exposes both benchmarks, Case Study #001 and the Search AI Observatory protocol;
+- Benchmark #001 canonical article resolves publicly;
+- Benchmark #002 canonical article resolves publicly;
+- both frozen CSV files remain versioned under `public/dados/` and are linked from the Research Hub;
+- factual provider-notification templates already exist;
+- founder-led Wave 1 copy and UTM destinations are prepared in `docs/research/founder-led-distribution-wave1-2026-10-01.md`;
+- external entity correction work is tracked separately from earned-media outreach, so factual corrections are never mixed with backlink or coverage requests.
+
+Remaining execution dependencies:
+- send provider notifications/corrections through authenticated communication channels;
+- publish founder-led posts from the controlled LinkedIn account;
+- record responses, earned mentions, referral traffic and qualified conversations.
+
 ## Assets available now
 
 ### Research Hub
