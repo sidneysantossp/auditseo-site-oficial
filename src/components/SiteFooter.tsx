@@ -53,9 +53,9 @@ type NewsletterStatus = "idle" | "submitting" | "success" | "error";
 function FooterColumn({ title, links }: { title: string; links: string[][] }) {
   return (
     <div>
-      <h5 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
+      <h3 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
         {title}
-      </h5>
+      </h3>
       <ul className="space-y-2.5 text-xs leading-relaxed">
         {links.map(([label, href]) => (
           <li key={`${title}-${label}-${href}`}>
@@ -128,9 +128,9 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
         <div className="container mx-auto max-w-[1320px] px-6 xl:px-12">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             <div className="min-w-0 max-w-2xl">
-              <h4 className="mb-2 max-w-[760px] font-display text-lg font-bold leading-snug sm:text-xl">
+              <h2 className="mb-2 max-w-[760px] font-display text-lg font-bold leading-snug sm:text-xl">
                 Receba análises sobre Search Intelligence, SEO e a nova busca
-              </h4>
+              </h2>
               <p className="max-w-[760px] text-xs font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-sm">
                 Novos artigos, estudos e aprendizados da AUDITSEO diretamente no seu e-mail
               </p>
@@ -194,6 +194,8 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
               <img
                 src="/auditseo-logo.png"
                 alt="AUDITSEO - Search Intelligence"
+                width={1500}
+                height={400}
                 className="h-auto w-[240px] max-w-full object-contain"
               />
             </a>
@@ -208,9 +210,9 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
           <FooterColumn title="CONTEÚDOS" links={contentLinks} />
 
           <div>
-            <h5 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
+            <h3 className="mb-4 border-b border-[#b28453]/15 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">
               FALE CONOSCO
-            </h5>
+            </h3>
             <span className="mb-3 block font-mono text-[10px] text-[#f8f8f8]/60">Inicie um projeto</span>
             <ul className="space-y-2.5 text-xs">
               <li>
