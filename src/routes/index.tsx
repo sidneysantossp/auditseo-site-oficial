@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Consultoria SEO, GEO e Search Intelligence para identificar gargalos de rastreamento, indexação, intenção, autoridade, citabilidade e conversão antes de priorizar a execução.",
+          "Consultoria SEO, GEO e Search Intelligence em São Paulo, com atendimento a empresas em todo o Brasil, para identificar gargalos antes de priorizar a execução.",
       },
       {
         property: "og:title",
@@ -66,12 +66,28 @@ export const Route = createFileRoute("/")({
                 availableLanguage: "pt-BR",
                 areaServed: "BR",
               },
-              areaServed: {
-                "@type": "Country",
-                name: "Brasil",
+              location: {
+                "@type": "Place",
+                name: "São Paulo, SP, Brasil",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "São Paulo",
+                  addressRegion: "SP",
+                  addressCountry: "BR",
+                },
               },
+              areaServed: [
+                {
+                  "@type": "City",
+                  name: "São Paulo",
+                },
+                {
+                  "@type": "Country",
+                  name: "Brasil",
+                },
+              ],
               description:
-                "Consultoria brasileira de Search Intelligence que diagnostica onde a presença de busca de uma empresa perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida e transforma os achados em um roadmap coordenado de implementação e mensuração.",
+                "Consultoria de Search Intelligence com atuação a partir de São Paulo e atendimento a empresas em todo o Brasil, orientada a diagnosticar onde a presença de busca perde capacidade de ser descoberta, compreendida, validada, citada ou escolhida.",
               knowsAbout: [
                 "Search Intelligence",
                 "SEO técnico",
