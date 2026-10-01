@@ -148,7 +148,7 @@ export const buyerOpsArticles: Record<string, Article> = {
     slug: "auditoria-seo-aplicada-auditseo",
     title: "Auditoria SEO aplicada: o que encontramos na própria AUDITSEO antes de corrigir",
     metaTitle: "Auditoria SEO Aplicada: Case AUDITSEO com GSC | AUDITSEO",
-    description: "Veja uma auditoria SEO aplicada na própria AUDITSEO: baseline no Search Console, canibalização, arquitetura comercial, CTR, entidade, redirects, acessibilidade e critérios de validação.",
+    description: "Auditoria SEO aplicada na AUDITSEO: baseline no Search Console, canibalização, arquitetura comercial, CTR, entidade e critérios de validação.",
     eyebrow: "ESTUDO APLICADO · 01/10/2026",
     publishedAt: "2026-10-01",
     updatedAt: "2026-10-01",
