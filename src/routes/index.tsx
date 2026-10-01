@@ -59,6 +59,13 @@ export const Route = createFileRoute("/")({
                 contentUrl: "https://www.auditseo.com.br/auditseo-logo.png",
               },
               email: "contato@auditseo.com.br",
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "sales",
+                telephone: "+55 11 99638-4376",
+                availableLanguage: "pt-BR",
+                areaServed: "BR",
+              },
               areaServed: {
                 "@type": "Country",
                 name: "Brasil",
