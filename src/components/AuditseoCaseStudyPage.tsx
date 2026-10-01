@@ -24,6 +24,13 @@ const baseline = [
   ["Não medido", "leads atribuídos à busca", "Atribuição será registrada somente quando existir evidência"],
 ];
 
+const currentSearchCheckpoint = [
+  ["199", "impressões", "01/09/2026 → 28/09/2026"],
+  ["2", "cliques", "Mesma propriedade e período"],
+  ["1,01%", "CTR", "2 cliques em 199 impressões"],
+  ["24,58", "posição média", "Período finalizado no GSC"],
+];
+
 const hypotheses = [
   ["H1", "Categoria e entidade", "Se a AUDITSEO comunicar de forma consistente Search Intelligence, serviços, autoria e provas, sistemas e pessoas terão menos ambiguidade sobre quem somos e quando somos relevantes."],
   ["H2", "Demanda comercial", "Se páginas comerciais e documentos responderem às perguntas que antecedem a contratação, a marca deverá começar a aparecer para consultas e jornadas mais próximas de decisão."],
@@ -97,6 +104,31 @@ export default function AuditseoCaseStudyPage() {
             </div>
             <div className="mt-10 rounded-[20px] border border-[#11100f]/10 bg-[#11100f] p-6 text-[#f8f8f8]">
               <p className="text-sm leading-[1.75] text-[#f8f8f8]/72"><strong className="text-[#e0d3c3]">Fonte do baseline histórico:</strong> registro publicado em 08/09/2026 como extraído do Google Search Console da AUDITSEO para o período finalizado de 09/08/2026 a 05/09/2026: 0 impressões, 0 cliques e nenhuma top query/top page retornada na consulta. <strong className="text-[#e0d3c3]">Revisão metodológica em andamento:</strong> a propriedade atualmente conectada e verificada neste trabalho é `https://www.auditseo.com.br/`. O repositório não preserva o export bruto daquela extração histórica; por isso o valor original é mantido como registro, sem tratá-lo como comparável ao desempenho atual até a propriedade e os filtros originais serem reproduzidos.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#11100f] px-6 py-20 md:py-28 xl:px-12">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">CHECKPOINT GSC · 01 OUT 2026</span>
+                <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] md:text-5xl">O estudo agora possui um checkpoint reproduzível na propriedade verificada.</h2>
+                <p className="mt-6 text-base leading-[1.78] text-[#f8f8f8]/68">A propriedade atualmente conectada é <code className="text-[#e0d3c3]">https://www.auditseo.com.br/</code>. Para o período finalizado de 01/09/2026 a 28/09/2026, registramos o desempenho abaixo antes de publicar esta nova rodada de remediação SEO.</p>
+                <p className="mt-5 text-sm leading-[1.75] text-[#f8f8f8]/54">Comparação homogênea no mesmo GSC: 04/08/2026 → 31/08/2026 registrou 2 cliques, 264 impressões, CTR de 0,76% e posição média 57,00. A posição média melhorou, enquanto impressões caíram e cliques permaneceram estáveis. Isso descreve o período; não prova causalidade de uma intervenção específica.</p>
+              </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                {currentSearchCheckpoint.map(([value, label, note]) => (
+                  <article key={label} className="rounded-[22px] border border-[#b28453]/20 bg-[#171614] p-7">
+                    <p className="font-display text-4xl font-bold tracking-[-0.04em] text-[#e0d3c3]">{value}</p>
+                    <h3 className="mt-3 text-sm font-bold uppercase tracking-[0.05em]">{label}</h3>
+                    <p className="mt-3 text-xs leading-[1.65] text-[#f8f8f8]/52">{note}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div className="mt-10 rounded-[20px] border border-[#b28453]/22 bg-[#171614] p-6">
+              <p className="text-sm leading-[1.75] text-[#f8f8f8]/68"><strong className="text-[#e0d3c3]">Sinal comercial observado:</strong> o Search Console já retorna consultas como “auditoria de seo”, “auditoria seo”, “contratar auditoria seo”, “serviço de auditoria de seo”, “agencia seo ai” e “migração de seo”. A nova arquitetura comercial foi preparada para dar a essas intenções destinos mais claros. A validação de efeito só começa depois do release, rastreamento e nova janela finalizada no GSC.</p>
             </div>
           </div>
         </section>
