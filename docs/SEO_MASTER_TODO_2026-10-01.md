@@ -216,9 +216,10 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Remaining before [x]: validate an actual successful delivery in Preview/production and confirm analytics event coverage.
 - [ ] **P2.6 Validate mobile and Core Web Vitals**
   - Audit did not cover CWV/hydration/form delivery.
-- [ ] **P2.7 Validate crawler access at infrastructure/log level**
+- [!] **P2.7 Validate crawler access at infrastructure/log level**
   - OAI-SearchBot and PerplexityBot separately from training bots.
   - User-agent spoofing alone is not sufficient evidence.
+  - Attempted Vercel production runtime-log queries for `OAI-SearchBot` and `PerplexityBot` on 2026-10-01; the logs API returned 403 “project does not exist or you do not have access”. Treat this as an observability-permission block, not evidence that the crawlers did not visit.
 
 ### P3 — Metadata and normalization
 - [~] **P3.1 Add OG images**
