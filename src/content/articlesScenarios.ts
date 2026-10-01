@@ -12,8 +12,8 @@ export const scenarioArticles: Record<string, Article> = {
   "site-indexado-sem-impressoes": {
     slug: "site-indexado-sem-impressoes",
     title: "Site indexado no Google, mas sem impressões: como diagnosticar antes de publicar mais conteúdo",
-    metaTitle: "Site Indexado mas sem Impressões: Como Diagnosticar | AUDITSEO",
-    description: "Playbook para sites indexados que quase não recebem impressões: relevância, intenção, qualidade, arquitetura, consultas, concorrência, páginas prioritárias e Search Console.",
+    metaTitle: "Site Indexado Sem Impressões? Como Diagnosticar | AUDITSEO",
+    description: "Seu site está indexado, mas não recebe impressões? Veja como diagnosticar intenção, relevância, arquitetura, concorrência e sinais no Search Console antes de publicar mais.",
     eyebrow: "ORGANIC ACTIVATION",
     publishedAt: "2026-09-07",
     updatedAt: "2026-09-07",
