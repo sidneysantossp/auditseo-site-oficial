@@ -13,6 +13,8 @@ Este arquivo é um mapa navegacional complementar para agentes e ferramentas que
 
 ## Consultoria e diagnóstico
 
+- [Consultoria SEO](https://www.auditseo.com.br/consultoria-seo): Atuação estratégica e contínua para diagnóstico, priorização, coordenação de implementação, QA e aprendizado por ciclos.
+- [Auditoria SEO](https://www.auditseo.com.br/auditoria-seo): Diagnóstico pontual de técnica, indexação, intenção, conteúdo, autoridade e performance transformado em roadmap priorizado.
 - [Consultoria de Search AI + GEO](https://www.auditseo.com.br/geo-ia): Hub comercial para empresas que precisam evoluir presença em busca e interfaces de IA.
 - [Auditoria GEO & Search AI](https://www.auditseo.com.br/solucoes/geo-ia-readiness): Diagnóstico de visibilidade, fontes, concorrentes, elegibilidade e mensuração em Search AI.
 - [Soluções de Search Intelligence](https://www.auditseo.com.br/solucoes): Conjunto de soluções por cenário de negócio.
