@@ -81,9 +81,9 @@ export default function AuditseoCaseStudyPage() {
           <div className="mx-auto max-w-[1240px]">
             <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
               <div>
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">BASELINE OFICIAL</span>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">BASELINE HISTÓRICO REGISTRADO</span>
                 <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Antes de contar a história, registramos onde ela começa.</h2>
-                <p className="mt-6 text-base leading-[1.78] text-[#2a2927]/75">O Search Console da propriedade `https://auditseo.com.br/` foi consultado usando um período já finalizado. O dado abaixo é um baseline de Search Performance — não um diagnóstico de indexação.</p>
+                <p className="mt-6 text-base leading-[1.78] text-[#2a2927]/75">Este ponto zero foi publicado em 08/09/2026 com base em uma consulta então registrada como pertencente à propriedade `https://auditseo.com.br/`. O dado abaixo representa o registro histórico publicado naquele momento — não um diagnóstico de indexação.</p>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 {baseline.map(([value, label, note]) => (
@@ -96,7 +96,7 @@ export default function AuditseoCaseStudyPage() {
               </div>
             </div>
             <div className="mt-10 rounded-[20px] border border-[#11100f]/10 bg-[#11100f] p-6 text-[#f8f8f8]">
-              <p className="text-sm leading-[1.75] text-[#f8f8f8]/72"><strong className="text-[#e0d3c3]">Fonte do baseline:</strong> Google Search Console da AUDITSEO. Período finalizado de 09/08/2026 a 05/09/2026: 0 impressões, 0 cliques e nenhuma top query/top page retornada na consulta. Período anterior comparável também retornou 0/0.</p>
+              <p className="text-sm leading-[1.75] text-[#f8f8f8]/72"><strong className="text-[#e0d3c3]">Fonte do baseline histórico:</strong> registro publicado em 08/09/2026 como extraído do Google Search Console da AUDITSEO para o período finalizado de 09/08/2026 a 05/09/2026: 0 impressões, 0 cliques e nenhuma top query/top page retornada na consulta. <strong className="text-[#e0d3c3]">Revisão metodológica em andamento:</strong> a propriedade atualmente conectada e verificada neste trabalho é `https://www.auditseo.com.br/`. O repositório não preserva o export bruto daquela extração histórica; por isso o valor original é mantido como registro, sem tratá-lo como comparável ao desempenho atual até a propriedade e os filtros originais serem reproduzidos.</p>
             </div>
           </div>
         </section>
