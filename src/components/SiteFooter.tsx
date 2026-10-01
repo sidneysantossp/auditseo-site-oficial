@@ -15,14 +15,14 @@ const navigationLinks = [
 ];
 
 const solutionLinks = [
-  ["Search Foundation", "/solucoes/projetos-comecando-do-zero"],
-  ["Organic Activation", "/solucoes/site-sem-tracao"],
-  ["Search Recovery", "/solucoes/recuperacao-organica"],
-  ["Entity Authority", "/solucoes/autoridade-de-entidade"],
-  ["Intent Content Architecture", "/solucoes/conteudo-por-intencao"],
-  ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
-  ["SEO Migration & Risk Control", "/solucoes/migracao-risco-seo"],
-  ["Organic Evolution Cycle", "/solucoes/evolucao-organica"],
+  ["Planejamento SEO para novos sites", "/solucoes/projetos-comecando-do-zero"],
+  ["Diagnóstico SEO para sites sem tráfego", "/solucoes/site-sem-tracao"],
+  ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"],
+  ["Consultoria de autoridade de entidade", "/solucoes/autoridade-de-entidade"],
+  ["Estratégia e arquitetura de conteúdo SEO", "/solucoes/conteudo-por-intencao"],
+  ["Auditoria GEO e de visibilidade em IA", "/solucoes/geo-ia-readiness"],
+  ["Consultoria SEO para migração de sites", "/solucoes/migracao-risco-seo"],
+  ["Consultoria SEO contínua", "/solucoes/evolucao-organica"],
 ];
 
 const consultingLinks = [
