@@ -111,7 +111,7 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Remaining criterion: reproduce the exact original property/filters/period before marking this item complete.
 - [!] **P0.3 Verify domain property / alternate URL-prefix properties**
   - Desired: `sc-domain:auditseo.com.br`, `https://auditseo.com.br/`, `https://www.auditseo.com.br/`.
-  - Current limitation: only the www URL-prefix is exposed by the active connector.
+  - Current limitation: only the www URL-prefix was exposed by the previously active connector. A follow-up GSC Wizard inspection/sitemap call on 2026-10-01 returned `payment_required`, so alternate-property verification and URL Inspection cannot currently be executed through that connector.
   - Criterion: same-period comparison or documented absence/unavailability.
 - [x] **P0.4 Build protected-page inventory before changing URLs/titles**
   - Protect pages already ranking in positions 3–11 and pages with current impressions.
