@@ -166,9 +166,10 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Priority set from GSC table above.
   - Action per URL: query alignment, title, description, SERP promise, snippet eligibility, internal CTA.
   - Criterion: all changes have pre-change baseline captured.
-- [ ] **P1.8 Brand query improvement**
+- [~] **P1.8 Brand query improvement**
   - Current `auditseo`: 10 impressions, avg. position 15.6, 0 clicks.
   - Previous comparable: 3 impressions, avg. position 24, 2 clicks.
+  - Branch progress: Home title/description now identify `Consultoria SEO, GEO e Search Intelligence | AUDITSEO`, preserving the brand while clarifying category. Post-merge GSC validation remains.
   - Criterion: entity/home signals and branded SERP reviewed; no blind title churn.
 
 ### P1 — Proof, E-E-A-T/entity corroboration
@@ -208,7 +209,7 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: decisions use query/page evidence.
 
 ### P2 — Technical/UX verification
-- [~] **P2.4 Fix or validate S.I.G.N.A.L. duplicate crawl/render output**
+- [x] **P2.4 Fix or validate S.I.G.N.A.L. duplicate crawl/render output**
   - Confirmed in `SignalMethod.tsx`: each step had a desktop/tablet card plus a separate `md:hidden` fallback containing the same text. Branch refactor now renders one semantic card per step and uses layout classes only for positioning. Pending preview/SSR verification before [x].
 - [~] **P2.5 Validate forms and conversion instrumentation**
   - Contact, diagnostic, WhatsApp CTA, success/failure states, analytics events.
@@ -222,9 +223,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Attempted Vercel production runtime-log queries for `OAI-SearchBot` and `PerplexityBot` on 2026-10-01; the logs API returned 403 “project does not exist or you do not have access”. Treat this as an observability-permission block, not evidence that the crawlers did not visit.
 
 ### P3 — Metadata and normalization
-- [~] **P3.1 Add OG images**
+- [x] **P3.1 Add OG images**
   - Audit found no `og:image` on the 50 examined pages.
-  - Include Twitter image metadata where appropriate.
+  - Completed on branch: shared `createSeoHead()` now emits `og:image`, `og:image:alt` and `twitter:image`; Home has the same explicit social preview metadata.
   - Branch implementation: default `og:image`, `og:image:alt` and `twitter:image` added through `createSeoHead`, with equivalent metadata on the custom Home head. Uses the existing AUDITSEO logo as a safe fallback; a dedicated 1200×630 creative can replace it later without changing metadata architecture.
 - [~] **P3.2 Review trailing-slash redirect**
   - `/solucoes/` → `/solucoes` observed as 307; use permanent normalization if this behavior is intended.
