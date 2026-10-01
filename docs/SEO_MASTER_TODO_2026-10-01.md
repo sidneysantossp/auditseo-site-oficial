@@ -122,24 +122,24 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: redirect/retention map approved before any URL migration.
 
 ### P1 — Commercial architecture and intent ownership
-- [~] **P1.1 Create `/auditoria-seo`**
+- [x] **P1.1 Create `/auditoria-seo`**
   - Role: transactional landing page for audit intent.
   - Primary cluster: auditoria seo, auditoria de seo, serviço de auditoria de seo, contratar auditoria seo, audit seo.
   - Must differentiate from editorial article `/blog/auditoria-seo-o-que-deve-conter`.
-  - Branch implementation: dedicated service page, Service schema/canonical, sitemap/llms entry, footer link, Home link and editorial related-service links added. Pending preview/production validation before [x].
+  - Branch implementation: dedicated service page, Service schema/canonical, sitemap/llms entry, footer link, Home link and editorial related-service links added. Local SSR validated with HTTP 200, intended title/H1, and full production build passed.
   - Criterion: one clear transactional owner for audit queries; article links to it contextually.
-- [~] **P1.2 Create `/consultoria-seo`**
+- [x] **P1.2 Create `/consultoria-seo`**
   - Role: explain consulting model, responsibilities, cadence, coordination, measurement and outcomes.
   - Must differentiate from `/blog/como-escolher-consultoria-seo` and continuous solution page.
-  - Branch implementation: dedicated service page, Service schema/canonical, sitemap/llms entry, footer link, Home link and buyer-guide related-service links added. Pending preview/production validation before [x].
+  - Branch implementation: dedicated service page, Service schema/canonical, sitemap/llms entry, footer link, Home link and buyer-guide related-service links added. Local SSR validated with HTTP 200, intended title/H1, and full production build passed.
   - Criterion: one clear commercial owner for generic consultoria SEO intent.
-- [~] **P1.3 Recalibrate Home category clarity**
+- [x] **P1.3 Recalibrate Home category clarity**
   - Preserve Search Intelligence/S.I.G.N.A.L. as methodology.
   - Make SEO/GEO/Search Intelligence service category understandable above or immediately after the fold.
   - Do not discard the current visual identity or rebuild framework.
   - Branch implementation: Home eyebrow and metadata now identify Consultoria SEO, GEO and Search Intelligence; direct links to Consultoria SEO and Auditoria SEO were added in the solutions section without changing the approved Hero H1/CTA geometry.
   - Criterion: user can identify what AUDITSEO sells, for whom and next action without decoding proprietary names.
-- [~] **P1.4 Rename presentation of the eight solutions (presentation layer first)**
+- [x] **P1.4 Rename presentation of the eight solutions (presentation layer first)**
   - Search Foundation → Planejamento SEO para novos sites
   - Organic Activation → Diagnóstico SEO para sites sem tráfego
   - Search Recovery → Recuperação de tráfego orgânico
@@ -187,9 +187,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Add verifiable trajectory, work history, publications/cases and references.
   - Branch progress: the public LinkedIn profile matching Sidney Santos + AUDITSEO was verified externally and added to the Person schema `sameAs` plus the founder page. Broader trajectory/case corroboration remains pending.
   - Criterion: claims have supporting evidence where reasonably possible.
-- [~] **P1.12 Create/strengthen a company About destination**
+- [x] **P1.12 Create/strengthen a company About destination**
   - Current audit observed “Sobre” routing toward author rather than a standalone company presentation.
-  - Branch implementation: new `/sobre` company page created; Header “Sobre” now points to the organization page, while the founder remains linked separately. Sitemap and llms.txt were updated. Pending preview/production validation before [x].
+  - Branch implementation: new `/sobre` company page created; Header “Sobre” now points to the organization page, while the founder remains linked separately. Sitemap and llms.txt were updated. Full production build passed.
   - Criterion: company identity separate from founder identity.
 
 ### P2 — Internal linking and applied content
