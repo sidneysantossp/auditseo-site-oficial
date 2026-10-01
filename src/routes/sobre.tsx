@@ -10,7 +10,7 @@ export const Route = createFileRoute("/sobre")({
       path: "/sobre",
       title: "Sobre a AUDITSEO | Consultoria SEO e Search Intelligence",
       description:
-        "Conheça a AUDITSEO, consultoria brasileira de SEO, GEO e Search Intelligence: método, serviços, pesquisa pública, autoria e princípios de evidência.",
+        "Conheça a AUDITSEO, consultoria de SEO, GEO e Search Intelligence em São Paulo, com atendimento nacional, pesquisa pública, autoria e método orientado por evidência.",
     }),
     scripts: [
       {
@@ -43,6 +43,26 @@ export const Route = createFileRoute("/sobre")({
                 availableLanguage: "pt-BR",
                 areaServed: "BR",
               },
+              location: {
+                "@type": "Place",
+                name: "São Paulo, SP, Brasil",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "São Paulo",
+                  addressRegion: "SP",
+                  addressCountry: "BR",
+                },
+              },
+              areaServed: [
+                {
+                  "@type": "City",
+                  name: "São Paulo",
+                },
+                {
+                  "@type": "Country",
+                  name: "Brasil",
+                },
+              ],
               founder: { "@id": "https://www.auditseo.com.br/autor/sidney-santos#person" },
               knowsAbout: [
                 "Search Intelligence",
