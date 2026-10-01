@@ -25,11 +25,11 @@ const solutionLinks = [
 ];
 
 const consultingLinks = [
-  ["Como atuamos", "/"],
+  ["Consultoria SEO", "/consultoria-seo"],
+  ["Auditoria SEO", "/auditoria-seo"],
   ["Método S.I.G.N.A.L", "/metodo-signal"],
   ["Search Intelligence", "/blog/o-que-e-search-intelligence"],
   ["Autoridade de entidade", "/solucoes/autoridade-de-entidade"],
-  ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
   ["Avaliação estratégica", "/diagnostico"],
 ];
 
