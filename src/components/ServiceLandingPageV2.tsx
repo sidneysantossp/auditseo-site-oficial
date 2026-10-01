@@ -54,7 +54,13 @@ export default function ServiceLandingPageV2({ data }: { data: ServicePageData }
           <a href="/solucoes" className="inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453] hover:text-[#e0d3c3]">← Todas as soluções</a>
           <div className="mt-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
             <div>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#a69580]">{data.eyebrow}</span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#b28453]">{data.name}</span>
+                {data.code.toLocaleLowerCase("pt-BR") !== data.name.toLocaleLowerCase("pt-BR") ? (
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#a69580]">{data.code}</span>
+                ) : null}
+              </div>
+              <p className="mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#f8f8f8]/45">{data.eyebrow}</p>
               <h1 className="mt-6 max-w-5xl font-display text-[clamp(46px,5.5vw,78px)] font-bold leading-[1.01] tracking-[-0.05em]">{data.title}</h1>
               <p className="mt-8 max-w-3xl text-lg leading-[1.7] text-[#e0d3c3] md:text-xl">{data.lead}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
