@@ -122,21 +122,24 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Criterion: redirect/retention map approved before any URL migration.
 
 ### P1 — Commercial architecture and intent ownership
-- [ ] **P1.1 Create `/auditoria-seo`**
+- [~] **P1.1 Create `/auditoria-seo`**
   - Role: transactional landing page for audit intent.
   - Primary cluster: auditoria seo, auditoria de seo, serviço de auditoria de seo, contratar auditoria seo, audit seo.
   - Must differentiate from editorial article `/blog/auditoria-seo-o-que-deve-conter`.
+  - Branch implementation: dedicated service page, Service schema/canonical, sitemap/llms entry, footer link, Home link and editorial related-service links added. Pending preview/production validation before [x].
   - Criterion: one clear transactional owner for audit queries; article links to it contextually.
-- [ ] **P1.2 Create `/consultoria-seo`**
+- [~] **P1.2 Create `/consultoria-seo`**
   - Role: explain consulting model, responsibilities, cadence, coordination, measurement and outcomes.
   - Must differentiate from `/blog/como-escolher-consultoria-seo` and continuous solution page.
+  - Branch implementation: dedicated service page, Service schema/canonical, sitemap/llms entry, footer link, Home link and buyer-guide related-service links added. Pending preview/production validation before [x].
   - Criterion: one clear commercial owner for generic consultoria SEO intent.
-- [ ] **P1.3 Recalibrate Home category clarity**
+- [~] **P1.3 Recalibrate Home category clarity**
   - Preserve Search Intelligence/S.I.G.N.A.L. as methodology.
   - Make SEO/GEO/Search Intelligence service category understandable above or immediately after the fold.
   - Do not discard the current visual identity or rebuild framework.
+  - Branch implementation: Home eyebrow and metadata now identify Consultoria SEO, GEO and Search Intelligence; direct links to Consultoria SEO and Auditoria SEO were added in the solutions section without changing the approved Hero H1/CTA geometry.
   - Criterion: user can identify what AUDITSEO sells, for whom and next action without decoding proprietary names.
-- [ ] **P1.4 Rename presentation of the eight solutions (presentation layer first)**
+- [~] **P1.4 Rename presentation of the eight solutions (presentation layer first)**
   - Search Foundation → Planejamento SEO para novos sites
   - Organic Activation → Diagnóstico SEO para sites sem tráfego
   - Search Recovery → Recuperação de tráfego orgânico
@@ -146,13 +149,16 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - SEO Migration & Risk Control → Consultoria SEO para migração de sites
   - Organic Evolution Cycle → Consultoria SEO contínua
   - Preserve proprietary names as method/product signatures.
+  - Branch implementation: buyer-language names are now primary in Home cards and service-page headers; proprietary product names remain as secondary labels/codes and existing URLs are preserved.
   - Criterion: cards/H1/opening copy use buyer-language first.
-- [ ] **P1.5 Resolve audit-intent cannibalization**
+- [~] **P1.5 Resolve audit-intent cannibalization**
   - Home and audit article should support `/auditoria-seo`, not compete with it.
+  - Branch implementation: Home no longer targets “auditoria SEO” in its meta description, links directly to `/auditoria-seo`, and the audit editorial article links to the new commercial owner rather than acting as the sole destination.
   - Criterion: internal anchor structure + metadata + content roles are unambiguous.
-- [ ] **P1.6 Clarify `/geo-ia` vs `/solucoes/geo-ia-readiness`**
+- [x] **P1.6 Clarify `/geo-ia` vs `/solucoes/geo-ia-readiness`**
   - One = broader/continuous GEO/Search AI consulting.
   - One = bounded diagnostic/audit product.
+  - Completed on branch: `/geo-ia` remains the broader ongoing Consultoria GEO/Search AI destination; `/solucoes/geo-ia-readiness` remains the bounded audit/diagnostic product. Cross-linking now explicitly points from the audit to the continuous consulting destination.
   - Criterion: distinct intent, scope, deliverable and CTA.
 
 ### P1 — CTR and snippet recovery
