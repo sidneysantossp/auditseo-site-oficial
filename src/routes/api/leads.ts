@@ -105,7 +105,7 @@ function whatsappFallback(payload: LeadPayload) {
     .filter(Boolean)
     .join("\n");
 
-  return `https://wa.me/5511995250742?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/5511996384376?text=${encodeURIComponent(message)}`;
 }
 
 async function deliverWebhook(payload: LeadPayload) {
