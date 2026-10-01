@@ -63,7 +63,7 @@ export const buyerOpsArticles: Record<string, Article> = {
       { label: "Google Search Central — Você precisa de SEO?", url: googleHireSeo, note: "O Google recomenda avaliar transparência, lógica das mudanças, referências, interesse pelo negócio e estimativas realistas." },
       { label: "Google — serviços e conselhos de terceiros", url: googleThirdParty, note: "Orientação para validar recomendações de terceiros contra documentação oficial e desconfiar de claims sem base." },
     ],
-    relatedServices: [["Search Foundation", "/solucoes/projetos-comecando-do-zero"], ["Organic Activation", "/solucoes/site-sem-tracao"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO contínua", "/solucoes/evolucao-organica"]],
   },
 
   "auditoria-seo-o-que-deve-conter": {
@@ -141,7 +141,7 @@ export const buyerOpsArticles: Record<string, Article> = {
       { label: "Google — conteúdo útil", url: googleHelpful, note: "Referência para qualidade, autoria, utilidade e valor editorial." },
       { label: "Google — orientações sobre terceiros", url: googleThirdParty, note: "Alerta sobre extrapolações de ferramentas e conselhos de SEO de terceiros." },
     ],
-    relatedServices: [["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO", "/consultoria-seo"], ["Search Recovery", "/solucoes/recuperacao-organica"]],
+    relatedServices: [["Auditoria SEO", "/auditoria-seo"], ["Consultoria SEO", "/consultoria-seo"], ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"]],
   },
 };
 
