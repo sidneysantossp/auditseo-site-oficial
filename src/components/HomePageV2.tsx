@@ -115,7 +115,7 @@ function navigate(id: string) {
 function SectionTitle({ eyebrow, title, text, dark = true, center = false }: { eyebrow: string; title: string; text?: string; dark?: boolean; center?: boolean }) {
   return (
     <div className={`${center ? "mx-auto items-center text-center" : "items-start text-left"} flex max-w-4xl flex-col`}>
-      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.17em] text-[#b28453]">{eyebrow}</span>
+      <span className={`font-mono text-[11px] font-bold uppercase tracking-[0.17em] ${dark ? "text-[#b28453]" : "text-[#7a522f]"}`}>{eyebrow}</span>
       <h2 className={`mt-5 font-display text-[36px] font-bold leading-[1.06] tracking-[-0.035em] md:text-[54px] ${dark ? "text-[#f8f8f8]" : "text-[#11100f]"}`}>{title}</h2>
       {text ? <p className={`mt-7 max-w-3xl text-base leading-[1.75] md:text-lg ${dark ? "text-[#f8f8f8]/70" : "text-[#11100f]/70"}`}>{text}</p> : null}
     </div>
@@ -198,7 +198,7 @@ export default function HomePageV2() {
               <span className="md:block md:whitespace-nowrap">o diagnóstico mostra que são parte da causa ou da solução.</span>
             </p>
             <div className="mt-16 flex flex-col gap-4 md:mt-20 sm:flex-row">
-              <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#b28453] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
+              <button onClick={() => navigate("diagnostico")} className="rounded-full bg-[#8c613c] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#e0d3c3] hover:text-[#11100f]">Diagnosticar minha empresa</button>
               <a href="https://wa.me/5511996384376" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b28453]/45 px-8 py-4 text-base font-semibold transition-all hover:bg-[#b28453]/10">AGENDAR UMA REUNIÃO <ArrowRight size={15} /></a>
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[10px] uppercase tracking-[0.08em] text-[#8c8275]">
