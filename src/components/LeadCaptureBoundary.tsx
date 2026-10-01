@@ -128,6 +128,20 @@ function buildPayload(form: HTMLFormElement): LeadPayload | null {
   return null;
 }
 
+function trackLeadEvent(event: string, payload: LeadPayload, extra: Record<string, unknown> = {}) {
+  const detail = {
+    event,
+    lead_kind: payload.kind,
+    source_path: payload.sourcePath || window.location.pathname,
+    ...extra,
+  };
+
+  const trackedWindow = window as typeof window & { dataLayer?: Array<Record<string, unknown>> };
+  trackedWindow.dataLayer = trackedWindow.dataLayer || [];
+  trackedWindow.dataLayer.push(detail);
+  window.dispatchEvent(new CustomEvent("auditseo:lead", { detail }));
+}
+
 function localWhatsappFallback(payload: LeadPayload) {
   const message = [
     "Olá, AUDITSEO. Tentei enviar uma solicitação pelo site e quero continuar pelo WhatsApp.",
@@ -146,7 +160,7 @@ function localWhatsappFallback(payload: LeadPayload) {
     .filter(Boolean)
     .join("\n");
 
-  return `https://wa.me/5511995250742?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/5511996384376?text=${encodeURIComponent(message)}`;
 }
 
 export default function LeadCaptureBoundary({ children }: { children: ReactNode }) {
@@ -174,6 +188,7 @@ export default function LeadCaptureBoundary({ children }: { children: ReactNode 
     if (submitButton) submitButton.disabled = true;
 
     try {
+      trackLeadEvent("auditseo_lead_submit", payload);
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -185,18 +200,22 @@ export default function LeadCaptureBoundary({ children }: { children: ReactNode 
         | null;
 
       if (response.ok && result?.success) {
+        trackLeadEvent("auditseo_lead_success", payload, { delivery: "api" });
         window.location.assign(`/obrigado?origem=${encodeURIComponent(payload.kind)}`);
         return;
       }
 
       if (result?.fallbackUrl) {
+        trackLeadEvent("auditseo_lead_fallback", payload, { delivery: "api_whatsapp" });
         window.location.assign(result.fallbackUrl);
         return;
       }
 
+      trackLeadEvent("auditseo_lead_fallback", payload, { delivery: "local_whatsapp" });
       window.location.assign(localWhatsappFallback(payload));
     } catch (error) {
       console.error("Lead capture failed", error);
+      trackLeadEvent("auditseo_lead_error", payload, { delivery: "local_whatsapp" });
       window.location.assign(localWhatsappFallback(payload));
     } finally {
       submittingRef.current = false;
