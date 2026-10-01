@@ -214,13 +214,20 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
 
 ### P2 — Technical/UX verification
 - [x] **P2.4 Fix or validate S.I.G.N.A.L. duplicate crawl/render output**
-  - Confirmed in `SignalMethod.tsx`: each step had a desktop/tablet card plus a separate `md:hidden` fallback containing the same text. Branch refactor now renders one semantic card per step and uses layout classes only for positioning. Pending preview/SSR verification before [x].
+  - Confirmed in the old production HTML: each S.I.G.N.A.L. step appeared twice because desktop/tablet and mobile cards both existed in the semantic tree.
+  - Branch refactor now renders one semantic card per step and uses layout classes only for positioning. Branch Lighthouse passes heading order and accessibility.
 - [~] **P2.5 Validate forms and conversion instrumentation**
   - Contact, diagnostic, WhatsApp CTA, success/failure states, analytics events.
-  - Branch findings/fixes: Home contact form and diagnostic form previously had submit buttons but no submit handler. Both now POST to `/api/leads`, preserve source/referrer/UTM attribution, show success/error states, and use the API WhatsApp fallback when delivery is unavailable. Footer and API fallback were unified to the approved commercial WhatsApp `+55 11 99638-4376`.
-  - Remaining before [x]: validate an actual successful delivery in Preview/production and confirm analytics event coverage.
-- [ ] **P2.6 Validate mobile and Core Web Vitals**
-  - Audit did not cover CWV/hydration/form delivery.
+  - The site had overlapping contact-submit logic: the root `LeadCaptureBoundary` intercepted submissions while Home also maintained its own handler/state. Branch cleanup centralizes submission in the boundary so attribution, fallback and success behavior have one owner.
+  - `/api/leads` validation was tested locally: invalid payload → 422; valid payload with delivery services unavailable → 503 plus a correctly populated WhatsApp fallback to `+55 11 99638-4376`.
+  - Production `/api/leads` also returned the expected 422 for an invalid QA payload, confirming the route is active without sending a fake lead.
+  - All discovered WhatsApp destinations were normalized to `+55 11 99638-4376`. Submission/success/fallback/error events are pushed to `dataLayer` and dispatched as `auditseo:lead` custom events.
+  - Remaining before [x]: the repository and current production HTML expose no GA/GTM measurement snippet, so analytics transport still needs an approved measurement destination; actual successful lead delivery should be verified after Preview/production deployment without generating test spam.
+- [~] **P2.6 Validate mobile and Core Web Vitals**
+  - Production mobile Lighthouse baseline documented in `docs/SEO_CWV_BASELINE_2026-10-01.md`: Performance 85, Accessibility 94, Best Practices 100, SEO 100; FCP 2.6s, LCP 3.6s, TBT 60ms, CLS 0.062.
+  - LCP is the Hero H1; server response is not the main bottleneck. Branch adds local font preloads and already uses the optimized WebP UI logo.
+  - Branch Lighthouse accessibility/SEO validation returned **100/100**, including passing color contrast and heading order.
+  - Remaining before [x]: rerun mobile performance on production after merge and obtain field CWV/CrUX data when the Search Console/Core Web Vitals source is accessible.
 - [!] **P2.7 Validate crawler access at infrastructure/log level**
   - OAI-SearchBot and PerplexityBot separately from training bots.
   - User-agent spoofing alone is not sufficient evidence.
