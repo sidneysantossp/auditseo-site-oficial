@@ -37,6 +37,8 @@ export default function Header({ onNavClick }: HeaderProps) {
             <img
               src="/auditseo-logo.png"
               alt="AUDITSEO — Search Intelligence Partner"
+              width={1500}
+              height={400}
               className="h-[40px] w-auto object-contain md:h-[48px]"
               decoding="async"
             />
