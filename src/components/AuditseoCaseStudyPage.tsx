@@ -39,6 +39,7 @@ const hypotheses = [
 ];
 
 const interventionLog = [
+  ["Arquitetura comercial SEO", "PREPARADO PARA RELEASE", "Páginas dedicadas de Auditoria SEO e Consultoria SEO, Home recalibrada, soluções renomeadas em linguagem de compra e links internos reorganizados para reduzir ambiguidade de intenção."],
   ["Fundação técnica de Search", "PREPARADO PARA RELEASE", "SSR de metadata/canonical, 404 real, redirects, sitemap, rotas indexáveis e smoke gate para reduzir problemas básicos antes da expansão."],
   ["Reposicionamento da entidade", "PREPARADO PARA RELEASE", "Home, serviços e schema reorganizados em torno de Search Intelligence, com SEO, Entity Authority e Search AI como disciplinas coordenadas."],
   ["Biblioteca de autoridade", "EM EXPANSÃO", "Fundamentos, protocolos, diagnósticos, buyer content e artigos de alta proximidade comercial — com content lint e grafo de links internos."],
