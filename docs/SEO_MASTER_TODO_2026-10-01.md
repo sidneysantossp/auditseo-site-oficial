@@ -109,10 +109,11 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Action: confirm original extraction source and either correct the property/methodology note or preserve the original observation with an explicit methodological correction.
   - Branch action completed: case now labels the value as a historical recorded baseline, identifies that the current connected property is `https://www.auditseo.com.br/`, and states that the raw original export was not preserved in the repository. This avoids presenting the old 0/0 as directly comparable while preserving the historical record.
   - Remaining criterion: reproduce the exact original property/filters/period before marking this item complete.
-- [!] **P0.3 Verify domain property / alternate URL-prefix properties**
+- [x] **P0.3 Verify domain property / alternate URL-prefix properties**
   - Desired: `sc-domain:auditseo.com.br`, `https://auditseo.com.br/`, `https://www.auditseo.com.br/`.
-  - Current limitation: only the www URL-prefix was exposed by the previously active connector. A follow-up GSC Wizard inspection/sitemap call on 2026-10-01 returned `payment_required`, so alternate-property verification and URL Inspection cannot currently be executed through that connector.
-  - Criterion: same-period comparison or documented absence/unavailability.
+  - A second authorized Search Console integration was queried on 2026-10-01 and exposed the full property list available to this account. It contains `https://www.auditseo.com.br/` as siteOwner, but does **not** expose `sc-domain:auditseo.com.br` or `https://auditseo.com.br/`.
+  - The alternate GSC Wizard connector currently returns `payment_required`; therefore URL Inspection is unavailable there, but property availability has now been independently documented.
+  - Criterion satisfied as documented unavailability in the accessible account scope.
 - [x] **P0.4 Build protected-page inventory before changing URLs/titles**
   - Protect pages already ranking in positions 3–11 and pages with current impressions.
   - Criterion: every proposed title/H1/URL change references baseline impressions, position and intended query.
