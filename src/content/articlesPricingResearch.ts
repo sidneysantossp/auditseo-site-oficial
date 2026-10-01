@@ -137,7 +137,7 @@ export const pricingResearchArticles: Record<string, Article> = {
       { label: "AgentRank — AI Readiness", url: agentRank, note: "Software brasileiro com planos públicos; separado de honorários humanos." },
       { label: "Contentor — AI Search", url: contentor, note: "Software/bundle com planos públicos; separado de consultoria pura." },
     ],
-    relatedServices: [["Auditoria GEO & Search AI", "/solucoes/geo-ia-readiness"], ["Consultoria de Search AI + GEO", "/geo-ia"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Consultoria de Search AI + GEO", "/geo-ia"], ["Auditoria GEO e de visibilidade em IA", "/solucoes/geo-ia-readiness"]],
   },
 };
 
