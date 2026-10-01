@@ -124,14 +124,14 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
 
   return (
     <footer className="border-t border-[#b28453]/10 bg-[#11100f] text-[#f8f8f8]">
-      <div className="bg-[#b28453] py-12 text-white">
+      <div className="bg-[#8c613c] py-12 text-white">
         <div className="container mx-auto max-w-[1320px] px-6 xl:px-12">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             <div className="min-w-0 max-w-2xl">
               <h2 className="mb-2 max-w-[760px] font-display text-lg font-bold leading-snug sm:text-xl">
                 Receba análises sobre Search Intelligence, SEO e a nova busca
               </h2>
-              <p className="max-w-[760px] text-xs font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-sm">
+              <p className="max-w-[760px] text-xs font-semibold uppercase tracking-[0.12em] text-white sm:text-sm">
                 Novos artigos, estudos e aprendizados da AUDITSEO diretamente no seu e-mail
               </p>
             </div>
