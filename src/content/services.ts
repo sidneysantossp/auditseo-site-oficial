@@ -34,7 +34,7 @@ export const servicePages: Record<string, ServicePageData> = {
   foundation: {
     slug: "/solucoes/projetos-comecando-do-zero",
     code: "SEARCH FOUNDATION",
-    name: "Search Foundation",
+    name: "Planejamento SEO para novos sites",
     title: "Construa a fundação de busca antes de o projeto acumular problemas difíceis de corrigir.",
     metaTitle: "Search Foundation para Novos Sites e Marcas | AUDITSEO",
     metaDescription:
@@ -96,7 +96,7 @@ export const servicePages: Record<string, ServicePageData> = {
   activation: {
     slug: "/solucoes/site-sem-tracao",
     code: "ORGANIC ACTIVATION",
-    name: "Organic Activation",
+    name: "Diagnóstico SEO para sites sem tráfego",
     title: "Seu site está no ar. Agora precisamos descobrir por que ele ainda não ganhou tração.",
     metaTitle: "Site sem Tráfego ou Tração Orgânica | AUDITSEO",
     metaDescription:
@@ -149,7 +149,7 @@ export const servicePages: Record<string, ServicePageData> = {
   recovery: {
     slug: "/solucoes/recuperacao-organica",
     code: "SEARCH RECOVERY",
-    name: "Search Recovery",
+    name: "Recuperação de tráfego orgânico",
     title: "Recuperar tráfego começa por entender exatamente o que foi perdido — e por quê.",
     metaTitle: "Recuperação de Tráfego e Queda de SEO | AUDITSEO",
     metaDescription:
@@ -188,7 +188,7 @@ export const servicePages: Record<string, ServicePageData> = {
   authority: {
     slug: "/solucoes/autoridade-de-entidade",
     code: "ENTITY AUTHORITY",
-    name: "Entity Authority",
+    name: "Consultoria de autoridade de entidade",
     title: "Transforme experiência real em sinais que Google, IA e clientes consigam verificar.",
     metaTitle: "Autoridade de Entidade para Empresas e Especialistas | AUDITSEO",
     metaDescription:
@@ -227,7 +227,7 @@ export const servicePages: Record<string, ServicePageData> = {
   content: {
     slug: "/solucoes/conteudo-por-intencao",
     code: "INTENT CONTENT ARCHITECTURE",
-    name: "Intent Content Architecture",
+    name: "Estratégia e arquitetura de conteúdo SEO",
     title: "Pare de publicar por calendário. Construa conteúdo para as decisões que o mercado realmente toma.",
     metaTitle: "Arquitetura de Conteúdo por Intenção | AUDITSEO",
     metaDescription:
@@ -266,7 +266,7 @@ export const servicePages: Record<string, ServicePageData> = {
   geo: {
     slug: "/solucoes/geo-ia-readiness",
     code: "GENERATIVE SEARCH READINESS",
-    name: "Generative Search Readiness",
+    name: "Auditoria GEO e de visibilidade em IA",
     title: "Descubra como sua empresa está sendo interpretada nas novas interfaces de busca — sem promessas mágicas de IA.",
     metaTitle: "GEO e Generative Search Readiness | AUDITSEO",
     metaDescription:
@@ -305,7 +305,7 @@ export const servicePages: Record<string, ServicePageData> = {
   migration: {
     slug: "/solucoes/migracao-risco-seo",
     code: "SEO MIGRATION & RISK CONTROL",
-    name: "SEO Migration & Risk Control",
+    name: "Consultoria SEO para migração de sites",
     title: "Mude o site sem apagar os sinais orgânicos que a empresa levou anos para construir.",
     metaTitle: "Migração de Site e Controle de Risco SEO | AUDITSEO",
     metaDescription:
@@ -344,7 +344,7 @@ export const servicePages: Record<string, ServicePageData> = {
   evolution: {
     slug: "/solucoes/evolucao-organica",
     code: "ORGANIC EVOLUTION CYCLE",
-    name: "Organic Evolution Cycle",
+    name: "Consultoria SEO contínua",
     title: "Quando o básico já funciona, crescimento passa a depender de ciclos melhores de decisão.",
     metaTitle: "Consultoria SEO Contínua e Evolução Orgânica | AUDITSEO",
     metaDescription:
