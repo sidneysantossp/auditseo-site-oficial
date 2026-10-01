@@ -4,7 +4,7 @@ import HomePageV2 from "@/components/HomePageV2";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade" },
+      { title: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO" },
       {
         name: "google-site-verification",
         content: "uT9b97Zdg7PX0Cc_he99g0aDbxKzDq5K0O4gUa4630c",
@@ -12,11 +12,11 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Identifique onde sua presença de busca quebra — rastreamento, indexação, intenção, entidade, autoridade, citabilidade ou conversão — antes de investir em mais SEO, conteúdo ou IA.",
+          "Consultoria SEO, auditoria SEO, GEO e Search Intelligence para identificar gargalos de rastreamento, indexação, intenção, autoridade, citabilidade e conversão antes de priorizar a execução.",
       },
       {
         property: "og:title",
-        content: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade",
+        content: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO",
       },
       {
         property: "og:description",
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "AUDITSEO | Search Intelligence para Diagnóstico e Autoridade",
+        content: "Consultoria SEO, GEO e Search Intelligence | AUDITSEO",
       },
       {
         name: "twitter:description",
