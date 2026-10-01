@@ -378,5 +378,146 @@ export const servicePages: Record<string, ServicePageData> = {
       { question: "A AUDITSEO pode trabalhar com nosso time interno?", answer: "Sim. Esse é um dos cenários mais adequados: a consultoria organiza hipóteses, prioridades e validação enquanto o time executa." },
       { question: "Com que frequência o roadmap muda?", answer: "Sempre que novas evidências justificarem. A governança precisa evitar tanto mudanças impulsivas quanto planos congelados que ignoram o mercado." },
     ],
+  },,
+
+  auditSeo: {
+    slug: "/auditoria-seo",
+    code: "AUDITORIA SEO",
+    name: "Auditoria SEO",
+    title: "Auditoria SEO para descobrir o que realmente limita sua presença orgânica.",
+    metaTitle: "Auditoria SEO com Diagnóstico e Roadmap | AUDITSEO",
+    metaDescription:
+      "Auditoria SEO baseada em evidências: técnica, indexação, intenção, conteúdo, autoridade, dados e prioridades transformados em roadmap executável.",
+    eyebrow: "DIAGNÓSTICO SEO PONTUAL",
+    lead:
+      "Uma auditoria útil não termina em um score ou em uma lista de erros. Ela conecta dados técnicos, conteúdo, intenção, autoridade e performance para mostrar o que precisa mudar primeiro, por quê e como validar a correção.",
+    directAnswer:
+      "A Auditoria SEO da AUDITSEO é um diagnóstico pontual e estruturado para empresas que precisam localizar gargalos de rastreamento, indexação, recuperação, intenção, conteúdo, entidade, autoridade ou conversão e transformar os achados em um roadmap priorizado e verificável.",
+    problemTitle: "O maior risco de uma auditoria é encontrar muitos problemas e ainda não deixar claro o que merece ser corrigido primeiro.",
+    problemText: [
+      "Crawlers, Search Console, analytics e ferramentas de mercado produzem sinais importantes, mas não substituem interpretação. O diagnóstico precisa separar sintoma, evidência, hipótese e causa provável antes de recomendar uma mudança.",
+      "A auditoria também precisa considerar o contexto comercial: quais páginas sustentam receita, quais intenções importam, quais mudanças recentes podem ter alterado o cenário e quais dependências existem entre tecnologia, conteúdo, autoridade e mensuração.",
+    ],
+    warningSignals: [
+      "quedas de tráfego ou impressões sem causa claramente documentada",
+      "páginas indexadas que não ganham consultas ou posições relevantes",
+      "problemas recorrentes de canonical, redirect, renderização ou rastreamento",
+      "conteúdo sobreposto, canibalização ou páginas sem intenção definida",
+      "roadmaps extensos sem impacto, esforço, responsável ou critério de aceite",
+      "decisões de SEO sendo tomadas apenas por scores de ferramentas",
+    ],
+    fit: [
+      "empresa que precisa de um diagnóstico antes de iniciar uma nova frente de SEO",
+      "site com sintomas técnicos, editoriais ou de performance ainda sem causa comprovada",
+      "times que precisam de uma segunda opinião independente e documentada",
+      "projetos que exigem prioridades claras antes de mobilizar desenvolvimento, conteúdo ou autoridade",
+    ],
+    notFit: [
+      "empresa que já possui diagnóstico validado e precisa apenas de acompanhamento contínuo",
+      "demanda limitada a produção isolada de conteúdo sem investigação do cenário",
+      "pedido por garantia de posição, tráfego ou prazo que dependa de plataformas de terceiros",
+    ],
+    diagnosticQuestion:
+      "Qual é a primeira etapa da cadeia de descoberta, recuperação, compreensão, confiança ou conversão que apresenta evidência suficiente de falha — e qual correção pode ser validada sem confundir correlação com causa?",
+    approach: [
+      { title: "Baseline e contexto", text: "Registramos performance, páginas prioritárias, objetivos, histórico de mudanças e sinais de negócio antes de interpretar qualquer problema." },
+      { title: "Coleta técnica e estrutural", text: "Auditamos acesso, status HTTP, redirects, renderização, canonicals, indexação, sitemap, links internos e arquitetura quando relevantes ao caso." },
+      { title: "Intenção, conteúdo e entidade", text: "Verificamos se as páginas certas representam a demanda certa, se há sobreposição e se empresa, serviços, especialistas e provas estão claros." },
+      { title: "Hipóteses e priorização", text: "Cada achado recebe evidência, impacto potencial, confiança, esforço, risco, dependências e prioridade." },
+      { title: "Roadmap e validação", text: "Transformamos o diagnóstico em ações executáveis, responsáveis, critérios de aceite e sinais que serão monitorados depois da implementação." },
+    ],
+    deliverables: [
+      ["Baseline documentado", "Estado inicial de consultas, páginas, cobertura, conversões e sinais relevantes ao escopo disponível."],
+      ["Mapa de achados", "Problemas observados separados de hipóteses, com evidências reproduzíveis e escopo afetado."],
+      ["Matriz de prioridades", "Impacto, esforço, risco, dependências e nível de confiança para ordenar decisões."],
+      ["Roadmap de implementação", "Ações técnicas, editoriais, de arquitetura ou autoridade com responsáveis e sequência recomendada."],
+      ["Critérios de aceite", "Como validar que cada correção foi implementada corretamente antes de medir efeito."],
+      ["Plano de mensuração", "Indicadores e janelas de observação para acompanhar o problema original sem atribuição precipitada."],
+    ],
+    measurement: [
+      "erros técnicos corrigidos e validados",
+      "cobertura/indexação das páginas prioritárias",
+      "consultas e páginas impactadas",
+      "CTR e posição por cluster relevante",
+      "conversões das landing pages prioritárias",
+      "hipóteses confirmadas, enfraquecidas ou rejeitadas",
+    ],
+    faqs: [
+      { question: "Auditoria SEO é só SEO técnico?", answer: "Não. A camada técnica pode ser parte do diagnóstico, mas a auditoria também pode envolver intenção, conteúdo, arquitetura, entidade, autoridade, Search AI e conversão quando esses fatores pertencem ao problema investigado." },
+      { question: "Vocês entregam apenas um relatório?", answer: "Não. O objetivo é deixar evidências, prioridades, roadmap, responsáveis e critérios de validação. O relatório é um registro da decisão, não o produto final por si só." },
+      { question: "A auditoria garante recuperação de posições?", answer: "Não. Ela reduz incerteza e organiza decisões com base em evidência. Resultados de busca dependem de fatores internos, concorrência e sistemas de terceiros que nenhuma consultoria controla." },
+      { question: "Depois da auditoria a AUDITSEO pode acompanhar a implementação?", answer: "Sim, quando fizer sentido. A auditoria é o produto diagnóstico; acompanhamento recorrente e governança entram em uma frente de consultoria separada." },
+    ],
   },
+
+  consultoriaSeo: {
+    slug: "/consultoria-seo",
+    code: "CONSULTORIA SEO",
+    name: "Consultoria SEO",
+    title: "Consultoria SEO para diagnosticar, priorizar e acompanhar o que realmente move a busca.",
+    metaTitle: "Consultoria SEO Estratégica e Técnica | AUDITSEO",
+    metaDescription:
+      "Consultoria SEO para empresas que precisam de diagnóstico, priorização, implementação coordenada, mensuração e evolução contínua com Search Intelligence.",
+    eyebrow: "ACOMPANHAMENTO ESTRATÉGICO",
+    lead:
+      "A consultoria organiza decisões de SEO ao longo do tempo: identifica gargalos, prioriza oportunidades, coordena implementação, valida mudanças e atualiza o roadmap conforme novas evidências aparecem.",
+    directAnswer:
+      "A Consultoria SEO da AUDITSEO é uma atuação contínua ou por ciclos para empresas que precisam transformar dados de busca em decisões coordenadas entre técnica, conteúdo, autoridade, Search AI e conversão, sem depender de uma lista fixa de tarefas mensais.",
+    problemTitle: "SEO contínuo perde valor quando a operação repete entregáveis sem provar qual problema está tentando resolver.",
+    problemText: [
+      "Uma operação madura precisa distinguir manutenção, recuperação, novas oportunidades e experimentos. O backlog deve mudar quando os dados mudam, sem abandonar governança ou evidência.",
+      "A consultoria funciona como uma camada de decisão: conecta Search Console, analytics, arquitetura, conteúdo, autoridade e contexto competitivo para escolher o próximo movimento e acompanhar se ele produziu o efeito esperado.",
+    ],
+    warningSignals: [
+      "equipe executa muitas tarefas de SEO, mas não consegue explicar a prioridade entre elas",
+      "relatórios mensais repetem métricas sem registrar decisões e aprendizados",
+      "desenvolvimento, conteúdo e autoridade trabalham com backlogs desconectados",
+      "o site possui tráfego, mas crescimento e oportunidades parecem estagnados",
+      "mudanças são publicadas sem QA ou critério de validação",
+      "Search AI e GEO são tratados como projetos paralelos sem relação com SEO existente",
+    ],
+    fit: [
+      "empresa com operação ativa que precisa de direção e governança de SEO",
+      "time interno que executa, mas precisa de priorização, QA e segunda opinião",
+      "negócios que querem integrar SEO técnico, conteúdo, autoridade e Search AI em um roadmap único",
+      "empresas que precisam aprender com ciclos de implementação em vez de comprar um pacote fixo",
+    ],
+    notFit: [
+      "empresa que precisa apenas de um diagnóstico pontual e ainda não definiu a causa do problema",
+      "demanda por volume fixo de artigos, links ou tarefas sem abertura para priorização",
+      "projetos que esperam garantia de ranking ou prazo controlado por mecanismos de busca",
+    ],
+    diagnosticQuestion:
+      "Qual decisão de SEO possui hoje a melhor combinação entre evidência, impacto comercial, capacidade de implementação e possibilidade real de validação?",
+    approach: [
+      { title: "Diagnóstico contínuo", text: "Mantemos baseline, segmentações e hipóteses atualizados para separar manutenção, risco, recuperação e oportunidade." },
+      { title: "Opportunity backlog", text: "Priorizamos técnica, conteúdo, arquitetura, autoridade e Search AI por impacto, esforço, dependências e proximidade comercial." },
+      { title: "Coordenação de execução", text: "Transformamos decisões em requisitos claros para desenvolvimento, conteúdo, analytics, PR ou fornecedores envolvidos." },
+      { title: "QA e validação", text: "Mudanças publicadas passam por critérios de aceite antes de serem consideradas concluídas." },
+      { title: "Learning Loop", text: "Registramos o que mudou, o que não mudou e quais hipóteses precisam ser ajustadas no ciclo seguinte." },
+    ],
+    deliverables: [
+      ["Roadmap vivo", "Backlog priorizado e atualizado conforme evidências, dependências e objetivos do negócio."],
+      ["Briefs e requisitos", "Especificações técnicas, editoriais e de mensuração prontas para execução pelos responsáveis."],
+      ["Revisões de implementação", "QA de mudanças críticas antes e depois do release."],
+      ["Painel de hipóteses", "Registro do problema, evidência, decisão tomada e sinal esperado para cada frente relevante."],
+      ["Reuniões de decisão", "Ritual de priorização e desbloqueio focado em decisões, não em apresentação de métricas."],
+      ["Relatório de aprendizado", "Síntese do que funcionou, não funcionou e alterou o próximo ciclo."],
+    ],
+    measurement: [
+      "impressões e cliques por cluster",
+      "CTR e posição das páginas prioritárias",
+      "crescimento ou recuperação de páginas relevantes",
+      "conversões orgânicas e assistidas",
+      "tempo entre recomendação, implementação e validação",
+      "hipóteses concluídas e próximos movimentos priorizados",
+    ],
+    faqs: [
+      { question: "Consultoria SEO é uma mensalidade de tarefas?", answer: "Não. A cadência pode ser recorrente, mas as tarefas não são fixas. O trabalho parte do cenário, do backlog e das evidências disponíveis em cada ciclo." },
+      { question: "A AUDITSEO substitui o time interno?", answer: "Não necessariamente. Podemos atuar como direção estratégica, QA e coordenação enquanto equipes internas ou fornecedores executam." },
+      { question: "SEO e GEO ficam separados?", answer: "Não quando pertencem ao mesmo problema. Search AI entra no roadmap quando o diagnóstico mostra que acesso, conteúdo, entidade, fontes, mensuração ou consideração em IA são relevantes." },
+      { question: "Quando uma auditoria é melhor do que consultoria contínua?", answer: "Quando o principal problema ainda é descobrir a causa e organizar um primeiro roadmap. A consultoria contínua faz mais sentido quando existe capacidade de implementação e necessidade de ciclos sucessivos de decisão." },
+    ],
+  },
+
 };
