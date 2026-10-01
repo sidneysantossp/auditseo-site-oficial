@@ -210,8 +210,10 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
 ### P2 — Technical/UX verification
 - [~] **P2.4 Fix or validate S.I.G.N.A.L. duplicate crawl/render output**
   - Confirmed in `SignalMethod.tsx`: each step had a desktop/tablet card plus a separate `md:hidden` fallback containing the same text. Branch refactor now renders one semantic card per step and uses layout classes only for positioning. Pending preview/SSR verification before [x].
-- [ ] **P2.5 Validate forms and conversion instrumentation**
+- [~] **P2.5 Validate forms and conversion instrumentation**
   - Contact, diagnostic, WhatsApp CTA, success/failure states, analytics events.
+  - Branch findings/fixes: Home contact form and diagnostic form previously had submit buttons but no submit handler. Both now POST to `/api/leads`, preserve source/referrer/UTM attribution, show success/error states, and use the API WhatsApp fallback when delivery is unavailable. Footer and API fallback were unified to the approved commercial WhatsApp `+55 11 99638-4376`.
+  - Remaining before [x]: validate an actual successful delivery in Preview/production and confirm analytics event coverage.
 - [ ] **P2.6 Validate mobile and Core Web Vitals**
   - Audit did not cover CWV/hydration/form delivery.
 - [ ] **P2.7 Validate crawler access at infrastructure/log level**
