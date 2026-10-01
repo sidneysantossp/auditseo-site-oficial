@@ -120,7 +120,9 @@ Legend: **[x] done**, **[~] in progress/ready**, **[ ] pending**, **[!] blocked/
   - Completed in this document via the protected high-position pages table, commercial query baseline and cannibalization evidence.
 - [x] **P0.5 Capture historical URL inventory beyond the current sitemap**
   - Include legacy URLs, redirects and pages with previous organic demand.
-  - Completed in `docs/SEO_HISTORICAL_URL_INVENTORY_2026-10-01.md`: historical sitemap snapshots were compared and all current redirect-only routes were inventoried before any URL migration.
+  - Completed in `docs/SEO_HISTORICAL_URL_INVENTORY_2026-10-01.md`: historical sitemap snapshots were compared and redirect-only routes were inventoried before any URL migration.
+  - Post-merge GSC cross-check found four additional historical URLs still carrying impressions/signals; all were recovered with direct 308 mappings before they could remain 404s: `/fontes-e-metodos`, `/servicos/seo-local-para-odontologia-em-curitiba`, `/servicos/seo-para-dermatologistas`, and `/servicos/seo-local-para-clinicas-medicas-em-rio-de-janeiro`.
+  - Production validation confirms each old URL now redirects in one application hop to a live 200 destination.
   - Criterion: redirect/retention map approved before any URL migration.
 
 ### P1 — Commercial architecture and intent ownership
