@@ -192,10 +192,10 @@ export default function SiteFooter({ onNavigate }: SiteFooterProps) {
           <div className="flex flex-col justify-start sm:col-span-2 lg:col-span-1">
             <a href="/" className="mb-4 inline-flex w-fit">
               <img
-                src="/auditseo-logo.png"
+                src="/auditseo-logo-ui.webp"
                 alt="AUDITSEO - Search Intelligence"
-                width={1500}
-                height={400}
+                width={600}
+                height={160}
                 className="h-auto w-[240px] max-w-full object-contain"
               />
             </a>
