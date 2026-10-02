@@ -2,6 +2,7 @@ import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, Network, Quot
 import type { Article } from "@/content/articles";
 import { getArticleVisual } from "@/content/articleVisuals";
 import { articleRelations } from "@/content/articleRelations";
+import { articleIntentBoundaries } from "@/content/articleIntentBoundaries";
 import { getServicePresentation } from "@/content/editorialArchitecture";
 import { researchCitations } from "@/content/researchCitations";
 import Header from "./Header";
@@ -42,6 +43,7 @@ function headingId(text: string, index: number, explicitId?: string) {
 export default function ArticlePage({ article }: { article: Article }) {
   const visual = getArticleVisual(article);
   const relatedArticles = articleRelations[article.slug] || [];
+  const intentBoundary = articleIntentBoundaries[article.slug];
   const researchCitation = researchCitations[article.slug];
   const [primaryServiceLabel, primaryServiceHref] = article.relatedServices[0] || [];
   const primaryService = primaryServiceHref
@@ -112,6 +114,29 @@ export default function ArticlePage({ article }: { article: Article }) {
               </ul>
             </div>
           </div>
+
+          {intentBoundary ? (
+            <div className="mx-auto mt-8 max-w-[1120px] rounded-[24px] border border-[#11100f]/10 bg-[#f4eee5] p-7 md:p-8">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">FRONTEIRA DE INTENÇÃO</span>
+              <div className="mt-5 grid gap-5 md:grid-cols-2">
+                <div className="rounded-[18px] border border-[#11100f]/8 bg-white/45 p-5">
+                  <h2 className="font-display text-xl font-bold">Este documento responde</h2>
+                  <p className="mt-3 text-sm leading-[1.7] text-[#11100f]/70">{intentBoundary.answers}</p>
+                </div>
+                <div className="rounded-[18px] border border-[#11100f]/8 bg-white/45 p-5">
+                  <h2 className="font-display text-xl font-bold">O que fica fora deste escopo</h2>
+                  <p className="mt-3 text-sm leading-[1.7] text-[#11100f]/70">{intentBoundary.doesNotAnswer}</p>
+                </div>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {intentBoundary.related.map(([label, href]) => (
+                  <a key={href} href={href} className="inline-flex items-center gap-2 rounded-full border border-[#11100f]/14 px-4 py-2 text-xs font-bold text-[#11100f] transition-colors hover:border-[#8c613c] hover:text-[#8c613c]">
+                    {label} <ArrowRight size={12} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {primaryService ? (
             <div className="mx-auto mt-8 flex max-w-[1120px] flex-col gap-6 rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-7 text-[#f8f8f8] md:flex-row md:items-center md:justify-between md:p-8">
