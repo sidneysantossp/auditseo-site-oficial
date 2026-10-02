@@ -147,7 +147,7 @@ export default function ArticlePage({ article }: { article: Article }) {
               </div>
               <div className="flex shrink-0 flex-wrap gap-3">
                 <a href={primaryService.href} className="inline-flex items-center gap-2 rounded-full bg-[#b28453] px-5 py-3 text-xs font-bold text-white hover:bg-[#e0d3c3] hover:text-[#11100f]">
-                  Ver solução relacionada <ArrowRight size={13} />
+                  Ver {primaryService.label} <ArrowRight size={13} />
                 </a>
                 <a href="/diagnostico" className="inline-flex items-center gap-2 rounded-full border border-[#e0d3c3]/22 px-5 py-3 text-xs font-bold text-[#e0d3c3] hover:border-[#b28453] hover:text-[#b28453]">
                   Ainda não sabe onde quebra? <ArrowRight size={13} />
