@@ -48,9 +48,9 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma empresa para Google e IAs", text: "Entity Home, pessoas, serviços, provas, consistência externa e testes de Entity Accuracy.", href: "/blog/como-estruturar-entidade-empresarial" },
   ],
   "/solucoes/migracao-risco-seo": [
-    { eyebrow: "CENÁRIO", title: "Queda depois de redesign ou migração", text: "Como investigar equivalência de URLs, redirects, conteúdo, links, indexação e infraestrutura quando o tráfego cai após uma mudança estrutural.", href: "/blog/queda-trafego-depois-redesign" },
-    { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Uma migração pode quebrar etapas diferentes da cadeia; o framework ajuda a validar o que precisa sobreviver ao corte.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
-    { eyebrow: "AUDITORIA TÉCNICA", title: "Como auditar crawlers de IA", text: "Útil para projetos em que CDN, WAF, autenticação ou robots podem mudar junto com a infraestrutura.", href: "/blog/como-auditar-crawlers-de-ia" },
+    { eyebrow: "GUIA DE MIGRAÇÃO", title: "Migração de site sem perder SEO", text: "Planejamento pré-corte para inventário, equivalência de URLs, redirects, staging, canonical, sitemap, QA, Search Console e monitoramento.", href: "/blog/migracao-site-sem-perder-seo" },
+    { eyebrow: "RECUPERAÇÃO", title: "Queda depois de redesign ou migração", text: "Como investigar equivalência de URLs, redirects, conteúdo, links, indexação e infraestrutura quando o tráfego já caiu após uma mudança estrutural.", href: "/blog/queda-trafego-depois-redesign" },
+    { eyebrow: "SEARCH FOUNDATION", title: "Checklist SEO antes de lançar um site", text: "Gate de release para arquitetura, HTTP, robots, canonical, sitemap, conteúdo, mensuração e validação em produção.", href: "/blog/checklist-seo-antes-lancar-site" },
   ],
   "/solucoes/evolucao-organica": [
     { eyebrow: "OPPORTUNITY MINING", title: "Tráfego orgânico estagnou: onde buscar a próxima oportunidade?", text: "Como separar estagnação de queda e transformar queries, decay, CTR, demanda e novas intenções em hipóteses de crescimento.", href: "/blog/trafego-organico-estagnado-proxima-oportunidade" },
