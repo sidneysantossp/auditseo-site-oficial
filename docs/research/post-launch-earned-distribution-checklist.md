@@ -39,6 +39,8 @@ Initial verified candidates:
 - [ ] Baguete — contact channel verified.
 - [ ] IT Forum — contact form verified.
 - [ ] Propmark — editorial email verified.
+- [ ] Guaíra News — pauta/release email and WhatsApp verified; recent GEO/Search AI coverage verified.
+- [ ] Jornal de Brasília — online editorial contacts verified; recent GEO/Search AI coverage verified.
 
 Use `earned-media-pitch-templates.md` and adapt every message to the outlet's recent coverage.
 
