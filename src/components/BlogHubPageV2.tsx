@@ -11,6 +11,7 @@ import {
   TrendingDown,
 } from "lucide-react";
 import type { Article } from "@/content/articles";
+import { getArticleVisual } from "@/content/articleVisuals";
 import {
   allBlogArticles,
   articlesForJourney,
@@ -47,12 +48,25 @@ function formatDate(value: string) {
 function ArticleCard({ article }: { article: Article }) {
   const [primaryLabel, primaryHref] = article.relatedServices[0] || [];
   const primaryService = primaryHref ? getServicePresentation(primaryLabel, primaryHref) : null;
+  const visual = getArticleVisual(article);
 
   return (
     <a
       href={`/blog/${article.slug}`}
-      className="group flex min-h-[350px] flex-col rounded-[24px] border border-[#b28453]/22 bg-[linear-gradient(145deg,rgba(31,30,28,0.96),rgba(13,13,12,0.99))] p-8 transition-all hover:-translate-y-1 hover:border-[#b28453]/55"
+      className="group flex min-h-[350px] flex-col overflow-hidden rounded-[24px] border border-[#b28453]/22 bg-[linear-gradient(145deg,rgba(31,30,28,0.96),rgba(13,13,12,0.99))] transition-all hover:-translate-y-1 hover:border-[#b28453]/55"
     >
+      <div className="overflow-hidden border-b border-[#b28453]/14 bg-[#0f0e0d]">
+        <img
+          src={visual.src}
+          alt={visual.alt}
+          width={visual.width}
+          height={visual.height}
+          loading="lazy"
+          decoding="async"
+          className="aspect-[1200/630] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-8">
       <div className="flex items-center justify-between gap-4">
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#b28453]">{article.eyebrow}</span>
         <span className="inline-flex items-center gap-2 text-[11px] text-[#f8f8f8]/45"><Clock3 size={13} /> {article.readTime}</span>
@@ -68,6 +82,7 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="mt-auto flex items-center justify-between gap-4 pt-8">
         <span className="inline-flex items-center gap-2 text-[11px] text-[#f8f8f8]/42"><CalendarDays size={13} /> {formatDate(article.publishedAt)}</span>
         <span className="inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] group-hover:text-[#b28453]">Ler diagnóstico <ArrowRight size={14} /></span>
+      </div>
       </div>
     </a>
   );

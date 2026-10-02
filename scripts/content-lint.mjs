@@ -9,6 +9,7 @@ const routesDir = path.join(root, "src", "routes");
 const sitemapPath = path.join(root, "public", "sitemap.xml");
 const articleRelationsPath = path.join(contentDir, "articleRelations.ts");
 const serviceRelationsPath = path.join(contentDir, "serviceArticleRelations.ts");
+const featuredImagesDir = path.join(root, "public", "media", "blog");
 
 const articleFiles = fs
   .readdirSync(contentDir)
@@ -77,6 +78,13 @@ for (const article of articles) {
   }
   if (article.title.length > 100) {
     warnings.push(`H1/título longo (${article.title.length}): ${article.slug}`);
+  }
+
+  const featuredImage = path.join(featuredImagesDir, `${article.slug}.webp`);
+  if (!fs.existsSync(featuredImage)) {
+    failures.push(`artigo sem featured image: ${article.slug}.webp`);
+  } else if (fs.statSync(featuredImage).size < 10_000) {
+    failures.push(`featured image suspeita ou vazia (<10 KB): ${article.slug}.webp`);
   }
 }
 

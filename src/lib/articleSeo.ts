@@ -1,4 +1,5 @@
 import type { Article } from "@/content/articles";
+import { getArticleVisual } from "@/content/articleVisuals";
 import { createSeoHead } from "./seo";
 
 export type ArticleDatasetSchema = {
@@ -13,10 +14,14 @@ export type ArticleDatasetSchema = {
 export function createArticleHead(article: Article, dataset?: ArticleDatasetSchema) {
   const path = `/blog/${article.slug}`;
   const url = `https://www.auditseo.com.br${path}`;
+  const visual = getArticleVisual(article);
   const base = createSeoHead({
     path,
     title: article.metaTitle,
     description: article.description,
+    image: visual.absoluteUrl,
+    imageAlt: visual.alt,
+    ogType: "article",
   });
 
   const scripts = [
@@ -30,6 +35,12 @@ export function createArticleHead(article: Article, dataset?: ArticleDatasetSche
         description: article.description,
         datePublished: article.publishedAt,
         dateModified: article.updatedAt,
+        image: {
+          "@type": "ImageObject",
+          url: visual.absoluteUrl,
+          width: visual.width,
+          height: visual.height,
+        },
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": `${url}#webpage`,
