@@ -176,18 +176,18 @@ export const advancedArticles: Record<string, Article> = {
 
   "como-medir-visibilidade-em-ia": {
     slug: "como-medir-visibilidade-em-ia",
-    title: "Como medir visibilidade em IA sem transformar uma amostra de prompts em uma falsa métrica absoluta",
-    metaTitle: "Como Medir Menções e Citações em IA | AUDITSEO",
+    title: "Como medir visibilidade em ChatGPT, Gemini e Perplexity sem depender de prints isolados",
+    metaTitle: "Como Medir Visibilidade em ChatGPT, Gemini e Perplexity | AUDITSEO",
     description:
-      "Metodologia para medir menções, citações, share of voice e contexto em ChatGPT e outras interfaces de IA com prompts fixos, datas, amostra e limitações explícitas.",
+      "Metodologia para medir visibilidade em ChatGPT, Gemini e Perplexity com prompts congelados, repetição, menções, citações, recomendações, fontes e limitações explícitas.",
     eyebrow: "MENSURAÇÃO SEARCH AI",
     publishedAt: "2026-09-07",
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-10-02",
     readTime: "15 min",
     author: "Sidney Santos",
     authorUrl: "/autor/sidney-santos",
     directAnswer:
-      "Visibilidade em IA deve ser medida como um experimento amostral, não como um ranking universal. A AUDITSEO recomenda congelar prompts, intenção, idioma, localização quando relevante, plataforma, data e método; depois registrar presença da marca, citações, posição relativa, fontes, concorrentes e contexto da resposta. O resultado vale para aquela amostra e deve ser repetido com a mesma metodologia para acompanhar mudança.",
+      "Para medir visibilidade em ChatGPT, Gemini e Perplexity sem depender de prints, trate cada resposta como uma observação de uma amostra pré-definida. Congele prompts, intenção, idioma, mercado, plataforma e número de repetições; registre menção, citação, recomendação, fontes e precisão da entidade; preserve resultados negativos; e repita o mesmo protocolo depois da intervenção. O resultado descreve aquela amostra e aquela janela — não um ranking universal da internet.",
     takeaways: [
       "Não existe uma posição única e estável equivalente a um ranking tradicional para todas as respostas generativas.",
       "Mention Rate e Citation Rate só fazem sentido quando a amostra de prompts é definida e publicada.",
@@ -246,7 +246,18 @@ export const advancedArticles: Record<string, Article> = {
       { type: "paragraph", text: "A medição ganha valor quando prompts são conectados a categorias, serviços e jornadas que importam para a empresa. Também vale acompanhar referrals identificáveis, branded search, páginas citadas e leads que declaram ter descoberto a marca em uma ferramenta de IA." },
       { type: "paragraph", text: "A OpenAI informa que referrals de ChatGPT podem incluir `utm_source=chatgpt.com`, o que ajuda a separar parte do tráfego observável. Mesmo assim, influência sem clique continuará existindo e deve ser tratada como uma limitação de atribuição." },
 
-      { type: "heading", text: "7. Um exemplo de relatório responsável" },
+      { type: "heading", text: "7. Um protocolo mínimo para ChatGPT, Gemini e Perplexity" },
+      { type: "paragraph", text: "Quando o objetivo é comparar plataformas, a unidade não deve ser um print. Use o mesmo conjunto de prompts e duas ou mais execuções independentes nas interfaces escolhidas, sempre registrando o estado observável de busca/web e qualquer bloqueio técnico. Se uma plataforma não puder ser coletada, marque a observação como indisponível; não transforme ausência de coleta em zero." },
+      { type: "list", items: [
+        "ChatGPT: registrar se a busca na web estava ativa e quais fontes ficaram visíveis",
+        "Gemini: preservar resposta, fontes/links quando expostos e o modo/modelo apresentado pela interface",
+        "Perplexity: guardar resposta, lista de fontes, links e a URL estável da pesquisa quando existir",
+        "para todas: sessão nova, prompt exato, repetição, timestamp, idioma e mercado",
+        "bloqueios, CAPTCHA e erros técnicos entram no log de coleta — não no denominador de visibilidade",
+      ] },
+      { type: "callout", title: "Sem print shopping", text: "Uma metodologia séria não escolhe a execução em que a marca apareceu melhor. Se duas respostas divergem, a divergência faz parte do resultado e deve permanecer no histórico." },
+
+      { type: "heading", text: "8. Um exemplo de relatório responsável" },
       { type: "list", items: [
         "amostra: 100 prompts definidos e publicados internamente",
         "plataformas: produtos e versões observados na data do teste",
@@ -263,24 +274,26 @@ export const advancedArticles: Record<string, Article> = {
       { label: "OpenAI — Busca do ChatGPT", url: openAiSearch, note: "A busca do ChatGPT pode apresentar citações e fontes; a documentação também descreve elegibilidade e limitações de posicionamento." },
       { label: "OpenAI — Editores e desenvolvedores — FAQ", url: openAiPublishers, note: "Informações sobre descoberta, OAI-SearchBot e atribuição de referrals do ChatGPT." },
       { label: "Google Search Central — AI features and your website", url: googleAi, note: "Contexto oficial sobre AI Overviews/AI Mode e relação com fundamentos de SEO." },
+      { label: "AUDITSEO — Protocolo de benchmark Search AI", url: "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai", note: "Protocolo público para prompts congelados, repetição, classificação e limitações antes da coleta." },
+      { label: "AUDITSEO — Case Study #001", url: "https://www.auditseo.com.br/case-study/auditseo-search-intelligence", note: "Caso público usado para registrar baseline, intervenções e checkpoints sem reescrever o histórico." },
     ],
     relatedServices: [["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"], ["Entity Authority", "/solucoes/autoridade-de-entidade"]],
   },
 
   "como-estruturar-entidade-empresarial": {
     slug: "como-estruturar-entidade-empresarial",
-    title: "Como estruturar uma entidade empresarial para busca: Organization, pessoas, serviços, provas e fontes",
-    metaTitle: "Como Estruturar uma Entidade Empresarial para Busca | AUDITSEO",
+    title: "Como estruturar uma empresa para ser compreendida pelo Google e por IAs generativas",
+    metaTitle: "Como Ser Compreendido pelo Google e por IAs | AUDITSEO",
     description:
-      "Passo a passo para estruturar entidade empresarial: Entity Home, Organization schema, fundadores, especialistas, serviços, provas, consistência e fontes externas.",
+      "Como estruturar uma empresa para Google e IAs: Entity Home, Organization schema, pessoas, serviços, provas, consistência externa e testes de Entity Accuracy.",
     eyebrow: "ENTITY ARCHITECTURE",
     publishedAt: "2026-09-07",
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-10-02",
     readTime: "14 min",
     author: "Sidney Santos",
     authorUrl: "/autor/sidney-santos",
     directAnswer:
-      "Estruturar uma entidade empresarial para busca significa criar uma fonte canônica e coerente sobre quem é a organização e conectá-la às pessoas, serviços, localidades, provas e fontes que sustentam essa identidade. Organization structured data ajuda a formalizar parte dessas relações, mas o trabalho começa no conteúdo visível e na consistência dos fatos.",
+      "Para uma empresa ser compreendida de forma consistente pelo Google e por IAs generativas, ela precisa oferecer uma representação pública coerente de quem é, o que faz, para quem, onde atua e quais evidências sustentam essas afirmações. Isso começa em uma Entity Home clara, conecta pessoas e serviços, usa structured data para representar fatos visíveis e exige corroboração externa legítima. O teste final não é o tamanho do JSON-LD: é se buscadores e sistemas de IA descrevem a organização corretamente em prompts de categoria e prompts branded.",
     takeaways: [
       "A empresa precisa de uma página canônica que funcione como Entity Home, não apenas de schema.",
       "Fundadores e especialistas relevantes devem possuir relações explícitas com organização, serviços e conteúdos.",
@@ -340,7 +353,18 @@ export const advancedArticles: Record<string, Article> = {
         "schema que declara fatos ausentes ou desatualizados no conteúdo",
       ] },
 
-      { type: "heading", text: "9. Entidade é um sistema vivo" },
+      { type: "heading", text: "9. Teste se Google e IAs estão entendendo a mesma empresa" },
+      { type: "paragraph", text: "Depois de alinhar site, schema e fontes externas, teste a representação. Use perguntas branded como 'o que é a empresa X e qual é sua especialidade?' e perguntas de categoria em que a empresa deveria ser uma opção plausível. Classifique separadamente se a marca foi encontrada, se a descrição está correta e se o sistema confundiu serviços, pessoas, localização ou posicionamento." },
+      { type: "list", items: [
+        "Entity Accuracy: a descrição da organização está correta, incompleta, ambígua ou errada?",
+        "Category Association: a empresa aparece ligada às categorias e problemas que realmente atende?",
+        "Person ↔ Organization: fundador e especialistas são relacionados à organização correta?",
+        "Service Association: os serviços citados existem e correspondem às páginas canônicas?",
+        "External corroboration: fontes de terceiros confirmam ou contradizem os fatos centrais?",
+      ] },
+      { type: "paragraph", text: "Esse teste deve ser repetido ao longo do tempo, porque uma entidade coerente no site pode continuar sendo representada por informações antigas em diretórios, perfis ou outras fontes públicas." },
+
+      { type: "heading", text: "10. Entidade é um sistema vivo" },
       { type: "paragraph", text: "Empresas mudam. Pessoas entram e saem, serviços são criados, unidades abrem, pesquisas são publicadas. A arquitetura de entidade precisa de governança para que site, schema e fontes oficiais permaneçam coerentes ao longo do tempo." },
       { type: "callout", title: "Objetivo final", text: "Uma pessoa ou sistema deveria conseguir responder 'quem é esta empresa, o que ela faz, quem responde por sua expertise e quais evidências sustentam isso?' sem encontrar contradições importantes." },
     ],
