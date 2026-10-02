@@ -108,6 +108,7 @@ export const editorialJourneys: EditorialJourney[] = [
     slugs: [
       "core-web-vitals-guia",
       "checklist-seo-antes-lancar-site",
+      "migracao-site-sem-perder-seo",
       "auditoria-seo-o-que-deve-conter",
       "conteudo-sem-trafego-atualizar-consolidar-remover",
       "trafego-organico-estagnado-proxima-oportunidade",
