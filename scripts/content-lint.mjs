@@ -9,6 +9,7 @@ const routesDir = path.join(root, "src", "routes");
 const sitemapPath = path.join(root, "public", "sitemap.xml");
 const articleRelationsPath = path.join(contentDir, "articleRelations.ts");
 const serviceRelationsPath = path.join(contentDir, "serviceArticleRelations.ts");
+const intentBoundariesPath = path.join(contentDir, "articleIntentBoundaries.ts");
 const featuredImagesDir = path.join(root, "public", "media", "blog");
 
 const articleFiles = fs
@@ -121,6 +122,7 @@ function validateEditorialLinks(filePath, label) {
 
 const articleRelations = validateEditorialLinks(articleRelationsPath, "articleRelations");
 validateEditorialLinks(serviceRelationsPath, "serviceArticleRelations");
+const intentBoundaries = validateEditorialLinks(intentBoundariesPath, "articleIntentBoundaries");
 
 const relationKeys = new Set(
   [...articleRelations.matchAll(/^\s*"([^"]+)":\s*\[/gm)].map((match) => match[1]),
@@ -129,6 +131,15 @@ const relationKeys = new Set(
 for (const slug of articleSlugs) {
   if (!relationKeys.has(slug)) {
     failures.push(`artigo sem entrada em articleRelations: ${slug}`);
+  }
+}
+
+const boundaryKeys = new Set(
+  [...intentBoundaries.matchAll(/^\s*"([^"]+)":\s*\{/gm)].map((match) => match[1]),
+);
+for (const slug of boundaryKeys) {
+  if (!articleSlugs.has(slug)) {
+    failures.push(`articleIntentBoundaries possui chave sem artigo canônico: ${slug}`);
   }
 }
 
