@@ -18,10 +18,10 @@ function navigateTo(sectionId: string) {
 }
 
 const scenarios = [
-  ["Seu concorrente aparece e você não", "A IA cita, menciona ou recomenda concorrentes quando seus compradores fazem perguntas relevantes — e sua empresa fica fora da resposta."],
-  ["Sua empresa é descrita de forma errada", "Serviços, especialidades, pessoas ou contexto aparecem incompletos, desatualizados ou inconsistentes nas respostas."],
-  ["Google funciona, Search AI não", "O site já possui indexação ou tráfego, mas essa presença não se traduz em recuperação, citação ou consideração nas interfaces generativas testadas."],
-  ["Você não sabe o que medir", "Existem prints e testes avulsos, mas nenhum baseline fixo para separar menção, citação, recomendação, precisão da entidade e referral."],
+  ["Seu concorrente aparece e você não", "A IA cita, menciona ou recomenda concorrentes quando seus compradores fazem perguntas relevantes — e sua empresa fica fora da resposta.", "/blog/chatgpt-nao-cita-meu-site"],
+  ["Sua empresa é descrita de forma errada", "Serviços, especialidades, pessoas ou contexto aparecem incompletos, desatualizados ou inconsistentes nas respostas.", "/blog/como-estruturar-entidade-empresarial"],
+  ["Google funciona, Search AI não", "O site já possui indexação ou tráfego, mas essa presença não se traduz em recuperação, citação ou consideração nas interfaces generativas testadas.", "/blog/site-indexado-mas-ausente-em-search-ai"],
+  ["Você não sabe o que medir", "Existem prints e testes avulsos, mas nenhum baseline fixo para separar menção, citação, recomendação, precisão da entidade e referral.", "/blog/como-medir-visibilidade-em-ia"],
 ];
 
 const deliverables = [
@@ -43,7 +43,7 @@ const principles = [
 const authorityLinks = [
   ["Como entrar nas recomendações do ChatGPT como fornecedor", "/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor", "Fonte citada e fornecedor considerado são resultados diferentes. Este guia mostra como diagnosticamos essa diferença."],
   ["Por que o ChatGPT mostra seu concorrente e não você?", "/blog/chatgpt-nao-cita-meu-site", "Um playbook competitivo para separar citação, menção, recomendação, entidade, intenção, evidência e fontes externas."],
-  ["Como medir se GEO está funcionando", "/blog/como-medir-se-geo-esta-funcionando", "Prompts congelados, repetição e métricas separadas para evitar transformar variabilidade em falsa certeza."],
+  ["Como medir visibilidade em ChatGPT, Gemini e Perplexity", "/blog/como-medir-visibilidade-em-ia", "Prompts congelados, repetição e métricas separadas para evitar transformar variabilidade em falsa certeza ou depender de prints isolados."],
 ];
 
 export default function CompanyGeoIaPageV2() {
@@ -115,12 +115,13 @@ export default function CompanyGeoIaPageV2() {
               <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Problemas que não deveriam ser reduzidos a “precisamos fazer GEO”.</h2>
             </div>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {scenarios.map(([title, text], index) => (
-                <article key={title} className="rounded-[24px] border border-[#b28453]/20 bg-[#171614] p-8">
+              {scenarios.map(([title, text, href], index) => (
+                <a key={title} href={href} className="group rounded-[24px] border border-[#b28453]/20 bg-[#171614] p-8 transition-all hover:-translate-y-1 hover:border-[#b28453]/52">
                   <span className="font-mono text-[10px] font-bold text-[#b28453]">0{index + 1}</span>
                   <h3 className="mt-5 font-display text-2xl font-bold leading-[1.15]">{title}</h3>
                   <p className="mt-4 text-sm leading-[1.75] text-[#f8f8f8]/65">{text}</p>
-                </article>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#e0d3c3] group-hover:text-[#b28453]">Ver diagnóstico <ArrowRight size={14} /></span>
+                </a>
               ))}
             </div>
           </div>
