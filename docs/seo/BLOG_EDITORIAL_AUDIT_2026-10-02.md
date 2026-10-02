@@ -51,7 +51,7 @@ The following articles already had finalized Search Console evidence on 2026-10-
 | `como-medir-visibilidade-em-ia` | DIFFERENTIATE | design a reproducible multi-interface visibility benchmark |
 | `como-mercado-brasileiro-vende-geo-search-ai` | GSC PROTECTED | research benchmark of public market claims |
 | `como-ser-recomendado-pelo-chatgpt-como-fornecedor` | DIFFERENTIATE | provider consideration and recommendation |
-| `conteudo-sem-trafego-atualizar-consolidar-remover` | PRESERVE / P2 EXPANSION | content-governance decision: keep, update, consolidate or remove |
+| `conteudo-sem-trafego-atualizar-consolidar-remover` | EXPANDED NOW | content-governance decision: keep, update, consolidate or remove |
 | `core-web-vitals-guia` | PRESERVE | CWV measurement and interpretation |
 | `framework-crawl-index-retrieve-understand-trust-cite` | PRESERVE | S.I.G.N.A.L.-style dependency diagnostic framework |
 | `geo-o-que-e-o-que-nao-garante` | PRESERVE | category definition and non-guarantees |
@@ -67,7 +67,7 @@ The following articles already had finalized Search Console evidence on 2026-10-
 | `seo-vs-geo-vs-aeo` | PRESERVE | terminology/comparison intent |
 | `site-indexado-mas-ausente-em-search-ai` | PRESERVE | Google presence vs AI retrieval gap |
 | `site-indexado-sem-impressoes` | GSC PROTECTED | indexed but no Search impressions |
-| `trafego-organico-estagnado-proxima-oportunidade` | PRESERVE / P2 EXPANSION | opportunity mining after organic growth stalls |
+| `trafego-organico-estagnado-proxima-oportunidade` | EXPANDED NOW | opportunity mining after organic growth stalls |
 
 ## Explicit non-consolidation decisions
 
@@ -179,14 +179,21 @@ Added:
 - minimum operating cadence;
 - acceptance criteria distinguishing recommendation, implementation and validation.
 
-## P2 expansion queue
+## P2 expansion completed
 
-These documents are useful and distinct but can gain additional practical depth later without urgency:
+### `conteudo-sem-trafego-atualizar-consolidar-remover`
 
-1. `conteudo-sem-trafego-atualizar-consolidar-remover` — add a compact decision matrix with example outcomes;
-2. `trafego-organico-estagnado-proxima-oportunidade` — add opportunity scoring examples and query/page evidence patterns.
+Added:
+- decision matrix for maintain / update / consolidate / redirect / remove / measure;
+- concrete examples showing why traffic alone is insufficient.
 
-Do not expand them merely to increase word count.
+### `trafego-organico-estagnado-proxima-oportunidade`
+
+Added:
+- opportunity-prioritization criteria using demand, position, intent, owner, gap, commercial value, effort and risk;
+- examples connecting query/page evidence to priority.
+
+The editorial audit now has no open depth item that justifies immediate publication work. The next editorial decision should be driven by a new finalized GSC window or another observed demand/evidence gap, not by a publishing quota.
 
 ## Review rule
 
