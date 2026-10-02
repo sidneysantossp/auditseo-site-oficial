@@ -298,7 +298,7 @@ export const protocolArticles: Record<string, Article> = {
       { label: "Google Search Central — AI features and your website", url: googleAi, note: "Contexto oficial sobre recursos de IA no Google Search e continuidade dos fundamentos de SEO." },
       { label: "Google Search Central — Creating helpful, reliable, people-first content", url: googleHelpful, note: "Base para política editorial de conteúdo útil, confiável e verificável." },
     ],
-    relatedServices: [["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"], ["Entity Authority", "/solucoes/autoridade-de-entidade"]],
+    relatedServices: [["Consultoria de Search AI + GEO", "/geo-ia"], ["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
   },
 };
 
