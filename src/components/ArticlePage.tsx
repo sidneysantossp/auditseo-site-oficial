@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, Network, Quote, ShieldCheck } from "lucide-react";
 import type { Article } from "@/content/articles";
+import { getArticleVisual } from "@/content/articleVisuals";
 import { articleRelations } from "@/content/articleRelations";
 import { getServicePresentation } from "@/content/editorialArchitecture";
 import { researchCitations } from "@/content/researchCitations";
@@ -39,6 +40,7 @@ function headingId(text: string, index: number, explicitId?: string) {
 }
 
 export default function ArticlePage({ article }: { article: Article }) {
+  const visual = getArticleVisual(article);
   const relatedArticles = articleRelations[article.slug] || [];
   const researchCitation = researchCitations[article.slug];
   const [primaryServiceLabel, primaryServiceHref] = article.relatedServices[0] || [];
@@ -75,6 +77,19 @@ export default function ArticlePage({ article }: { article: Article }) {
                 <span className="inline-flex items-center gap-2"><Clock3 size={14} /> {article.readTime}</span>
                 {article.updatedAt !== article.publishedAt ? <span>Atualizado em {formatDate(article.updatedAt)}</span> : null}
               </div>
+            </div>
+
+            <div className="mt-12 overflow-hidden rounded-[28px] border border-[#b28453]/18 bg-[#0f0e0d] shadow-[0_30px_90px_rgba(0,0,0,0.26)]">
+              <img
+                src={visual.src}
+                alt={visual.alt}
+                width={visual.width}
+                height={visual.height}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                className="aspect-[1200/630] w-full object-cover"
+              />
             </div>
           </div>
         </header>
