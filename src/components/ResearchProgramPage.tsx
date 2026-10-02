@@ -69,7 +69,7 @@ export default function ResearchProgramPage() {
           <div className="mt-10 flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.13em] text-[#e0d3c3]">
             <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">2 DATASETS PUBLICADOS</span>
             <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">CASE STUDY #001 EM ANDAMENTO</span>
-            <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">OBSERVATORY · INTERFACES CONGELADAS</span>
+            <span className="rounded-full border border-[#b28453]/28 bg-[#b28453]/8 px-5 py-2">OBSERVATORY · COLETA EM ANDAMENTO</span>
           </div>
         </div>
       </section>
@@ -150,12 +150,12 @@ export default function ResearchProgramPage() {
       <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-28 xl:px-12">
         <div className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">PRÓXIMO CICLO · SEARCH AI OBSERVATORY</span>
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">CICLO EM COLETA · SEARCH AI OBSERVATORY</span>
             <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">
-              Depois de medir o mercado que vende Search AI, vamos medir quem aparece nas próprias respostas de IA.
+              Depois de congelar o protocolo, começamos a medir quem aparece nas próprias respostas de IA.
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-[1.75] text-[#11100f]/70">
-              O primeiro ciclo do Observatory observa prestadores de SEO e Search Intelligence com atuação no Brasil. Universo, prompts, regras e interfaces foram definidos antes da coleta. O ciclo usará ChatGPT Search, Google AI Mode, Gemini Web e Perplexity Search, com duas repetições independentes. A AUDITSEO entra na mesma régua, com conflito de interesse declarado.
+              O primeiro ciclo do Observatory observa prestadores de SEO e Search Intelligence com atuação no Brasil. Universo, prompts, regras e interfaces foram definidos antes da coleta. A coleta já está em andamento com ChatGPT Search, Google AI Mode, Gemini Web e Perplexity Search previstos no desenho, duas repetições independentes e bloqueios técnicos registrados quando uma interface não pode ser observada. A AUDITSEO entra na mesma régua, com conflito de interesse declarado. Resultados finais só serão publicados depois do fechamento e da revisão previstos pelo protocolo.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">

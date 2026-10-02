@@ -115,7 +115,7 @@ export default function BlogHubPageV2() {
         <div className="mx-auto max-w-[1240px]">
           <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">PESQUISA PROPRIETÁRIA</span>
           <h2 className="mt-5 max-w-5xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] md:text-5xl">Dados públicos antes da narrativa — e snapshots que não mudam depois do resultado.</h2>
-          <p className="mt-6 max-w-4xl text-base leading-[1.75] text-[#11100f]/70">A AUDITSEO já começou a publicar datasets congelados antes das conclusões. O objetivo é tornar preço, promessa, método e mensuração verificáveis. O Search AI Observatory continua como o próximo ciclo maior, com prompts e regras definidos antes da coleta.</p>
+          <p className="mt-6 max-w-4xl text-base leading-[1.75] text-[#11100f]/70">A AUDITSEO já começou a publicar datasets congelados antes das conclusões. O objetivo é tornar preço, promessa, método e mensuração verificáveis. O Search AI Observatory já está em coleta, com prompts, interfaces, repetições e regras definidos antes das observações. Os resultados finais permanecem retidos até o fechamento e a revisão do ciclo.</p>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <a href="/blog/quanto-custa-consultoria-seo-geo-ia" className="group rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
@@ -136,10 +136,10 @@ export default function BlogHubPageV2() {
 
             <a href="/blog/protocolo-benchmark-search-ai" className="group rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
               <Search size={20} className="text-[#b28453]" />
-              <span className="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">PRÓXIMO CICLO</span>
+              <span className="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#b28453]">COLETA EM ANDAMENTO</span>
               <h3 className="mt-4 font-display text-2xl font-bold leading-[1.15]">AUDITSEO Search AI Observatory</h3>
-              <p className="mt-4 text-sm leading-[1.7] text-[#f8f8f8]/64">Prompts, marcas, regras de menção/citação/recomendação e conflitos declarados antes da primeira coleta.</p>
-              <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453]">Ler protocolo <ArrowRight size={14} /></span>
+              <p className="mt-4 text-sm leading-[1.7] text-[#f8f8f8]/64">Prompts, marcas, interfaces e regras de menção/citação/recomendação foram congelados antes da coleta; bloqueios e resultados negativos permanecem no histórico.</p>
+              <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453]">Acompanhar protocolo <ArrowRight size={14} /></span>
             </a>
           </div>
         </div>
