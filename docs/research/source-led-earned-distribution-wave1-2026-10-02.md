@@ -20,12 +20,15 @@ The publication also maintains a public editorial masthead/contact route.
 
 ### Verified editorial route
 
-Use the publication's public newsroom contact rather than the advertising/commercial department.
+Use the publication's public newsroom/editorial contacts rather than advertising/commercial channels.
 
-- newsroom: `redacao@jornaldebrasilia.com.br`
-- alternate newsroom address shown in the masthead: `redacao@grupojbr.com`
+Primary route:
+- `tamires.rodrigues@grupojbr.com` — Editora, Redação Online
 
-Do not use advertising/commercial contacts for an earned-research pitch.
+Fallback:
+- `redacao@jornaldebrasilia.com.br` — Redação
+
+Do not send the same pitch to both addresses on day zero. Use the generic newsroom only as a later triage route if the primary editorial contact does not respond.
 
 ### Pitch 1 — commercial claims / buyer protection
 
@@ -49,7 +52,7 @@ Na amostra:
 Esses números descrevem apenas a amostra congelada e não são apresentados como estatística representativa de todo o mercado brasileiro.
 
 Artigo:
-https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai
+https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai?utm_source=jornal_de_brasilia&utm_medium=earned&utm_campaign=research_geo_2026&utm_content=market_claims_benchmark
 
 Research Hub:
 https://www.auditseo.com.br/estudos-busca-ia
@@ -78,7 +81,7 @@ Na mesma base aparecem sessão consultiva, auditoria, sprint, operação mensal 
 Por isso o estudo preserva cada formato separadamente, junto com periodicidade, “a partir de”, preço não informado e demais limitações.
 
 Artigo:
-https://www.auditseo.com.br/blog/quanto-custa-consultoria-seo-geo-ia
+https://www.auditseo.com.br/blog/quanto-custa-consultoria-seo-geo-ia?utm_source=jornal_de_brasilia&utm_medium=earned&utm_campaign=research_geo_2026&utm_content=pricing_benchmark
 
 Research Hub:
 https://www.auditseo.com.br/estudos-busca-ia
@@ -102,19 +105,19 @@ Guaíra News has recently published multiple pieces directly related to the rese
 
 Its public technology/business coverage therefore demonstrates topical fit.
 
-### Contact status
+### Verified editorial route
 
-No newsroom email was verified from the public pages inspected on 2026-10-02.
+Guaíra News publishes a dedicated pauta/release channel:
 
-Do not invent or guess an address.
+- `portalguairanews@gmail.com`
+- subject convention: `[PAUTA] + título objetivo`
+- WhatsApp `(17) 99735-8251` is a verified secondary route, but email is preferred for the first research pitch.
 
-Use only:
-- a verified contact route found later on the site/social profile; or
-- a direct response/contact path from an identified editor/journalist.
+Do not use the ranking article as a reason to request inclusion.
 
 ### Pitch — proprietary data, not ranking inclusion
 
-**Subject:** Pesquisa brasileira: garantia, prazo e mensuração ainda aparecem misturados em ofertas de GEO
+**Subject:** [PAUTA] Pesquisa: como 12 páginas brasileiras vendem GEO e Search AI
 
 Olá.
 
@@ -133,7 +136,7 @@ Na amostra:
 O estudo não ranqueia fornecedores e não apresenta a amostra como retrato estatístico de todo o Brasil.
 
 Artigo:
-https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai
+https://www.auditseo.com.br/blog/como-mercado-brasileiro-vende-geo-search-ai?utm_source=guairanews&utm_medium=earned&utm_campaign=research_geo_2026&utm_content=market_claims_benchmark
 
 Research Hub:
 https://www.auditseo.com.br/estudos-busca-ia
@@ -198,3 +201,16 @@ For every outreach attempt record:
 - referral traffic / qualified conversation when observable.
 
 A link is an outcome to record, never a condition of supplying the research.
+
+
+## Follow-up rule — Wave 1
+
+- one follow-up maximum per outlet;
+- wait at least five business days;
+- do not resend the full pitch;
+- add one useful clarification or alternate angle;
+- no response is a valid outcome and must be logged.
+
+For Jornal de Brasília, the generic newsroom may be used after the primary editorial route as a triage fallback, with a note that the pitch was previously sent to the online desk.
+
+For Guaíra News, keep the follow-up on the same verified pauta channel unless the outlet itself redirects the contact.
