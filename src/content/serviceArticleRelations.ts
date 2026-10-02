@@ -8,18 +8,18 @@ export type ServiceAuthorityLink = {
 export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   "/auditoria-seo": [
     { eyebrow: "GUIA EDITORIAL", title: "Auditoria SEO: o que deve conter", text: "O artigo educa sobre escopo, evidência, priorização e validação sem substituir a página comercial da auditoria.", href: "/blog/auditoria-seo-o-que-deve-conter" },
-    { eyebrow: "DECISÃO DE CONTRATAÇÃO", title: "O que uma consultoria de SEO deve entregar", text: "Ajuda a separar um diagnóstico útil de um pacote de entregáveis desconectados do problema.", href: "/blog/o-que-consultoria-seo-deve-entregar" },
+    { eyebrow: "DIAGNÓSTICO SEARCH AI", title: "Meu site aparece no Google, mas não nas IAs: o que investigar?", text: "Separa indexação de recuperação, entendimento, confiança e citabilidade antes de prescrever mais conteúdo ou schema.", href: "/blog/site-indexado-mas-ausente-em-search-ai" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Modelo usado para localizar a etapa quebrada antes de transformar achados em ações.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
   ],
   "/consultoria-seo": [
     { eyebrow: "BUYER GUIDE", title: "Como escolher uma consultoria de SEO", text: "Critérios para avaliar método, transparência, escopo, mensuração e aderência ao contexto da empresa.", href: "/blog/como-escolher-consultoria-seo" },
-    { eyebrow: "ENTREGÁVEIS", title: "O que uma consultoria de SEO deve entregar", text: "Diagnóstico, prioridades, implementação coordenada, validação e aprendizado contínuo.", href: "/blog/o-que-consultoria-seo-deve-entregar" },
+    { eyebrow: "SEARCH AI", title: "Por que o ChatGPT mostra seu concorrente e não você?", text: "Um diagnóstico para separar citação, menção, recomendação, intenção, entidade, evidência e fontes antes de definir a intervenção.", href: "/blog/chatgpt-nao-cita-meu-site" },
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "A disciplina usada pela AUDITSEO para conectar técnica, conteúdo, autoridade, IA e resultado em um mesmo sistema de decisão.", href: "/blog/o-que-e-search-intelligence" },
   ],
   "/solucoes/projetos-comecando-do-zero": [
     { eyebrow: "PRÉ-LANÇAMENTO", title: "Checklist SEO antes de lançar um site", text: "Arquitetura, HTTP, robots, canonicals, sitemap, conteúdo, entidade, medição e smoke que precisam estar definidos antes do go-live.", href: "/blog/checklist-seo-antes-lancar-site" },
     { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "A cadeia de dependências usada para definir o que precisa estar correto antes de um novo projeto acumular dívida de busca.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
-    { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma entidade empresarial", text: "Organização, pessoas, serviços, provas e fontes que precisam ser coerentes desde o início.", href: "/blog/como-estruturar-entidade-empresarial" },
+    { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma empresa para Google e IAs", text: "Organização, pessoas, serviços, provas e fontes que precisam ser coerentes desde o início.", href: "/blog/como-estruturar-entidade-empresarial" },
   ],
   "/solucoes/site-sem-tracao": [
     { eyebrow: "DIAGNÓSTICO", title: "Site indexado, mas sem impressões", text: "Como avançar de Index para relevância, intenção, qualidade, arquitetura e autoridade antes de simplesmente publicar mais conteúdo.", href: "/blog/site-indexado-sem-impressoes" },
@@ -33,7 +33,7 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   ],
   "/solucoes/autoridade-de-entidade": [
     { eyebrow: "FUNDAMENTO", title: "Autoridade de entidade: o que é e o que não é", text: "A definição operacional usada pela AUDITSEO sem inventar um score público de autoridade do Google.", href: "/blog/autoridade-de-entidade-o-que-e" },
-    { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma entidade empresarial", text: "Entity Home, Organization, pessoas, serviços, provas, consistência e fontes em uma arquitetura verificável.", href: "/blog/como-estruturar-entidade-empresarial" },
+    { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma empresa para Google e IAs", text: "Entity Home, Organization, pessoas, serviços, provas, consistência e fontes em uma arquitetura verificável.", href: "/blog/como-estruturar-entidade-empresarial" },
     { eyebrow: "SCHEMA SEM HYPE", title: "Schema ajuda a aparecer no ChatGPT?", text: "O papel real dos dados estruturados: representar fatos e relações sem tratá-los como atalho para autoridade ou citação por IA.", href: "/blog/schema-ajuda-aparecer-no-chatgpt" },
   ],
   "/solucoes/conteudo-por-intencao": [
@@ -42,10 +42,10 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "Por que a arquitetura editorial deve nascer da jornada e do gargalo, não de um calendário fixo de publicações.", href: "/blog/o-que-e-search-intelligence" },
   ],
   "/solucoes/geo-ia-readiness": [
-    { eyebrow: "CONSULTORIA CONTÍNUA", title: "Consultoria GEO, Search AI e SEO para IA", text: "Se o diagnóstico mostrar necessidade de acompanhamento e implementação por ciclos, esta é a frente consultiva mais ampla da AUDITSEO.", href: "/geo-ia" },
-    { eyebrow: "CONSIDERAÇÃO COMERCIAL", title: "Como entrar nas recomendações do ChatGPT como fornecedor", text: "A diferença entre ser citado como fonte e ser considerado como empresa quando um comprador pede fornecedores, especialistas ou consultorias.", href: "/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor" },
-    { eyebrow: "DIAGNÓSTICO", title: "O ChatGPT não cita meu site: o que auditar?", text: "Playbook para separar acesso, recuperação, entendimento, confiança e citabilidade antes de prescrever uma tática de GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
-    { eyebrow: "MENSURAÇÃO", title: "Como medir se GEO está funcionando", text: "Prompts congelados, repetição e métricas separadas de menção, citação, recomendação e precisão da entidade.", href: "/blog/como-medir-se-geo-esta-funcionando" },
+    { eyebrow: "GAP COMPETITIVO", title: "Por que o ChatGPT mostra seu concorrente e não você?", text: "Separa citação, menção, recomendação, intenção, entidade, evidência e fontes externas antes de prescrever GEO.", href: "/blog/chatgpt-nao-cita-meu-site" },
+    { eyebrow: "GOOGLE → IA", title: "Meu site aparece no Google, mas não nas IAs", text: "Diagnóstico para páginas que já têm presença em Search, mas não são recuperadas ou citadas de forma consistente nas interfaces generativas.", href: "/blog/site-indexado-mas-ausente-em-search-ai" },
+    { eyebrow: "MENSURAÇÃO", title: "Como medir visibilidade em ChatGPT, Gemini e Perplexity", text: "Prompts congelados, repetição, fontes e métricas separadas sem depender de prints isolados.", href: "/blog/como-medir-visibilidade-em-ia" },
+    { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma empresa para Google e IAs", text: "Entity Home, pessoas, serviços, provas, consistência externa e testes de Entity Accuracy.", href: "/blog/como-estruturar-entidade-empresarial" },
   ],
   "/solucoes/migracao-risco-seo": [
     { eyebrow: "CENÁRIO", title: "Queda depois de redesign ou migração", text: "Como investigar equivalência de URLs, redirects, conteúdo, links, indexação e infraestrutura quando o tráfego cai após uma mudança estrutural.", href: "/blog/queda-trafego-depois-redesign" },
