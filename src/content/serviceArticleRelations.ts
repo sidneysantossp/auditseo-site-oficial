@@ -8,8 +8,8 @@ export type ServiceAuthorityLink = {
 export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   "/auditoria-seo": [
     { eyebrow: "GUIA EDITORIAL", title: "Auditoria SEO: o que deve conter", text: "O artigo educa sobre escopo, evidência, priorização e validação sem substituir a página comercial da auditoria.", href: "/blog/auditoria-seo-o-que-deve-conter" },
+    { eyebrow: "CASE APLICADO", title: "Auditoria SEO aplicada na própria AUDITSEO", text: "Mostra como o método foi usado em um caso real, com baseline, achados, intervenções e limites de atribuição.", href: "/blog/auditoria-seo-aplicada-auditseo" },
     { eyebrow: "DIAGNÓSTICO SEARCH AI", title: "Meu site aparece no Google, mas não nas IAs: o que investigar?", text: "Separa indexação de recuperação, entendimento, confiança e citabilidade antes de prescrever mais conteúdo ou schema.", href: "/blog/site-indexado-mas-ausente-em-search-ai" },
-    { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "Modelo usado para localizar a etapa quebrada antes de transformar achados em ações.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
   ],
   "/consultoria-seo": [
     { eyebrow: "BUYER GUIDE", title: "Como escolher uma consultoria de SEO", text: "Critérios para avaliar método, transparência, escopo, mensuração e aderência ao contexto da empresa.", href: "/blog/como-escolher-consultoria-seo" },
@@ -18,7 +18,7 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   ],
   "/solucoes/projetos-comecando-do-zero": [
     { eyebrow: "PRÉ-LANÇAMENTO", title: "Checklist SEO antes de lançar um site", text: "Arquitetura, HTTP, robots, canonicals, sitemap, conteúdo, entidade, medição e smoke que precisam estar definidos antes do go-live.", href: "/blog/checklist-seo-antes-lancar-site" },
-    { eyebrow: "FRAMEWORK", title: "Crawl → Index → Retrieve → Understand → Trust → Cite", text: "A cadeia de dependências usada para definir o que precisa estar correto antes de um novo projeto acumular dívida de busca.", href: "/blog/framework-crawl-index-retrieve-understand-trust-cite" },
+    { eyebrow: "PERFORMANCE TÉCNICA", title: "Core Web Vitals: guia prático", text: "Como interpretar LCP, INP e CLS dentro do contexto de lançamento e experiência real, sem reduzir qualidade a uma nota isolada.", href: "/blog/core-web-vitals-guia" },
     { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma empresa para Google e IAs", text: "Organização, pessoas, serviços, provas e fontes que precisam ser coerentes desde o início.", href: "/blog/como-estruturar-entidade-empresarial" },
   ],
   "/solucoes/site-sem-tracao": [
@@ -34,6 +34,7 @@ export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
   "/solucoes/autoridade-de-entidade": [
     { eyebrow: "FUNDAMENTO", title: "Autoridade de entidade: o que é e o que não é", text: "A definição operacional usada pela AUDITSEO sem inventar um score público de autoridade do Google.", href: "/blog/autoridade-de-entidade-o-que-e" },
     { eyebrow: "ENTITY ARCHITECTURE", title: "Como estruturar uma empresa para Google e IAs", text: "Entity Home, Organization, pessoas, serviços, provas, consistência e fontes em uma arquitetura verificável.", href: "/blog/como-estruturar-entidade-empresarial" },
+    { eyebrow: "LOCAL ENTITY", title: "Google Meu Negócio: guia completo", text: "Como presença local, categoria, dados da empresa, avaliações e consistência pública participam da representação da entidade.", href: "/blog/google-meu-negocio-guia-completo" },
     { eyebrow: "SCHEMA SEM HYPE", title: "Schema ajuda a aparecer no ChatGPT?", text: "O papel real dos dados estruturados: representar fatos e relações sem tratá-los como atalho para autoridade ou citação por IA.", href: "/blog/schema-ajuda-aparecer-no-chatgpt" },
   ],
   "/solucoes/conteudo-por-intencao": [

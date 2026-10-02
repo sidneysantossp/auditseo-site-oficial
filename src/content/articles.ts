@@ -115,7 +115,7 @@ export const articles: Record<string, Article> = {
       { label: "Google Search Central — AI features and your website", url: googleAi, note: "O Google afirma que boas práticas de SEO continuam relevantes e que não há requisitos especiais adicionais para AI Overviews/AI Mode." },
       { label: "OpenAI — Busca do ChatGPT", url: openAiSearch, note: "Documentação pública sobre busca, citações e elegibilidade de sites." },
     ],
-    relatedServices: [["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Entity Authority", "/solucoes/autoridade-de-entidade"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
+    relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
   },
 
   "autoridade-de-entidade-o-que-e": {

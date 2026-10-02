@@ -277,7 +277,7 @@ export const advancedArticles: Record<string, Article> = {
       { label: "AUDITSEO — Protocolo de benchmark Search AI", url: "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai", note: "Protocolo público para prompts congelados, repetição, classificação e limitações antes da coleta." },
       { label: "AUDITSEO — Case Study #001", url: "https://www.auditseo.com.br/case-study/auditseo-search-intelligence", note: "Caso público usado para registrar baseline, intervenções e checkpoints sem reescrever o histórico." },
     ],
-    relatedServices: [["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"], ["Entity Authority", "/solucoes/autoridade-de-entidade"]],
+    relatedServices: [["Consultoria de Search AI + GEO", "/geo-ia"], ["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
   },
 
   "como-estruturar-entidade-empresarial": {
