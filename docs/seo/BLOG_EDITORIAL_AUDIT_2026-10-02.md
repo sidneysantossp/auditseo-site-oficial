@@ -1,7 +1,7 @@
 # AUDITSEO — Blog Editorial Audit
 
 **Audit date:** 2026-10-02  
-**Scope:** 32 canonical editorial documents  
+**Scope:** 33 canonical editorial documents  
 **Inputs:** repository content, internal-link graph, current commercial architecture and finalized GSC evidence documented on 2026-10-01.
 
 ## Decision model
@@ -57,6 +57,7 @@ The following articles already had finalized Search Console evidence on 2026-10-
 | `geo-o-que-e-o-que-nao-garante` | PRESERVE | category definition and non-guarantees |
 | `google-meu-negocio-guia-completo` | PRESERVE | Google Business Profile / local visibility |
 | `llms-txt-funciona` | PRESERVE | evidence and limits around llms.txt |
+| `migracao-site-sem-perder-seo` | NEW OWNER | planned migration: inventory, URL equivalence, redirects, staging, QA and monitoring |
 | `o-que-consultoria-seo-deve-entregar` | EXPANDED NOW + BOUNDARY | expected deliverables after consultancy model is chosen |
 | `o-que-e-search-intelligence` | PRESERVE | canonical definition of AUDITSEO Search Intelligence |
 | `protocolo-benchmark-search-ai` | GSC PROTECTED | frozen benchmark methodology |
@@ -121,6 +122,23 @@ Keep three:
 - `o-que-consultoria-seo-deve-entregar` — evaluate expected deliverables.
 
 These are sequential buyer decisions, not duplicate articles.
+
+## Commercial coverage result
+
+The post-audit service-link review found editorial links to every current commercial destination. Two gaps were then separated:
+
+- `/solucoes/migracao-risco-seo` had supporting links but no article where migration risk was the **primary** commercial bridge;
+- `/geo-ia` had supporting links but no article where continuous GEO/Search AI work was the **primary** bridge.
+
+Actions taken:
+
+- `migracao-site-sem-perder-seo` is now the primary editorial owner for migration-risk consulting;
+- `como-medir-se-geo-esta-funcionando` now points primarily to `/geo-ia`, because post-intervention measurement belongs to an ongoing learning loop rather than a one-time readiness audit.
+
+The migration guide is explicitly separated from:
+
+- `checklist-seo-antes-lancar-site` — net-new launch readiness;
+- `queda-trafego-depois-redesign` — recovery after a loss has already occurred.
 
 ## Consolidation result
 
