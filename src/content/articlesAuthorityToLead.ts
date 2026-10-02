@@ -269,7 +269,7 @@ export const authorityToLeadArticles: Record<string, Article> = {
       },
     ],
     relatedServices: [
-      ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
+      ["Consultoria de Search AI + GEO", "/geo-ia"],
       ["Entity Authority", "/solucoes/autoridade-de-entidade"],
       ["Intent Content Architecture", "/solucoes/conteudo-por-intencao"],
     ],
