@@ -67,7 +67,7 @@ A street-level PostalAddress should be published only when a real public busines
 1. Verify canonical LinkedIn company URL from the authenticated AUDITSEO company account.
 2. Monitor Tray recrawl after owner-side correction completed on 2026-10-01.
 3. Monitor BabyLoveGrowth after factual correction request sent on 2026-10-01.
-4. Opendi was re-checked on 2026-10-01 and still presents AUDITSEO as “Agência de SEO”; correct or claim the listing if the account can be verified, without propagating any unverified street-level address.
+4. Opendi correction was submitted by the account owner on 2026-10-01 after the listing was confirmed to still present AUDITSEO as “Agência de SEO”. Monitor the public listing for the approved update; do not propagate the legacy street-level address unless it is separately confirmed as current and approved for public use.
 5. Connect Google Business Profile and reconcile name/category/site/phone/service area with the canonical entity.
 6. Add only verified Organization `sameAs` URLs after the release gate passes.
 7. Record every external correction as an intervention in Case Study #001.
