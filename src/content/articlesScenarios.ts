@@ -247,6 +247,135 @@ export const scenarioArticles: Record<string, Article> = {
     ],
     relatedServices: [["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"], ["Consultoria SEO para migração de sites", "/solucoes/migracao-risco-seo"], ["Consultoria SEO contínua", "/solucoes/evolucao-organica"]],
   },
+
+  "migracao-site-sem-perder-seo": {
+    slug: "migracao-site-sem-perder-seo",
+    title: "Migração de site sem perder SEO: como planejar URLs, redirects, staging, QA e monitoramento",
+    metaTitle: "Migração de Site sem Perder SEO: Plano e Checklist | AUDITSEO",
+    description: "Guia para migração de site com foco em SEO: inventário, equivalência de URLs, redirects 301/308, canonical, staging, sitemap, Search Console, QA e monitoramento.",
+    eyebrow: "SEO MIGRATION & RISK",
+    publishedAt: "2026-10-02",
+    updatedAt: "2026-10-02",
+    readTime: "18 min",
+    author: "Sidney Santos",
+    authorUrl: "/autor/sidney-santos",
+    directAnswer: "Uma migração de site precisa ser tratada como mudança controlada, não como troca de layout. Antes do corte, congele inventário, baseline e mapa de equivalência entre URLs; defina redirects permanentes, canonicals, regras de staging, sitemap, tracking e critérios de QA; depois publique com gate de release e monitore crawling, indexação, impressões e conversões. O objetivo não é prometer que nada oscilará, e sim reduzir perdas evitáveis e tornar qualquer regressão diagnosticável.",
+    takeaways: [
+      "Migração pode envolver domínio, CMS, hosting, arquitetura, protocolo, templates ou URLs — e cada tipo possui riscos diferentes.",
+      "Mapeamento de URLs deve preservar equivalência de intenção; redirecionar tudo para a home elimina contexto e dificulta diagnóstico.",
+      "Staging precisa ser bloqueado sem deixar noindex, robots restritivo, autenticação ou regras de WAF vazarem para produção.",
+      "Redirect publicado não encerra a migração: canonical, links internos, sitemap, renderização, analytics e formulários também precisam ser validados.",
+      "Tempo de correção e tempo de recuperação são coisas diferentes; Search Console e logs ajudam a acompanhar o que os mecanismos realmente estão processando.",
+    ],
+    blocks: [
+      { type: "heading", text: "Migração é gestão de risco, não apenas deploy" },
+      { type: "paragraph", text: "Sites perdem sinais durante migrações quando várias relações mudam ao mesmo tempo e ninguém preserva uma linha de base. URL, conteúdo, links internos, status HTTP, canonical, rastreamento, infraestrutura e analytics podem mudar juntos. Se o tráfego cai depois, fica difícil separar causa de coincidência." },
+      { type: "paragraph", text: "Por isso o plano começa antes do código final. A equipe precisa saber quais páginas sustentam descoberta, quais URLs recebem links, quais consultas geram demanda, quais conversões importam e o que exatamente será diferente depois do corte." },
+
+      { type: "heading", text: "1. Classifique o tipo de migração antes de montar o checklist" },
+      { type: "list", items: [
+        "mudança de domínio ou subdomínio",
+        "mudança de protocolo ou host",
+        "troca de CMS, framework ou arquitetura de renderização",
+        "mudança de hosting/CDN sem alterar URLs",
+        "reestruturação de categorias, diretórios ou slugs",
+        "redesign com alteração relevante de conteúdo e navegação",
+        "consolidação ou divisão de páginas",
+      ] },
+      { type: "paragraph", text: "Uma mudança de hosting sem alteração de URLs exige controles diferentes de uma mudança de domínio com centenas de redirects. Misturar todos os cenários em um checklist genérico aumenta o risco de esquecer justamente o que é específico do projeto." },
+
+      { type: "heading", text: "2. Congele o inventário e o baseline antes do corte" },
+      { type: "paragraph", text: "Antes de publicar, exporte o estado atual. O inventário deve permitir comparar o antes e o depois sem depender da memória da equipe." },
+      { type: "list", items: [
+        "URLs canônicas e respectivos status HTTP",
+        "titles, descriptions, H1 e canonicals das páginas prioritárias",
+        "páginas com maior volume de cliques, impressões, conversões e links externos",
+        "sitemap atual e regras de robots.txt",
+        "links internos relevantes e profundidade das páginas críticas",
+        "structured data e entidades importantes",
+        "eventos de analytics, formulários e origem dos leads",
+        "consultas e páginas prioritárias no Search Console",
+      ] },
+
+      { type: "heading", text: "3. Crie um mapa de equivalência URL por URL" },
+      { type: "paragraph", text: "O Google recomenda mapear URLs antigas para novos destinos equivalentes em mudanças de site. O princípio é simples: cada URL importante deve apontar para a melhor continuação possível da mesma intenção, não para o endereço mais conveniente para a equipe." },
+      { type: "list", items: [
+        "URL antiga",
+        "URL nova equivalente",
+        "motivo da mudança",
+        "status esperado antes e depois",
+        "redirect permanente quando a URL mudou",
+        "canonical final",
+        "responsável pela validação",
+      ] },
+      { type: "callout", title: "Evite o redirect 'tudo para a home'", text: "Quando páginas diferentes são enviadas para um destino genérico, usuários e mecanismos perdem contexto. Em alguns casos a URL antiga realmente não possui equivalente; nesse cenário é melhor decidir conscientemente entre consolidar, redirecionar para uma página próxima ou devolver 404/410 do que esconder a ausência de equivalência." },
+
+      { type: "heading", text: "4. Preserve intenção e conteúdo, não apenas endereço" },
+      { type: "paragraph", text: "Uma migração pode manter o mesmo slug e ainda perder desempenho se a nova página remove a resposta que sustentava determinadas consultas. Compare conteúdo, headings, FAQs, elementos de prova, autoria, links e chamadas comerciais das URLs prioritárias." },
+      { type: "paragraph", text: "Quando houver mudança editorial deliberada, registre-a separadamente da migração técnica. Isso reduz a dificuldade de atribuir uma queda a redirects quando a causa real foi remoção de conteúdo, alteração de intenção ou navegação." },
+
+      { type: "heading", text: "5. Trate staging como ambiente controlado" },
+      { type: "paragraph", text: "Staging pode precisar de autenticação, robots restritivo ou noindex. O risco aparece quando essas proteções são copiadas para produção ou quando o ambiente de teste fica publicamente indexável. O gate de release deve verificar explicitamente o estado final de robots.txt, meta robots, headers e autenticação." },
+      { type: "list", items: [
+        "staging protegido de indexação e acesso indevido",
+        "produção sem bloqueios temporários herdados",
+        "WAF/CDN permitindo crawlers desejados conforme a política da empresa",
+        "conteúdo principal disponível no HTML esperado",
+        "assets e APIs críticos sem restrições específicas do ambiente antigo",
+      ] },
+
+      { type: "heading", text: "6. Implemente redirects permanentes e teste a cadeia completa" },
+      { type: "paragraph", text: "301 e 308 são sinais de mudança permanente. Mais importante que escolher entre eles é garantir destino equivalente, ausência de loops, cadeias desnecessárias e regras que não capturam URLs erradas por padrão." },
+      { type: "list", items: [
+        "antiga → nova em um salto quando possível",
+        "nenhum loop ou redirect para erro",
+        "parâmetros importantes preservados quando fazem parte da função da URL",
+        "HTTP e HTTPS tratados de forma consistente",
+        "host preferido resolvendo diretamente para a versão canônica",
+        "links internos atualizados para o destino final em vez de depender do redirect",
+      ] },
+
+      { type: "heading", text: "7. Valide canonical, sitemap, navegação e dados estruturados" },
+      { type: "paragraph", text: "Depois da mudança, o conjunto de sinais precisa apontar para a mesma arquitetura. Canonical antigo, sitemap com URLs removidas ou breadcrumb desatualizado podem criar mensagens contraditórias." },
+      { type: "list", items: [
+        "canonical absoluto e coerente com a URL final",
+        "sitemap contendo somente páginas canônicas válidas",
+        "menus, breadcrumbs e links contextuais atualizados",
+        "Organization, Person, Service e outros schemas compatíveis com a página visível",
+        "hreflang revisado quando existir estratégia internacional",
+      ] },
+
+      { type: "heading", text: "8. Faça o release com um gate de QA, não com uma lista informal" },
+      { type: "paragraph", text: "Cada item crítico precisa de responsável, evidência e critério de aceite. Para páginas prioritárias, teste status, redirect, canonical, H1, metadata, conteúdo, links, formulário e analytics no ambiente público. O próprio domínio precisa ser validado; preview não substitui produção." },
+      { type: "list", items: [
+        "amostra de URLs antigas e novas por tipo de template",
+        "páginas de maior tráfego e receita",
+        "404 real para URLs inexistentes",
+        "robots.txt e sitemap servidos pelo host correto",
+        "eventos e conversões chegando ao destino esperado",
+        "logs e alertas de 4xx/5xx ativos quando disponíveis",
+      ] },
+
+      { type: "heading", text: "9. Atualize Search Console e monitore o processamento" },
+      { type: "paragraph", text: "Sitemap, propriedades e ferramentas de mudança aplicáveis devem ser tratados conforme o tipo de migração. Depois do release, monitore páginas, consultas, cobertura e erros. A ausência de recuperação no dia seguinte não prova falha: crawling, reprocessamento e reavaliação podem levar tempo." },
+      { type: "paragraph", text: "Registre a data de cada correção para não comparar um sinal anterior ao deploy com uma hipótese posterior. Em projetos grandes, segmentar por diretório e template ajuda a descobrir se o problema é sistêmico ou localizado." },
+
+      { type: "heading", text: "10. Defina o que não deve mudar no mesmo dia" },
+      { type: "paragraph", text: "Quanto mais variáveis são alteradas simultaneamente, menor a capacidade de diagnosticar uma regressão. Quando possível, separe mudança estrutural de grandes reescritas editoriais, troca de tracking, experimento de conversão e novas regras de infraestrutura. Nem sempre é possível fazer tudo em fases, mas a decisão precisa ser explícita." },
+
+      { type: "heading", text: "11. Tenha plano de rollback — mas não reverta por ansiedade" },
+      { type: "paragraph", text: "Rollback é necessário para falhas graves de produção, não para qualquer oscilação de posição. Se redirects, conteúdo e tracking estão corretos, reverter cedo demais pode criar uma segunda migração antes que a primeira tenha sido processada. O plano deve definir quais falhas justificam retorno imediato e quais exigem observação." },
+      { type: "callout", title: "Princípio AUDITSEO", text: "A migração termina quando a nova arquitetura está tecnicamente correta, mensurável e monitorada — não quando o deploy fica verde. O objetivo é preservar equivalência onde ela existe, documentar mudanças deliberadas e tornar regressões investigáveis." },
+    ],
+    sources: [
+      { label: "Google Search Central — mudanças e migrações de sites", url: googleSiteMove, note: "Guia oficial para mapeamento de URLs, redirects, sitemaps, Search Console e monitoramento em mudanças de site." },
+      { label: "Google Search Central — mudança de hospedagem", url: googleHostingMove, note: "Documenta migrações de hosting, testes de infraestrutura, capacidade do servidor e monitoramento." },
+      { label: "Google Search Console — começar", url: googleSearchConsole, note: "Referência para propriedades, monitoramento de desempenho, indexação e problemas após mudanças." },
+      { label: "Google Search Central — requisitos técnicos", url: googleTechnical, note: "Base oficial para respostas HTTP, conteúdo indexável e requisitos mínimos de acesso." },
+    ],
+    relatedServices: [["Consultoria SEO para migração de sites", "/solucoes/migracao-risco-seo"], ["Recuperação de tráfego orgânico", "/solucoes/recuperacao-organica"], ["Planejamento SEO para novos sites", "/solucoes/projetos-comecando-do-zero"]],
+  },
+
 };
 
 export const scenarioArticleList = Object.values(scenarioArticles);

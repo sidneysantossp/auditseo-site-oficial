@@ -5,6 +5,24 @@ export type ArticleIntentBoundary = {
 };
 
 export const articleIntentBoundaries: Record<string, ArticleIntentBoundary> = {
+  "migracao-site-sem-perder-seo": {
+    answers: "Como planejar uma migração antes do corte: inventário, equivalência de URLs, redirects, staging, canonical, sitemap, QA, Search Console e monitoramento.",
+    doesNotAnswer: "Não é um checklist para um site totalmente novo nem um playbook de recuperação quando o tráfego já caiu depois do redesign.",
+    related: [
+      ["Checklist SEO antes de lançar um site", "/blog/checklist-seo-antes-lancar-site"],
+      ["Tráfego caiu depois do redesign: como diagnosticar", "/blog/queda-trafego-depois-redesign"],
+    ],
+  },
+  "checklist-seo-antes-lancar-site": {
+    answers: "O que precisa estar pronto antes do go-live de um site novo: arquitetura, indexação, entidade, medição e gate de release.",
+    doesNotAnswer: "Não substitui o mapa de equivalência necessário para preservar sinais de um site existente durante uma migração.",
+    related: [["Migração de site sem perder SEO", "/blog/migracao-site-sem-perder-seo"]],
+  },
+  "queda-trafego-depois-redesign": {
+    answers: "Como diagnosticar uma perda orgânica depois que redesign ou migração já aconteceu e o impacto precisa ser segmentado.",
+    doesNotAnswer: "Não é o plano preventivo de migração que deve ser executado antes do corte.",
+    related: [["Migração de site sem perder SEO", "/blog/migracao-site-sem-perder-seo"]],
+  },
   "como-medir-visibilidade-em-ia": {
     answers: "Como desenhar uma medição reproduzível de presença em ChatGPT, Gemini e Perplexity: amostra, prompts, repetições, menções, citações, recomendações, fontes e limitações.",
     doesNotAnswer: "Não é o documento principal para decidir se uma intervenção de GEO específica funcionou depois de um baseline.",

@@ -247,7 +247,7 @@ export const searchAiOpsArticles: Record<string, Article> = {
       { label: "Google — AI features and your website", url: googleAi, note: "Contexto oficial sobre como o Google enquadra seus recursos de IA dentro dos fundamentos de Search." },
       { label: "AUDITSEO — Protocolo de benchmark Search AI", url: "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai", note: "Metodologia própria publicada antes da coleta de dados proprietários." },
     ],
-    relatedServices: [["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"], ["Entity Authority", "/solucoes/autoridade-de-entidade"]],
+    relatedServices: [["Consultoria de Search AI + GEO", "/geo-ia"], ["Generative Search Readiness", "/solucoes/geo-ia-readiness"], ["Organic Evolution Cycle", "/solucoes/evolucao-organica"]],
   },
 };
 

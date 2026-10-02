@@ -2,7 +2,7 @@
 
 **Release:** 2026-10-02  
 **Scope:** Sprint 1 + Sprint 2  
-**Status:** implementation candidate
+**Status:** live in production; extended on 2026-10-02 with the migration content owner
 
 ## Objective
 
@@ -14,7 +14,7 @@ No article URL is changed by this sprint.
 
 ## Inventory
 
-- 32 unique editorial documents
+- 33 unique editorial documents
 - 5 primary journeys
 - 4 problem-first entry points
 - every article assigned to exactly one primary journey
@@ -50,6 +50,7 @@ No article URL is changed by this sprint.
    - Core Web Vitals
    - pre-launch SEO
    - audit scope
+   - migration planning and risk control
    - content consolidation
    - organic opportunity mining
 
@@ -92,11 +93,10 @@ A permanent `/diagnostico` option remains available for readers who recognize th
 
 Legacy English service labels in article source objects are normalized at render time through the centralized `servicePresentation` map.
 
-This avoids editing 32 articles merely to rename commercial cards and keeps service naming consistent across the library.
+This avoids editing every article merely to rename commercial cards and keeps service naming consistent across the library.
 
 ## What this sprint deliberately does not do
 
-- no new article URLs;
 - no slug migrations;
 - no mass content rewrite;
 - no new featured-image system yet;
@@ -109,7 +109,7 @@ Featured images, OG/Twitter images and Article.image schema belong to the next v
 
 Before release:
 
-- all 32 known article slugs must appear exactly once in the five journeys;
+- all current canonical article slugs must appear exactly once in the five journeys;
 - no unknown or duplicated journey slugs;
 - every article must retain at least one service relationship;
 - content lint / resource lint / case-study lint must pass;
