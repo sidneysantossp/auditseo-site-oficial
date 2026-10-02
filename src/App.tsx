@@ -491,7 +491,9 @@ export default function App() {
   if (currentPath === "/propostas/dr-felipe-barao" || currentPath === "/proposta/dr-felipe-barao") {
     return (
       <div className="bg-[#11100f] text-[#f8f8f8] font-sans antialiased selection:bg-[#b28453] selection:text-[#ffffff]">
+        <Header onNavClick={handleScrollToSection} activeSection="" />
         <PropostaDrFelipeBaraoPage onNavigate={handleScrollToSection} />
+        <SiteFooter onNavigate={handleScrollToSection} />
       </div>
     );
   }

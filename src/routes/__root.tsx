@@ -12,27 +12,49 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
+import Header from "../components/Header";
 import LeadCaptureBoundary from "../components/LeadCaptureBoundary";
+import SiteFooter from "../components/SiteFooter";
+
+function navigateSiteChrome(sectionId: string) {
+  if (typeof window === "undefined") return;
+
+  const routes: Record<string, string> = {
+    inicio: "/",
+    signal: "/metodo-signal",
+    solucoes: "/solucoes",
+    conteudo: "/blog",
+    diagnostico: "/diagnostico",
+    parceria: "/parceria",
+    "geo-ia": "/geo-ia",
+  };
+
+  window.location.assign(routes[sectionId] || "/");
+}
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="min-h-screen bg-[#11100f] text-[#f8f8f8]">
       <meta name="robots" content="noindex,follow" />
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Página não encontrada</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          A página que você procura não existe ou foi movida.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Voltar ao início
-          </Link>
+      <Header onNavClick={navigateSiteChrome} activeSection="" />
+      <main className="flex min-h-[72vh] items-center justify-center px-4 pb-20 pt-[132px]">
+        <div className="max-w-md text-center">
+          <h1 className="text-7xl font-bold text-[#f8f8f8]">404</h1>
+          <h2 className="mt-4 text-xl font-semibold text-[#f8f8f8]">Página não encontrada</h2>
+          <p className="mt-2 text-sm text-[#f8f8f8]/62">
+            A página que você procura não existe ou foi movida.
+          </p>
+          <div className="mt-6">
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center rounded-full bg-[#b28453] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#e0d3c3] hover:text-[#11100f]"
+            >
+              Voltar ao início
+            </Link>
+          </div>
         </div>
-      </div>
+      </main>
+      <SiteFooter onNavigate={navigateSiteChrome} />
     </div>
   );
 }
@@ -121,16 +143,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "icon",
-        href: "/favicon-auditseo.png",
+        href: "/favicon.ico?v=20261002",
+        type: "image/x-icon",
+        sizes: "any",
+      },
+      {
+        rel: "icon",
+        href: "/favicon-auditseo.png?v=20261002",
         type: "image/png",
         sizes: "150x150",
       },
       {
+        rel: "shortcut icon",
+        href: "/favicon.ico?v=20261002",
+        type: "image/x-icon",
+      },
+      {
         rel: "apple-touch-icon",
-        href: "/favicon-auditseo.png",
+        href: "/favicon-auditseo.png?v=20261002",
         sizes: "150x150",
       },
-      { rel: "manifest", href: "/manifest.json" },
+      { rel: "manifest", href: "/manifest.json?v=20261002" },
     ],
   }),
   shellComponent: RootShell,
