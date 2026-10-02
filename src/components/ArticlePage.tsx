@@ -1,6 +1,7 @@
 import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, FileText, Network, Quote, ShieldCheck } from "lucide-react";
 import type { Article } from "@/content/articles";
 import { articleRelations } from "@/content/articleRelations";
+import { getServicePresentation } from "@/content/editorialArchitecture";
 import { researchCitations } from "@/content/researchCitations";
 import Header from "./Header";
 import SiteFooter from "./SiteFooter";
@@ -40,6 +41,14 @@ function headingId(text: string, index: number, explicitId?: string) {
 export default function ArticlePage({ article }: { article: Article }) {
   const relatedArticles = articleRelations[article.slug] || [];
   const researchCitation = researchCitations[article.slug];
+  const [primaryServiceLabel, primaryServiceHref] = article.relatedServices[0] || [];
+  const primaryService = primaryServiceHref
+    ? { href: primaryServiceHref, ...getServicePresentation(primaryServiceLabel, primaryServiceHref) }
+    : null;
+  const secondaryServices = article.relatedServices.slice(1).map(([label, href]) => ({
+    href,
+    ...getServicePresentation(label, href),
+  }));
   const headingLinks = article.blocks.flatMap((block, index) =>
     block.type === "heading" ? [{ label: block.text, id: headingId(block.text, index, block.id) }] : [],
   );
@@ -88,6 +97,24 @@ export default function ArticlePage({ article }: { article: Article }) {
               </ul>
             </div>
           </div>
+
+          {primaryService ? (
+            <div className="mx-auto mt-8 flex max-w-[1120px] flex-col gap-6 rounded-[24px] border border-[#11100f]/10 bg-[#11100f] p-7 text-[#f8f8f8] md:flex-row md:items-center md:justify-between md:p-8">
+              <div className="max-w-3xl">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#b28453]">ESTE TEMA SE CONECTA A</span>
+                <h2 className="mt-3 font-display text-2xl font-bold">{primaryService.label}</h2>
+                <p className="mt-3 text-sm leading-[1.7] text-[#f8f8f8]/66">{primaryService.description}</p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-3">
+                <a href={primaryService.href} className="inline-flex items-center gap-2 rounded-full bg-[#b28453] px-5 py-3 text-xs font-bold text-white hover:bg-[#e0d3c3] hover:text-[#11100f]">
+                  Ver solução relacionada <ArrowRight size={13} />
+                </a>
+                <a href="/diagnostico" className="inline-flex items-center gap-2 rounded-full border border-[#e0d3c3]/22 px-5 py-3 text-xs font-bold text-[#e0d3c3] hover:border-[#b28453] hover:text-[#b28453]">
+                  Ainda não sabe onde quebra? <ArrowRight size={13} />
+                </a>
+              </div>
+            </div>
+          ) : null}
         </section>
 
         <section className="bg-[#11100f] px-6 py-20 md:py-28 xl:px-12">
@@ -218,17 +245,41 @@ export default function ArticlePage({ article }: { article: Article }) {
 
         <section className="bg-[#e0d3c3] px-6 py-20 text-[#11100f] md:py-24 xl:px-12">
           <div className="mx-auto max-w-[1120px]">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">APLICAÇÃO PRÁTICA</span>
-            <h2 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em]">Soluções relacionadas a este tema</h2>
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {article.relatedServices.map(([label, href]) => (
-                <a key={href} href={href} className="group rounded-[20px] border border-[#11100f]/10 bg-[#f4eee5] p-6">
-                  <FileText size={17} className="text-[#8c613c]" />
-                  <h3 className="mt-4 font-display text-xl font-bold">{label}</h3>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#8c613c] group-hover:text-[#11100f]">Entender solução <ArrowRight size={14} /></span>
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[#8c613c]">DA LEITURA PARA A AÇÃO</span>
+            <h2 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em]">Onde a AUDITSEO trata este tipo de problema</h2>
+            <p className="mt-5 max-w-3xl text-sm leading-[1.75] text-[#11100f]/68">
+              Este conteúdo existe para explicar o problema antes da contratação. Quando a empresa precisa transformar a hipótese em diagnóstico, implementação ou acompanhamento, estas são as frentes relacionadas.
+            </p>
+
+            {primaryService ? (
+              <div className="mt-10 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+                <a href={primaryService.href} className="group rounded-[24px] bg-[#11100f] p-8 text-[#f8f8f8] transition-transform hover:-translate-y-1">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-[#b28453]">{primaryService.eyebrow} · PRINCIPAL</span>
+                  <h3 className="mt-5 font-display text-3xl font-bold">{primaryService.label}</h3>
+                  <p className="mt-4 max-w-2xl text-sm leading-[1.75] text-[#f8f8f8]/66">{primaryService.description}</p>
+                  <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#b28453] group-hover:text-[#e0d3c3]">Entender esta solução <ArrowRight size={14} /></span>
                 </a>
-              ))}
-            </div>
+
+                <div className="grid gap-4">
+                  {secondaryServices.map((service) => (
+                    <a key={service.href} href={service.href} className="group rounded-[20px] border border-[#11100f]/10 bg-[#f4eee5] p-6 transition-transform hover:-translate-y-0.5">
+                      <span className="font-mono text-[9px] font-bold uppercase tracking-[0.13em] text-[#8c613c]">{service.eyebrow}</span>
+                      <h3 className="mt-3 font-display text-xl font-bold">{service.label}</h3>
+                      <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-[#8c613c] group-hover:text-[#11100f]">Ver frente relacionada <ArrowRight size={13} /></span>
+                    </a>
+                  ))}
+                  <a href="/diagnostico" className="group rounded-[20px] border border-[#11100f]/10 bg-white/45 p-6 transition-transform hover:-translate-y-0.5">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.13em] text-[#8c613c]">NÃO SABE QUAL É O GARGALO?</span>
+                    <h3 className="mt-3 font-display text-xl font-bold">Começar pelo diagnóstico</h3>
+                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-[#8c613c] group-hover:text-[#11100f]">Abrir diagnóstico <ArrowRight size={13} /></span>
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <a href="/diagnostico" className="mt-10 inline-flex items-center gap-2 rounded-full bg-[#11100f] px-6 py-3 text-sm font-bold text-white">
+                Começar pelo diagnóstico <ArrowRight size={14} />
+              </a>
+            )}
           </div>
         </section>
       </article>
