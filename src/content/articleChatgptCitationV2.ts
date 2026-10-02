@@ -12,7 +12,7 @@ export const chatgptCitationArticleV2: Article = {
     "Entenda por que um concorrente pode ser citado, mencionado ou recomendado no ChatGPT enquanto sua empresa fica ausente — e como diagnosticar acesso, intenção, entidade, evidência e fontes sem inventar fatores de ranking.",
   eyebrow: "DIAGNÓSTICO COMPETITIVO EM SEARCH AI",
   publishedAt: "2026-09-07",
-  updatedAt: "2026-09-08",
+  updatedAt: "2026-10-02",
   readTime: "17 min",
   author: "Sidney Santos",
   authorUrl: "/autor/sidney-santos",
@@ -116,6 +116,18 @@ export const chatgptCitationArticleV2: Article = {
       "prometer ao cliente que a marca será recomendada depois da otimização",
     ] },
 
+    { type: "heading", text: "Como transformar a comparação em um teste reproduzível" },
+    { type: "paragraph", text: "Depois de localizar os gaps, congele a pergunta exata antes de fazer mudanças. Execute o mesmo prompt em sessões independentes, registre plataforma, data, fontes e concorrentes observados e separe menção, citação e recomendação. Só então a comparação pode ser usada como baseline." },
+    { type: "list", items: [
+      "prompt exato congelado antes da intervenção",
+      "duas ou mais repetições independentes quando a pergunta for prioritária",
+      "classificação separada de Mention, Citation e Recommendation",
+      "registro dos domínios usados como fonte — inclusive quando nenhum deles é o domínio da marca",
+      "preservação das respostas negativas e das execuções em que a marca desaparece",
+      "nova coleta apenas depois de uma janela plausível de recrawl, indexação e atualização das fontes",
+    ] },
+    { type: "callout", title: "Não escolha o print mais bonito", text: "Se a marca aparece em uma execução e some na seguinte, as duas observações pertencem ao histórico. O objetivo é medir recorrência dentro de uma amostra definida, não selecionar a resposta que favorece a narrativa." },
+
     { type: "heading", text: "Quando essa comparação vira oportunidade comercial" },
     { type: "paragraph", text: "Se o seu concorrente entra na resposta de uma pergunta que seus compradores realmente fazem e sua empresa não entra, isso merece investigação porque a interface pode estar participando da formação da shortlist. O valor do diagnóstico não está em 'vencer o ChatGPT' — está em descobrir quais gaps de presença pública também prejudicam descoberta, entendimento e consideração em outras jornadas de busca." },
     { type: "paragraph", text: "Uma boa auditoria termina com evidência: prompts testados, respostas preservadas, fontes mapeadas, gaps classificados, hipóteses priorizadas e uma forma de medir novamente depois das mudanças. É isso que separa Search Intelligence de uma lista de hacks para IA." },
@@ -126,6 +138,7 @@ export const chatgptCitationArticleV2: Article = {
     { label: "OpenAI — Como pesquisar na web com o ChatGPT", url: openAiSearch, note: "Documentação oficial que descreve Search, múltiplos fatores voltados a relevância/confiabilidade e ausência de garantia de posicionamento." },
     { label: "Google Search Central — Creating helpful, reliable, people-first content", url: googleHelpful, note: "Referência complementar sobre originalidade, autoria, fontes, experiência e contexto editorial; não é apresentada como documentação do algoritmo do ChatGPT." },
     { label: "AUDITSEO — Como ser recomendado pelo ChatGPT como fornecedor", url: "https://www.auditseo.com.br/blog/como-ser-recomendado-pelo-chatgpt-como-fornecedor", note: "Documento complementar que aprofunda Provider Consideration, Recommendation Rate e a diferença entre fonte citada e fornecedor recomendado." },
+    { label: "AUDITSEO — Protocolo de benchmark Search AI", url: "https://www.auditseo.com.br/blog/protocolo-benchmark-search-ai", note: "Protocolo público para congelar prompts, repetições, métricas e limitações antes da coleta." },
   ],
   relatedServices: [
     ["Generative Search Readiness", "/solucoes/geo-ia-readiness"],
