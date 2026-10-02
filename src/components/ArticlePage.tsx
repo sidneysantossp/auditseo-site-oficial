@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, FileText, Network, Quote, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Clock3, ExternalLink, Network, Quote, ShieldCheck } from "lucide-react";
 import type { Article } from "@/content/articles";
 import { articleRelations } from "@/content/articleRelations";
 import { getServicePresentation } from "@/content/editorialArchitecture";
@@ -43,7 +43,7 @@ export default function ArticlePage({ article }: { article: Article }) {
   const researchCitation = researchCitations[article.slug];
   const [primaryServiceLabel, primaryServiceHref] = article.relatedServices[0] || [];
   const primaryService = primaryServiceHref
-    ? { href: primaryServiceHref, ...getServicePresentation(primaryServiceLabel, primaryServiceHref) }
+    ? { href: primaryServiceHref, ...getServicePresentation(primaryServiceLabel || "Solução relacionada", primaryServiceHref) }
     : null;
   const secondaryServices = article.relatedServices.slice(1).map(([label, href]) => ({
     href,
