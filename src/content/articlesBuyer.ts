@@ -237,6 +237,122 @@ export const buyerArticles: Record<string, Article> = {
     ],
     relatedServices: [["Consultoria SEO", "/consultoria-seo"], ["Consultoria SEO contínua", "/solucoes/evolucao-organica"], ["Auditoria SEO", "/auditoria-seo"]],
   },
+
+  "agencia-seo-sao-paulo-como-escolher": {
+    slug: "agencia-seo-sao-paulo-como-escolher",
+    title: "Agência de SEO em São Paulo: como escolher antes de contratar",
+    metaTitle: "Agência de SEO em São Paulo: Como Escolher | AUDITSEO",
+    description:
+      "Como avaliar agência ou consultoria de SEO em São Paulo: diagnóstico, método, provas, execução, SEO local, Search AI, métricas, promessas e perguntas antes de contratar.",
+    eyebrow: "DECISÃO DE CONTRATAÇÃO · SÃO PAULO",
+    publishedAt: "2026-10-03",
+    updatedAt: "2026-10-03",
+    readTime: "17 min",
+    author: "Sidney Santos",
+    authorUrl: "/autor/sidney-santos",
+    directAnswer:
+      "Para escolher uma agência de SEO em São Paulo, comece pelo problema que precisa ser resolvido — não pelo tamanho da lista de serviços. Verifique se o fornecedor consegue diagnosticar crawl, indexação, arquitetura, conteúdo, autoridade, SEO local, mensuração e Search AI quando essas frentes forem relevantes; peça evidências com baseline e limitações; entenda quem executa; e rejeite garantia de primeira posição. Agência, consultoria e time interno podem funcionar: a escolha depende principalmente de capacidade de execução, necessidade de direção e complexidade do negócio.",
+    takeaways: [
+      "Buscar 'agência de SEO em São Paulo' é uma intenção comercial; isso não significa que agência seja automaticamente o melhor modelo para toda empresa.",
+      "Peça diagnóstico e hipótese antes de aceitar um pacote mensal de tarefas.",
+      "SEO local importa quando São Paulo faz parte do mercado real do negócio; não exige criar páginas artificiais para cada bairro.",
+      "Cases precisam mostrar baseline, intervenção, período e limitações — não apenas gráficos positivos.",
+      "SEO, GEO e Search AI devem ser conectados ao mesmo objetivo comercial quando fazem parte do mesmo problema.",
+    ],
+    blocks: [
+      { type: "heading", text: "A primeira pergunta não é 'qual é a melhor agência?'" },
+      { type: "paragraph", text: "A pergunta mais útil é: que tipo de problema sua empresa precisa resolver? Uma operação sem capacidade de execução pode precisar de agência. Um time que já executa, mas prioriza mal, pode ganhar mais com consultoria. Um negócio em que SEO participa diariamente de produto, tecnologia e conteúdo pode precisar desenvolver liderança interna e usar fornecedores especializados como extensão." },
+      { type: "paragraph", text: "A busca por uma agência de SEO em São Paulo é um bom ponto de entrada porque expressa intenção de contratação. O risco é transformar essa intenção em comparação superficial de pacotes, quantidade de artigos, número de backlinks ou promessa de posição." },
+
+      { type: "heading", text: "1. Comece pela capacidade de diagnosticar antes de vender execução" },
+      { type: "paragraph", text: "Antes da proposta final, o fornecedor deveria conseguir explicar o que já foi observado, o que continua como hipótese e quais dados seriam necessários para separar causa de sintoma. Uma auditoria inicial não precisa resolver todo o projeto, mas precisa demonstrar método." },
+      { type: "list", items: [
+        "crawl e indexação estão funcionando como esperado?",
+        "as páginas certas representam as intenções certas?",
+        "há canibalização ou arquitetura confusa?",
+        "o conteúdo responde à decisão do comprador ou apenas cobre palavras-chave?",
+        "a empresa é representada de forma coerente como entidade?",
+        "há problema de presença local, autoridade, Search AI ou conversão?",
+      ] },
+
+      { type: "heading", text: "2. Diferencie agência, consultoria e time interno" },
+      { type: "paragraph", text: "Agência normalmente faz mais sentido quando a empresa precisa comprar capacidade de produção e implementação. Consultoria tende a funcionar melhor quando existe time para executar, mas falta priorização, governança, revisão e segunda opinião. Time interno ganha força quando SEO depende de contexto diário do negócio e de integração contínua com produto, engenharia, conteúdo e receita." },
+      { type: "callout", title: "Regra prática", text: "Se falta mão de obra, compre capacidade. Se existe capacidade, mas falta direção, compre decisão e governança. Se SEO participa do produto todos os dias, construa conhecimento interno e use especialistas externos de forma complementar." },
+
+      { type: "heading", text: "3. São Paulo é contexto de mercado — não justificativa para doorway pages" },
+      { type: "paragraph", text: "Uma empresa que realmente atende São Paulo pode precisar de sinais locais claros: página comercial, Google Business Profile, consistência de entidade, categorias, avaliações, referências externas e conteúdo que responda ao mercado. Isso é diferente de criar dezenas de páginas quase iguais trocando apenas bairro ou cidade." },
+      { type: "paragraph", text: "Pergunte como o fornecedor decide quando uma página local merece existir. A resposta deveria envolver intenção específica, oferta, operação real e utilidade para o usuário — não simplesmente a possibilidade de inserir um modificador geográfico." },
+
+      { type: "heading", text: "4. Peça para ver como o fornecedor escolhe prioridades" },
+      { type: "paragraph", text: "Um backlog sério precisa explicar por que determinada ação vem antes de outra. Corrigir centenas de avisos de ferramenta pode produzir pouca mudança enquanto um problema de arquitetura, intenção ou owner continua aberto." },
+      { type: "list", items: [
+        "evidência observada",
+        "impacto potencial",
+        "proximidade comercial",
+        "dependências",
+        "esforço",
+        "risco",
+        "capacidade de validar depois",
+      ] },
+
+      { type: "heading", text: "5. Não confunda relatório com prova" },
+      { type: "paragraph", text: "Relatórios mostram medições. Prova exige contexto: ponto zero, período, alteração realizada, papel do fornecedor, variáveis paralelas e resultado observado. Um fornecedor pode apresentar métricas verdadeiras e ainda assim deixar incerto o que foi causado pelo trabalho contratado." },
+      { type: "list", items: [
+        "qual era o baseline?",
+        "o que exatamente mudou?",
+        "quando a mudança foi publicada?",
+        "quem executou?",
+        "quais páginas e consultas foram afetadas?",
+        "houve mudança de mídia, marca, sazonalidade ou produto no mesmo período?",
+        "qual resultado comercial acompanhou a métrica de busca?",
+      ] },
+
+      { type: "heading", text: "6. Entenda como SEO local entra no projeto" },
+      { type: "paragraph", text: "Quando o negócio depende de demanda geográfica, o fornecedor precisa conectar site, entidade e Google Business Profile. Nome, categoria, serviço, área atendida, avaliações e referências externas precisam ser coerentes com a operação real." },
+      { type: "paragraph", text: "SEO local não deveria ficar isolado do restante da arquitetura. A página que representa a oferta em São Paulo ainda precisa estar ligada às páginas de serviço, às provas, ao conteúdo relacionado e à conversão." },
+
+      { type: "heading", text: "7. Pergunte como Search AI será medida" },
+      { type: "paragraph", text: "Em 2026, muitos fornecedores adicionaram GEO, AEO ou AI SEO à proposta. Isso só agrega valor quando há uma pergunta mensurável. Menção, citação, recomendação e referral são eventos diferentes e deveriam ser registrados separadamente." },
+      { type: "paragraph", text: "O Google documenta que suas boas práticas de SEO continuam relevantes para recursos de IA na Pesquisa. A OpenAI documenta condições controláveis de acesso e elegibilidade para ChatGPT Search, mas não oferece garantia de posicionamento. O fornecedor precisa separar documentação oficial, observação e hipótese." },
+
+      { type: "heading", text: "8. Rejeite promessas que o fornecedor não controla" },
+      { type: "paragraph", text: "O Google orienta empresas a terem cautela com quem garante rankings. Um fornecedor pode se comprometer com diagnóstico, implementação, qualidade, QA, documentação e processo de medição. Não pode controlar a posição futura que um mecanismo de busca decide atribuir." },
+      { type: "list", items: [
+        "garantia de primeira posição",
+        "prazo fechado para chegar ao topo",
+        "promessa de inclusão em respostas do ChatGPT",
+        "pacote de backlinks sem contexto editorial ou risco",
+        "produção de páginas locais em massa apenas para capturar variações geográficas",
+      ] },
+
+      { type: "heading", text: "9. Perguntas para levar à primeira reunião" },
+      { type: "list", items: [
+        "Que problema vocês já conseguem observar no meu site?",
+        "O que ainda precisa ser medido antes da proposta final?",
+        "Quem executa desenvolvimento, conteúdo, autoridade e analytics?",
+        "Como vocês priorizam backlog?",
+        "Como validam uma implementação depois do deploy?",
+        "Como SEO local é integrado ao site e ao Google Business Profile?",
+        "Como diferenciam SEO, GEO e Search AI no método?",
+        "Quais métricas comerciais acompanham cliques e posições?",
+        "O que vocês não garantem?",
+        "Que evidência faria vocês mudarem a estratégia?",
+      ] },
+
+      { type: "heading", text: "10. Quando a AUDITSEO pode fazer sentido" },
+      { type: "paragraph", text: "A AUDITSEO atua como consultoria de Search Intelligence a partir de São Paulo, com atendimento nacional. O modelo é mais aderente quando a empresa precisa descobrir o gargalo, ordenar prioridades, coordenar implementação e validar ciclos entre SEO técnico, conteúdo, autoridade, SEO local e Search AI." },
+      { type: "paragraph", text: "Se a necessidade principal é comprar grande volume fixo de produção, uma agência operacional pode ter melhor aderência. Se o problema é decisão, arquitetura, risco e aprendizado contínuo, uma consultoria orientada por diagnóstico tende a ser uma comparação mais relevante." },
+    ],
+    sources: [
+      { label: "Google Search Central — Você precisa de SEO?", url: googleHireSeo, note: "Orientação oficial sobre quando contratar SEO e como avaliar profissionais e fornecedores." },
+      { label: "Google Search Central — Serviços e conselhos de SEO de terceiros", url: googleThirdParty, note: "Recomendações oficiais para avaliar terceiros e evitar promessas enganosas." },
+      { label: "Google Search Central — Guia de SEO para iniciantes", url: googleStarter, note: "Fundamentos técnicos e editoriais usados para avaliar se uma proposta mantém a base de SEO sólida." },
+      { label: "Google Search Central — Recursos de IA e seu site", url: googleAi, note: "Contexto oficial sobre a relação entre fundamentos de SEO e experiências generativas da Pesquisa." },
+      { label: "OpenAI — Pesquisa na web com o ChatGPT", url: openAiSearch, note: "Documentação pública sobre ChatGPT Search e uso de fontes da web." },
+    ],
+    relatedServices: [["SEO em São Paulo", "/seo-sao-paulo"], ["Consultoria SEO", "/consultoria-seo"], ["Auditoria SEO", "/auditoria-seo"]],
+  },
+
 };
 
 export const buyerArticleList = Object.values(buyerArticles);
