@@ -598,6 +598,11 @@ export const servicePages: Record<string, ServicePageData> = {
       { type: "City", name: "São Paulo" },
       { type: "Country", name: "Brasil" },
     ],
+    commercialLinks: [
+      { title: "SEO em São Paulo", text: "Página local para empresas que começaram pela busca por agência ou SEO em São Paulo e precisam classificar a frente correta.", href: "/seo-sao-paulo" },
+      { title: "Auditoria SEO", text: "Quando o primeiro passo ainda é descobrir a causa e construir um roadmap priorizado.", href: "/auditoria-seo" },
+      { title: "GEO & Search AI", text: "Quando presença em respostas generativas precisa entrar no mesmo ciclo de mensuração e decisão.", href: "/geo-ia" },
+    ],
     faqs: [
       { question: "Consultoria SEO é uma mensalidade de tarefas?", answer: "Não. A cadência pode ser recorrente, mas as tarefas não são fixas. O trabalho parte do cenário, do backlog e das evidências disponíveis em cada ciclo." },
       { question: "A AUDITSEO substitui o time interno?", answer: "Não necessariamente. Podemos atuar como direção estratégica, QA e coordenação enquanto equipes internas ou fornecedores executam." },
