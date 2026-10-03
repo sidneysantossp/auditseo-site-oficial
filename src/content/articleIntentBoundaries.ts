@@ -5,6 +5,15 @@ export type ArticleIntentBoundary = {
 };
 
 export const articleIntentBoundaries: Record<string, ArticleIntentBoundary> = {
+  "agencia-seo-sao-paulo-como-escolher": {
+    answers: "Como um comprador em São Paulo deve avaliar agência, consultoria ou fornecedor de SEO antes da contratação, incluindo diagnóstico, execução, presença local, provas, Search AI e promessas.",
+    doesNotAnswer: "Não é a página comercial principal para contratar SEO em São Paulo e não substitui o guia nacional de seleção de uma consultoria específica.",
+    related: [
+      ["SEO em São Paulo", "/seo-sao-paulo"],
+      ["Como escolher uma consultoria de SEO", "/blog/como-escolher-consultoria-seo"],
+      ["Agência SEO, consultoria ou time interno?", "/blog/agencia-seo-consultoria-ou-time-interno"],
+    ],
+  },
   "migracao-site-sem-perder-seo": {
     answers: "Como planejar uma migração antes do corte: inventário, equivalência de URLs, redirects, staging, canonical, sitemap, QA, Search Console e monitoramento.",
     doesNotAnswer: "Não é um checklist para um site totalmente novo nem um playbook de recuperação quando o tráfego já caiu depois do redesign.",
