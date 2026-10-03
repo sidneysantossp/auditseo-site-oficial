@@ -530,15 +530,15 @@ export const servicePages: Record<string, ServicePageData> = {
     slug: "/consultoria-seo",
     code: "CONSULTORIA SEO",
     name: "Consultoria SEO",
-    title: "Consultoria SEO para diagnosticar, priorizar e acompanhar o que realmente move a busca.",
-    metaTitle: "Consultoria SEO Estratégica e Técnica | AUDITSEO",
+    title: "Consultoria SEO em São Paulo, com atuação nacional, para diagnosticar, priorizar e acompanhar o que realmente move a busca.",
+    metaTitle: "Consultoria SEO em São Paulo e Brasil | AUDITSEO",
     metaDescription:
-      "Consultoria SEO para empresas que precisam de diagnóstico, priorização, implementação coordenada, mensuração e evolução contínua com Search Intelligence.",
+      "Consultoria SEO em São Paulo, com atendimento nacional, para diagnóstico, priorização, implementação coordenada, mensuração e evolução contínua com Search Intelligence.",
     eyebrow: "ACOMPANHAMENTO ESTRATÉGICO",
     lead:
-      "A consultoria organiza decisões de SEO ao longo do tempo: identifica gargalos, prioriza oportunidades, coordena implementação, valida mudanças e atualiza o roadmap conforme novas evidências aparecem.",
+      "Com base operacional em São Paulo e atendimento a empresas em todo o Brasil, a consultoria organiza decisões de SEO ao longo do tempo: identifica gargalos, prioriza oportunidades, coordena implementação, valida mudanças e atualiza o roadmap conforme novas evidências aparecem.",
     directAnswer:
-      "A Consultoria SEO da AUDITSEO é uma atuação contínua ou por ciclos para empresas que precisam transformar dados de busca em decisões coordenadas entre técnica, conteúdo, autoridade, Search AI e conversão, sem depender de uma lista fixa de tarefas mensais.",
+      "A Consultoria SEO da AUDITSEO atua a partir de São Paulo, com atendimento nacional, em ciclos de decisão para empresas que precisam transformar dados de busca em ações coordenadas entre técnica, conteúdo, autoridade, Search AI e conversão, sem depender de uma lista fixa de tarefas mensais.",
     problemTitle: "SEO contínuo perde valor quando a operação repete entregáveis sem provar qual problema está tentando resolver.",
     problemText: [
       "Uma operação madura precisa distinguir manutenção, recuperação, novas oportunidades e experimentos. O backlog deve mudar quando os dados mudam, sem abandonar governança ou evidência.",
@@ -587,6 +587,10 @@ export const servicePages: Record<string, ServicePageData> = {
       "conversões orgânicas e assistidas",
       "tempo entre recomendação, implementação e validação",
       "hipóteses concluídas e próximos movimentos priorizados",
+    ],
+    serviceAreas: [
+      { type: "City", name: "São Paulo" },
+      { type: "Country", name: "Brasil" },
     ],
     faqs: [
       { question: "Consultoria SEO é uma mensalidade de tarefas?", answer: "Não. A cadência pode ser recorrente, mas as tarefas não são fixas. O trabalho parte do cenário, do backlog e das evidências disponíveis em cada ciclo." },
