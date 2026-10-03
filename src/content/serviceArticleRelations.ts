@@ -6,12 +6,18 @@ export type ServiceAuthorityLink = {
 };
 
 export const serviceArticleRelations: Record<string, ServiceAuthorityLink[]> = {
+  "/seo-sao-paulo": [
+    { eyebrow: "GUIA DE CONTRATAÇÃO", title: "Agência de SEO em São Paulo: como escolher", text: "Critérios para comparar agência, consultoria e time interno sem transformar localização ou volume de entregáveis em prova de qualidade.", href: "/blog/agencia-seo-sao-paulo-como-escolher" },
+    { eyebrow: "DECISÃO DE MODELO", title: "Agência SEO, consultoria ou time interno?", text: "Ajuda a decidir se o gargalo principal é capacidade de execução, direção estratégica ou conhecimento que precisa permanecer dentro da empresa.", href: "/blog/agencia-seo-consultoria-ou-time-interno" },
+    { eyebrow: "PRESENÇA LOCAL", title: "Google Meu Negócio: guia completo", text: "Como perfil, categoria, entidade, avaliações e consistência pública participam da presença local quando São Paulo é mercado real do negócio.", href: "/blog/google-meu-negocio-guia-completo" },
+  ],
   "/auditoria-seo": [
     { eyebrow: "GUIA EDITORIAL", title: "Auditoria SEO: o que deve conter", text: "O artigo educa sobre escopo, evidência, priorização e validação sem substituir a página comercial da auditoria.", href: "/blog/auditoria-seo-o-que-deve-conter" },
     { eyebrow: "CASE APLICADO", title: "Auditoria SEO aplicada na própria AUDITSEO", text: "Mostra como o método foi usado em um caso real, com baseline, achados, intervenções e limites de atribuição.", href: "/blog/auditoria-seo-aplicada-auditseo" },
     { eyebrow: "DIAGNÓSTICO SEARCH AI", title: "Meu site aparece no Google, mas não nas IAs: o que investigar?", text: "Separa indexação de recuperação, entendimento, confiança e citabilidade antes de prescrever mais conteúdo ou schema.", href: "/blog/site-indexado-mas-ausente-em-search-ai" },
   ],
   "/consultoria-seo": [
+    { eyebrow: "SÃO PAULO", title: "Agência de SEO em São Paulo: como escolher", text: "Guia para compradores que começaram pela busca local e precisam comparar agência, consultoria e capacidade interna antes de contratar.", href: "/blog/agencia-seo-sao-paulo-como-escolher" },
     { eyebrow: "BUYER GUIDE", title: "Como escolher uma consultoria de SEO", text: "Critérios para avaliar método, transparência, escopo, mensuração e aderência ao contexto da empresa.", href: "/blog/como-escolher-consultoria-seo" },
     { eyebrow: "SEARCH AI", title: "Por que o ChatGPT mostra seu concorrente e não você?", text: "Um diagnóstico para separar citação, menção, recomendação, intenção, entidade, evidência e fontes antes de definir a intervenção.", href: "/blog/chatgpt-nao-cita-meu-site" },
     { eyebrow: "FUNDAMENTO", title: "O que é Search Intelligence", text: "A disciplina usada pela AUDITSEO para conectar técnica, conteúdo, autoridade, IA e resultado em um mesmo sistema de decisão.", href: "/blog/o-que-e-search-intelligence" },
