@@ -138,6 +138,23 @@ export default function ServiceLandingPageV2({ data }: { data: ServicePageData }
         </div>
       </section>
 
+      {data.commercialLinks?.length ? (
+        <section className="bg-[#e0d3c3] px-6 py-24 text-[#11100f] md:py-28 xl:px-12">
+          <div className="mx-auto max-w-[1240px]">
+            <Heading dark={false} eyebrow="FRENTES RELACIONADAS" title="A intenção de busca é uma só. O diagnóstico decide qual frente deve receber o investimento." text="SEO em São Paulo pode significar problemas diferentes. Estas são as frentes comerciais conectadas à página local." />
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {data.commercialLinks.map((item) => (
+                <a key={item.href} href={item.href} className="group rounded-[22px] border border-[#11100f]/10 bg-[#f4eee5] p-7 transition-all hover:-translate-y-1 hover:border-[#8c613c]/40">
+                  <h3 className="font-display text-2xl font-bold">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-[1.7] text-[#11100f]/68">{item.text}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#8c613c] group-hover:text-[#11100f]">Ver frente <ArrowRight size={14} /></span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {authorityLinks.length ? (
         <section id="evidencia-publica" className="scroll-mt-24 px-6 py-24 md:py-32 xl:px-12">
           <div className="mx-auto max-w-[1240px]">
