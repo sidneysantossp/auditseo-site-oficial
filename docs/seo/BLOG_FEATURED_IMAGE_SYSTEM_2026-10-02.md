@@ -1,7 +1,7 @@
 # AUDITSEO — Featured Image System
 
 **Release:** 2026-10-02  
-**Scope:** 33 editorial documents
+**Scope:** 34 editorial documents
 
 ## Purpose
 
