@@ -121,6 +121,7 @@ export const editorialJourneys: EditorialJourney[] = [
     title: "Conteúdo para escolher modelo, fornecedor, escopo e investimento com menos assimetria de informação.",
     text: "Guias de contratação, estudo aplicado e benchmarks públicos de preço, promessa, prazo e mensuração ficam juntos para que a comparação comercial não dependa apenas de proposta ou discurso.",
     slugs: [
+      "agencia-seo-sao-paulo-como-escolher",
       "como-escolher-consultoria-seo",
       "agencia-seo-consultoria-ou-time-interno",
       "o-que-consultoria-seo-deve-entregar",
@@ -173,6 +174,11 @@ export type ServicePresentation = {
 };
 
 export const servicePresentation: Record<string, ServicePresentation> = {
+  "/seo-sao-paulo": {
+    eyebrow: "SEO SÃO PAULO",
+    label: "SEO em São Paulo",
+    description: "Hub local para empresas que procuram agência, consultoria ou auditoria de SEO em São Paulo e precisam classificar primeiro o problema.",
+  },
   "/auditoria-seo": {
     eyebrow: "AUDITORIA SEO",
     label: "Auditoria SEO",
