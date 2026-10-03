@@ -28,6 +28,8 @@ export type ServicePageData = {
   deliverables: Array<[string, string]>;
   measurement: string[];
   faqs: ServiceFaq[];
+  serviceAreas?: Array<{ type: "City" | "Country"; name: string }>;
+  commercialLinks?: Array<{ title: string; text: string; href: string }>;
 };
 
 export const servicePages: Record<string, ServicePageData> = {
@@ -450,19 +452,99 @@ export const servicePages: Record<string, ServicePageData> = {
     ],
   },
 
+  seoSaoPaulo: {
+    slug: "/seo-sao-paulo",
+    code: "SEO SÃO PAULO",
+    name: "SEO em São Paulo",
+    title: "SEO em São Paulo para empresas que precisam descobrir primeiro onde a presença está quebrando.",
+    metaTitle: "SEO em São Paulo: Consultoria, Auditoria e Search Intelligence | AUDITSEO",
+    metaDescription:
+      "SEO em São Paulo com diagnóstico antes da execução: consultoria, auditoria, conteúdo, autoridade de entidade e Search AI para empresas em SP e no Brasil.",
+    eyebrow: "SÃO PAULO · ATUAÇÃO NACIONAL",
+    lead:
+      "Se você procura uma agência de SEO em São Paulo, a AUDITSEO oferece uma alternativa orientada por diagnóstico: atuamos como consultoria de Search Intelligence para descobrir o gargalo antes de prescrever técnica, conteúdo, autoridade, SEO local ou Search AI.",
+    directAnswer:
+      "A AUDITSEO atende empresas em São Paulo e em todo o Brasil com consultoria, auditoria e Search Intelligence. Em vez de vender um pacote fixo de SEO, começamos classificando o problema: rastreamento, indexação, intenção, conteúdo, autoridade, presença local, Search AI, conversão ou combinação dessas frentes.",
+    problemTitle: "A busca por uma agência de SEO normalmente acontece antes de a empresa saber qual parte do sistema realmente precisa ser corrigida.",
+    problemText: [
+      "Termos como 'agência de SEO em São Paulo' expressam uma intenção comercial clara, mas não revelam se a empresa precisa de auditoria, acompanhamento contínuo, recuperação, conteúdo, SEO local, migração ou trabalho de entidade.",
+      "A AUDITSEO usa São Paulo como contexto operacional e de mercado, sem transformar localização em uma rede de páginas artificiais por bairro. O objetivo é conectar a demanda local a um diagnóstico que determine a frente certa.",
+    ],
+    warningSignals: [
+      "o site existe, mas não cresce para consultas comerciais relevantes em São Paulo",
+      "a empresa já contratou SEO, porém recebe relatórios sem saber o que realmente mudou",
+      "há dependência de mídia paga para captar demanda que também existe na busca orgânica",
+      "concorrentes aparecem no Google, no Local Pack ou em respostas de IA para problemas que a empresa também resolve",
+      "páginas de serviço competem entre si ou não representam claramente cada intenção",
+      "a empresa precisa de direção estratégica, mas ainda não sabe se deve contratar agência, consultoria ou estruturar time interno",
+    ],
+    fit: [
+      "empresas com operação ou mercado relevante em São Paulo",
+      "negócios B2B, serviços profissionais, tecnologia, saúde, educação, indústria, e-commerce e operações com jornada de busca complexa",
+      "times internos que precisam de diagnóstico, priorização, QA e direção",
+      "empresas que querem integrar SEO tradicional, autoridade, conteúdo e Search AI em um único sistema de decisão",
+    ],
+    notFit: [
+      "quem procura promessa de primeira posição ou prazo garantido de ranking",
+      "quem quer apenas um pacote mensal fixo de artigos ou links sem diagnóstico",
+      "projetos de SEO local baseados em criar dezenas de páginas quase idênticas para bairros e cidades",
+    ],
+    diagnosticQuestion:
+      "Quando um potencial cliente de São Paulo procura exatamente o problema que sua empresa resolve, qual etapa impede sua marca de ser descoberta, compreendida, considerada e convertida em oportunidade?",
+    approach: [
+      { title: "Mapeamento de demanda", text: "Separamos intenção local, intenção nacional e consultas de problema, serviço, comparação e compra antes de escolher páginas ou táticas." },
+      { title: "Diagnóstico Search Intelligence", text: "Auditamos crawl, indexação, arquitetura, conteúdo, entidade, presença local, autoridade, Search AI e conversão conforme o cenário." },
+      { title: "Definição do owner", text: "Cada intenção importante recebe uma página responsável, evitando canibalização e páginas locais duplicadas." },
+      { title: "Prioridade comercial", text: "Ordenamos oportunidades pela combinação de demanda, posição atual, valor para o negócio, esforço, risco e capacidade de validação." },
+      { title: "Implementação e learning loop", text: "Acompanhamos publicação, QA e sinais posteriores para decidir o próximo movimento sem repetir tarefas por hábito." },
+    ],
+    deliverables: [
+      ["Mapa de demanda em São Paulo", "Consultas e jornadas locais/comerciais organizadas por intenção e proximidade de negócio."],
+      ["Diagnóstico técnico e editorial", "Gargalos de indexação, arquitetura, conteúdo, entidade, autoridade e Search AI priorizados por evidência."],
+      ["Arquitetura de páginas", "Owners claros para serviços, problemas, comparação e contexto local sem doorway pages."],
+      ["Plano de SEO local", "Google Business Profile, consistência de entidade, categorias, avaliações e fontes externas quando a operação exige presença local."],
+      ["Backlog priorizado", "Ações ordenadas por impacto provável, dependências, esforço e possibilidade de medição."],
+      ["Plano de validação", "Baseline e critérios para acompanhar impressões, cliques, posições, leads, presença local e Search AI."],
+    ],
+    measurement: [
+      "impressões e cliques para consultas comerciais com contexto São Paulo",
+      "posição e CTR das páginas locais/comerciais prioritárias",
+      "consultas não branded e branded ligadas à categoria",
+      "conversões orgânicas e leads qualificados",
+      "visibilidade do Google Business Profile quando aplicável",
+      "presença e precisão da entidade em Search AI",
+    ],
+    faqs: [
+      { question: "A AUDITSEO é uma agência de SEO em São Paulo?", answer: "A AUDITSEO atua como consultoria de Search Intelligence com base operacional em São Paulo e atendimento nacional. A página usa a linguagem 'agência de SEO' porque ela representa uma forma comum de procura do comprador, mas nosso modelo começa por diagnóstico, priorização e decisão antes da execução." },
+      { question: "Vocês atendem apenas empresas de São Paulo?", answer: "Não. São Paulo é a base operacional e um mercado relevante para a empresa, mas o atendimento é nacional. Projetos podem ser conduzidos remotamente e a estratégia local só é priorizada quando corresponde ao mercado real do cliente." },
+      { question: "Vocês fazem SEO local e Google Business Profile?", answer: "Sim, quando presença local faz parte do problema. O trabalho pode envolver entidade, categoria, consistência pública, avaliações, páginas comerciais, referências externas e integração com o restante da estratégia orgânica." },
+      { question: "É melhor contratar agência ou consultoria de SEO?", answer: "Depende do gargalo. Se falta principalmente capacidade de produção, uma agência pode ser adequada. Se a empresa já executa, mas precisa decidir prioridades, validar mudanças e integrar técnica, conteúdo, autoridade e Search AI, consultoria costuma ter melhor aderência." },
+      { question: "Vocês garantem primeira posição para SEO em São Paulo?", answer: "Não. Nenhuma empresa controla os rankings do Google. A AUDITSEO assume responsabilidade pelo diagnóstico, método, qualidade de implementação, documentação, QA e mensuração — não por uma posição futura que depende de sistemas de terceiros." },
+    ],
+    serviceAreas: [
+      { type: "City", name: "São Paulo" },
+      { type: "Country", name: "Brasil" },
+    ],
+    commercialLinks: [
+      { title: "Consultoria SEO", text: "Para empresas que já executam e precisam de priorização, governança, QA e evolução contínua.", href: "/consultoria-seo" },
+      { title: "Auditoria SEO", text: "Para quando o principal problema ainda é descobrir a causa, ordenar evidências e construir o primeiro roadmap.", href: "/auditoria-seo" },
+      { title: "GEO & Search AI", text: "Para medir e evoluir presença em ChatGPT, Gemini, Perplexity e outras experiências generativas.", href: "/geo-ia" },
+    ],
+  },
+
   consultoriaSeo: {
     slug: "/consultoria-seo",
     code: "CONSULTORIA SEO",
     name: "Consultoria SEO",
-    title: "Consultoria SEO para diagnosticar, priorizar e acompanhar o que realmente move a busca.",
-    metaTitle: "Consultoria SEO Estratégica e Técnica | AUDITSEO",
+    title: "Consultoria SEO em São Paulo, com atuação nacional, para diagnosticar, priorizar e acompanhar o que realmente move a busca.",
+    metaTitle: "Consultoria SEO em São Paulo e Brasil | AUDITSEO",
     metaDescription:
-      "Consultoria SEO para empresas que precisam de diagnóstico, priorização, implementação coordenada, mensuração e evolução contínua com Search Intelligence.",
+      "Consultoria SEO em São Paulo, com atendimento nacional, para diagnóstico, priorização, implementação coordenada, mensuração e evolução contínua com Search Intelligence.",
     eyebrow: "ACOMPANHAMENTO ESTRATÉGICO",
     lead:
-      "A consultoria organiza decisões de SEO ao longo do tempo: identifica gargalos, prioriza oportunidades, coordena implementação, valida mudanças e atualiza o roadmap conforme novas evidências aparecem.",
+      "Com base operacional em São Paulo e atendimento a empresas em todo o Brasil, a consultoria organiza decisões de SEO ao longo do tempo: identifica gargalos, prioriza oportunidades, coordena implementação, valida mudanças e atualiza o roadmap conforme novas evidências aparecem.",
     directAnswer:
-      "A Consultoria SEO da AUDITSEO é uma atuação contínua ou por ciclos para empresas que precisam transformar dados de busca em decisões coordenadas entre técnica, conteúdo, autoridade, Search AI e conversão, sem depender de uma lista fixa de tarefas mensais.",
+      "A Consultoria SEO da AUDITSEO atua a partir de São Paulo, com atendimento nacional, em ciclos de decisão para empresas que precisam transformar dados de busca em ações coordenadas entre técnica, conteúdo, autoridade, Search AI e conversão, sem depender de uma lista fixa de tarefas mensais.",
     problemTitle: "SEO contínuo perde valor quando a operação repete entregáveis sem provar qual problema está tentando resolver.",
     problemText: [
       "Uma operação madura precisa distinguir manutenção, recuperação, novas oportunidades e experimentos. O backlog deve mudar quando os dados mudam, sem abandonar governança ou evidência.",
@@ -511,6 +593,15 @@ export const servicePages: Record<string, ServicePageData> = {
       "conversões orgânicas e assistidas",
       "tempo entre recomendação, implementação e validação",
       "hipóteses concluídas e próximos movimentos priorizados",
+    ],
+    serviceAreas: [
+      { type: "City", name: "São Paulo" },
+      { type: "Country", name: "Brasil" },
+    ],
+    commercialLinks: [
+      { title: "SEO em São Paulo", text: "Página local para empresas que começaram pela busca por agência ou SEO em São Paulo e precisam classificar a frente correta.", href: "/seo-sao-paulo" },
+      { title: "Auditoria SEO", text: "Quando o primeiro passo ainda é descobrir a causa e construir um roadmap priorizado.", href: "/auditoria-seo" },
+      { title: "GEO & Search AI", text: "Quando presença em respostas generativas precisa entrar no mesmo ciclo de mensuração e decisão.", href: "/geo-ia" },
     ],
     faqs: [
       { question: "Consultoria SEO é uma mensalidade de tarefas?", answer: "Não. A cadência pode ser recorrente, mas as tarefas não são fixas. O trabalho parte do cenário, do backlog e das evidências disponíveis em cada ciclo." },
