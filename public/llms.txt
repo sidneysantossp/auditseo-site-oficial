@@ -15,7 +15,8 @@ Este arquivo é um mapa navegacional complementar para agentes e ferramentas que
 
 ## Consultoria e diagnóstico
 
-- [Consultoria SEO](https://www.auditseo.com.br/consultoria-seo): Atuação estratégica e contínua para diagnóstico, priorização, coordenação de implementação, QA e aprendizado por ciclos.
+- [SEO em São Paulo](https://www.auditseo.com.br/seo-sao-paulo): Página comercial local para empresas que procuram agência, consultoria ou auditoria de SEO em São Paulo, com diagnóstico antes da prescrição e atendimento nacional.
+- [Consultoria SEO](https://www.auditseo.com.br/consultoria-seo): Atuação estratégica e contínua a partir de São Paulo, com atendimento nacional, para diagnóstico, priorização, coordenação de implementação, QA e aprendizado por ciclos.
 - [Auditoria SEO](https://www.auditseo.com.br/auditoria-seo): Diagnóstico pontual de técnica, indexação, intenção, conteúdo, autoridade e performance transformado em roadmap priorizado.
 - [Consultoria de Search AI + GEO](https://www.auditseo.com.br/geo-ia): Hub comercial para empresas que precisam evoluir presença em busca e interfaces de IA.
 - [Auditoria GEO & Search AI](https://www.auditseo.com.br/solucoes/geo-ia-readiness): Diagnóstico de visibilidade, fontes, concorrentes, elegibilidade e mensuração em Search AI.
@@ -56,6 +57,8 @@ Este arquivo é um mapa navegacional complementar para agentes e ferramentas que
 - [Framework Crawl → Index → Retrieve → Understand → Trust → Cite](https://www.auditseo.com.br/blog/framework-crawl-index-retrieve-understand-trust-cite): Framework operacional AUDITSEO para localizar a etapa quebrada da cadeia de busca.
 
 ## Avaliação de fornecedores
+
+- [Agência de SEO em São Paulo: como escolher](https://www.auditseo.com.br/blog/agencia-seo-sao-paulo-como-escolher): Guia de contratação para comparar agência, consultoria e capacidade interna, incluindo presença local, provas, execução e Search AI.
 
 - [Como escolher uma consultoria de SEO que entende de IA](https://www.auditseo.com.br/blog/como-escolher-consultoria-seo): Critérios e perguntas de buyer validation aplicáveis inclusive à própria AUDITSEO.
 - [O que uma consultoria de SEO deve entregar](https://www.auditseo.com.br/blog/o-que-consultoria-seo-deve-entregar): Entregáveis, transparência, priorização e mensuração.
