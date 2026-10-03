@@ -29,6 +29,7 @@ export type ServicePageData = {
   measurement: string[];
   faqs: ServiceFaq[];
   serviceAreas?: Array<{ type: "City" | "Country"; name: string }>;
+  commercialLinks?: Array<{ title: string; text: string; href: string }>;
 };
 
 export const servicePages: Record<string, ServicePageData> = {
@@ -523,6 +524,11 @@ export const servicePages: Record<string, ServicePageData> = {
     serviceAreas: [
       { type: "City", name: "São Paulo" },
       { type: "Country", name: "Brasil" },
+    ],
+    commercialLinks: [
+      { title: "Consultoria SEO", text: "Para empresas que já executam e precisam de priorização, governança, QA e evolução contínua.", href: "/consultoria-seo" },
+      { title: "Auditoria SEO", text: "Para quando o principal problema ainda é descobrir a causa, ordenar evidências e construir o primeiro roadmap.", href: "/auditoria-seo" },
+      { title: "GEO & Search AI", text: "Para medir e evoluir presença em ChatGPT, Gemini, Perplexity e outras experiências generativas.", href: "/geo-ia" },
     ],
   },
 
