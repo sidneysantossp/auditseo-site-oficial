@@ -14,7 +14,7 @@ No article URL is changed by this sprint.
 
 ## Inventory
 
-- 33 unique editorial documents
+- 34 unique editorial documents
 - 5 primary journeys
 - 4 problem-first entry points
 - every article assigned to exactly one primary journey
